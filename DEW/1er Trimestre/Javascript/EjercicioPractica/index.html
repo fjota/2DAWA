@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ejercicio Practica Javascript</title>
+  <script>
+    /* Crea un script en JS que pida un valor por ventana emergente y lo muestre en negrita. */
+    /* var res = prompt("Introduzca cualquier caracter");
+    document.write("<strong>" + res + "</strong>"); */
+
+
+    /* Crea un script en JS que pida un número e indique si es un valor par. */
+    /* var res = prompt("Introduzca un número");
+    res = parseInt(res);
+    if ((res % 2) === 0) {
+      document.write("El numero introducido es par");
+    } */
+
+
+    /* Crea un script en JS que pida un número e indique si es un valor par o impar. */
+    /* var res = prompt("Introduzca un número");
+    res = parseInt(res);
+    if ((res % 2) === 1) {
+      document.write("El numero introducido es impar");
+    } */
+
+
+    /* Crea un script en JS que pida un número e indique si es un valor par o impar (en caso de que sea un número), o un mensaje de error (en otro caso). */
+    /* var res = prompt("Introduzca un número");
+    res = parseInt(res);
+    if ((res % 2) === 1) {
+      document.write("El numero introducido es impar");
+    }
+    else if ((res % 2) === 0) {
+      document.write("El numero introducido es par");
+    }
+    else if(isNaN(res)) {
+      document.write("El dato introducido no es un número");
+    } */
+
+
+    /* Crea un script en JS que pida un número e indique si es par y mayor que 10 o impar y menor que 8 o par e igual a 6 o cualquier otro número. */
+    /* var res = prompt("introduce un numero");
+    res = parseInt(res);
+    if (((res % 2 === 0) && (res > 10))) {
+      document.write("Es par y mayor a 10");
+    }
+    else if ((res % 2 === 1) && (res < 8)) {
+      document.write("Es impar y menor que 8");
+    }
+    else if ((res % 2 === 0) && (res === 6)) {
+      document.write("Es par e igual a 6");
+    }
+    else {
+      document.write("Cualquier otro número");
+    } */
+
+    /* Crea un script en JS que muestre todos los números del 1 a 10. */
+    /* for (let i = 1; i < 11; i++) {
+      document.write(i);
+    } */
+
+
+    /* Crea un script en JS que pida un número y dibuje un árbol de n niveles, siendo n el número introducido. */
+    /* var res = prompt("Introduzca un numero");
+    res = parseInt(res);
+    for (let i = 0; i < res; i++) {
+      for (let j = 0; j <= i; j++) {
+        document.write("*");
+      }
+      document.write("<br>");
+    } */
+
+
+    /* Crea un script en JS que genere un array de 10 números aleatorios, lo ordene por el algoritmo de burbuja y lo vuelta a mostrar ordenado. */
+    /* var array = [];
+    for (let i = 0; i < 10; i++) {
+      array.push(Math.floor((Math.random() * 100) + 1));
+    }
+
+    console.log(array);
+
+    for (let j = 0; j < array.length; j++) {
+      for (let h = 0; h < array.length -1; h++) {        
+        if (array[h] > array[h + 1]) {
+          array[h] = array[h + 1]
+        }
+      }      
+    }
+
+    console.log(array); */
+    
+    
+    /* Crea un script en JS que pida un número y, sin usar un bucle for muestre todos los números desde el introducido hasta el cero. */
+    /* var res = prompt("Introduce un número");
+    res = parseInt(res);
+
+    toDown(res);
+
+    function toDown(number) {
+      if (number >= 0) {
+        document.write(number);
+        toDown(number - 1);        
+      }
+    } */
+
+
+    /* Crea un script en JS que pida al usuario letras y números hasta que se introduzca la letra "x". */
+   /*  do {
+      var res = prompt("Introduzca letras o números");
+    } while (res != "x"); */
+
+
+    /* Crea un script en JS que pida un número en binario y lo convierta a decimal. */
+    var res = prompt("Introduzca un número en binario para pasarlo a decimal");
+    var potencia = 0;
+    var decimal = 0;
+    var lolo;
+    for (let i = res.length; i >= 0 ; i--, potencia = potencia * 2) {    
+      lolo =   parseInt(res.charAt(i-1));
+      decimal = parseInt(lolo * potencia);
+    }
+    document.write(decimal);
+
+
+    /* Crea un script en JS que pida un número en decimal y lo convierta a binario. */
+   /*  var res = prompt("Introduzca un número en decimal para que lo pasemos a binario");
+    var binario = "";
+    var finalBinario = "";
+    res = parseInt(res);
+    while (res >= 1) {
+      binario += (res % 2).toString();      
+      res = res / 2;
+      res = Math.floor(res);
+    }
+    for (let i = binario.length; i >= 0; i--) {
+      finalBinario += binario.charAt(i);
+    }
+    document.write(finalBinario); */
+  </script>
+</head>
+
+<body>
+
+  <!-- >
+
+Crea un script en JS que pida un número en binario y lo convierta a decimal.
+Crea un script en JS que pida un número en decimal y lo convierta a hexadecimal. -->
+</body>
+
+</html>

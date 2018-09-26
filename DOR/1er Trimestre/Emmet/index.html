@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 1 -->
+  <!-- div[class="obje"]>p>a[href="web.html"]{Pagina} -->
+  <div class="obje">
+    <p><a href="web.html">Pagina</a></p>
+  </div>
+  <!-- 2 -->
+  <!-- (div>dl>(dt+dd)*2)+footer>p -->
+  <div>
+    <dl>
+      <dt></dt>
+      <dd></dd>
+      <dt></dt>
+      <dd></dd>
+    </dl>
+  </div>
+  <footer>
+    <p></p>
+  </footer>
+  <!-- 3 -->
+  <!-- div.principal>p>a[href="stupidweb.html"]{enlace a}^^^footer -->
+  <div class="principal">
+    <p><a href="stupidweb.html">enlace a</a></p>
+  </div>
+  <footer></footer>
+  <!-- 4 -->
+  <!-- header+.principal+footer -->
+  <header></header>
+  <div class="principal"></div>
+  <footer></footer>
+  <!-- 5 -->
+  <!-- div*5 -->
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <!-- 6 -->
+  <!-- header+article>p>strong^blockquote^^footer  -->
+  <header></header>
+  <article>
+    <p><strong></strong></p>
+    <blockquote></blockquote>
+  </article>
+  <footer></footer>
+  <!-- 7 -->
+  <!-- (.clase1>ul>(li>p>a[href="url$.html"]{pag$})*5).clase2 -->
+  <div class="clase1">
+    <ul>
+      <li>
+        <p><a href="url1.html">pag1</a></p>
+      </li>
+      <li>
+        <p><a href="url2.html">pag2</a></p>
+      </li>
+      <li>
+        <p><a href="url3.html">pag3</a></p>
+      </li>
+      <li>
+        <p><a href="url4.html">pag4</a></p>
+      </li>
+      <li>
+        <p><a href="url5.html">pag5</a></p>
+      </li>
+    </ul>
+  </div>
+  <div class="clase2"></div>
+  <!-- 8 -->
+  <!-- header+article>p>strong+blockquote+footer -->
+  <header></header>
+  <article>
+    <p>
+      <strong></strong>
+      <blockquote></blockquote>
+      <footer></footer>
+    </p>
+  </article>
+  <!-- 9 -->
+  <!-- #cuadro>table>tr.row>td.col -->
+  <div id="cuadro">
+    <table>
+      <tr class="row">
+        <td class="col"></td>
+      </tr>
+    </table>
+  </div>
+  <!-- 10 -->
+  <!-- table>(thead>tr>th{Month}+th{Saving})tbody>tr>td{Junaty}+td{100} -->
+</body>
+</html>
