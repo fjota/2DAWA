@@ -78,15 +78,17 @@
     /* Crea un script en JS que genere un array de 10 números aleatorios, lo ordene por el algoritmo de burbuja y lo vuelta a mostrar ordenado. */
     /* var array = [];
     for (let i = 0; i < 10; i++) {
-      array.push(Math.floor((Math.random() * 100) + 1));
+      array.push(Math.floor((Math.random() * 10) + 1));
     }
 
     console.log(array);
-
+    var aux;
     for (let j = 0; j < array.length; j++) {
       for (let h = 0; h < array.length -1; h++) {        
         if (array[h] > array[h + 1]) {
-          array[h] = array[h + 1]
+          aux = array[h];
+          array[h] = array[h + 1];
+          array[h + 1] = aux;
         }
       }      
     }
@@ -115,15 +117,15 @@
 
 
     /* Crea un script en JS que pida un número en binario y lo convierta a decimal. */
-    var res = prompt("Introduzca un número en binario para pasarlo a decimal");
-    var potencia = 0;
+    /* var res = prompt("Introduzca un número en binario para pasarlo a decimal");
+    var potencia = 1;
     var decimal = 0;
-    var lolo;
-    for (let i = res.length; i >= 0 ; i--, potencia = potencia * 2) {    
-      lolo =   parseInt(res.charAt(i-1));
-      decimal = parseInt(lolo * potencia);
+    var numBinary;
+    for (let i = res.length; i > 0 ; i--, potencia *= 2) {    
+      numBinary = parseInt(res.charAt(i-1));
+      decimal += parseInt(numBinary * potencia);
     }
-    document.write(decimal);
+    document.write(decimal); */
 
 
     /* Crea un script en JS que pida un número en decimal y lo convierta a binario. */
@@ -140,15 +142,16 @@
       finalBinario += binario.charAt(i);
     }
     document.write(finalBinario); */
+
+
+    /* Crea un script en JS que pida un número en decimal y lo convierta a hexadecimal. */
+    /* var res = prompt("Introduzca un número decimal");   
+    res = parseInt(res);
+    var hexaString =  res.toString(16);
+    document.write(hexaString);  */   
   </script>
 </head>
 
 <body>
-
-  <!-- >
-
-Crea un script en JS que pida un número en binario y lo convierta a decimal.
-Crea un script en JS que pida un número en decimal y lo convierta a hexadecimal. -->
 </body>
-
 </html>

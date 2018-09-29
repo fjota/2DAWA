@@ -18,40 +18,42 @@
     <div class="card border border-primary">
       <img class="card-img-top" src="img.jpg" alt="Card image cap">
       <div class="card-body">
-        <!-- <div class="row">
-          <div class="btn-group w-100" role="group">
-            <div class="col p-0 pl-2">
-              <button type="button" class="btn btn-primary btn-block rounded-0">Primary</button>
-            </div>
-            <div class="col p-0">
-              <button type="button" class="btn btn-secondary btn-block rounded-0">Secondary</button>
-            </div>
-            <div class="col p-0">
-              <button type="button" class="btn btn-light btn-block rounded-0">Light</button>
-            </div>
-            <div class="col p-0">
-              <button type="button" class="btn btn-dark btn-block rounded-0">Dark</button>
-            </div>
-            <div class="col p-0">
-              <button type="button" class="btn btn-outline-success btn-block rounded-0">Success</button>
-            </div>
-            <div class="col p-0">
-              <button type="button" class="btn btn-outline-danger btn-block rounded-0">Danger</button>
-            </div>
-            <div class="col p-0">
-              <button type="button" class="btn btn-outline-warning btn-block rounded-0">Warning</button>
-            </div>
-            <div class="col p-0 pr-2">
-              <button type="button" class="btn btn-outline-info btn-block rounded-0">Info</button>
+        <form>
+          <div class="row">
+            <div class="btn-group w-100" role="group">
+              <div class="col p-0 pl-3">
+                <button type="button" class="btn btn-primary btn-block rounded-0">Primary</button>
+              </div>
+              <div class="col p-0">
+                <button type="button" class="btn btn-secondary btn-block rounded-0">Secondary</button>
+              </div>
+              <div class="col p-0">
+                <button type="button" class="btn btn-light btn-block rounded-0">Light</button>
+              </div>
+              <div class="col p-0">
+                <button type="button" class="btn btn-dark btn-block rounded-0">Dark</button>
+              </div>
+              <div class="col p-0">
+                <button type="button" class="btn btn-outline-success btn-block rounded-0">Success</button>
+              </div>
+              <div class="col p-0">
+                <button type="button" class="btn btn-outline-danger btn-block rounded-0">Danger</button>
+              </div>
+              <div class="col p-0">
+                <button type="button" class="btn btn-outline-warning btn-block rounded-0">Warning</button>
+              </div>
+              <div class="col p-0 pr-3">
+                <button type="button" class="btn btn-outline-info btn-block rounded-0">Info</button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
         <form>
-          <div class="row mt-3">
-            <div class="col-3 p-0 pl-2">
+          <div class="row justify-content-between mb-2 mt-2">
+            <div class="col-3">
               <input type="text" class="form-control" placeholder="Nombre">
             </div>
-            <div class="col-3 offset-1">
+            <div class="col-3">
               <label class="sr-only" for="inlineFormInputGroup">e-mail</label>
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -67,49 +69,44 @@
               </div>
             </div>
           </div>
-        </form> -->
+        </form>
         <form class="needs-validation" novalidate>
           <div class="form-row">
-            <div class="col-md-4 mb-3">
-              <label for="validationCustom01">First name</label>
-              <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark"
-                required>
-              <div class="valid-feedback">
-                Looks good!
+            <div class="col mb-3">
+              <div class="form-group row">
+                <label for="inputPassword" class="col col-form-label">Datos D</label>
+                <div class="col">
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Datos D">
+                </div>
               </div>
             </div>
-            <div class="col-md-4 mb-3">
-              <label for="validationCustom02">Last name</label>
-              <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto"
-                required>
-              <div class="valid-feedback">
-                Looks good!
+            <div class="col mb-3">
+              <div class="form-group row">
+                <label for="inputPassword" class="col col-form-label">Datos B</label>
+                <div class="col">
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Datos B">
+                </div>
               </div>
-            </div>           
+            </div>
           </div>
           <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="validationCustom03">City</label>
-              <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
-              <div class="invalid-feedback">
-                Please provide a valid city.
+            <div class="col mb-3">
+              <div class="form-group row">
+                <label for="inputPassword" class="col col-form-label text-right">Datos K</label>
+                <div class="col">
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Datos K">
+                </div>
               </div>
             </div>
-            <div class="col-md-3 mb-3">
-              <label for="validationCustom04">State</label>
-              <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
-              <div class="invalid-feedback">
-                Please provide a valid state.
+            <div class="col mb-3">
+              <div class="form-group row">
+                <label for="inputPassword" class="col col-form-label text-right">Datos P</label>
+                <div class="col">
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Datos P">
+                </div>
               </div>
             </div>
-            <div class="col-md-3 mb-3">
-              <label for="validationCustom05">Zip</label>
-              <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
-              <div class="invalid-feedback">
-                Please provide a valid zip.
-              </div>
-            </div>
-          </div>          
+          </div>
         </form>
         <form class="needs-validation" novalidate>
           <div class="form-row justify-content-between">
@@ -140,13 +137,21 @@
         </form>
         <div class="btn-group-vertical w-100">
           <button type="button" class="btn btn-primary btn-lg btn-block">Aceptar
-            <i class="fas fa-gavel fa-flip-horizontal bg-danger fa-xs rounded p-1"></i>
-            <i class="fas fa-motorcycle bg-info fa-xs rounded p-1"></i>
+            <span class="badge badge-pill badge-danger">
+              <i class="fas fa-gavel fa-flip-horizontal fa-xs"></i>
+            </span>
+            <a href="#" class="badge badge-info">
+              <i class="fas fa-motorcycle fa-xs"></i>
+            </a>
           </button>
           <button type="button" class="btn btn-info btn-lg btn-block disabled">Volver</button>
           <button type="button" class="btn btn-primary btn-sm btn-block">Aceptar
-            <i class="fas fa-gavel fa-flip-horizontal bg-danger fa-xs rounded p-1"></i>
-            <i class="fas fa-motorcycle bg-info fa-xs rounded p-1"></i>
+            <span class="badge badge-pill badge-danger">
+              <i class="fas fa-gavel fa-flip-horizontal fa-xs"></i>
+            </span>
+            <a href="#" class="badge badge-info">
+              <i class="fas fa-motorcycle fa-xs"></i>
+            </a>
           </button>
         </div>
       </div>
