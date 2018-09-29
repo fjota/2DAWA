@@ -1,10 +1,12 @@
-package es.cifpcm.model;
+package es.cifpcm.MisCoches_RamirezVillcaFranzJosue.model;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Josué Ramírez
  */
-public class Coche {
+public class Coche implements Serializable{
     
     private String marca;
     private String modelo;
