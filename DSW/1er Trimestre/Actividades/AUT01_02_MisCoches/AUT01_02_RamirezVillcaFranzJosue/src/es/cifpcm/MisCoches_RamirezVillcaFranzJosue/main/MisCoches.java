@@ -84,14 +84,14 @@ public class MisCoches {
         String modelo = sc.next();
         ConsoleClear.ClearConsoleIde();
         for (int i = 0; i < memStore.size(); i++) {
-            if (memStore.get(i).getModelo().contains(modelo)) {
+            if (memStore.get(i).getModelo().equals(modelo)) {
                 sb.append("Se ha eliminado exitosamente el siguiente registro \n");
                 sb.append("Marca \t\tModelo \t\tCategoria \t\tPrecio Dia \t\t\n");
                 sb.append("---------------------------------------------------------------\n");
-                sb.append(memStore.get(i).getMarca()).append("\t\t\n");
-                sb.append(memStore.get(i).getModelo()).append("\t\t\n");
-                sb.append(memStore.get(i).getCategoria()).append("\t\t\t\n");
-                sb.append(memStore.get(i).getPrecioDia()).append("\t\t\n");
+                sb.append(memStore.get(i).getMarca()).append("\t\t");
+                sb.append(memStore.get(i).getModelo()).append("\t\t");
+                sb.append(memStore.get(i).getCategoria()).append("\t\t\t");
+                sb.append(memStore.get(i).getPrecioDia()).append("\t\t");
                 sb.append("\n");
                 System.out.println(sb.toString());                                                              
                 hasCar = true;
@@ -158,7 +158,7 @@ public class MisCoches {
         String modelo = sc.next();
         ConsoleClear.ClearConsoleIde();
         for (int i = 0; i < memStore.size(); i++) {
-            if (memStore.get(i).getModelo().contains(modelo)) {                
+            if (memStore.get(i).getModelo().equals(modelo)) {                
                 sb.append("Marca \t\tModelo \t\tCategoria \t\tPrecio Dia \t\t\n");
                 sb.append("---------------------------------------------------------------\n");
                 sb.append(memStore.get(i).getMarca()).append("\t\t");
