@@ -1,0 +1,43 @@
+Un fabricante de dispositivos móviles tiene una amplia gama de teléfonos, tablets, ebooks y smartwatchs. Vamos a diseñar una jerarquía de clases teniendo en cuenta las características de cada dispositivo:
+
+TELÉFONO
+- Modelo
+- Tamaño de pantalla
+- Memoria
+- Capacidad de la batería
+- Sistema operativo
+- Posibilidad de incorporar sistema de manos libres
+- Número de perfiles de sonido
+
+TABLET
+- Modelo
+- Tamaño de pantalla
+- Memoria
+- Capacidad de la batería
+- Sistema operativo
+- Posibilidad de conectar teclado y ratón
+
+EBOOK
+- Modelo
+- Tamaño de pantalla
+- Memoria
+- Capacidad de la batería
+- Sistema operativo
+- Pantalla de tinta electrónica
+- Número de catálogos online disponibles
+
+SMARTWATCH
+- Modelo
+- Tamaño de pantalla
+- Memoria
+- Capacidad de la batería
+- Sistema operativo
+- Disponibilidad de reconocimiento de voz.
+- Número de dispositivos vinculables.
+- Medición de pulso y tensión.
+
+
+
+Diseña dicha jerarquía de clases, teniendo en cuenta además que hay que implementar dos funciones:
+- Nombre comercial, que devuelve un string del modelo, el tamaño de la pantalla y la memoria.
+- Características, que devuelve un string con toda la información del modelo.

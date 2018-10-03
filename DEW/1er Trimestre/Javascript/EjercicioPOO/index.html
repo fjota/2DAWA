@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Iniciacion a javascript orientado a objetos</title>
+  <script>
+
+  class Coordenada {
+    constructor (x = 0, y = 0) {
+      this._x = x;
+      this._y = x;
+    }
+
+    set x (value) {
+      this._x = value;
+    }
+
+    set y (value) {
+      this._y = value;
+    }
+
+    get x () {
+      return this._x;
+    }
+
+    get y () {
+      return this._y;
+    }
+
+    suma (x, y) {
+      this._x = x + this._x;
+      this._y = y + this._y;
+    }
+
+    modulo () {
+      return (Math.sqrt(this._x) + Math.sqrt(this._y));
+    }
+
+  }
+
+  let obj = new Coordenada;
+  console.log("Primera coordenada al instanciar objeto: " + "Coordenada x : " + obj.x + " Coordenada y: " + obj.y);
+  
+  obj.suma(8, 9);
+
+  console.log("Coordenadas despues de llamar al método suma : " + "Coordenada x : " + obj.x + " Coordenada y: " + obj.y);
+
+  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
