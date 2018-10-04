@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <title>Buscador</title>
+</head>
+
+<body>
+
+  <!-- Collapse Carousel -->
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h1 class="text-white">Poner El carousel Aqui</h1>
+      <span class="text-muted">bla bla bla.</span>
+    </div>
+  </div>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="img/pirate.png" width="30" height="30" alt="">
+    </a>
+    <button type="button" class="btn btn-dark text-muted">
+      Novedades <span class="badge badge-light">3</span>
+    </button>
+    <button type="button" class="btn btn-dark disabled text-muted">Desabilitado</button>
+    <a class="text-muted" id="mostrarAlerta">NO TOCAR</a>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Busqueda" aria-label="Search">
+        <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+      </form>
+      <div class="pos-f-t">
+        <nav class="navbar navbar-dark bg-dark">
+          <button class="navbar-toggler d-block" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </nav>
+      </div>
+
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+
+    <div class="alert alert-danger d-none" role="alert" id="alertaRoja">
+      <a href="#" class="alert-link">!Que Fuerte!</a> No hagas click sobre este enlace.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script>
+    $('.close').on('click', function () {
+      $('#alertaRoja').removeClass('show');
+    });
+
+    $('#mostrarAlerta').on('click', function () {
+      $('#alertaRoja').addClass('show');
+    });
+    /* $(".alert").alert(); */
+  </script>
+</body>
+
+</html>
