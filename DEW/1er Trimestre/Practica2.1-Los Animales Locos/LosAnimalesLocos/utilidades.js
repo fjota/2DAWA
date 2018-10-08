@@ -8,13 +8,4 @@ class Utilidades {
     return espacios;
   }
 
-  /* static Wait(milliseconds) {
-    let date = Date.now();
-
-    while (Date.now() < date + milliseconds) {
-      
-    }
-
-  } */
-
 }
