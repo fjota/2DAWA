@@ -8,7 +8,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action = "NewServlet" method = "GET">
+            <form action = "NewServlet" method = "POST">
             First Name: <input type = "text" name = "first_name">
             <br />
             Last Name: <input type = "text" name = "last_name" />
