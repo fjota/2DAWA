@@ -9,7 +9,6 @@ class Animal {
     this._numeroPosicion = numeroPosicion;
   }
 
-  /* Gets */
   get nombre() {
     return this._nombre;
   }
@@ -28,8 +27,7 @@ class Animal {
   get numeroPosicion() {
     return this._numeroPosicion;
   }
-
-  /* Sets */
+  
   set posicion(value) {
     this._posicion = value;
   }
@@ -86,7 +84,7 @@ class Juego {
   set ronda(value) {
     this._ronda = value;
   }
-
+  
   InicioJuego() {
     let tenemosGanador = false;
 
@@ -100,25 +98,8 @@ class Juego {
       this.MostrarRonda();
 
       if (this.TenemosGanador()) {
-        break;
-      }
-
-
-      /* if (this.tortuga.numeroPosicion >= this.meta) {
-        tenemosGanador = true;
-        this.MostrarGanador(this.tortuga.nombre, this.tortuga.imagen);
-        break;
-      }
-      if (this.liebre.numeroPosicion >= this.meta) {
-        tenemosGanador = true;
-        this.MostrarGanador(this.liebre.nombre, this.liebre.imagen);
-        break;
-      }
-      if (this.colibri.numeroPosicion >= this.meta) {
-        tenemosGanador = true;
-        this.MostrarGanador(this.colibri.nombre, this.colibri.imagen);
-        break;
-      } */
+        tenemosGanador = true;        
+      }      
 
     }
 
@@ -133,7 +114,7 @@ class Juego {
    * @param {number[]} arrayVentaja 
    * @param {number[]} arrayHandicap 
    */
-  CalculoPosibilidad(arrayVentaja, arrayHandicap) {
+  CalculoProbalilidad(arrayVentaja, arrayHandicap) {
     let probabilidadesNumericas = new Array();
     probabilidadesNumericas = probabilidadesNumericas.concat(Utilidades.ValorArray(arrayVentaja[0], arrayVentaja[1]), Utilidades.ValorArray(arrayHandicap[0], arrayHandicap[1]));
 
@@ -141,8 +122,11 @@ class Juego {
     return probabilidadesNumericas[numeroProbabilida];
   }
 
+  /**
+   * Realiza el movimiento de los animales dependiendo de su ventaja o handicap
+   */
   MovimientoProbabilidad() {
-    if (this.CalculoPosibilidad([this.tortuga.ventaja, 6], [this.tortuga.handicap, 4]) === this.tortuga.ventaja) {
+    if (this.CalculoProbalilidad([this.tortuga.ventaja, 6], [this.tortuga.handicap, 4]) === this.tortuga.ventaja) {
       tortuga.numeroPosicion += tortuga.ventaja;
       tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);            
     }
@@ -152,7 +136,7 @@ class Juego {
       tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);
     }
 
-    if (this.CalculoPosibilidad([this.liebre.ventaja, 4], [this.liebre.handicap, 6]) === this.liebre.ventaja) {
+    if (this.CalculoProbalilidad([this.liebre.ventaja, 4], [this.liebre.handicap, 6]) === this.liebre.ventaja) {
       liebre.numeroPosicion += liebre.ventaja;
       liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
     }
@@ -162,7 +146,7 @@ class Juego {
       liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
     }
 
-    if (this.CalculoPosibilidad([this.colibri.ventaja, 2], [this.colibri.handicap, 8]) === this.colibri.ventaja) {
+    if (this.CalculoProbalilidad([this.colibri.ventaja, 2], [this.colibri.handicap, 8]) === this.colibri.ventaja) {
       colibri.numeroPosicion += colibri.ventaja;
       colibri.posicion = Utilidades.InsertarEspacios(colibri.numeroPosicion);
     }
@@ -173,6 +157,9 @@ class Juego {
     }
   }
 
+  /**
+   * Verifica si hay un ganador que llego a la meta
+   */
   TenemosGanador() {
     if (this.tortuga.numeroPosicion >= this.meta) {
       this.MostrarGanador(this.tortuga.nombre, this.tortuga.imagen);
@@ -203,7 +190,7 @@ class Juego {
 
   MostrarGanador(nombre, imagen) {
     document.write(`<h3 style="text-align: center">El ganador de la gran carrera es: ${nombre}</h3>`);
-    document.write(`<div style="display: flex; justify-content: center;"><img src="${imagen}"></div>`);
+    document.write(`<div style="display: flex; justify-content: center;" id="ganador"><img src="${imagen}"></div>`);
   }
 
 }
@@ -214,5 +201,3 @@ let colibri = new Colibri("Colibri", "img/colibri.png", 48, 3, "", 0);
 
 let juego = new Juego(tortuga, liebre, colibri);
 juego.InicioJuego();
-
-

@@ -1,8 +1,8 @@
 class Utilidades {
 
   /**
-   * 
-   * @param {*} numeroEspacios 
+   * Inserta n espacios pasados por parametro
+   * @param {number} numeroEspacios 
    */
   static InsertarEspacios(numeroEspacios){
     let espacios = "";
@@ -13,7 +13,7 @@ class Utilidades {
   }
 
   /**
-   * Convierte valores a un array
+   * Convierte valores a un array.
    * El primer parametro es el que se escribira en el array.
    * El segundo parametro es el numero de veces que se escribira el primer valor.
    * @param {number} valor1 
@@ -25,6 +25,6 @@ class Utilidades {
       nuevoArray.push(valor1);
     }
     return nuevoArray;
-  }
+  }  
 
 }
