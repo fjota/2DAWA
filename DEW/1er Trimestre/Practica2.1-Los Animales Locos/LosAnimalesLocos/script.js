@@ -1,4 +1,4 @@
-class Tortuga {
+class Animal {
 
   constructor(nombre, imagen, ventaja, handicap, posicion, numeroPosicion) {
     this._nombre = nombre;
@@ -9,6 +9,7 @@ class Tortuga {
     this._numeroPosicion = numeroPosicion;
   }
 
+  /* Gets */
   get nombre() {
     return this._nombre;
   }
@@ -28,46 +29,7 @@ class Tortuga {
     return this._numeroPosicion;
   }
 
-  set posicion(value) {
-    this._posicion = value;
-  }
-  set numeroPosicion(value) {
-    this._numeroPosicion = value;
-  }
-
-
-}
-
-class Liebre {
-
-  constructor(nombre, imagen, ventaja, handicap, posicion, numeroPosicion) {
-    this._nombre = nombre;
-    this._imagen = imagen;
-    this._ventaja = ventaja;
-    this._handicap = handicap;
-    this._posicion = posicion;
-    this._numeroPosicion = numeroPosicion;
-  }
-
-  get nombre() {
-    return this._nombre;
-  }
-  get imagen() {
-    return this._imagen;
-  }
-  get ventaja() {
-    return this._ventaja;
-  }
-  get handicap() {
-    return this._handicap;
-  }
-  get posicion() {
-    return this._posicion;
-  }
-  get numeroPosicion() {
-    return this._numeroPosicion;
-  }
-
+  /* Sets */
   set posicion(value) {
     this._posicion = value;
   }
@@ -77,48 +39,27 @@ class Liebre {
 
 }
 
-class Colibri {
-
+class Tortuga extends Animal {
   constructor(nombre, imagen, ventaja, handicap, posicion, numeroPosicion) {
-    this._nombre = nombre;
-    this._imagen = imagen;
-    this._ventaja = ventaja;
-    this._handicap = handicap;
-    this._posicion = posicion;
-    this._numeroPosicion = numeroPosicion;
+    super(nombre, imagen, ventaja, handicap, posicion, numeroPosicion);
   }
+}
 
-  get nombre() {
-    return this._nombre;
+class Liebre extends Animal {
+  constructor(nombre, imagen, ventaja, handicap, posicion, numeroPosicion) {
+    super(nombre, imagen, ventaja, handicap, posicion, numeroPosicion)
   }
-  get imagen() {
-    return this._imagen;
-  }
-  get ventaja() {
-    return this._ventaja;
-  }
-  get handicap() {
-    return this._handicap;
-  }
-  get posicion() {
-    return this._posicion;
-  }
-  get numeroPosicion() {
-    return this._numeroPosicion;
-  }
+}
 
-  set posicion(value) {
-    this._posicion = value;
+class Colibri extends Animal {
+  constructor(nombre, imagen, ventaja, handicap, posicion, numeroPosicion) {
+    super(nombre, imagen, ventaja, handicap, posicion, numeroPosicion);
   }
-  set numeroPosicion(value) {
-    this._numeroPosicion = value;
-  }
-
 }
 
 class Juego {
 
-  constructor(tortuga, liebre, colibri, meta = 80, ronda = 0) {
+  constructor(tortuga, liebre, colibri, meta = 200, ronda = 0) {
     this._meta = meta;
     this._ronda = ronda;
     this._tortuga = tortuga;
@@ -151,58 +92,101 @@ class Juego {
 
     this.MostrarRonda();
 
-    while (!tenemosGanador) {    
+    while (!tenemosGanador) {
+      this.ronda++;
 
-      if (this.CalculoPosibilidad([this.tortuga.ventaja, 6], [this.tortuga.handicap, 4]) === this.tortuga.ventaja) {
-        tortuga.numeroPosicion += tortuga.ventaja;
-        tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);
-      }
-      else {        
-        tortuga.numeroPosicion -= tortuga.handicap;        
-        Math.sign(tortuga.numeroPosicion) === -1 ? tortuga.numeroPosicion = Math.abs(tortuga.numeroPosicion) : tortuga.numeroPosicion;      
-        tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);
-      }
+      this.MovimientoProbabilidad();
 
-      if (this.CalculoPosibilidad([this.liebre.ventaja, 4], [this.liebre.handicap, 6]) === this.liebre.ventaja) {
-        liebre.numeroPosicion += liebre.ventaja;
-        liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
-      }
-      else {
-        liebre.numeroPosicion -= liebre.handicap;
-        Math.sign(liebre.numeroPosicion) === -1 ? liebre.numeroPosicion = Math.abs(liebre.numeroPosicion) : liebre.numeroPosicion;    
-        liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
+      this.MostrarRonda();
+
+      if (this.TenemosGanador()) {
+        break;
       }
 
-      if (this.CalculoPosibilidad([this.colibri.ventaja, 2], [this.colibri.handicap, 8]) === this.colibri.ventaja) {
-        colibri.numeroPosicion += colibri.ventaja;
-        colibri.posicion = Utilidades.InsertarEspacios(colibri.numeroPosicion);
-      }
-      else {
-        colibri.numeroPosicion -= colibri.handicap;
-        Math.sign(colibri.numeroPosicion) === -1 ? colibri.numeroPosicion = Math.abs(colibri.numeroPosicion) : colibri.numeroPosicion;     
-        colibri.posicion = Utilidades.InsertarEspacios(colibri.numeroPosicion);
-      }
 
-      this.MostrarRonda();      
-
-      if (this.tortuga.numeroPosicion > this.meta) {
+      /* if (this.tortuga.numeroPosicion >= this.meta) {
         tenemosGanador = true;
         this.MostrarGanador(this.tortuga.nombre, this.tortuga.imagen);
-        
+        break;
       }
-      if (this.liebre.numeroPosicion > this.meta) {
+      if (this.liebre.numeroPosicion >= this.meta) {
         tenemosGanador = true;
         this.MostrarGanador(this.liebre.nombre, this.liebre.imagen);
-        
+        break;
       }
-      if (this.colibri.numeroPosicion > this.meta) {
+      if (this.colibri.numeroPosicion >= this.meta) {
         tenemosGanador = true;
         this.MostrarGanador(this.colibri.nombre, this.colibri.imagen);
-        
-      }
-   
-      this.ronda++;
+        break;
+      } */
+
     }
+
+  }
+
+
+  /**
+   * Los parametros recibiran un array de dos numeros.
+   * El primer valor hara referencia a la ventaja y su probabilidad en base a 1-10.
+   * El segundo valor hara referencia al handicap y su probabilidad en base a 1-10.
+   * La probabilidad sera el número de veces que la ventaja o el handicap se escriban dentro de un array.
+   * @param {number[]} arrayVentaja 
+   * @param {number[]} arrayHandicap 
+   */
+  CalculoPosibilidad(arrayVentaja, arrayHandicap) {
+    let probabilidadesNumericas = new Array();
+    probabilidadesNumericas = probabilidadesNumericas.concat(Utilidades.ValorArray(arrayVentaja[0], arrayVentaja[1]), Utilidades.ValorArray(arrayHandicap[0], arrayHandicap[1]));
+
+    let numeroProbabilida = Math.floor(Math.random() * probabilidadesNumericas.length);
+    return probabilidadesNumericas[numeroProbabilida];
+  }
+
+  MovimientoProbabilidad() {
+    if (this.CalculoPosibilidad([this.tortuga.ventaja, 6], [this.tortuga.handicap, 4]) === this.tortuga.ventaja) {
+      tortuga.numeroPosicion += tortuga.ventaja;
+      tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);            
+    }
+    else {
+      tortuga.numeroPosicion -= tortuga.handicap;
+      Math.sign(tortuga.numeroPosicion) === -1 ? tortuga.numeroPosicion = 0 : tortuga.numeroPosicion;
+      tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);
+    }
+
+    if (this.CalculoPosibilidad([this.liebre.ventaja, 4], [this.liebre.handicap, 6]) === this.liebre.ventaja) {
+      liebre.numeroPosicion += liebre.ventaja;
+      liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
+    }
+    else {
+      liebre.numeroPosicion -= liebre.handicap;
+      Math.sign(liebre.numeroPosicion) === -1 ? liebre.numeroPosicion = 0 : liebre.numeroPosicion;
+      liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
+    }
+
+    if (this.CalculoPosibilidad([this.colibri.ventaja, 2], [this.colibri.handicap, 8]) === this.colibri.ventaja) {
+      colibri.numeroPosicion += colibri.ventaja;
+      colibri.posicion = Utilidades.InsertarEspacios(colibri.numeroPosicion);
+    }
+    else {
+      colibri.numeroPosicion -= colibri.handicap;
+      Math.sign(colibri.numeroPosicion) === -1 ? colibri.numeroPosicion = 0 : colibri.numeroPosicion;
+      colibri.posicion = Utilidades.InsertarEspacios(colibri.numeroPosicion);
+    }
+  }
+
+  TenemosGanador() {
+    if (this.tortuga.numeroPosicion >= this.meta) {
+      this.MostrarGanador(this.tortuga.nombre, this.tortuga.imagen);
+      return true;
+    }
+    if (this.liebre.numeroPosicion >= this.meta) {
+      this.MostrarGanador(this.liebre.nombre, this.liebre.imagen);
+      return true;
+    }
+    if (this.colibri.numeroPosicion >= this.meta) {
+      this.MostrarGanador(this.colibri.nombre, this.colibri.imagen);
+      return true;
+    }
+    return false;
 
   }
 
@@ -221,67 +205,6 @@ class Juego {
     document.write(`<h3 style="text-align: center">El ganador de la gran carrera es: ${nombre}</h3>`);
     document.write(`<div style="display: flex; justify-content: center;"><img src="${imagen}"></div>`);
   }
-
-  ProbabilidadMovimiento(animal) {
-    /* if (this.CalculoPosibilidad() >= 60) {
-      tortuga.numeroPosicion += tortuga.ventaja;
-      tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);
-    } */
-    /*  for (let i = 0; i < 3; i++) {
- 
-       if (this.CalculoPosibilidad() >= 60) {
-         tortuga.numeroPosicion += tortuga.ventaja;
-         tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);
-       }
-       else if (this.CalculoPosibilidad() <= 40) {
-         tortuga.numeroPosicion -= tortuga.handicap;
-         tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);
-       }
-       if (this.CalculoPosibilidad() >= 60) {
-         liebre.numeroPosicion += liebre.ventaja;
-         liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
-       }
-       else if (this.CalculoPosibilidad() <= 40) {
-         liebre.numeroPosicion -= liebre.handicap;
-         liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
-       }
-       if (this.CalculoPosibilidad() >= 60) {
-         colibri.numeroPosicion += colibri.ventaja;
-         colibri.posicion = Utilidades.InsertarEspacios(colibri.numeroPosicion);
-       }
-       else if (this.CalculoPosibilidad() <= 40) {
-         colibri.numeroPosicion -= colibri.handicap;
-         colibri.posicion = Utilidades.InsertarEspacios(colibri.numeroPosicion);
-       }
- 
-     } */
-  }
-
-  /**
-   * Los parametros recibiran un array de dos numeros.
-   * El primer número hara referencia a la ventaja y su probabilidad en base a 1-10
-   * El segundo número hara referencia al handicap y su probabilidad en base a 1-10
-   * @param {numero[]} numero1 
-   * @param {numero[]} numero2 
-   */
-  CalculoPosibilidad(numero1, numero2) {
-
-    let probabilidadesNumericas = new Array();
-
-    for (let i = 0; i < numero1[1]; i++) {
-      probabilidadesNumericas.push(numero1[0]);
-    }
-    for (let i = 0; i < numero2[1]; i++) {
-      probabilidadesNumericas.push(numero2[0]);
-    }
-
-    let numeroProbabilida = Math.floor(Math.random() * probabilidadesNumericas.length);
-    return probabilidadesNumericas[numeroProbabilida];
-
-    //Mirar Teorema de bayes
-    //https://stackoverflow.com/questions/8877249/generate-random-integers-with-probabilities
-  }  
-
 
 }
 
