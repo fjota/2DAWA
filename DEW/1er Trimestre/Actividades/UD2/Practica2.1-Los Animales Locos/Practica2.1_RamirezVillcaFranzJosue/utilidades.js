@@ -14,7 +14,7 @@ class Utilidades {
 
   /**
    * Convierte valores a un array.
-   * El primer parametro es el que se escribira en el array.
+   * El primer parametro es el que se escribira dentro del array.
    * El segundo parametro es el numero de veces que se escribira el primer valor.
    * @param {number} valor1 
    * @param {number} valor2 

@@ -1,5 +1,5 @@
 class Animal {
-
+  
   constructor(nombre, imagen, ventaja, handicap, posicion, numeroPosicion) {
     this._nombre = nombre;
     this._imagen = imagen;
@@ -35,24 +35,6 @@ class Animal {
     this._numeroPosicion = value;
   }
 
-}
-
-class Tortuga extends Animal {
-  constructor(nombre, imagen, ventaja, handicap, posicion, numeroPosicion) {
-    super(nombre, imagen, ventaja, handicap, posicion, numeroPosicion);
-  }
-}
-
-class Liebre extends Animal {
-  constructor(nombre, imagen, ventaja, handicap, posicion, numeroPosicion) {
-    super(nombre, imagen, ventaja, handicap, posicion, numeroPosicion)
-  }
-}
-
-class Colibri extends Animal {
-  constructor(nombre, imagen, ventaja, handicap, posicion, numeroPosicion) {
-    super(nombre, imagen, ventaja, handicap, posicion, numeroPosicion);
-  }
 }
 
 class Juego {
@@ -105,11 +87,9 @@ class Juego {
 
   }
 
-
   /**
-   * Los parametros recibiran un array de dos numeros.
-   * El primer valor hara referencia a la ventaja y su probabilidad en base a 1-10.
-   * El segundo valor hara referencia al handicap y su probabilidad en base a 1-10.
+   * Cada parametro recibira un array de dos numeros.
+   * El primer valor hara referencia a la ventaja y el segundo su probabilidad de 1-10.   
    * La probabilidad sera el número de veces que la ventaja o el handicap se escriban dentro de un array.
    * @param {number[]} arrayVentaja 
    * @param {number[]} arrayHandicap 
@@ -118,8 +98,8 @@ class Juego {
     let probabilidadesNumericas = new Array();
     probabilidadesNumericas = probabilidadesNumericas.concat(Utilidades.ValorArray(arrayVentaja[0], arrayVentaja[1]), Utilidades.ValorArray(arrayHandicap[0], arrayHandicap[1]));
 
-    let numeroProbabilida = Math.floor(Math.random() * probabilidadesNumericas.length);
-    return probabilidadesNumericas[numeroProbabilida];
+    let numeroProbabilidad = Math.floor(Math.random() * probabilidadesNumericas.length);
+    return probabilidadesNumericas[numeroProbabilidad];
   }
 
   /**
@@ -127,33 +107,33 @@ class Juego {
    */
   MovimientoProbabilidad() {
     if (this.CalculoProbalilidad([this.tortuga.ventaja, 6], [this.tortuga.handicap, 4]) === this.tortuga.ventaja) {
-      tortuga.numeroPosicion += tortuga.ventaja;
-      tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);            
+      this.tortuga.numeroPosicion += this.tortuga.ventaja;
+      this.tortuga.posicion = Utilidades.InsertarEspacios(this.tortuga.numeroPosicion);            
     }
     else {
-      tortuga.numeroPosicion -= tortuga.handicap;
-      Math.sign(tortuga.numeroPosicion) === -1 ? tortuga.numeroPosicion = 0 : tortuga.numeroPosicion;
-      tortuga.posicion = Utilidades.InsertarEspacios(tortuga.numeroPosicion);
+      this.tortuga.numeroPosicion -= this.tortuga.handicap;
+      Math.sign(this.tortuga.numeroPosicion) === -1 ? this.tortuga.numeroPosicion = 0 : "";
+      this.tortuga.posicion = Utilidades.InsertarEspacios(this.tortuga.numeroPosicion);
     }
 
     if (this.CalculoProbalilidad([this.liebre.ventaja, 4], [this.liebre.handicap, 6]) === this.liebre.ventaja) {
-      liebre.numeroPosicion += liebre.ventaja;
-      liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
+      this.liebre.numeroPosicion += this.liebre.ventaja;
+      this.liebre.posicion = Utilidades.InsertarEspacios(this.liebre.numeroPosicion);
     }
     else {
-      liebre.numeroPosicion -= liebre.handicap;
-      Math.sign(liebre.numeroPosicion) === -1 ? liebre.numeroPosicion = 0 : liebre.numeroPosicion;
-      liebre.posicion = Utilidades.InsertarEspacios(liebre.numeroPosicion);
+      this.liebre.numeroPosicion -= this.liebre.handicap;
+      Math.sign(this.liebre.numeroPosicion) === -1 ? this.liebre.numeroPosicion = 0 : "";
+      this.liebre.posicion = Utilidades.InsertarEspacios(this.liebre.numeroPosicion);
     }
 
     if (this.CalculoProbalilidad([this.colibri.ventaja, 2], [this.colibri.handicap, 8]) === this.colibri.ventaja) {
-      colibri.numeroPosicion += colibri.ventaja;
-      colibri.posicion = Utilidades.InsertarEspacios(colibri.numeroPosicion);
+      this.colibri.numeroPosicion += this.colibri.ventaja;
+      this.colibri.posicion = Utilidades.InsertarEspacios(this.colibri.numeroPosicion);
     }
     else {
-      colibri.numeroPosicion -= colibri.handicap;
-      Math.sign(colibri.numeroPosicion) === -1 ? colibri.numeroPosicion = 0 : colibri.numeroPosicion;
-      colibri.posicion = Utilidades.InsertarEspacios(colibri.numeroPosicion);
+      this.colibri.numeroPosicion -= this.colibri.handicap;
+      Math.sign(this.colibri.numeroPosicion) === -1 ? this.colibri.numeroPosicion = 0 : "";
+      this.colibri.posicion = Utilidades.InsertarEspacios(this.colibri.numeroPosicion);
     }
   }
 
@@ -195,9 +175,9 @@ class Juego {
 
 }
 
-let tortuga = new Tortuga("Tortuga", "img/tortuga.png", 12, 0, "", 0);
-let liebre = new Liebre("Liebre", "img/liebre.png", 24, 4, "", 0);
-let colibri = new Colibri("Colibri", "img/colibri.png", 48, 3, "", 0);
+let tortuga = new Animal("Tortuga", "img/tortuga.png", 12, 0, "", 0);
+let liebre = new Animal("Liebre", "img/liebre.png", 24, 4, "", 0);
+let colibri = new Animal("Colibri", "img/colibri.png", 48, 3, "", 0);
 
 let juego = new Juego(tortuga, liebre, colibri);
 juego.InicioJuego();
