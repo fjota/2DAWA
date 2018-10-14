@@ -1,0 +1,34 @@
+/* 
+    Created on : 14-oct-2018, 13:10:38
+    Author     : Josue Ramirez
+*/
+
+.contenedor-calendario {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table {
+  width: 80%;
+  height: 50%;
+  background-color: #1D1E22;
+  text-align: center;
+
+}
+
+table, th, td {
+  border: 1px solid transparent;
+  color: white;
+}
+
+td:hover {
+  border-color: #eee;     
+  background-color: #40444f;
+}
+
+.dia-actual {
+  border: 3px solid #eee;
+  background-color: #40444f;
+}
