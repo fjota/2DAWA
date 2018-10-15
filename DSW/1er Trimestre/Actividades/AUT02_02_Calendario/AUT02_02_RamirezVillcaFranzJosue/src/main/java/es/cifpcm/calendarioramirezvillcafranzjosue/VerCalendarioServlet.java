@@ -54,7 +54,6 @@ public class VerCalendarioServlet extends HttpServlet {
     if (request.getParameter("mes") == null) {
       mes = sdf.format(calendario.getTime());
       fechaActual = calendario.getTime();
-
       //Obtenemos el dia de la fecha actual
       sdfE.applyPattern("dd");
       diaActual = Integer.parseInt(sdfE.format(fechaActual));
@@ -142,18 +141,22 @@ public class VerCalendarioServlet extends HttpServlet {
     }
   }
 
-  private String EscribeCalendario(GregorianCalendar calendario, int numeroSemana, int diaActual,int numeroMes) {
+  private String EscribeCalendario(GregorianCalendar calendario, int numeroSemana, int diaActual, int numeroMes) {
 
     StringBuilder sb = new StringBuilder();
+
     int numDias = 1;
-    int diaMes = calendario.getActualMaximum(Calendar.DAY_OF_MONTH);    
-    calendario.set(Calendar.MONTH, numeroMes--);
-    int diasMesAnterior = calendario.getActualMaximum(Calendar.DAY_OF_MONTH);    
-    for (int i = 0; i < 7; i++) {
-      diasMesAnterior--;
-    }
-    int diasMesSiguiente = 1;
+    int diasMes = calendario.getActualMaximum(Calendar.DAY_OF_MONTH);
     boolean podemosComenzar = false;
+
+    //Cambiamos al mes anterior para obtener los ultimos días
+    numeroMes--;
+    calendario.set(Calendar.MONTH, numeroMes);
+    int diasMesAnterior = calendario.getActualMaximum(Calendar.DAY_OF_MONTH);
+    diasMesAnterior -= numeroSemana;
+    diasMesAnterior += 2;
+
+    int diasMesSiguiente = 1;
 
     sb.append("<h1 class=\"titulo-calendario\">Calendario</h1>");
     sb.append("<div class=\"contenedor-calendario\">");
@@ -170,10 +173,11 @@ public class VerCalendarioServlet extends HttpServlet {
     sb.append("</tr>");
     sb.append("</thead>");
     sb.append("<tbody>");
-    while (numDias <= diaMes) {
+    while (numDias <= diasMes) {
       sb.append("<tr>");
       for (int j = 1; j <= 7; j++) {
-        if (numDias > diaMes) {
+        if (numDias > diasMes) {
+          //Rellenara los dias del mes siguiente
           if (j <= 7) {
             sb.append("<td class=\"otros-meses\">").append(diasMesSiguiente).append("</td>");
             diasMesSiguiente++;
@@ -182,6 +186,7 @@ public class VerCalendarioServlet extends HttpServlet {
           }
         } else {
           if (!podemosComenzar) {
+            //Entrara si podemos empezar a escribir los dias del mes 
             if (j == numeroSemana) {
               podemosComenzar = true;
               if (numDias == diaActual) {
@@ -192,13 +197,13 @@ public class VerCalendarioServlet extends HttpServlet {
                 numDias++;
               }
             } else {
+              //Escribe los dias el mes anterior si los tuviese
               sb.append("<td class=\"otros-meses\">").append(diasMesAnterior).append("</td>");
               diasMesAnterior++;
-              /*sb.append("<td>" + " " + "</td>");*/
             }
           } else {
+            //Escribe el dia actual con un estilo predeterminado
             if (numDias == diaActual) {
-              //Escribe el dia actual con un estilo predeterminado
               sb.append("<td class=\"dia-actual\">").append(numDias).append("</td>");
               numDias++;
             } else {
