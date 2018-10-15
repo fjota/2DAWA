@@ -54,9 +54,9 @@ public class VerCalendarioServlet extends HttpServlet {
     if (request.getParameter("mes") == null) {
       mes = sdf.format(calendario.getTime());
       fechaActual = calendario.getTime();
-      
+
       //Obtenemos el dia de la fecha actual
-      sdfE.applyPattern("dd");      
+      sdfE.applyPattern("dd");
       diaActual = Integer.parseInt(sdfE.format(fechaActual));
 
     } else {
@@ -85,7 +85,12 @@ public class VerCalendarioServlet extends HttpServlet {
     //Obtenemos el número de la semana
     Object semanaNumerica = calendario.getClass().getField(nombreSemana.toUpperCase()).get(nombreSemana);
     int numeroSemana = Integer.parseInt(semanaNumerica.toString());
-    numeroSemana--;
+    //El primer dia del mes en el calendario US empieza en dimingo
+    if (numeroSemana == 1) {
+      numeroSemana = 7;
+    } else {
+      numeroSemana--;
+    }
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -97,7 +102,7 @@ public class VerCalendarioServlet extends HttpServlet {
       out.println("<title>Calendario Josue</title>");
       out.println("</head>");
       out.println("<body>");
-      out.print(EscribeCalendario(calendario, numeroSemana, diaActual));
+      out.print(EscribeCalendario(calendario, numeroSemana, diaActual, numeroMes));
       out.println("</body>");
       out.println("</html>");
     } finally {
@@ -137,13 +142,20 @@ public class VerCalendarioServlet extends HttpServlet {
     }
   }
 
-  private String EscribeCalendario(GregorianCalendar calendario, int numeroSemana, int diaActual) {
+  private String EscribeCalendario(GregorianCalendar calendario, int numeroSemana, int diaActual,int numeroMes) {
 
     StringBuilder sb = new StringBuilder();
     int numDias = 1;
-    int diaMes = calendario.getActualMaximum(Calendar.DAY_OF_MONTH);
+    int diaMes = calendario.getActualMaximum(Calendar.DAY_OF_MONTH);    
+    calendario.set(Calendar.MONTH, numeroMes--);
+    int diasMesAnterior = calendario.getActualMaximum(Calendar.DAY_OF_MONTH);    
+    for (int i = 0; i < 7; i++) {
+      diasMesAnterior--;
+    }
+    int diasMesSiguiente = 1;
     boolean podemosComenzar = false;
 
+    sb.append("<h1 class=\"titulo-calendario\">Calendario</h1>");
     sb.append("<div class=\"contenedor-calendario\">");
     sb.append("<table>");
     sb.append("<thead>");
@@ -162,7 +174,12 @@ public class VerCalendarioServlet extends HttpServlet {
       sb.append("<tr>");
       for (int j = 1; j <= 7; j++) {
         if (numDias > diaMes) {
-          break;
+          if (j <= 7) {
+            sb.append("<td class=\"otros-meses\">").append(diasMesSiguiente).append("</td>");
+            diasMesSiguiente++;
+          } else {
+            break;
+          }
         } else {
           if (!podemosComenzar) {
             if (j == numeroSemana) {
@@ -175,10 +192,13 @@ public class VerCalendarioServlet extends HttpServlet {
                 numDias++;
               }
             } else {
-              sb.append("<td>" + " " + "</td>");
+              sb.append("<td class=\"otros-meses\">").append(diasMesAnterior).append("</td>");
+              diasMesAnterior++;
+              /*sb.append("<td>" + " " + "</td>");*/
             }
           } else {
             if (numDias == diaActual) {
+              //Escribe el dia actual con un estilo predeterminado
               sb.append("<td class=\"dia-actual\">").append(numDias).append("</td>");
               numDias++;
             } else {
@@ -189,7 +209,6 @@ public class VerCalendarioServlet extends HttpServlet {
         }
       }
       sb.append("</tr>");
-
     }
     sb.append("</tbody>");
     sb.append("</table>");

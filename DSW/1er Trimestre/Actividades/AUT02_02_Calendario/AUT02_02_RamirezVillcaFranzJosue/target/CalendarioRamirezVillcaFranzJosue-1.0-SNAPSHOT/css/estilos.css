@@ -3,6 +3,10 @@
     Author     : Josue Ramirez
 */
 
+.titulo-calendario {
+  text-align: center;
+}
+
 .contenedor-calendario {
   height: 100vh;
   display: flex;
@@ -11,7 +15,7 @@
 }
 
 table {
-  width: 80%;
+  width: 50%;
   height: 50%;
   background-color: #1D1E22;
   text-align: center;
@@ -31,4 +35,8 @@ td:hover {
 .dia-actual {
   border: 3px solid #eee;
   background-color: #40444f;
+}
+
+.otros-meses {
+  color: yellow;
 }
