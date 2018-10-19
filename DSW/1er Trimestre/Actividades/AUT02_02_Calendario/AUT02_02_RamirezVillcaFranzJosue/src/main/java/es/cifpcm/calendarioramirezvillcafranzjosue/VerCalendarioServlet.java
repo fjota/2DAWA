@@ -120,25 +120,31 @@ public class VerCalendarioServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    PrintWriter out = response.getWriter();
     try {
       ProcesoPeticion(request, response);
 
     } catch (NoSuchFieldException ex) {
+      out.write("<Mes sin definir");
       Logger.getLogger(VerCalendarioServlet.class
               .getName()).log(Level.SEVERE, null, ex);
 
     } catch (IllegalArgumentException ex) {
+      out.write("<Mes sin definir");
       Logger.getLogger(VerCalendarioServlet.class
               .getName()).log(Level.SEVERE, null, ex);
 
     } catch (IllegalAccessException ex) {
+      out.write("<Mes sin definir");
       Logger.getLogger(VerCalendarioServlet.class
               .getName()).log(Level.SEVERE, null, ex);
 
     } catch (ParseException ex) {
+      out.write("<Mes sin definir");
       Logger.getLogger(VerCalendarioServlet.class
               .getName()).log(Level.SEVERE, null, ex);
     }
+    out.close();
   }
 
   private String EscribeCalendario(GregorianCalendar calendario, int numeroSemana, int diaActual, int numeroMes) {

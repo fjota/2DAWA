@@ -1,13 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="script.js"></script>
+  <script>
+    class Equipo {
+
+      constructor(nombre, mapa, jugador) {
+        this._nombre = nombre;
+        this._mapa = mapa;
+        this._jugador = jugador;
+      }
+
+      set nombre(value) {
+        this._nombre = value;
+      }
+      set mapa(value) {
+        this._mapa = value;
+      }
+      set jugador(value) {
+        this._jugador = value;
+      }
+
+      get nombre() {
+        return this._nombre;
+      }
+      get mapa() {
+        return this._mapa;
+      }
+      get jugador() {
+        return this._jugador;
+      }
+
+      MostrarEquipo() {
+        let _equipoFormado;
+        _equipoFormado = `El equipo y su composicion es la siguiente: <br><br> Nombre Del Equipo: ${this._nombre} <br><br> Mapa: ${this.toString(this._mapa)} <br><br> Con los jugadores: ${this.arrayToString(this._jugador)}`;
+        return _equipoFormado;
+      }
+
+      toString(parametro) {
+        let cadena = "";
+        for (let propiedad in parametro) {
+          cadena += propiedad + " , ";
+        }
+        return cadena;
+      }
+
+      arrayToString(parametro) {
+        let cadena = "";
+        let obj = null;
+        parametro.forEach(function (arrayItem) {
+          cadena += arrayItem._nombre + " ,";
+          cadena += arrayItem._idioma + " ,";
+          cadena += arrayItem._personaje + " ; ";
+        });
+
+        return cadena;
+      }
+
+    }
+
+    class Mapa {
+
+      constructor(nombre, skin, dificultad) {
+        this._nombre = nombre;
+        this._skin = skin;
+        this._dificultad = dificultad;
+      }
+
+      set nombre(value) {
+        this._nombre = value;
+      }
+      set skin(value) {
+        this._skin = value;
+      }
+      set dificultad(value) {
+        this._dificultad = value;
+      }
+
+      get nombre() {
+        return this._nombre;
+      }
+      get skin() {
+        return this._skin;
+      }
+      get dificultad() {
+        return this._dificultad;
+      }
+
+    }
+
+    class Jugador {
+
+      constructor(nombre, personaje, idioma) {
+        this._nombre = nombre;
+        this._personaje = personaje;
+        this._idioma = idioma;
+      }
+
+      set nombre(value) {
+        this._nombre = value;
+      }
+      set personaje(value) {
+        this._personaje = value;
+      }
+      set idioma(value) {
+        this._idioma = value;
+      }
+
+      get nombre() {
+        return this._nombre;
+      }
+      get personaje() {
+        return this._personaje;
+      }
+      get idioma() {
+        return this._idioma;
+      }
+
+    }
+
+    /* Mapas */
+    let evenGreen = new Mapa("Evengreen", "Bosque", "Fácil");
+    let blackDream = new Mapa("BlackDream", "Noche", "Media");
+    let angryLand = new Mapa("AngryLand", "Volcán", "Dificil");
+
+    /* Jugador */
+    let alba = new Jugador("Alba", "Mogo", "Español");
+    let bernardo = new Jugador("Bernardo", "Guerrero", "Ingles");
+    let charlotte = new Jugador("Charlotte", "Mogo", "Español");
+    let daniel = new Jugador("Daniel", "Arquera", "Ingles");
+    let elena = new Jugador("Elena", "Guerrero", "Frances");
+    let frank = new Jugador("Frank", "Mogo", "Japones");
+    let geraldine = new Jugador("Geraldine", "Guerrero", "Ingles");
+    let horatio = new Jugador("Horatio", "Cazador", "Italiano");
+    let isa = new Jugador("Isa", "Viajero del futuro", "Ruso");
+    let julio = new Jugador("Julio", "Mogo", "Aleman");
+    let kenny = new Jugador("Kenny", "Viajero del futuro", "Griego");
+    let lindah = new Jugador("Lindah", "Cazador", "Chino");
+
+    /* Equipos */
+    let forniteLosers = new Equipo("ForniteLosers", evenGreen, [alba, bernardo, charlotte]);
+    let theJavascripters = new Equipo("The Javascripters", evenGreen.nombre, [daniel.nombre, elena.nombre, frank.nombre]);
+    let manriquesDefenders = new Equipo("Manriques Defenders", blackDream.nombre, [geraldine.nombre, horatio.nombre, isa.nombre]);
+    let theWorseTeam = new Equipo("TheWorseTeam", angryLand.nombres, [julio.nombre, kenny.nombre, lindah.nombre]);
+
+    document.write(forniteLosers.MostrarEquipo());
+
+  </script>
   <title>Videojuego</title>
 </head>
+
 <body>
-  
+
 </body>
+
 </html>

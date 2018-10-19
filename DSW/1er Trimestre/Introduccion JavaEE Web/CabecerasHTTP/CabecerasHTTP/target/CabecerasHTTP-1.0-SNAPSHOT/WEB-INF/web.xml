@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>BrowseHeadersServlet</servlet-name>
+        <servlet-class>es.cifpcm.cabecerashttp.BrowseHeadersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LinksN</servlet-name>
+        <servlet-class>es.cifpcm.cabecerashttp.LinksN</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Carousel</servlet-name>
+        <servlet-class>es.cifpcm.cabecerashttp.Carousel</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BrowseHeadersServlet</servlet-name>
+        <url-pattern>/BrowseHeadersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LinksN</servlet-name>
+        <url-pattern>/LinksN</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Carousel</servlet-name>
+        <url-pattern>/Carousel</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

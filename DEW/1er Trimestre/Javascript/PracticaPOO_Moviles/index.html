@@ -1,13 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="script.js"></script>
+  <script>
+    class DispositivosMoviles {
+
+      constructor(modelo, tamanoPantalla, memoria, capacidadBateria, sistemaOperativo) {
+        this._modelo = modelo;
+        this._tamanoPantalla = tamanoPantalla;
+        this._memoria = memoria;
+        this._capacidadBateria = capacidadBateria;
+        this._sistemaOperativo = sistemaOperativo;
+      }
+
+      nombreComercial() {
+        let dispositivo = "";
+        dispositivo = `<p>Modelo: ${this._modelo} </p> <p>Tamaño de la pantalla: ${this._tamanoPantalla} </p> <p>Memoria: ${this._memoria} </p>`;
+        return dispositivo;
+      }
+
+      caracteristicasBasicas() {
+        let dispositivo = "";
+        dispositivo = `<p>Modelo: ${this._modelo} </p> <p>Tamaño de la pantalla: ${this._tamanoPantalla} </p> <p>Memoria: ${this._memoria} </p>  <p>Bateria: ${this._capacidadBateria} </p>  <p>Sistema Operativo: ${this._sistemaOperativo} </p>`;
+        return dispositivo;
+      }
+
+    }
+
+    class Telefono extends DispositivosMoviles {
+
+      constructor(modelo, tamanoPantalla, memoria, capacidadBateria, sistemaOperativo, tieneManosLibres, numeroPerfilesSonido) {
+
+        super(modelo, tamanoPantalla, memoria, capacidadBateria, sistemaOperativo);
+        this._tieneManosLibres = tieneManosLibres;
+        this._numeroPerfilesSonido = numeroPerfilesSonido;
+
+      }
+
+      caracteristicas() {
+        let informacion = "";
+        informacion = super.caracteristicasBasicas();
+        informacion += `<p>Manos Libres: ${this._tieneManosLibres} </p> <p>Perfiles de Sonido: ${this._numeroPerfilesSonido} </p>`;
+        return informacion;
+      }
+
+    }
+
+    class Tablet extends DispositivosMoviles {
+
+      constructor(modelo, tamanoPantalla, memoria, capacidadBateria, sistemaOperativo, tieneConectorRatonTeclado) {
+
+        super(modelo, tamanoPantalla, memoria, capacidadBateria, sistemaOperativo);
+        this._tieneConectorRatonTeclado = tieneConectorRatonTeclado;
+
+      }
+
+      caracteristicas() {
+        let informacion = "";
+        informacion = super.caracteristicasBasicas();
+        informacion += `<p>Raton Teclado: ${this._tieneConectorRatonTeclado} </p>`;
+        return informacion;
+      }
+
+
+
+    }
+
+    class Ebook extends DispositivosMoviles {
+
+      constructor(modelo, tamanoPantalla, memoria, capacidadBateria, sistemaOperativo, tienePantallaTintaElectronica, numeroCatalogosOnlineDisponibles) {
+
+        super(modelo, tamanoPantalla, memoria, capacidadBateria, sistemaOperativo);
+        this._tienePantallaTintaElectronica = tienePantallaTintaElectronica;
+        this._numeroCatalogosOnlineDisponibles = numeroCatalogosOnlineDisponibles;
+
+      }
+
+      caracteristicas() {
+        let informacion = "";
+        informacion = super.caracteristicasBasicas();
+        informacion += `<p>Tinta electronica: ${this._tienePantallaTintaElectronica} </p> <p>Catalogos Disponibles: ${this._numeroCatalogosOnlineDisponibles} </p>`;
+        return informacion;
+      }
+
+
+    }
+
+    class SmartWatch extends DispositivosMoviles {
+
+      constructor(modelo, tamanoPantalla, memoria, capacidadBateria, sistemaOperativo, tieneReconocimientoVoz, numeroDispositivosVinculados, tieneMedicionPulsoTension) {
+
+        super(modelo, tamanoPantalla, memoria, capacidadBateria, sistemaOperativo);
+        this._tieneReconocimientoVoz = tieneReconocimientoVoz;
+        this._numeroDispositivosVinculados = numeroDispositivosVinculados;
+        this._tieneMedicionPulsoTension = tieneMedicionPulsoTension;
+
+      }
+
+      caracteristicas() {
+        let informacion = "";
+        informacion = super.caracteristicasBasicas();
+        informacion += `<p>Reconocimiento de voz: ${this._tieneReconocimientoVoz} </p> <p>Dispositivos vinculados: ${this._numeroDispositivosVinculados} </p> <p>Medicion Pulso y Tension: ${this._tieneMedicionPulsoTension} </p>`;
+        return informacion;
+      }
+
+    }
+
+    /* Telefono */
+    let telefono = new Telefono("Xiaomi", "25", "4GB", "2500", "Android", "Si", 25);
+
+    document.write("<h1>Telefono</h1>");
+    document.write(telefono.nombreComercial());
+    document.write("<br>");
+    document.write(telefono.caracteristicas());
+
+    /* Tablet */
+    let tablet = new Tablet("Apple", "80", "8GB", "3500", "Android", "No", "No");
+
+    document.write("<h1>Tablet</h1>");
+    document.write(tablet.nombreComercial());
+    document.write("<br>");
+    document.write(tablet.caracteristicas());
+
+    /* Ebook */
+    let ebook = new Ebook("Chino", "80", "16GB", "3500", "ChinoDroid", "Si", 2);
+
+    document.write("<h1>Ebook</h1>");
+    document.write(ebook.nombreComercial());
+    document.write("<br>");
+    document.write(ebook.caracteristicas());
+
+    /* SmartWatch */
+    let smwt = new SmartWatch("Brand", "25", "1GB", "2000", "Android Watch", "Si", 1, "Si");
+
+    document.write("<h1>SmartWatch</h1>");
+    document.write(smwt.nombreComercial());
+    document.write("<br>");
+    document.write(smwt.caracteristicas());
+
+  </script>
   <title>Document</title>
 </head>
+
 <body>
-  
+
 </body>
+
 </html>
