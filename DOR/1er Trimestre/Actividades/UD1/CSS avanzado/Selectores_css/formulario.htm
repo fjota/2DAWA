@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Nómadas - Formulario</title>
+    <meta name="description" content="Blog - Formulario de contacto. Comparte las imágenes de tus viajes para que otros viajeros se decidan a visitar esos lugares.">
+    <meta name="keywords" content="viajes, turismo, imágenes, paisajes">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>   
+    <script src="js/actions.js"></script>  
+</head>
+
+<body id="formulario">
+<header>
+	<section class="contenedor">
+        <div id="anima">
+        </div>
+        <h1>Nómadas</h1>
+        <h2>Comparte las imágenes de tus viajes para que otros viajeros se decidan a visitar esos lugares.</h2>
+    </section>
+</header>
+
+<nav>
+    <ul>
+        <li class="inicio"><a href="index.htm">Home</a></li>
+        <li class="blog"><a href="blog.htm">Blog</a></li>
+        <li class="formulario"><a href="formulario.htm">Contacto</a></li>
+    </ul>
+</nav>
+
+<section class="contenedor">
+    
+<form action="action_page.php">
+<fieldset>
+    <legend>Formulario de contacto</legend>
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" value="" placeholder="Escribe tu nombre">
+    <label for="email">Email:</label>
+    <input type="email" name="email" value="" placeholder="Escribe tu email">
+    <label for="cometarios">Comentarios:</label>
+    <textarea name="comentarios" placeholder="Escribe tus comentarios"></textarea>
+    <input type="checkbox" name="contactar" value="contactar">
+    <label for="contactar">Deseo que me contacten.</label>
+    <input type="submit" value="Enviar">
+</fieldset>
+</form> 
+    
+<div>
+    <h2>Contacto por países</h2>
+    <ul>
+        <li>Perú: peru@nomadas.uk.co</li>
+        <li>Brasil: br@nomadas.uk.co</li>
+        <li>Panamá: pan@nomadas.uk.co</li>
+        <li>México: mex@nomadas.uk.co</li>
+        <li>Chile: chile@nomadas.uk.co</li>
+        <li>Colombia: col@nomadas.uk.co</li>
+        <li>Venezuela: ven@nomadas.uk.co</li>
+        <li>Costa Rica: cr@nomadas.uk.co</li>
+        <li>El Salvador: salv@nomadas.uk.co</li>
+        <li>Estados Unidos: eeuu@nomadas.uk.co</li>
+    </ul>
+</div>
+    
+</section>
+
+<footer>
+	<section class="contenedor">
+    	<p>Nómadas®</p>
+        <p>Las imágenes usadas hacen parte de la librería <a href="www.pexels.com">www.pexels.com</a> y los textos fueron obtenidos de <a href="www.wikipedia.com">www.wikipedia.com</a></p>
+    </section>
+</footer>
+</body>
+</html>

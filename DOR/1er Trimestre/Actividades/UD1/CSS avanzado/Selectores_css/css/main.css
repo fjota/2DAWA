@@ -1,0 +1,390 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*HTML 5 support - Sets new HTML 5 tags to display:block so browsers know how to render the tags properly. */
+header, section, footer, aside, nav, article, figure {
+	display: block;
+}
+
+* {
+	vertical-align: baseline;
+	font-weight: inherit;
+	font-family: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	border: 0 none;
+	outline: 0;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: source-sans-pro, "Gill Sans", "Gill Sans MT", "Myriad Pro", Arial, sans-serif;
+	color: #666;
+}
+
+header {
+    height: 200px;
+}
+
+header, footer {
+	width: 100%; padding: 30px 0;
+    background: linear-gradient(to bottom, #8ad0ff, #3498db );
+	background-color: #3498db;
+    color: #FFF;
+}
+
+header h1, header h2 {
+	width: 45%;
+}
+
+header h1, header h2 {
+	margin: 0 1% .4em; font-size: 3em;
+}
+
+header h2 {
+	font-size: 1.7em;
+	font-weight: lighter;
+}
+
+#anima {
+	width: 45%; height: 200px;
+	float: right;
+	margin-right: 2%;
+	background: url(../imgs/sitios/spain.jpg) no-repeat center center;
+    background-size:cover;
+}
+
+nav {
+	overflow: auto;
+}
+
+nav li {
+	list-style: none;
+	float: left;
+	margin: -1px .2em 0em;
+	background-color: #3498db;
+}
+
+nav li a {
+	padding: .5em 1em;
+	display: block;
+	color: #FFF;
+	text-decoration: none;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+    border: solid 1px #3498db;
+    border-top: default;
+    border-top: solid 0px #3498db;
+}
+
+nav li a:hover {
+	background-color: #FFF; color: #3498db;
+}
+
+#inicio nav li.inicio a, #blog nav li.blog a, #formulario nav li.formulario a {
+    background-color: #FFF;
+    color: #e74c3c;
+}
+
+li:first-child {
+	margin-left: 1%;
+}
+
+li:last-child {
+	margin-right: 1%;
+}
+
+.contenedor, nav{
+	width: 75%;
+	max-width: 1600px;
+	min-width: 1200px;
+	overflow: auto;
+	margin: 0px auto;
+	padding: 0 0%;
+}
+
+nav + .contenedor {
+    margin: 30px auto;
+}
+
+#blog > section article {
+    -moz-column-count: 2;
+    -moz-column-gap: 3em;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 3em;
+    column-count: 2;
+    column-gap: 3em;
+}
+
+#blog > section h1, #blog blockquote {
+    -webkit-column-span: all;
+    column-span: all;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+/* Esta regla separa los títulos del blog a partir del segundo*/
+#blog article + article > h1 {
+    margin-top: 1.5em;
+}
+
+blockquote {
+    font-size: 1.5em;
+    font-style: italic;
+    padding: 1em; margin: 1em 0;
+    color: #888;
+    background-color: rgba(52, 152, 219, .1);
+}
+
+blockquote::before {
+    content:open-quote;
+}
+
+blockquote::after {
+    content:close-quote;
+}
+
+#blog p {
+    margin: .5em 0;
+}
+
+#inicio .contenedor > article {
+	width: 31%;
+	height: 250px;
+	margin: 1%;
+	float: left;
+	position: relative;
+	text-align: center;
+	overflow: hidden;
+}
+
+#inicio .contenedor > article h1 {
+	padding: 5%;
+	width: 90%;
+    color: #FFF;
+    background-color: rgba(0,0,0,.5);
+    font-size: 1.3em;
+}
+
+section article div {
+	position: absolute; top: 88%;
+	width: 100%; height: 100%;
+	background-color: rgba(255,255,255, .8);
+	-webkit-transition: all .7s ease-in-out;
+	-moz-transition: all .7s ease-in-out;
+	-o-transition: all .7s ease-in-out;
+	-ms-transition: all .7s ease-in-out;
+	transition: all .7s ease-in-out;
+}
+
+.animar {
+	top: 0;   
+}
+
+/*Selecciona el primer child directo de el párrafo Mas información*/
+section article div > :first-child {
+	text-align: right;
+	padding: 1.4% 14% 1.8% 0%;
+	margin-bottom: 5%;
+	color: #FFF;
+	background: #3498db url(../imgs/icons/up.png) 95% 50% no-repeat;
+	background-size: 5%;
+	-webkit-transition: all .7s ease-in-out;
+	-moz-transition: all .7s ease-in-out;
+	-o-transition: all .7s ease-in-out;
+	-ms-transition: all .7s ease-in-out;
+	transition: all .7s ease-in-out;
+}
+
+/*Es importante que esta regla esté después de
+la regla anterior y que sea un selector
+compuesto para que tenga mas especifidad*/
+section article div .rotateIcon {
+	background: #e74c3c url(../imgs/icons/down.png) 95% 50% no-repeat;
+	background-size: 5%;
+}
+
+section article div :first-child:hover {
+	cursor: pointer;
+}
+
+/*Botones ^ */
+
+*[id^="boton"] {
+	display: inline-block;
+	margin: 5%;
+	padding: 3%;
+	background-color: #3498db;
+	color: #3498db;
+	background-color: #e74c3c;
+}
+
+/*
+ {
+    display: inline-block;
+	margin: 5%;
+	padding: 3%;
+	background-color: #3498db;
+    color: #3498db;
+}
+
+ {
+    background-color: #e74c3c;
+}
+*/
+section article div a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+footer a {
+    color: #FFF;
+}
+
+/*iconos ^ */
+
+a[href^="http"]{
+	background: url(../imgs/icons/www.svg) no-repeat left center;
+}
+
+a[href$="pdf"]{
+	background: url(../imgs/icons/pdf.svg) no-repeat left center;
+}
+
+/*
+{
+    background: url(../imgs/icons/www.svg) no-repeat left center;
+}
+
+ {
+    background: url(../imgs/icons/pdf.svg) no-repeat left center;
+}
+*/
+
+#blog article a {
+    padding-left: 2em;
+}
+
+/*imagenes*/
+
+#inicio nav + .contenedor article:nth-child(1) {
+    background-image: url(../imgs/sitios/amazonas.jpg);
+}
+
+#inicio nav + .contenedor article:nth-child(2) {
+    background-image: url(../imgs/sitios/australia.jpg);
+}
+
+#inicio nav + .contenedor article:nth-child(3) {
+    background-image: url(../imgs/sitios/austria.jpg);
+}
+
+#inicio nav + .contenedor article:nth-child(4) {
+    background-image: url(../imgs/sitios/chile-glaciar.jpg);
+}
+
+#inicio nav + .contenedor article:nth-child(5) {
+    background-image: url(../imgs/sitios/china-pueblo.jpg);
+}
+
+#inicio nav + .contenedor article:nth-child(6) {
+    background-image: url(../imgs/sitios/francia.jpg);
+}
+
+#inicio nav + .contenedor article:nth-child(7) {
+    background-image: url(../imgs/sitios/giza-egipto.jpg);
+}
+
+#inicio nav + .contenedor article:nth-child(8) {
+    background-image: url(../imgs/sitios/gran-canon.jpg);
+}
+
+#inicio nav + .contenedor article:nth-child(9) {
+    background-image: url(../imgs/sitios/san-francisco.jpg);
+}
+
+#inicio nav + .contenedor article {
+    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/*Formulario*/
+
+form {
+    width: 30%;
+    background-color: #bbe9ff;
+    padding: 3em;
+    margin-left: 6em;
+    float: left;
+}
+
+form + div {
+    width: 30%;
+    background-color: #bbe9ff;
+    padding: 3em;
+    margin-right: 6em;
+    float: right;
+}
+
+form + div ul {
+    margin-top: 2em;
+    list-style: none;
+}
+
+form + div li {
+    margin: .4em;
+}
+
+form legend, form + div h2 {
+    font-size: 1.5em;
+    text-align: center;
+    background-color: #FFF;
+    color: #3498db;
+    padding: .4em;
+    width: 100%;
+}
+
+form label, input[type="submit"] {
+    display: block;
+    margin: 1em 0 .5em;
+}
+
+input, textarea {
+    width: 100%; height: 1.5em;
+    padding: .4em;
+}
+
+textarea {
+    height: 8em;
+    resize: none;
+}
+/*
+ {
+    cursor: pointer;
+    width: 40%; height: 2em;
+    margin: 1em auto 0;
+    background-color: #3498db;
+    color: #FFF;
+    -webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+
+ {
+    background-color: #FFF;
+    color: #3498db;
+}
+
+ {
+    display: inline;
+}
+*/
