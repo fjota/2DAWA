@@ -15,10 +15,23 @@
   <script>
     let botonAbrir = document.getElementById("botonVentana");
     let nuevaVentana;
+    let estaAbierto = false;
     botonAbrir.addEventListener("click", function () {
-      nuevaVentana = window.open("pagina2.html","ventana2","width=500,height=300");
-      botonAbrir.innerHTML = "Cerrar";
-    });  
+      if (!estaAbierto) {
+        nuevaVentana = window.open("pagina2.html", "_blank", "width=500,height=300");
+        botonAbrir.innerHTML = "Cerrar";
+        estaAbierto = true;
+      }
+      else {
+        botonAbrir.innerHTML = "Abrir ventana";
+        nuevaVentana = nuevaVentana.close();
+        estaAbierto = false;
+      }
+    });
+    
+    function EscribirTexto(texto) {
+      document.write(texto);
+    }
 
   </script>
 </body>

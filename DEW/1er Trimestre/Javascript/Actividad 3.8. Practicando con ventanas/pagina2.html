@@ -15,12 +15,14 @@
     <input id="texto" type="text"><br>
     <button type="submit" id="enviar">Enviar</button>
   </form>
+  
 
   <script>
-    let texto = document.getElementById("texto");    
+    let texto = document.getElementById("texto").value;    
 
-    document.getElementById("enviar").addEventListener("click", function () {
-      opener.document.write("<p>hola</p>");
+    document.getElementById("enviar").addEventListener("click", function () {      
+     /*  window.opener.EscribirTexto(texto); */
+     this.window.opener.document.write(texto);
       
     });
 
