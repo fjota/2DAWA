@@ -6,20 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script>
-    /* Chrome tiene politicas de mismo origen */
+</head>
 
-    let contadorVisitas = 0;
+<body>
+
+  <h3>Numero de visitas</h3>
+  <p id="numeroVisitas"></p>
+  <h3>Guardar nombre usuario en Cookie</h3>
+  <label for="nombre"></label>
+  <input id="nombre" type="text"><br>
+  <span id="mostrarNombre"></span><br><br>
+  <button id="guardar">Guardar nombre</button><br>
+  <h3>Eliminar las cookies</h3>
+  <button id="eliminar">Eliminar Cookies</button><br>
+
+  <script>
+    /* Chrome tiene politicas de mismo origen, usar firefox */
+
+    let visitCounter = 0;
     if (document.cookie === "") {
-      document.cookie = "visitas=0;";
-      document.write(contadorVisitas);
+      SetCookie("visitas", "0");
+      ShowVisitNumber(visitCounter);
     } else {
-      contadorVisitas = GetCookie("visitas");
-      contadorVisitas = parseInt(contadorVisitas);
-      contadorVisitas++;
-      SetCookie("visitas", contadorVisitas.toString());
-      contadorVisitas = GetCookie("visitas");
-      document.write(contadorVisitas);
+      visitCounter = GetCookie("visitas");
+      visitCounter = parseInt(visitCounter);
+      visitCounter++;
+      SetCookie("visitas", visitCounter.toString());
+      visitCounter = GetCookie("visitas");
+      ShowVisitNumber(visitCounter);
     }
 
     function GetCookie(name) {
@@ -39,21 +53,39 @@
       document.cookie = name + "=" + encodeURIComponent(value) + ";";
     }
 
+    function ShowVisitNumber(number) {
+      document.getElementById("numeroVisitas").innerHTML = number;
+    }
+
+    //Save name of user
+    document.getElementById("guardar").addEventListener("click", function () {
+      let name = document.getElementById("nombre").value;
+      if (name.trim() === "") {
+        document.getElementById("mostrarNombre").innerHTML = "Error: Inserte datos";
+      } else {
+        let cookieName = GetCookie("nombre");
+        if (cookieName === name) {
+          document.getElementById("mostrarNombre").innerHTML = "Error: Este nombre existe";
+        } else {
+          SetCookie("nombre", name);
+          cookieName = GetCookie("nombre");
+          document.getElementById("mostrarNombre").innerHTML = cookieName;
+        }
+      }
+    });
+
+    //Delete cookies
+    document.getElementById("eliminar").addEventListener("click", function () {
+      let cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {        
+        let endPos = cookies[i].indexOf("=");
+        let name = endPos > -1 ? cookies[i].substr(0, endPos) : cookies[i];
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      }
+    });
+
+
   </script>
-</head>
-
-<body>
-  
-  <br><br>
-  <h3>Guardar nombre usuario en Cookie</h3>
-  <label for="nombre"></label>
-  <input id="nombre" type="text">
-  <button type="submit">Guardar nombre</button>
-
-  <!-- Crear un script que cuente el número de visitas a la página con una cookie que haga de contador.
-    Añadir al script anterior un enlace que nos muestre el número de visitas que llevamos.
-    Añadir al script una nueva cookie que almacene el nombre del visitante y mostrarlo. Si el nombre ya existe no se debe de solicitar.
-    Añadir un enlace que elimine las cookies creadas. -->
 
 </body>
 

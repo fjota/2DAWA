@@ -5,21 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Actividad 3.8. Practicando con ventanas</title>
+  <title>Actividad 3.3. Practicando con ventanas</title>
 </head>
 
 <body>
 
   <button type="button" id="botonVentana">Abrir ventana</button>
+  <p id="informacion"></p>
 
   <script>
     let botonAbrir = document.getElementById("botonVentana");
     let nuevaVentana;
     let estaAbierto = false;
     botonAbrir.addEventListener("click", function () {
-      nuevaVentana = window.open("pagina2.html","","width=500,height=500");
-      botonAbrir.innerHTML = "Cerrar";
-    });  
+      if (!estaAbierto) {
+        nuevaVentana = window.open("pagina2.html", "", "width=500,height=300");
+        botonAbrir.innerHTML = "Cerrar";
+        estaAbierto = true;
+      }
+      else {
+        botonAbrir.innerHTML = "Abrir ventana";
+        nuevaVentana = nuevaVentana.close();
+        estaAbierto = false;
+      }
+    });    
 
   </script>
 </body>

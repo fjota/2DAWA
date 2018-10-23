@@ -10,19 +10,19 @@
 
 <body>
 
-  
+  <form action="">
+
     <label for="texto"></label>
     <input id="texto" type="text"><br>
     <button type="submit" id="enviar">Enviar</button>
-  
 
+  </form>
 
   <script>
-    let texto = document.getElementById("texto").value;
+    let texto = window.document.getElementById("texto");
 
     document.getElementById("enviar").addEventListener("click", function () {
-      window.opener.document.write(texto);
-
+      window.opener.document.getElementById("informacion").innerHTML = texto.value;      
     });
 
   </script>
