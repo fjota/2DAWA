@@ -17,21 +17,9 @@
     let nuevaVentana;
     let estaAbierto = false;
     botonAbrir.addEventListener("click", function () {
-      if (!estaAbierto) {
-        nuevaVentana = window.open("pagina2.html", "", "width=500,height=300");
-        botonAbrir.innerHTML = "Cerrar";
-        estaAbierto = true;
-      }
-      else {
-        botonAbrir.innerHTML = "Abrir ventana";
-        nuevaVentana = nuevaVentana.close();
-        estaAbierto = false;
-      }
-    });
-    
-    function EscribirTexto(texto) {
-      document.write(texto);
-    }
+      nuevaVentana = window.open("pagina2.html","","width=500,height=500");
+      botonAbrir.innerHTML = "Cerrar";
+    });  
 
   </script>
 </body>

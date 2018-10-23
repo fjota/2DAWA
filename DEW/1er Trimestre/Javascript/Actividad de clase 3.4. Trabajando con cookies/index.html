@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    /* Chrome tiene politicas de mismo origen */
+
+    let contadorVisitas = 0;
+    if (document.cookie === "") {
+      document.cookie = "visitas=0;";
+      document.write(contadorVisitas);
+    } else {
+      contadorVisitas = GetCookie("visitas");
+      contadorVisitas = parseInt(contadorVisitas);
+      contadorVisitas++;
+      SetCookie("visitas", contadorVisitas.toString());
+      contadorVisitas = GetCookie("visitas");
+      document.write(contadorVisitas);
+    }
+
+    function GetCookie(name) {
+      let index = document.cookie.indexOf(name + "=");
+      if (index == -1) {
+        return null;
+      }
+      index = document.cookie.indexOf("=", index) + 1;
+      let endStr = document.cookie.indexOf(";", index);
+      if (endStr == -1) {
+        endStr = document.cookie.length;
+      }
+      return decodeURIComponent(document.cookie.substring(index, endStr));
+    }
+
+    function SetCookie(name, value) {
+      document.cookie = name + "=" + encodeURIComponent(value) + ";";
+    }
+
+  </script>
+</head>
+
+<body>
+  
+  <br><br>
+  <h3>Guardar nombre usuario en Cookie</h3>
+  <label for="nombre"></label>
+  <input id="nombre" type="text">
+  <button type="submit">Guardar nombre</button>
+
+  <!-- Crear un script que cuente el número de visitas a la página con una cookie que haga de contador.
+    Añadir al script anterior un enlace que nos muestre el número de visitas que llevamos.
+    Añadir al script una nueva cookie que almacene el nombre del visitante y mostrarlo. Si el nombre ya existe no se debe de solicitar.
+    Añadir un enlace que elimine las cookies creadas. -->
+
+</body>
+
+</html>
