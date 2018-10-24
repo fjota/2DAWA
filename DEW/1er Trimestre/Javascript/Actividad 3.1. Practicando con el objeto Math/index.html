@@ -10,12 +10,9 @@
 
    <!--  Crea una página que pida al usuario dos valores reales a y b y muestre el resultado de las siguientes operaciones:
 
-    logaritmo neperiano (o en base "e") de "a",
-    raíz cuadrada de "a",
-    "a" elevado a "b",
-    
     número entero más cercano y menor a "a",
     número entero más cercano y mayor a "b",
+
     redondea al entero más próximo de "a",
     crear un número aleatorio entre "a" y "b",
     calcular las funciones trigonométricas: seno, coseno y tangente de "b" en radianes,
@@ -26,22 +23,31 @@
     Valor de uno de los catetos  de un triángulo rectángulo, suponiendo que "a" sea la hipotenusa y "b" el otro cateto, o viceversa. -->
 
     <script>    
-    let num1 = parseInt(prompt("Escriba un número"));
-    let num2 = parseInt(prompt("Escriba otro número"));
+    let numero1 = parseInt(prompt("Escriba un número"));
+    let numero2 = parseInt(prompt("Escriba otro número"));
 
-    document.write(LogaritmoNeperiano(num1));
-    document.write(RaizCuadrada(num1));
+    document.write("Logaritmo neperiano del primer número: " + LogaritmoNeperiano(numero1));
+    document.write("raiz cuadrada del primer número: " + RaizCuadrada(numero1));
+    document.write("El primer número elevado a el segundo número" + ExponenteNumero(numero1, numero2));
+    /* 2 */
+    document.write("Redondeo al entero mas cercado del primer número" + RedondeoCercano(numero1));
 
-    function LogaritmoNeperiano(number) {
-      return Math.log(number);
+    /* Funciones */  
+
+    function LogaritmoNeperiano(num) {
+      return Math.log(num);
     }
 
-    function RaizCuadrada(number) {
-      return Math.sqrt(number);
+    function RaizCuadrada(num) {
+      return Math.sqrt(num);
     }
 
-    function ExponenteNumero(number1, number2) {
-      return Math.pow(number1, number2);
+    function ExponenteNumero(num1, num2) {
+      return Math.pow(num1, num2);
+    }
+
+    function RedondeoCercano(num) {
+      return Math.round(num);
     }
     
     </script>
