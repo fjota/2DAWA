@@ -216,7 +216,7 @@ section article div :first-child:hover {
 
 /*Botones ^ */
 
-*[id^="boton"] {
+#inicio *[id^="boton"] {
 	display: inline-block;
 	margin: 5%;
 	padding: 3%;
@@ -225,19 +225,6 @@ section article div :first-child:hover {
 	background-color: #e74c3c;
 }
 
-/*
- {
-    display: inline-block;
-	margin: 5%;
-	padding: 3%;
-	background-color: #3498db;
-    color: #3498db;
-}
-
- {
-    background-color: #e74c3c;
-}
-*/
 section article div a {
 	color: #FFF;
 	text-decoration: none;
@@ -249,23 +236,13 @@ footer a {
 
 /*iconos ^ */
 
-a[href^="http"]{
+#blog a[href^="http:"]{
 	background: url(../imgs/icons/www.svg) no-repeat left center;
 }
 
-a[href$="pdf"]{
+#blog a[href$="pdf"]{
 	background: url(../imgs/icons/pdf.svg) no-repeat left center;
 }
-
-/*
-{
-    background: url(../imgs/icons/www.svg) no-repeat left center;
-}
-
- {
-    background: url(../imgs/icons/pdf.svg) no-repeat left center;
-}
-*/
 
 #blog article a {
     padding-left: 2em;
@@ -274,39 +251,39 @@ a[href$="pdf"]{
 /*imagenes*/
 
 #inicio nav + .contenedor article:nth-child(1) {
-    background-image: url(../imgs/sitios/amazonas.jpg);
+    background-image: url(../imgs/sitios/canarias.jpg);
 }
 
 #inicio nav + .contenedor article:nth-child(2) {
-    background-image: url(../imgs/sitios/australia.jpg);
+    background-image: url(../imgs/sitios/tenerife.jpg);
 }
 
 #inicio nav + .contenedor article:nth-child(3) {
-    background-image: url(../imgs/sitios/austria.jpg);
+    background-image: url(../imgs/sitios/gran_canaria.jpg);
 }
 
 #inicio nav + .contenedor article:nth-child(4) {
-    background-image: url(../imgs/sitios/chile-glaciar.jpg);
+    background-image: url(../imgs/sitios/la_palma.jpg);
 }
 
 #inicio nav + .contenedor article:nth-child(5) {
-    background-image: url(../imgs/sitios/china-pueblo.jpg);
+    background-image: url(../imgs/sitios/la_gomera.jpg);
 }
 
 #inicio nav + .contenedor article:nth-child(6) {
-    background-image: url(../imgs/sitios/francia.jpg);
+    background-image: url(../imgs/sitios/el_hierro.jpg);
 }
 
 #inicio nav + .contenedor article:nth-child(7) {
-    background-image: url(../imgs/sitios/giza-egipto.jpg);
+    background-image: url(../imgs/sitios/lanzarote.jpg);
 }
 
 #inicio nav + .contenedor article:nth-child(8) {
-    background-image: url(../imgs/sitios/gran-canon.jpg);
+    background-image: url(../imgs/sitios/fuerteventura.jpg);
 }
 
 #inicio nav + .contenedor article:nth-child(9) {
-    background-image: url(../imgs/sitios/san-francisco.jpg);
+    background-image: url(../imgs/sitios/La_graciosa.jpg);
 }
 
 #inicio nav + .contenedor article {
@@ -325,12 +302,21 @@ form {
     float: left;
 }
 
-form + div {
+form + div,
+#formulario .contenedor div:last-of-type
+{
     width: 30%;
     background-color: #bbe9ff;
     padding: 3em;
     margin-right: 6em;
     float: right;
+}
+
+/* .contenedor div:empty {
+	background-color: red;
+} */
+#formulario .contenedor div:not(:empty) {
+	background-color: red;
 }
 
 form + div ul {
@@ -365,24 +351,65 @@ textarea {
     height: 8em;
     resize: none;
 }
-/*
- {
-    cursor: pointer;
-    width: 40%; height: 2em;
-    margin: 1em auto 0;
-    background-color: #3498db;
-    color: #FFF;
-    -webkit-transition: all 1s ease-in-out;
+
+#formulario input[type="submit"] {
+	cursor: pointer;
+	width: 40%; height: 2em;
+	margin: 1em auto 0;
+	background-color: #3498db;
+	color: #FFF;
+	-webkit-transition: all 1s ease-in-out;
 	-moz-transition: all 1s ease-in-out;
 	-o-transition: all 1s ease-in-out;
 	-ms-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
 
- {
-    background-color: #FFF;
+#formulario input[type="submit"]:hover {
+	background-color: #FFF;
     color: #3498db;
 }
+
+#blog *:target {
+	border: 3px solid red;
+}
+
+#formulario input:focus {
+	background-color: rgba(52, 152, 219, .5);	
+}
+
+#formulario form *:disabled {
+	background-color: rgba(255, 255, 255, .5);	
+}
+
+#formulario input[type="checkbox"]:checked + * {
+	color: rgba(255, 0, 0, .5);
+}
+
+#formulario ul :only-of-type {
+	background-color: white;
+}
+
+blockquote::first-line {
+	color: rgb(255, 22, 80);
+}
+
+blockquote::before{
+	content: no-open-quote;
+}
+
+/* 
+#inicio .contenedor article:not(:first-child),
+#inicio .contenedor article:not(:last-child)
+{
+	box-shadow: 10px 10px 5px grey;
+} */
+
+#inicio .contenedor article + article:not(:last-child) {
+	box-shadow: 10px 10px 5px grey;
+}
+
+/*
 
  {
     display: inline;

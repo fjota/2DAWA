@@ -38,31 +38,33 @@ public class ResultadosServlet extends HttpServlet {
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    
+
+    StringBuilder sb = new StringBuilder();
+
     //Aqui almacenaremos los parametros que nos pasen
     String[] numeros;
     numeros = request.getParameterValues("numero");
-   
-  
-    
+
     for (String numero : numeros) {
-      if (!combinacionUsuario.contains(Integer.parseInt(numero))) {
-        combinacionUsuario.add(Integer.parseInt(numero));
+      if (!TryParseInt(numero)) {
+        sb.append("El valor: ").append(numero).append(" introducido no es un número<br>");
+      } else if (!combinacionUsuario.contains(Integer.parseInt(numero))) {
+        if (Integer.parseInt(numero) > 49 || Integer.parseInt(numero) < 0) {
+          sb.append("El valor: ").append(numero).append(" se pasa del rango de números entre 0-49<br>");
+        } else {
+          combinacionUsuario.add(Integer.parseInt(numero));
+        }
       } else {
-        request.setAttribute("mensajeError", "Se han introducido dos o mas números iguales");
-        getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);        
+        sb.append("El valor: ").append(numero).append(" esta repetido<br>");
       }
     }
-    
-    
-     /*
-    for (String numero : numeros) {
-      if (Integer.parseInt(numero) > 49 || Integer.parseInt(numero) < 1) {
-        request.setAttribute("mensajeError", "Se han introducido dos o mas números iguales");
-        getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);        
-      }
-    }*/
 
+    if (!"".equals(sb.toString())) {
+      request.setAttribute("mensajeError", sb.toString());
+      getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+      sb.setLength(0);
+    }
+   
     doGet(request, response);
   }
 
@@ -73,9 +75,9 @@ public class ResultadosServlet extends HttpServlet {
     for (Integer numero : combinacionMaquina) {
       if (combinacionUsuario.contains(numero)) {
         aciertos++;
-      }         
+      }
     }
-
+    
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
@@ -90,7 +92,9 @@ public class ResultadosServlet extends HttpServlet {
       out.println("<p> La combinacion ganadora es: " + combinacionMaquina.toString() + "</p>");
       out.println("<p> La combinacion introducida es: " + combinacionUsuario.toString() + "</p>");
       if (aciertos == 5) {
-         out.println("<p>Muy bien</p>");
+        out.println("<p>Muy bien</p>");
+      } else {
+        out.println("<p>Muy mal</p>");
       }
       out.println("</body>");
       out.println("</html>");
@@ -103,6 +107,15 @@ public class ResultadosServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     processRequest(request, response);
+  }
+
+  private boolean TryParseInt(String valor) {
+    try {
+      Integer.parseInt(valor);
+      return true;
+    } catch (NumberFormatException e) {
+      return false;
+    }
   }
 
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    if (document.cookie === "") {
+      let text = prompt("Introduzca un dato");
+      SetCookie("dato", text);
+      document.write(`<h1>${GetCookie("dato")}</h1>`); 
+    } else {
+      document.write(`<h1>${GetCookie("dato")}</h1>`);      
+    }
+
+    function SetCookie(name, value) {
+      document.cookie = name + "=" + encodeURIComponent(value) + ";";
+    }
+
+    function GetCookie(name) {
+      let index = document.cookie.indexOf(name + "=");
+      if (index == -1) {
+        return null;
+      }
+      index = document.cookie.indexOf("=", index) + 1;
+      let endStr = document.cookie.indexOf(";", index);
+      if (endStr == -1) {
+        endStr = document.cookie.length;
+      }
+      return decodeURIComponent(document.cookie.substring(index, endStr));
+    }
+
+  </script>
+
+</body>
+
+</html>

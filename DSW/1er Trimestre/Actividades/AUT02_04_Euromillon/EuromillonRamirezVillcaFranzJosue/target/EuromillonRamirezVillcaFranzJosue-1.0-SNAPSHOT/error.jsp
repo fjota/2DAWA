@@ -6,6 +6,6 @@
     <title>JSP Page</title>
   </head>
   <body>
-    <h1>${requestScope.mensajeError}</h1>
+    ${requestScope.mensajeError}
   </body>
 </html>
