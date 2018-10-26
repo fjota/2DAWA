@@ -29,7 +29,8 @@ header {
 
 header, footer {
 	width: 100%; padding: 30px 0;
-    background: linear-gradient(to bottom, #8ad0ff, #3498db );
+    /* background: linear-gradient(to bottom, #8ad0ff, #3498db ); */
+    background: linear-gradient(to top left, PapayaWhip 50%, PaleVioletRed );
 	background-color: #3498db;
     color: #FFF;
 }
@@ -51,7 +52,8 @@ header h2 {
 	width: 45%; height: 200px;
 	float: right;
 	margin-right: 2%;
-	background: url(../imgs/sitios/spain.jpg) no-repeat center center;
+	/* background: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,1)) ,url(../imgs/sitios/spain.jpg) no-repeat center center; */
+	background: radial-gradient(circle,rgba(255,255,255,0) 10%, rgba(255,255,255,0)) ,url(../imgs/sitios/spain.jpg) no-repeat center center;
     background-size:cover;
 }
 
