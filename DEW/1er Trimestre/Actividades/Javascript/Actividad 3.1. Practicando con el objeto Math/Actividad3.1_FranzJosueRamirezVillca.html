@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Matematicas Javascript</title>
+</head>
+
+<body>
+
+
+
+  <script>
+    let numero1 = parseFloat(prompt("Escriba un número"));
+    let numero2 = parseFloat(prompt("Escriba otro número"));    
+
+    document.write(`<p style="text-align: center">Los valores introducidos son <strong>Numero 1: ${numero1} </strong> <strong>Numero 2: ${numero2} </strong> </p>`);
+
+    document.write("<h2>Logaritmo neperiano del primer número: </h2>" + LogaritmoNeperiano(numero1) + "<br>");
+    document.write("<h2>raiz cuadrada del primer número: </h2>" + RaizCuadrada(numero1) + "<br>");
+    document.write("<h2>El primer número elevado a el segundo número: </h2>" + ExponenteNumero(numero1, numero2) + "<br>");
+    document.write("<h2>Número entero más cercano y menor a el primer numero: </h2>" + EnteroCercanoMenor(numero1) + "<br>");
+    document.write("<h2>Número entero más cercano y mayor a el segundo numero: </h2>" + EnteroCercanoMayor(numero2) + "<br>");    
+    document.write("<h2>Redondeo al entero mas cercano del primer número: </h2>" + RedondeoCercano(numero1) + "<br>");
+    document.write("<h2>Número aleatorio entre el primer número y el segundo: </h2>" + NumeroAleatorio(numero1, numero2) + "<br>");
+    document.write("<h2>Seno del segundo número: </h2>" + CalculoSeno(numero2) + "<br>");
+    document.write("<h2>Coseno del segundo número: </h2>" + CalculoCoseno(numero2) + "<br>");
+    document.write("<h2>Tangente del segundo número: </h2>" + CalculoTangente(numero2) + "<br>");
+    document.write("<h2>Valor absoluo del primer número: </h2>" + ValorAbsoluto(numero1) + "<br>");
+    document.write("<h2>Valor maximo entre el primer número y el segundo: </h2>" + ValorMaximo(numero1, numero2) + "<br>");
+    document.write("<h2>Valor minimo entre el primer número y el segundo: </h2>" + ValorMinimo(numero1, numero2) + "<br>");
+    document.write("<h2>Valor de la hipotenusa de un triangulo rectagulo, suponiendo que el primer numero y el segundo sean los catetos: </h2>" + HipotenusaTrianguloRectangulo(numero1, numero2) + "<br>");
+    document.write("<h2>Valor de uno de los catetos  de un triángulo rectángulo, suponiendo que el primer numero sea la hipotenusa y el segundo el otro cateto: </h2>" + CatetoTrianguloRectangulo(numero1, numero2) + "<br>");
+
+    /* Funciones */
+    function LogaritmoNeperiano(num) {
+      return Math.log(num);
+    }
+
+    function RaizCuadrada(num) {
+      return Math.sqrt(num);
+    }
+
+    function ExponenteNumero(num1, num2) {
+      return Math.pow(num1, num2);
+    }
+
+    function EnteroCercanoMenor(num) {      
+      return Math.floor(num);
+    }
+
+    function EnteroCercanoMayor(num) {      
+      return Math.ceil(num);
+    }
+
+    function RedondeoCercano(num) {
+      return Math.round(num);
+    }
+
+    function NumeroAleatorio(num1, num2) {
+      return Math.random(num1, num2);
+    }
+
+    function CalculoSeno(num) {
+      return Math.sin(num);
+    }
+
+    function CalculoCoseno(num) {
+      return Math.cos(num);
+    }
+
+    function CalculoTangente(num) {
+      return Math.atan(num);
+    }
+
+    function ValorAbsoluto(num) {
+      return Math.abs(num);
+    }
+
+    function ValorMaximo(num1, num2) {
+      return Math.max(num1, num2);
+    }
+
+    function ValorMinimo(num1, num2) {
+      return Math.min(num1, num2);
+    }
+
+    function HipotenusaTrianguloRectangulo(num1, num2) {
+      return Math.hypot(num1, num2);
+    }
+
+    function CatetoTrianguloRectangulo(num1, num2) {
+      let cateto1, cateto2, hipotenusa;
+      hipotenusa = Math.pow(num1, 2);
+      cateto2 = Math.pow(num2, 2);
+      cateto1 = hipotenusa - cateto2;
+      cateto1 = Math.sqrt(cateto1);
+      return cateto1;
+    }
+
+  </script>
+
+
+</body>
+
+</html>
