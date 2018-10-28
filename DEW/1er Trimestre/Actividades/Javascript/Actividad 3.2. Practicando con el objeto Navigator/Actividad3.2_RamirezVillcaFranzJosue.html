@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Navigator</title>
+</head>
+
+<body>
+
+  <script>
+
+    document.write("<h3>Resolucion Monitor</h3>");
+    document.write("La resolucion de su pantalla es de: " + screen.width + "x" + screen.height + "<br>");
+    document.write("<h3>Propiedades del navegador</h3>");
+    document.write("Nombre del navegador: " + navigator.appCodeName + "<br>");
+    document.write("Nombre del navegador: " + navigator.appName + "<br>");
+    document.write("Version del navegador: " + navigator.appVersion + "<br>");
+    document.write("Cookies habilitadas: " + navigator.cookieEnabled + "<br>");
+    document.write("Plataforma del navegador: " + navigator.platform + "<br>");
+    document.write("Cadena de agente usuario del navegador actual: " + navigator.userAgent + "<br>");
+    document.write("<h3>Otros</h3>");
+    document.write("Protocolo de conexion: " + location.protocol + "<br>");
+    document.write("Puerto de conexion: " + location.port + "<br>");
+    document.write("URL de la pagina actual: " + location.href + "<br>");
+    for (let i = 0; i < navigator.plugins.length; i++) {      
+      document.write("Plugins instalados: " + navigator.plugins.item(i).name + "<br>");
+    }
+
+  </script>
+
+</body>
+
+</html>

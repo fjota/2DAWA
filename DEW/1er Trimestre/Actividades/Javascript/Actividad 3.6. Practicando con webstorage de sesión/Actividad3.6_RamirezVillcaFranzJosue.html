@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Web Storage</title>
+</head>
+
+<body>
+
+  <!-- Crea una página que pida un dato al usuario. Dicho dato se guardará en la webstorage de sesión y se mostrará en pantalla.
+
+    Comprueba que funciona correctamente mediante la siguiente estrategia de pruebas:
+    
+    Sin cerrar esta ventana abre la página de nuevo en otra ventana. Para que funcione bien debe mostrar directamente el dato introducido.
+    Cierra todas las ventanas. Para que funcione bien debe pedir otra vez el dato. -->
+
+  <script>
+
+    let dato;
+    if (localStorage["dato"] != undefined) {
+      document.write("El dato del local storage es: " + localStorage.getItem("dato"));      
+    } else {
+      dato = prompt("Escribe cualquier dato: ");
+      localStorage.setItem("dato", dato);
+      document.write("El dato del local storage es: " + dato);
+    }
+
+
+
+
+  </script>
+
+</body>
+
+</html>

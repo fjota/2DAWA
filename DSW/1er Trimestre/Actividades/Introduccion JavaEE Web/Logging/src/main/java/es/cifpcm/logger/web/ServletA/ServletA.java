@@ -17,9 +17,10 @@ public class ServletA extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     
-    logger.info("Entrando en ProcessRequest de la app: {} " + request.getContextPath());
     
-    logger.debug("Parametro mes: {} " + request.getParameter("mes"));
+    logger.info("Entrando en ProcessRequest de la app: {} " + request.getContextPath() + "ESTO INFORMA");
+    
+    logger.debug("Parametro mes: {} " + request.getParameter("mes") + "ESTO DEBUGEA");
     
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
