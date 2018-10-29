@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Web Storage</title>
+</head>
+
+<body>
+
+  <script>      
+
+    let nombre, visitas = 0;
+    if (localStorage["nombre"] != undefined) {      
+      document.write("El nombre en local storage es: " + localStorage.getItem("nombre") + "<br>");
+      visitas = parseInt(localStorage.getItem("visitas"));
+      visitas++;
+      localStorage.setItem("visitas", visitas);
+      document.write("Usted visito nuestra pagina : " + visitas + " veces <br>");
+    } else { 
+      nombre = prompt("Escribe nombre: ");
+      localStorage.setItem("nombre", nombre);
+      localStorage.setItem("visitas", visitas);
+      document.write("El nombre del local storage es: " + nombre + "<br>");
+      document.write("Usted visito nuestra pagina : " + localStorage.getItem("visitas") + " veces <br>");
+    }
+
+  </script>
+
+</body>
+
+</html>

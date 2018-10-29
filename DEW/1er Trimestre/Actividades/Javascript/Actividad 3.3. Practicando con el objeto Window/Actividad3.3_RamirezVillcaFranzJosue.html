@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Practicando con el objeto Window</title>
+
+</head>
+
+<body>
+
+  <h2>Enlaces</h2>
+  <a href="http://stackoverflow.com" title="Stack Overflow" rel="sidebar">Bookmark me Stackoverflow</a><br>
+  <a href="https://www.google.es/" title="Stack Overflow" rel="sidebar">Bookmark me Google</a><br>
+  <a href="https://codepen.io/" title="Stack Overflow" rel="sidebar">Bookmark me Codepen</a><br>
+  <a href="https://github.com/" title="Stack Overflow" rel="sidebar">Bookmark me Github</a><br><br> 
+
+  <h2>Imagenes</h2>
+  <img src="https://images.pexels.com/photos/1115680/pexels-photo-1115680.jpeg?auto=compress&cs=tinysrgb&h=350" alt="" width="300" height="300">
+  <img src="https://images.pexels.com/photos/746393/pexels-photo-746393.jpeg?auto=compress&cs=tinysrgb&h=350" alt="" width="300" height="300">
+  <img src="https://images.pexels.com/photos/590491/pexels-photo-590491.jpeg?auto=compress&cs=tinysrgb&h=350" alt="" width="300" height="300">
+  <img src="https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&h=350" alt="" width="300" height="300">
+  <img src="https://images.pexels.com/photos/614494/pexels-photo-614494.jpeg?auto=compress&cs=tinysrgb&h=350" alt="" width="300" height="300">
+  <img src="https://images.pexels.com/photos/1118945/pexels-photo-1118945.jpeg?auto=compress&cs=tinysrgb&h=350" alt="" width="300" height="300">
+
+  <h2>Formulario</h2>
+  <form action="">
+    <label for="email">Email: </label>
+    <input type="email" name="email" id="email"><br><br>
+    <label for="password">Contraseña: </label>
+    <input type="password" name="password" id="password"><br><br>
+    <label for="recordar">Recordar Contraseña</label>
+    <input type="checkbox" name="recordar" id="recordar">
+    <label for="terminos">Aceptar Terminos y condiciones</label>
+    <input type="checkbox" name="terminos" id="terminos"><br><br>
+
+  </form>
+
+  <script>
+
+    /* El apartado de AÑADIR A FAVORITOS, se ha intentado pero no se realizo correctamente.
+       Se probo de las siguientes formas:
+       -- https://stackoverflow.com/questions/3024745/cross-browser-bookmark-add-to-favorites-javascript
+       -- https://stackoverflow.com/questions/19289739/window-sidebar-addpanel-not-work-in-firefox    
+     */
+
+    let enlaces = window.document.getElementsByTagName("a");
+    document.write("Hay : " + enlaces.length + " enlaces <br>");
+    let imagenes = window.document.getElementsByTagName("img");
+    document.write("Hay : " + imagenes.length + " imagenes <br>");
+    let elementosFormulario = window.document.getElementsByTagName("input");
+    document.write("Hay : " + elementosFormulario.length + " elementos de formulario <br>");
+
+  </script>
+
+</body>
+
+</html>
