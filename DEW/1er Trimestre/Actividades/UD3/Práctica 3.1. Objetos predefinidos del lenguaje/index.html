@@ -6,13 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Objetos predefinidos JavaScript</title>
-  <script>
-      
 
-  </script>
 </head>
 
 <body>
+
+  <script>
+
+    //La opcion de si la ventana podra o no cambiar de tamaño, solo es valida en IE 
+    window.onload = setTimeout(function () {
+      let configurationWindow = "resizable=no,width=450,height=450";
+      let newWindow = window.open("", "", configurationWindow);
+      newWindow.document.write(`<h3>Ejemplo de Ventana Nueva por Frnaz Josue Ramirez Villca</h3> 
+      ${location.href} <br>
+      ${window.location.protocol} <br>
+      ${window.navigator.appCodeName}
+      
+      
+      
+      `);
+    }, 2000);
+
+  </script>
+
+  <h3></h3>
 
   <!-- Enunciado
 
