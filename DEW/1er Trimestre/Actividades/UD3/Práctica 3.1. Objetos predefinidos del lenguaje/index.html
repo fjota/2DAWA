@@ -18,10 +18,10 @@
       let configurationWindow = "resizable=no,width=450,height=450";
       let newWindow = window.open("", "", configurationWindow);
       newWindow.document.write(`<h3>Ejemplo de Ventana Nueva por Frnaz Josue Ramirez Villca</h3> 
-      ${location.href} <br>
-      ${window.location.protocol} <br>
-      ${window.navigator.appCodeName}
-      
+      <p style="text-align: right;"> ${location.href} </p> 
+      <p style="text-align: left;"> ${window.location.protocol}</p>     
+      <p style="text-align: center;"> ${window.navigator.vendor} </p>           
+      ${window.navigator.javaEnabled() === true ? "<p style='color: green'>Java SI disponible en esta ventana</p>" : "<p style='color: red'>Java NO disponible en esta ventana</p>"} 
       
       
       `);
@@ -32,26 +32,7 @@
   <h3></h3>
 
   <!-- Enunciado
-
-  [Apartado 1] A los 2 segundos de cargar la página principal se debe abrir una primera ventana hija no redimensionable
-  de 450x450 pixeles cuyo código ha de generarse desde la ventana padre.
-
-  [Apartado 2] Deberemos crear una función JavaScript que escriba en la ventana hija abierta (en el punto anterior) lo
-  siguiente:
-
-  <h3>Ejemplo de Ventana Nueva por TuNombre</h3>
-
-  La URL Completa del fichero html usado en la práctica, alineada a la derecha.
-
-  El Protocolo utilizado, alineado a la izquieda
-
-  El Nombre del navegador, centrado
-
-  Que detecte si está JAVA disponible en esa ventana del navegador y si es así que escriba:
-
-  Java SI disponible en esta ventana en color verde, o bien.
-
-  Java NO disponible en esta ventana en color rojo.
+  <p style="text-align: right;"></p>  
 
   [Apartado 3] Además en una segunda ventana hija que ya debe existir (esto es, el documento HTML existirá previamente)
   implementaremos lo siguiente:
