@@ -4,6 +4,8 @@ import java.sql.*;
 
 /**
  *
+ * Consultas 
+ * 
  * MySQL JDBC DRIVER
  * 
  * @author Josué Ramírez

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script>
+    
+    //Head
+    let head, title, textTitle;
+    head = document.createElement("head");
+    title = document.createElement("title");
+    textTitle = document.createTextNode("Titulo de la pagina");
+    title.appendChild(textTitle);
+    head.appendChild(title);
+    document.getElementsByTagName("html").item(0).appendChild(head);    
+
+    //Body p1
+    let body, p1, textP1, strong1, textStrong1;
+    body = document.createElement("body");
+    p1 = document.createElement("p");
+    textP1 = document.createTextNode("Este es un ");
+    strong1 = document.createElement("strong");
+    textStrong1 = document.createTextNode("párrafo");
+    p1.appendChild(textP1);
+    strong1.appendChild(textStrong1);
+    p1.appendChild(strong1);
+    body.appendChild(p1);
+    document.getElementsByTagName("html").item(0).appendChild(body);
+
+    //Body p2
+    let p2, textP2, em1, textEm1, textP2_2, strong2, textStrong2, em2, textEm2;        
+    p2 = document.createElement("p");
+    textP2 = document.createTextNode("Este es ");
+    textP2_2 = document.createTextNode("parrafo mas ");
+    p2.appendChild(textP2);
+
+    em1 = document.createElement("em");
+    textEm1 = document.createTextNode("otro ");
+    em1.appendChild(textEm1);
+
+    strong2 = document.createElement("strong");
+    em2 = document.createElement("em");
+    textEm2 = document.createTextNode("puñetero");
+    em2.appendChild(textEm2);
+    strong2.appendChild(em2);
+
+    p2.appendChild(em1);
+    p2.appendChild(textP2_2);
+    p2.appendChild(strong2);
+    
+    body.appendChild(p2);
+    document.getElementsByTagName("html").item(0).appendChild(body);
+      
+  </script>
+</html>

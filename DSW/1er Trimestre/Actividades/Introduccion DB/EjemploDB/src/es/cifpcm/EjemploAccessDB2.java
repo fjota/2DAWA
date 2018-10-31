@@ -4,8 +4,10 @@ import java.sql.*;
 
 /**
  *
+ * Creacion de Tabla 
+ * 
  * MySQL JDBC DRIVER
- *
+ * 
  * @author Josué Ramírez
  */
 public class EjemploAccessDB2 {

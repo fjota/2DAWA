@@ -6,6 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Apartado 3</title>
+
+  <script>
+  
+    console.log(screen.availWidth);
+    console.log(screen.availHeight);
+    
+    console.log(25 * screen.availWidth / 100);
+
+  </script>
+
 </head>
 
 <body>
@@ -15,14 +25,55 @@
   <form action="">
     <label for="nombre">Nombre y Apellidos: </label>
     <input id="nombre" type="text">
-
+    <br><br>
     <label for="dia">Dia de nacimiento: </label>
     <input id="dia" type="text">
-
+    <br><br>
     <label for="mes">Mes de nacimiento: </label>
     <input id="mes" type="text">
-
+    <br><br>
+    <label for="ano">Año de nacimiento: </label>
+    <input id="ano" type="text">
+    
   </form>
+  <br><br>
+  <button id="cerrar">Cerrar ventana</button>
+  <span id="info"></span>
+
+  <script>
+
+    let name = document.getElementById("nombre");
+    let day = document.getElementById("dia");
+    let month = document.getElementById("mes");
+    let year = document.getElementById("ano");     
+
+
+    VerifyDay(day.value);
+
+    function VerifyDay(param) {
+      let date = parseInt(param);           
+      let aux = param.substring(date.toString().length);
+      console.log(aux);
+      
+      if (isNaN(date)) {
+        console.log("No es un numero");
+        
+      } else {
+        console.log("Es un numero");
+      }      
+    } 
+
+    document.getElementById("cerrar").addEventListener("click", function () {
+      if (name.value === "" || day.value === "" || month.value === "" || year.value === "") {
+        document.getElementById("info").innerHTML = "Rellene todos los campos porfavor";
+        VerifyDay(day.value);
+      } else {
+        window.close();
+      }       
+    });
+  
+  </script>
+
   <!--  [Apartado 3] Además en una segunda ventana hija que ya debe existir (esto es, el documento HTML existirá previamente)
   implementaremos lo siguiente:
 
