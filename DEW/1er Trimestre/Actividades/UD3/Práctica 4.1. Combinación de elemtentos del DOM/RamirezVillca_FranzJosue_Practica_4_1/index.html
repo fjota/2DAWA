@@ -6,9 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <style>
+    td, tr {
+      border: 1px solid black;
+    }
     td {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      font-size: 2em;
+       
+      /* font-style:  */
+    }
+    .container-table {
+      display: flex;
+      justify-content: center;
     }
   </style>
   <title>Combinacion de elementos DOM</title>
@@ -19,39 +30,50 @@
   <div>
     <form action="">
       <fieldset>
-        <legend>Colores</legend>
+        <legend>Colores </legend>
         <label for="amarillo">Amarillo: </label>
-        <input type="radio" name="color" id="amarillo" value="amarillo"><br><br>
+        <input type="radio" name="color" id="amarillo" value="yellow" checked><br><br>
         <label for="verde">Verde: </label>
-        <input type="radio" name="color" id="verde" value="verde"><br><br>
+        <input type="radio" name="color" id="verde" value="green"><br><br>
         <label for="rojo">Rojo: </label>
-        <input type="radio" name="color" id="rojo" value="rojo"><br><br>
+        <input type="radio" name="color" id="rojo" value="red"><br><br>
       </fieldset>
       <br>
       <fieldset>
-        <legend>Letras</legend>
-        <label for="georgia">Georgia: </label>
-        <input type="radio" name="letra" id="georgia" value="georgia"><br><br>
-        <label for="timesNewRoman">Times New Roman: </label>
-        <input type="radio" name="letra" id="timesNewRoman" value="timesNewRoman"><br><br>
-        <label for="candara">Candara: </label>
-        <input type="radio" name="letra" id="candara" value="candara"><br><br>
+        <legend>Letras </legend>
+        <label for="fantasy">Fantasy: </label>
+        <input type="radio" name="letra" id="fantasy" value="fantasy"><br><br>
+        <label for="monospace">Monospace: </label>
+        <input type="radio" name="letra" id="monospace" value="monospace"><br><br>
+        <label for="sans-serif">Sans serif: </label>
+        <input type="radio" name="letra" id="sans-serif" value="sans-serif" checked><br><br>
       </fieldset>
       <br>
       <fieldset>
-        <legend>Generacion Columna</legend>
+        <legend>Estilos de Texto </legend>
+        <label for="bold">Negrita: </label>
+        <input type="checkbox" name="estilosTexto" id="bold" value="bold" checked><br><br>
+        <label for="italic">Italic: </label>
+        <input type="checkbox" name="estilosTexto" id="italic" value="italic"><br><br>
+        <label for="underline">underline: </label>
+        <input type="checkbox" name="estilosTexto" id="underline" value="underline"><br><br>
+      </fieldset>
+      <br>
+      <fieldset id="formularioTabla">
+        <legend>Crear Tabla </legend>
         <label for="columna">Columnas: </label>
         <input id="columna" type="text">
         <label for="fila">Filas: </label>
         <input id="fila" type="text">
-        <input type="button" id="genTabla" value="Generar tabla">
+        <input type="button" id="genTabla" value="Crear">
       </fieldset>
+      <br>
     </form>
   </div>
 
   <!-- Tabla -->
-  <div>
-    <table border="1">
+  <div class="container-table">
+    <table>
 
     </table>
   </div>
