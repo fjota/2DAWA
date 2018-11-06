@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    td {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+  <title>Combinacion de elementos DOM</title>
+</head>
+
+<body>
+  <!-- Formulario -->
+  <div>
+    <form action="">
+      <fieldset>
+        <legend>Colores</legend>
+        <label for="amarillo">Amarillo: </label>
+        <input type="radio" name="color" id="amarillo" value="amarillo"><br><br>
+        <label for="verde">Verde: </label>
+        <input type="radio" name="color" id="verde" value="verde"><br><br>
+        <label for="rojo">Rojo: </label>
+        <input type="radio" name="color" id="rojo" value="rojo"><br><br>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Letras</legend>
+        <label for="georgia">Georgia: </label>
+        <input type="radio" name="letra" id="georgia" value="georgia"><br><br>
+        <label for="timesNewRoman">Times New Roman: </label>
+        <input type="radio" name="letra" id="timesNewRoman" value="timesNewRoman"><br><br>
+        <label for="candara">Candara: </label>
+        <input type="radio" name="letra" id="candara" value="candara"><br><br>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Generacion Columna</legend>
+        <label for="columna">Columnas: </label>
+        <input id="columna" type="text">
+        <label for="fila">Filas: </label>
+        <input id="fila" type="text">
+        <input type="button" id="genTabla" value="Generar tabla">
+      </fieldset>
+    </form>
+  </div>
+
+  <!-- Tabla -->
+  <div>
+    <table border="1">
+
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
