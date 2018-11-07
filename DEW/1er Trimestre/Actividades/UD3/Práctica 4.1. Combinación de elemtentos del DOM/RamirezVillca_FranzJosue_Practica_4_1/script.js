@@ -1,38 +1,9 @@
-let colorAmarillo = "yellow", colorVerde = "green", colorRojo = "red",
-  fuenteSegoeUI = "Segoe UI", fuenteMonospace = "monospace", fuenteSansSerif = "sans-serif",
-  textoNegrita = "bold", decoracionTexto = "underline", estiloFuenteItalic = "italic";
-
-let configuracionEstilos = {
-  "color": ["yellow", "green","red", "blue"],
-  "fuente": ["Segoe UI", "monospace", "sans-serif"],
-  "estiloTexto": ["bold"],
-  "decoracionTexto": ["underline"],
-  "estiloFuente": ["italic"]
-};
-console.log(configuracionEstilos);
-function MostrarTexto2(e) {
-  let datos = new FormData(formulario);
-  let arrayFormulario = [];
-  e.innerText = "X";
-  for (const item of datos) {
-    arrayFormulario.push(item[1]);        
-  }
-  for (const item of configuracionEstilos) {
-      
-  }
-}
-
-
-
-
-
-
-
 let columna = document.getElementById("columna");
 let fila = document.getElementById("fila");
 let tabla = document.getElementsByTagName("table").item(0);
 let formulario = document.getElementsByTagName("form").item(0);
 
+//Elimina el formulario por el cual se especifica el tamaño de la tabla, si ya se guardo en las cookies
 if (ObtenerCookie("tamanoTabla") != null) {
   document.getElementById("formularioTabla").remove();
   let tamanoTabla = ObtenerCookie("tamanoTabla");
@@ -40,6 +11,10 @@ if (ObtenerCookie("tamanoTabla") != null) {
   columna.value = tamanoTabla[0];
   fila.value = tamanoTabla[1];
   CrearTabla();
+}
+
+if (document.getElementById("genTabla") != null) {
+  document.getElementById("genTabla").addEventListener("click", CrearTabla);
 }
 
 function CrearTabla() {
@@ -73,33 +48,21 @@ function MostrarTexto(e) {
   let datos = new FormData(formulario);
   e.innerText = "X";
   for (const item of datos) {
-    switch (item[1].toString()) {
-      case colorAmarillo:
-        e.style.color = colorAmarillo;
+    switch (item[0].toString()) {
+      case "color":
+        e.style.color = item[1].toString();
         break;
-      case colorVerde:
-        e.style.color = colorVerde;
+      case "fuente":
+        e.style.fontFamily = item[1].toString();
         break;
-      case colorRojo:
-        e.style.color = colorRojo;
+      case "estiloTexto":
+        e.style.fontWeight = item[1].toString();
         break;
-      case fuenteSegoeUI:
-        e.style.fontFamily = fuenteSegoeUI;
+      case "estiloFuente":
+        e.style.fontStyle = item[1].toString();
         break;
-      case fuenteMonospace:
-        e.style.fontFamily = fuenteMonospace;
-        break;
-      case fuenteSansSerif:
-        e.style.fontFamily = fuenteSansSerif;
-        break;
-      case textoNegrita:
-        e.style.fontWeight = textoNegrita;
-        break;
-      case estiloFuenteItalic:
-        e.style.fontStyle = estiloFuenteItalic;
-        break;
-      case decoracionTexto:
-        e.style.textDecoration = decoracionTexto;
+      case "decoracionTexto":
+        e.style.textDecoration = item[1].toString();
         break;
     }
   }
@@ -135,6 +98,4 @@ function TryParseInt(number) {
   }
 }
 
-if (document.getElementById("genTabla") != null) {
-  document.getElementById("genTabla").addEventListener("click", CrearTabla);
-}
+
