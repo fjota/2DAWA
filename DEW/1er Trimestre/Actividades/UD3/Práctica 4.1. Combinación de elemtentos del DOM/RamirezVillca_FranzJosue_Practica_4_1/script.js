@@ -13,9 +13,12 @@ if (ObtenerCookie("tamanoTabla") != null) {
   CrearTabla();
 }
 
+/* Evento para generar la tabla */
 if (document.getElementById("genTabla") != null) {
   document.getElementById("genTabla").addEventListener("click", CrearTabla);
 }
+/* Evento para Escribir dentro del td que clicamos */
+document.querySelector("#tabla").addEventListener("click", MostrarTexto);
 
 function CrearTabla() {
   if (TryParseInt(columna.value) === false || TryParseInt(fila.value) === false) {
@@ -24,7 +27,7 @@ function CrearTabla() {
   } else {
     let nodeTR = document.createElement("tr");
     let nodeTD = document.createElement("td");
-    nodeTD.setAttribute("onclick", "MostrarTexto(this)");
+    /* nodeTD.setAttribute("onclick", "MostrarTexto(this)"); */
     let nodeTDText = document.createTextNode("");
     nodeTD.appendChild(nodeTDText);
     //Crea una fila con todas las columnas
@@ -45,25 +48,27 @@ function CrearTabla() {
 }
 
 function MostrarTexto(e) {
-  let datos = new FormData(formulario);
-  e.innerText = "X";
-  for (const item of datos) {
-    switch (item[0].toString()) {
-      case "color":
-        e.style.color = item[1].toString();
-        break;
-      case "fuente":
-        e.style.fontFamily = item[1].toString();
-        break;
-      case "estiloTexto":
-        e.style.fontWeight = item[1].toString();
-        break;
-      case "estiloFuente":
-        e.style.fontStyle = item[1].toString();
-        break;
-      case "decoracionTexto":
-        e.style.textDecoration = item[1].toString();
-        break;
+  if (e.target.id != "tabla") {
+    let datos = new FormData(formulario);
+    e.target.innerText = "X";
+    for (const item of datos) {
+      switch (item[0].toString()) {
+        case "color":
+          e.target.style.color = item[1].toString();
+          break;
+        case "fuente":
+          e.target.style.fontFamily = item[1].toString();
+          break;
+        case "estiloTexto":
+          e.target.style.fontWeight = item[1].toString();
+          break;
+        case "estiloFuente":
+          e.target.style.fontStyle = item[1].toString();
+          break;
+        case "decoracionTexto":
+          e.target.style.textDecoration = item[1].toString();
+          break;
+      }
     }
   }
 }

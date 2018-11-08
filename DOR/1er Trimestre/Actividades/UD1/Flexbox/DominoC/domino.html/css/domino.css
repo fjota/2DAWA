@@ -1,0 +1,86 @@
+body {
+  background-color: rgb(105, 199, 147);
+  display: flex;
+  justify-content: center;  
+}
+
+.ficha.prime,
+.ficha.segun {
+  background-color: white;
+  width: 8em;
+  margin: 1.5em;
+  height: 18em;  
+}
+
+.punto {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.ficha.prime,
+.ficha.segun {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: .7em;
+}
+
+.cara-a {
+  border-bottom: 4px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: auto;
+}
+
+.ficha.prime .cara-a .col:first-child {
+  display: flex;
+  justify-content: space-between;
+}
+.ficha.prime .cara-a .col:nth-child(2) {
+  display: flex;
+  justify-content: center;
+}
+.ficha.prime .cara-a .col:last-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ficha.prime .cara-b {
+  display: flex;
+  justify-content: space-between;
+  flex: auto;
+}
+
+.ficha.prime .cara-b .col{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.ficha.segun .cara-a {
+  display: flex;
+}
+
+.ficha.segun .cara-a .punto:first-child {
+  align-self: flex-start;
+}
+.ficha.segun .cara-a .punto:nth-child(2) {
+  align-self: center;
+}
+.ficha.segun .cara-a .punto:last-child {
+  align-self: flex-end;
+}
+
+.ficha.segun .cara-b {  
+  flex: auto;  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ficha.segun .cara-b .punto:last-child {
+  align-self: flex-end;
+}
