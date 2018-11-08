@@ -50,7 +50,6 @@ public class BuscadorEmpleadosServlet extends HttpServlet {
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException, SQLException {
-
     List<Employee> listEmployee = new ArrayList<Employee>();
     Connection conexion = null;
     try {
@@ -59,14 +58,9 @@ public class BuscadorEmpleadosServlet extends HttpServlet {
       s.setMaxRows(dbPageSize);
       ResultSet rs = s.executeQuery("select * from employees");
       while (rs.next()) {
-        Employee employee = new Employee();
-        employee.setEmpNo(rs.getInt(1));
-        employee.setFirstName(rs.getString(3));
-        employee.setBirthDate(rs.getDate(2));
-        employee.setHireDate(rs.getDate(6));
+        Employee employee = new Employee(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getString(4), rs.getString(5).charAt(0), rs.getDate(6));
         listEmployee.add(employee);
       }
-
     } catch (SQLException e) {
       logger.error(e.getMessage());
     }
@@ -77,37 +71,92 @@ public class BuscadorEmpleadosServlet extends HttpServlet {
       out.println("<!DOCTYPE html>");
       out.println("<html>");
       out.println("<head>");
-      out.println("<title>Servlet BuscadorEmpleadosServlet</title>");
+      out.println("<title>Buscador Empleados</title>");
       out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\" " + request.getContextPath().concat("/css").concat("/styles.css") + "\">");
       out.println("</head>");
       out.println("<body>");
-      out.println("<h1>Servlet BuscadorEmpleadosServlet at " + request.getContextPath() + "</h1>");
-      out.println("<p>Esta buscando a: " + request.getParameter("nameToSearch") + "</p>");
-
+      out.println("<h2>Esta buscando a: " + request.getParameter("nameToSearch") + "</h2>");
+      out.println(ShowEmployee(request.getParameter("nameToSearch")));
+      out.println("<br><br>");
+      out.println("<h2>Ver nomina de empleados</h2>");
       out.println("<table border='1'>");
-      out.println("</tr>");
+      out.println("<tr>");
       out.println("<th>Id Cliente</th>");
       out.println("<th>Nombre</th>");
       out.println("<th>Fecha Nacimiento</th>");
-      out.println("<th>Fecha Con.</th>");
+      out.println("<th>Fecha Contrato.</th>");
       out.println("<th>   -   </th>");
       out.println("<tr>");
-      for (int i = 0; i < 10; i++) {
+      for (Employee employee : listEmployee) {
         out.println("<tr>");
-        out.println("<td>" + listEmployee.get(i).getEmpNo() + "</td>");
-        out.println("<td>" + listEmployee.get(i).getFirstName() + "</td>");
-        out.println("<td>" + listEmployee.get(i).getBirthDate() + "</td>");
-        out.println("<td>" + listEmployee.get(i).getHireDate() + "</td>");
-        out.println("<td> <a href=\"" + request.getContextPath().concat("/verNominas").concat("?empNo=").concat(listEmployee.get(i).getEmpNo().toString()) + "\">Ver nomina</a> </td>");
+        out.println("<td>" + employee.getEmpNo() + "</td>");
+        out.println("<td>" + employee.getFirstName() + "</td>");
+        out.println("<td>" + employee.getBirthDate() + "</td>");
+        out.println("<td>" + employee.getHireDate() + "</td>");
+        out.println("<td> <a href='" + request.getContextPath().concat("/verNominas").concat("?empNo=").concat(employee.getEmpNo().toString()) + "'>Ver nomina</a> </td>");
         out.println("</tr>");
       }
-      out.println("<table>");
+      out.println("</table>");
       out.println("</body>");
       out.println("</html>");
     } finally {
       out.close();
       conexion.close();
     }
+  }
+
+  /**
+   * Show All Employees
+   * @param employee
+   * @return Table Html with all employees 
+   */
+  private String ShowEmployee(String employee) {
+    List<Employee> listEmployee = SearchEmployee(employee);
+    if (listEmployee.isEmpty()) {
+      return "Empleado no encontrado";
+    } else {
+      StringBuilder sb = new StringBuilder();
+      sb.append("<table border='1'>");
+      sb.append("<tr> <th>Numero Empleado</th><th>Fecha Cumpleaño</th><th>Primer Nombre</th><th>Segundo Nombre</th><th>Genero</th><th>Fecha Contrato</th> </tr>");
+      for (Employee object : listEmployee) {
+        sb.append("<tr>");
+        sb.append("<td>").append(object.getEmpNo()).append("</td>");
+        sb.append("<td>").append(object.getBirthDate()).append("</td>");
+        sb.append("<td>").append(object.getFirstName()).append("</td>");
+        sb.append("<td>").append(object.getLastName()).append("</td>");
+        sb.append("<td>").append(object.getGender()).append("</td>");
+        sb.append("<td>").append(object.getHireDate()).append("</td>");
+        sb.append("</tr>");
+      }
+      sb.append("</table>");
+      return sb.toString();
+    }
+  }
+
+  /**
+   * Search a employee by name
+   * @param employee
+   * @return A list of employee
+   */
+  private List<Employee> SearchEmployee(String employee) {
+    Connection connection = null;
+    PreparedStatement preparedStm = null;
+    List<Employee> listEmployee = new ArrayList<Employee>();
+    try {
+      connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+      String sql = "SELECT * FROM employees WHERE first_name = ?";
+      preparedStm = connection.prepareStatement(sql);
+      preparedStm.setString(1, employee);
+      preparedStm.setMaxRows(dbPageSize);
+      ResultSet rs = preparedStm.executeQuery();
+      while (rs.next()) {
+        Employee modelEmployee = new Employee(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getString(4), rs.getString(5).charAt(0), rs.getDate(6));
+        listEmployee.add(modelEmployee);
+      }
+    } catch (SQLException e) {
+      logger.error(e.getMessage());
+    }
+    return listEmployee;
   }
 
   @Override
@@ -129,27 +178,4 @@ public class BuscadorEmpleadosServlet extends HttpServlet {
       logger.error(BuscadorEmpleadosServlet.class.getName() + " " + ex.getMessage());
     }
   }
-
-  private List<String> SearchEmployee(String employee) {
-    Connection connection = null;
-    PreparedStatement preparedStm = null;
-    List<Employee> listEmployee = new ArrayList<Employee>();
-    try {
-      connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-      String sql = "SELECT * FROM employees WHERE first_name = ?";
-      preparedStm = connection.prepareStatement(sql);
-      preparedStm.setString(1, employee);
-
-      ResultSet rs = preparedStm.executeQuery();
-      while (rs.next()) {
-        Employee objEmployee = new Employee(rs.getInt(1),rs.getDate(2),rs.getString(3),rs.getString(4),rs.getByte(5), rs.getDate(6));
-        /*listEmployee.add(rs.getString(1));*/
-      }
-
-    } catch (SQLException e) {
-      logger.error(e.getMessage());
-    }
-    return listEmployee;
-  }
-
 }
