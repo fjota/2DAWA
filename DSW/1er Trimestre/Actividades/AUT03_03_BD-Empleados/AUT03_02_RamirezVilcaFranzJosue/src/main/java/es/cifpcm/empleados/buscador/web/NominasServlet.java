@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,7 @@ public class NominasServlet extends HttpServlet {
   private String dbUser;
   private String dbPassword;
   private int dbPageSize;
-  private final int DEFAULT_PAGESIZE = 5;
+  private final int DEFAULT_PAGESIZE = 8;
 
   @Override
   public void init(ServletConfig config) throws ServletException {
@@ -48,35 +49,61 @@ public class NominasServlet extends HttpServlet {
       String driverClassName = rb.getString("database.driver");
       Class.forName(driverClassName);
     } catch (ClassNotFoundException ex) {
-      logger.error(ex.getMessage());
+      logger.error(NominasServlet.class.getName() + " " + ex.getMessage());
     }
   }
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
+          throws ServletException, IOException, SQLException {
     try {
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<title>Servlet NominasServlet</title>");
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>"+GetNameById(Integer.parseInt(request.getParameter("empNo")))+"</h1>");
-      out.println("<h1>Nominas</h1>");
-      out.println(ShowEmployeeSalary(Integer.parseInt(request.getParameter("empNo"))));
-      out.println("</body>");
-      out.println("</html>");
+      if (request.getParameter("empNo").isEmpty()) {
+        getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+      } else {
+        int numEmployee = Integer.parseInt(request.getParameter("empNo"));
+        String pageRouteStyle = request.getContextPath().concat("/css").concat("/styles.css");
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+          out.println("<!DOCTYPE html>");
+          out.println("<html>");
+          out.println("<head>");
+          out.println("<title>Nomina</title>");
+          out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\" " + pageRouteStyle + "\">");
+          out.println("</head>");
+          out.println("<body>");
+          out.println("<h1>" + GetNameById(numEmployee) + "</h1>");
+          out.println("<h1>Nominas</h1>");
+          out.println(ShowEmployeeSalary(numEmployee));
+          out.println("</body>");
+          out.println("</html>");
+        } finally {
+          out.close();
+        }
+      }
+    } catch (IOException e) {
+      logger.warn(NominasServlet.class.getName() + " " + e.getMessage());
+    } catch (NumberFormatException e) {
+      logger.warn(NominasServlet.class.getName() + " " + e.getMessage());
+    } catch (SQLException e) {
+      logger.warn(NominasServlet.class.getName() + " " + e.getMessage());
+    } catch (ServletException e) {
+      logger.warn(NominasServlet.class.getName() + " " + e.getMessage());
     } finally {
-      out.close();
+      getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
     }
+
   }
 
-  private String ShowEmployeeSalary(int employee) {
+  /**
+   * Contruct table HTML with all information about salary employee
+   *
+   * @param employee
+   * @return String
+   */
+  private String ShowEmployeeSalary(int employee) throws SQLException {
     List<EmployeeSalary> employeeList = SearchEmployeeSalary(employee);
     StringBuilder sb = new StringBuilder();
-    sb.append("<table border='1'>");
+    sb.append("<table>");
     sb.append("<tr> <th>Salary</th><th>From Date</th><th>To Date</th> </tr>");
     for (EmployeeSalary object : employeeList) {
       sb.append("<tr>");
@@ -90,10 +117,17 @@ public class NominasServlet extends HttpServlet {
 
   }
 
-  private List<EmployeeSalary> SearchEmployeeSalary(int numEmployee) {
+  /**
+   * Search salary of employee
+   *
+   * @param numEmployee
+   * @return List<EmployeeSalary>
+   */
+  private List<EmployeeSalary> SearchEmployeeSalary(int numEmployee) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStm = null;
     List<EmployeeSalary> employeeList = new ArrayList<EmployeeSalary>();
+    EmployeeSalary employee = null;
     try {
       connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
       String sql = "SELECT salary, from_date, to_date FROM salaries WHERE emp_no = ?";
@@ -102,16 +136,26 @@ public class NominasServlet extends HttpServlet {
       preparedStm.setMaxRows(dbPageSize);
       ResultSet rs = preparedStm.executeQuery();
       while (rs.next()) {
-        EmployeeSalary employee = new EmployeeSalary(rs.getInt(1), rs.getDate(2), rs.getDate(3));
+        employee = new EmployeeSalary(rs.getInt(1), rs.getDate(2), rs.getDate(3));
         employeeList.add(employee);
       }
     } catch (SQLException e) {
       logger.error(e.getMessage());
+    } finally {
+      if (connection != null) {
+        connection.close();
+      }
     }
     return employeeList;
   }
-  
-  private String GetNameById(int numEmployee) {
+
+  /**
+   * Search employee by ID
+   *
+   * @param numEmployee
+   * @return String
+   */
+  private String GetNameById(int numEmployee) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStm = null;
     String nameEmployee = "";
@@ -126,7 +170,11 @@ public class NominasServlet extends HttpServlet {
         nameEmployee = rs.getString(1) + " " + rs.getString(2);
       }
     } catch (SQLException e) {
-      logger.error(e.getMessage());
+      logger.error(NominasServlet.class.getName() + " " + e.getMessage());
+    } finally {
+      if (connection != null) {
+        connection.close();
+      }
     }
     return nameEmployee;
   }
@@ -134,13 +182,21 @@ public class NominasServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    processRequest(request, response);
+    try {
+      processRequest(request, response);
+    } catch (SQLException ex) {
+      logger.error(NominasServlet.class.getName() + " " + ex.getMessage());
+    }
   }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    processRequest(request, response);
+    try {
+      processRequest(request, response);
+    } catch (SQLException ex) {
+      logger.error(NominasServlet.class.getName() + " " + ex.getMessage());
+    }
   }
 
 }
