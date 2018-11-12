@@ -1,37 +1,40 @@
 body {
-  background-color: rgb(105, 199, 147);
   display: flex;
   justify-content: center;  
 }
 
 .ficha.prime,
 .ficha.segun {
-  background-color: white;
-  width: 8em;
-  margin: 1.5em;
-  height: 18em;  
+  margin: 16px;
+  padding: 8px;
+  background-color: #e7e7e7;
+  width: 9em;
+  height: 19em;
+  box-shadow: 6px 6px rgb(83, 80, 80);
+  border-radius: 10%;
 }
 
 .punto {
-  width: 1.5em;
-  height: 1.5em;
+  display: block;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background-color: black;
+  margin: 4px;
+  background-color: #333;
+  box-shadow: 5px 4px rgb(160, 140, 140);
 }
 
 .ficha.prime,
 .ficha.segun {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: .7em;
 }
 
 .cara-a {
   border-bottom: 4px solid black;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   flex: auto;
 }
 
@@ -57,7 +60,7 @@ body {
 .ficha.prime .cara-b .col{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .ficha.segun .cara-a {
