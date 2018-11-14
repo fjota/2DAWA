@@ -9,8 +9,10 @@
     <form method="GET" action="juego.jsp">
       <fieldset>
         <legend>Hagan sus apuestas</legend>
-        <input type="radio" name="eleccion" value="0">
-        <input type="radio" name="eleccion" value="1">
+        <label for="cara">Cara</label>
+        <input id="cara" type="radio" name="eleccion" value="0">
+        <label for="cruz">Cruz</label>
+        <input id="cruz" type="radio" name="eleccion" value="1">
         <br><br>
         <label for="dinero">Dinero Apostado</label>
         <input id="dinero" name="dinero" type="text">
