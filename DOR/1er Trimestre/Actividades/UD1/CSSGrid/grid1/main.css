@@ -1,0 +1,84 @@
+.wrapper {
+  background-color: rgb(238, 116, 140);
+  padding: 5px;
+}
+
+.box {
+  background-color: blue;
+  color: white;
+  border-radius: 6px;
+}
+
+.wrapper2 * {
+  background-color: green;
+  border-radius: 4px;
+}
+
+.wrapper2 div:last-child {
+  background-color: red;
+}
+
+/* Grid */
+.wrapper {
+  display: grid;
+  grid-template-areas: ". header anuncios"
+                       "menu contenido anuncios"
+                       "pie pie pie";
+  grid-gap: 1em;
+  grid-template-columns: 120px 1fr 80px;
+  grid-template-rows: 50px 1fr 50px;
+}
+
+.box.header {
+  grid-area: header;
+}
+.box.add {
+  grid-area: anuncios;
+}
+.box.sidebar {
+  grid-area: menu;
+}
+.box.content {
+  grid-area: contenido;  
+}
+.box.foot {
+  grid-area: pie;
+}
+
+.box.content .wrapper2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 5px;   
+}
+
+.wrapper2 #item2 {
+  grid-column-end: 2;
+}
+.wrapper2 #item3 {
+  grid-column-end: 2;
+}
+.wrapper2 #item4 {
+  grid-column-end: 2;
+}
+.wrapper2 #item5 {
+  grid-column-end: 3;
+  grid-row-end: 1;
+}
+.wrapper2 #item6 {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-row-end: -1;
+}
+
+/* Paddings */
+.box.content,
+.box.sidebar,
+.box.header,
+.box.add,
+.box.foot {
+  padding: 8px; 
+}
+.wrapper2 * {
+  padding: 3px;
+}

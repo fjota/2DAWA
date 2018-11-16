@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Buscador</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Buscador de empleados</h1>
+        <form action="/Empleados/buscadorEmpleados" method="POST">
+            <fieldset>
+                <legend>Configurar servlet</legend>
+                <label for="txtPageSize">Tama&ntilde;o p&aacute;gina</label>
+                <input id="txtPageSize" type="text" name="pageSize"/>
+                <input type="submit" value="Enviar"/>
+            </fieldset>   
+        </form>
+
+
+        <form action="/Empleados/employeeController" method="GET">
+
+            <fieldset>
+                <legend>Datos empleado</legend>
+                <label for="txtFirstName">Nombre</label>
+                <input id="txtFirstName" type="text" name="firstName"/><br/>
+                <label for="txtLastName">Apellidos</label>
+                <input id="txtLastName" type="text" name="lastName"/><br/>
+                <input type="submit" value="Enviar"/>
+            </fieldset>            
+        </form>
+    </body>
+</html>
