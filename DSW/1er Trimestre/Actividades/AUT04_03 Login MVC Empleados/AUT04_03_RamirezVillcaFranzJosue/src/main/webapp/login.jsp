@@ -10,7 +10,7 @@
   <body>
     <h1>Bienvenido</h1>
     <p>Introduzca usuario y contraseña de acceso</p>
-    <form action="loginController" method="post">
+    <form action="loginController" method="POST">
       <p>
         <label for="txtUser">Usuario</label>
         <input type="text" id="txtUser" name="txtUser"/>

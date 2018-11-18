@@ -1,5 +1,6 @@
 package es.cifpcm.controller;
 
+import es.cifpcm.model.Login;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -34,8 +35,8 @@ public class LoginControllerServlet extends HttpServlet {
 
   @Override
   public void init(ServletConfig config) throws ServletException {
-    try {
-      super.init();
+    super.init(config);
+    try {      
       String configBundleName = config.getInitParameter("app.config");
       ResourceBundle rb = ResourceBundle.getBundle(configBundleName);
       dbUrl = rb.getString("database.url");
@@ -51,36 +52,40 @@ public class LoginControllerServlet extends HttpServlet {
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException, SQLException {
-
-    try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword)) {
+    Connection conn = null;
+    Login log = null;
+    try {
+      conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
       String query = "SELECT login, emp_no FROM employees.login WHERE login= ? AND password = ?";
-      try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-        String user = request.getParameter("txtUser");
-        String password = request.getParameter("txtPassword");
-        pstmt.setString(1, user);
-        pstmt.setString(2, password);
-        try (ResultSet rs = pstmt.executeQuery()) {
-          if (rs.next()) {            
-            getServletContext().getRequestDispatcher("/loginSuccess.jsp").forward(request, response);
-          } else {
-            getServletContext().getRequestDispatcher("/loginFailed.jsp").forward(request, response);
-          }
-        }
+      PreparedStatement pstmt = conn.prepareStatement(query);
+      String user = request.getParameter("txtUser");
+      String password = request.getParameter("txtPassword");
+      pstmt.setString(1, user);
+      pstmt.setString(2, password);
+      ResultSet rs;
+      rs = pstmt.executeQuery();
+      if (rs.next()) {
+        log = new Login(rs.getInt("emp_no"), rs.getString("login"), "");
+        request.setAttribute("loginBean", log);
+        getServletContext().getRequestDispatcher("/loginSuccess.jsp").forward(request, response);
+      } else {
+        getServletContext().getRequestDispatcher("/loginFailed.jsp").forward(request, response);
       }
     } catch (SQLException ex) {
       logger.error(LoginControllerServlet.class.getName() + " " + ex);
-    }
+    } 
+
   }
 
-  /*@Override
+  @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     try {
       processRequest(request, response);
     } catch (SQLException ex) {
-      java.util.logging.Logger.getLogger(LoginControllerServlet.class.getName()).log(Level.SEVERE, null, ex);
+      logger.error(LoginControllerServlet.class.getName() + " " + ex);
     }
-  }*/
+  }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -88,7 +93,7 @@ public class LoginControllerServlet extends HttpServlet {
     try {
       processRequest(request, response);
     } catch (SQLException ex) {
-      java.util.logging.Logger.getLogger(LoginControllerServlet.class.getName()).log(Level.SEVERE, null, ex);
+      logger.error(LoginControllerServlet.class.getName() + " " + ex);
     }
   }
 

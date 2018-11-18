@@ -8,11 +8,12 @@ import java.util.Date;
  */
 public class Login {
 
+  private int emp_no;
   private String login;
   private String password;
-  private int emp_no;
+  
 
-  public Login(String login, String password, int emp_no) {
+  public Login(int emp_no, String login, String password) {
     this.login = login;
     this.password = password;
     this.emp_no = emp_no;
