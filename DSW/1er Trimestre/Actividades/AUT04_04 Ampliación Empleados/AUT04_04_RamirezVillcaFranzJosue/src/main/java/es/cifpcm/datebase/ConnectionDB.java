@@ -20,6 +20,8 @@ public class ConnectionDB {
   private String dbPassword;
   private int dbPageSize;
   private int DEFAULT_PAGESIZE = 10;
+  private int minPageSize = 0;
+  private int maxPageSize = 0;
   private Connection conn;
 
   public ConnectionDB() {
@@ -58,7 +60,7 @@ public class ConnectionDB {
       }
     }
   }
-          
+
   public String getDbUrl() {
     return dbUrl;
   }
@@ -89,6 +91,40 @@ public class ConnectionDB {
 
   public void setDbPageSize(int dbPageSize) {
     this.dbPageSize = dbPageSize;
-  }  
+  }
+
+  public int getDEFAULT_PAGESIZE() {
+    return DEFAULT_PAGESIZE;
+  }
+
+  public void setDEFAULT_PAGESIZE(int DEFAULT_PAGESIZE) {
+    this.DEFAULT_PAGESIZE = DEFAULT_PAGESIZE;
+  }
+
+  public int getMinPageSize() {
+    return minPageSize;
+  }
+
+  public void setMinPageSize(int minPageSize) {
+    this.minPageSize = minPageSize;
+  }
+
+  public int getMaxPageSize() {
+    return maxPageSize;
+  }
+
+  public void setMaxPageSize(int maxPageSize) {
+    this.maxPageSize = maxPageSize;
+  }
+
+  public Connection getConn() {
+    return conn;
+  }
+
+  public void setConn(Connection conn) {
+    this.conn = conn;
+  }
+          
+ 
 
 }

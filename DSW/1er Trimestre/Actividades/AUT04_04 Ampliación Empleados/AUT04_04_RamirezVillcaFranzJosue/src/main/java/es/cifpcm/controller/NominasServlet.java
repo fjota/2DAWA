@@ -1,17 +1,14 @@
-package es.cifpcm.empleados.buscador.web;
+package es.cifpcm.controller;
 
-import es.cifpcm.empleados.buscador.web.model.EmployeeSalary;
+import es.cifpcm.datebase.ConnectionDB;
+import es.cifpcm.model.EmployeeSalary;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,28 +23,16 @@ import org.slf4j.LoggerFactory;
 public class NominasServlet extends HttpServlet {
 
   //Logger
-  private final Logger logger = LoggerFactory.getLogger(BuscadorEmpleadosServlet.class);
-
-  //Database Settings
-  private String dbUrl;
-  private String dbUser;
-  private String dbPassword;
-  private int dbPageSize;
-  private final int DEFAULT_PAGESIZE = 8;
+  private final Logger logger = LoggerFactory.getLogger(NominasServlet.class);
+  
+  ConnectionDB databaseConn;
 
   @Override
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
+  public void init() throws ServletException {
+    super.init();
     try {
-      String configBundleName = config.getInitParameter("app.config");
-      ResourceBundle rb = ResourceBundle.getBundle(configBundleName);
-      dbUrl = rb.getString("database.url");
-      dbUser = rb.getString("database.user");
-      dbPassword = rb.getString("database.password");
-      dbPageSize = rb.getString("database.pageSize") == null ? DEFAULT_PAGESIZE : Integer.parseInt(rb.getString("database.pageSize"));
-      String driverClassName = rb.getString("database.driver");
-      Class.forName(driverClassName);
-    } catch (ClassNotFoundException ex) {
+      databaseConn = new ConnectionDB();
+    } catch (Exception ex) {
       logger.error(NominasServlet.class.getName() + " " + ex.getMessage());
     }
   }
@@ -79,14 +64,8 @@ public class NominasServlet extends HttpServlet {
           out.close();
         }
       }
-    } catch (IOException e) {
-      logger.warn(NominasServlet.class.getName() + " " + e.getMessage());
-    } catch (NumberFormatException e) {
-      logger.warn(NominasServlet.class.getName() + " " + e.getMessage());
-    } catch (SQLException e) {
-      logger.warn(NominasServlet.class.getName() + " " + e.getMessage());
-    } catch (ServletException e) {
-      logger.warn(NominasServlet.class.getName() + " " + e.getMessage());
+    } catch (IOException | NumberFormatException | SQLException | ServletException e) {
+      logger.error(NominasServlet.class.getName() + " " + e.getMessage());
     } finally {
       getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
     }
@@ -122,17 +101,15 @@ public class NominasServlet extends HttpServlet {
    * @param numEmployee
    * @return List<EmployeeSalary>
    */
-  private List<EmployeeSalary> SearchEmployeeSalary(int numEmployee) throws SQLException {
-    Connection connection = null;
+  private List<EmployeeSalary> SearchEmployeeSalary(int numEmployee) throws SQLException {    
     PreparedStatement preparedStm = null;
     List<EmployeeSalary> employeeList = new ArrayList<EmployeeSalary>();
     EmployeeSalary employee = null;
-    try {
-      connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+    try {      
       String sql = "SELECT salary, from_date, to_date FROM salaries WHERE emp_no = ?";
-      preparedStm = connection.prepareStatement(sql);
+      preparedStm = databaseConn.Connect().prepareStatement(sql);
       preparedStm.setInt(1, numEmployee);
-      preparedStm.setMaxRows(dbPageSize);
+      preparedStm.setMaxRows(databaseConn.getDbPageSize());
       ResultSet rs = preparedStm.executeQuery();
       while (rs.next()) {
         employee = new EmployeeSalary(rs.getInt(1), rs.getDate(2), rs.getDate(3));
@@ -141,9 +118,7 @@ public class NominasServlet extends HttpServlet {
     } catch (SQLException e) {
       logger.error(e.getMessage());
     } finally {
-      if (connection != null) {
-        connection.close();
-      }
+      databaseConn.Close();
     }
     return employeeList;
   }
@@ -154,16 +129,14 @@ public class NominasServlet extends HttpServlet {
    * @param numEmployee
    * @return String
    */
-  private String GetNameById(int numEmployee) throws SQLException {
-    Connection connection = null;
+  private String GetNameById(int numEmployee) throws SQLException { 
     PreparedStatement preparedStm = null;
     String nameEmployee = "";
-    try {
-      connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+    try {      
       String sql = "SELECT first_name, last_name FROM employees WHERE emp_no = ?";
-      preparedStm = connection.prepareStatement(sql);
+      preparedStm = databaseConn.Connect().prepareStatement(sql);
       preparedStm.setInt(1, numEmployee);
-      preparedStm.setMaxRows(dbPageSize);
+      preparedStm.setMaxRows(databaseConn.getDbPageSize());
       ResultSet rs = preparedStm.executeQuery();
       while (rs.next()) {
         nameEmployee = rs.getString(1) + " " + rs.getString(2);
@@ -171,9 +144,7 @@ public class NominasServlet extends HttpServlet {
     } catch (SQLException e) {
       logger.error(NominasServlet.class.getName() + " " + e.getMessage());
     } finally {
-      if (connection != null) {
-        connection.close();
-      }
+      databaseConn.Close();
     }
     return nameEmployee;
   }

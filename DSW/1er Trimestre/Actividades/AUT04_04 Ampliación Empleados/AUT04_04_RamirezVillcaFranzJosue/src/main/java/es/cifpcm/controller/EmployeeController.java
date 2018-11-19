@@ -2,18 +2,16 @@ package es.cifpcm.controller;
 
 import es.cifpcm.datebase.ConnectionDB;
 import es.cifpcm.model.Employee;
+import es.cifpcm.utils.ServletUtils;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,24 +40,56 @@ public class EmployeeController extends HttpServlet {
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException, SQLException {
-    
-    request.setAttribute("employeeList", SearchEmployee(request.getParameter("firstName"),
-            request.getParameter("lastName")));
-    RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
-    dispatcher.forward(request, response);
-    /*
-    response.setContentType("text/html;charset=UTF-8");
-    try (PrintWriter out = response.getWriter()) {
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<title>Servlet EmployeeController</title>");
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>Servlet EmployeeController at " + request.getContextPath() + "</h1>");
-      out.println("</body>");
-      out.println("</html>");
-    }*/
+    String message = "";
+    try {
+      //Page Size input
+      if (!request.getParameter("tamanoPgina").isEmpty()) {
+        try {
+          databaseConn.setDbPageSize(Integer.parseInt(request.getParameter("tamanoPgina")));          
+          if (ServletUtils.getCookie(request, "pageSize") == null) {
+            Cookie pageSizeCookie = new Cookie("pageSize",
+                    Integer.toString(databaseConn.getDbPageSize()));
+            pageSizeCookie.setMaxAge(24 * 60 * 60 * 365);
+            pageSizeCookie.setPath(request.getContextPath());
+            response.addCookie(pageSizeCookie);
+          } else {
+            Cookie pageSizeCookie = ServletUtils.getCookie(request, "pageSize");
+            pageSizeCookie.setValue(Integer.toString(databaseConn.getDbPageSize()));
+            response.addCookie(pageSizeCookie);
+          }
+          request.setAttribute("employeeList", ListEmployees());
+        } catch (NumberFormatException ex) {
+          logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+          message += "Has tried to pass a data other than a number\n";
+        }
+      } else {
+        Cookie pageSizeCookie = ServletUtils.getCookie(request, "pageSize");
+        if (pageSizeCookie != null) {
+          databaseConn.setDbPageSize(Integer.parseInt(pageSizeCookie.getValue()));
+          request.setAttribute("employeeList", ListEmployees());
+        } else {
+          message += "You did not write any value for the page size\n";
+        }
+      }
+
+      
+      request.setAttribute("errorInput", message);
+      request.setAttribute("employee", SearchEmployee(request.getParameter("firstName"),
+              request.getParameter("lastName")));      
+      RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
+      dispatcher.forward(request, response);
+      
+    } catch (IOException | NumberFormatException | SQLException | ServletException ex) {
+      logger.error(EmployeeController.class.getName() + " " + ex.getMessage());      
+    } finally {
+      if (message.isEmpty()) {
+        request.getRequestDispatcher("error.jsp").forward(request, response);
+      } else {
+        request.getRequestDispatcher("emptyData.jsp").forward(request, response);
+        message = "";
+      }
+    }
+
   }
 
   @Override
@@ -82,17 +112,45 @@ public class EmployeeController extends HttpServlet {
     }
   }
 
-  //Logic
-  private List<Employee> SearchEmployee(String firstName, String lastName)
+  /**
+   * Seach Employee
+   *
+   * @param firstName
+   * @param lastName
+   * @return Employee
+   * @throws SQLException
+   */
+  private Employee SearchEmployee(String firstName, String lastName)
           throws SQLException {
     PreparedStatement preparedStm = null;
-    List<Employee> listEmployee = new ArrayList<>();
     Employee employee = null;
     try {
       String sql = "SELECT * FROM employees WHERE first_name = ? and last_name = ?";
       preparedStm = databaseConn.Connect().prepareStatement(sql);
       preparedStm.setString(1, firstName);
-      preparedStm.setString(2, lastName);
+      preparedStm.setString(2, lastName);      
+      ResultSet rs = preparedStm.executeQuery();
+      while (rs.next()) {
+        employee = new Employee(rs.getInt(1), rs.getDate(2),
+                rs.getString(3), rs.getString(4),
+                rs.getString(5).charAt(0), rs.getDate(6));
+      }
+    } catch (SQLException e) {
+      logger.error(EmployeeController.class.getName() + " " + e.getMessage());
+    } finally {
+      databaseConn.Close();
+    }
+    return employee;
+  }
+
+  private List<Employee> ListEmployees()
+          throws SQLException {
+    PreparedStatement preparedStm = null;
+    List<Employee> listEmployee = new ArrayList<>();
+    Employee employee = null;
+    try {
+      String sql = "SELECT * FROM employees";
+      preparedStm = databaseConn.Connect().prepareStatement(sql);
       preparedStm.setMaxRows(databaseConn.getDbPageSize());
       ResultSet rs = preparedStm.executeQuery();
       while (rs.next()) {
@@ -105,7 +163,7 @@ public class EmployeeController extends HttpServlet {
       logger.error(EmployeeController.class.getName() + " " + e.getMessage());
     } finally {
       databaseConn.Close();
-    }    
+    }
     return listEmployee;
   }
 

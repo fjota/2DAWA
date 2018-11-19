@@ -2,4 +2,6 @@ es\cifpcm\datebase\ConnectionDB.class
 es\cifpcm\controller\Prueba.class
 es\cifpcm\model\Employee.class
 es\cifpcm\controller\EmployeeController.class
+es\cifpcm\controller\NominasServlet.class
+es\cifpcm\model\EmployeeSalary.class
 es\cifpcm\utils\ServletUtils.class
