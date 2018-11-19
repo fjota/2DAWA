@@ -1,0 +1,29 @@
+@media (orientation:portrait) { 
+  .wrapper {
+    grid-template-areas: "header header header"
+                         "menu contenido anuncios"
+                         "pie pie anuncios";    
+  }
+  .box.content .wrapper2 {
+    grid-template-columns: 70%; 
+    grid-template-rows: repeat(10, 1fr);
+    justify-content: center;
+  }
+  .box.content .wrapper2 * {    
+    grid-column: initial ;
+    grid-row: initial;    
+  }  
+  .wrapper2 #item2,
+  .wrapper2 #item3,
+  .wrapper2 #item4,
+  .wrapper2 #item5 {
+    grid-column: initial;
+    grid-row: initial;
+  }
+  .box.content #item6 {
+    grid-column: initial;
+    grid-row-start: 4;
+    grid-row-end: 9;
+  }
+
+}
