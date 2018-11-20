@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -27,6 +28,8 @@ public class EmployeeController extends HttpServlet {
   private final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
   ConnectionDB databaseConn;
+  String firsName = "";
+  String lastName = "";
 
   @Override
   public void init() throws ServletException {
@@ -73,10 +76,10 @@ public class EmployeeController extends HttpServlet {
       }
 
       request.setAttribute("errorInput", message);
-      request.setAttribute("employee", SearchEmployee(request.getParameter("firstName"),
-              request.getParameter("lastName")));
-      RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
-      dispatcher.forward(request, response);
+      request.setAttribute("employeeBean", SearchEmployee(request.getParameter("firstName"),request.getParameter("lastName")));      
+      firsName = request.getParameter("firstName");
+      lastName = request.getParameter("lastName");
+      request.getRequestDispatcher("listEmployee.jsp").forward(request, response);
 
     } catch (IOException | NumberFormatException | SQLException | ServletException ex) {
       logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
@@ -102,7 +105,12 @@ public class EmployeeController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {      
+          throws ServletException, IOException {    
+    try {  
+      request.setAttribute("employeeBean", SearchEmployee(firsName,lastName));
+    } catch (SQLException ex) {
+      logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+    }
     if (request.getParameter("boton").contains("Anterior")) {
       try {
         PreviousPage();
