@@ -21,7 +21,6 @@ public class ConnectionDB {
   private int dbPageSize;
   private int DEFAULT_PAGESIZE = 10;
   private int minPageSize = 0;
-  private int maxPageSize = 0;
   private Connection conn;
 
   public ConnectionDB() {
@@ -107,15 +106,7 @@ public class ConnectionDB {
 
   public void setMinPageSize(int minPageSize) {
     this.minPageSize = minPageSize;
-  }
-
-  public int getMaxPageSize() {
-    return maxPageSize;
-  }
-
-  public void setMaxPageSize(int maxPageSize) {
-    this.maxPageSize = maxPageSize;
-  }
+  } 
 
   public Connection getConn() {
     return conn;

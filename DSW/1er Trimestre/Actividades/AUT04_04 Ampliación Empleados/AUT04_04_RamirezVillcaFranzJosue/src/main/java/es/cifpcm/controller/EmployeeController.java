@@ -45,7 +45,7 @@ public class EmployeeController extends HttpServlet {
       //Page Size input
       if (!request.getParameter("tamanoPgina").isEmpty()) {
         try {
-          databaseConn.setDbPageSize(Integer.parseInt(request.getParameter("tamanoPgina")));          
+          databaseConn.setDbPageSize(Integer.parseInt(request.getParameter("tamanoPgina")));
           if (ServletUtils.getCookie(request, "pageSize") == null) {
             Cookie pageSizeCookie = new Cookie("pageSize",
                     Integer.toString(databaseConn.getDbPageSize()));
@@ -72,15 +72,14 @@ public class EmployeeController extends HttpServlet {
         }
       }
 
-      
       request.setAttribute("errorInput", message);
       request.setAttribute("employee", SearchEmployee(request.getParameter("firstName"),
-              request.getParameter("lastName")));      
+              request.getParameter("lastName")));
       RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
       dispatcher.forward(request, response);
-      
+
     } catch (IOException | NumberFormatException | SQLException | ServletException ex) {
-      logger.error(EmployeeController.class.getName() + " " + ex.getMessage());      
+      logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
     } finally {
       if (message.isEmpty()) {
         request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -89,7 +88,6 @@ public class EmployeeController extends HttpServlet {
         message = "";
       }
     }
-
   }
 
   @Override
@@ -104,12 +102,48 @@ public class EmployeeController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    try {
-      processRequest(request, response);
-    } catch (SQLException ex) {
-      logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+          throws ServletException, IOException {      
+    if (request.getParameter("boton").contains("Anterior")) {
+      try {
+        PreviousPage();
+        request.setAttribute("employeeList", ListEmployees());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
+        dispatcher.forward(request, response);
+      } catch (SQLException ex) {
+        logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+      }
     }
+    if (request.getParameter("boton").contains("Siguiente")) {
+      try {
+        NextPage();
+        request.setAttribute("employeeList", ListEmployees());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
+        dispatcher.forward(request, response);
+      } catch (SQLException ex) {
+        logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+      }
+    }
+    if (request.getParameter("boton").contains("Primero")) {
+      try {
+        FirstPage();
+        request.setAttribute("employeeList", ListEmployees());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
+        dispatcher.forward(request, response);
+      } catch (SQLException ex) {
+        logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+      }
+    }
+    if (request.getParameter("boton").contains("Ultimo")) {
+      try {
+        LastPage();
+        request.setAttribute("employeeList", ListEmployees());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
+        dispatcher.forward(request, response);
+      } catch (SQLException ex) {
+        logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+      }
+    }
+   
   }
 
   /**
@@ -128,7 +162,7 @@ public class EmployeeController extends HttpServlet {
       String sql = "SELECT * FROM employees WHERE first_name = ? and last_name = ?";
       preparedStm = databaseConn.Connect().prepareStatement(sql);
       preparedStm.setString(1, firstName);
-      preparedStm.setString(2, lastName);      
+      preparedStm.setString(2, lastName);
       ResultSet rs = preparedStm.executeQuery();
       while (rs.next()) {
         employee = new Employee(rs.getInt(1), rs.getDate(2),
@@ -149,9 +183,10 @@ public class EmployeeController extends HttpServlet {
     List<Employee> listEmployee = new ArrayList<>();
     Employee employee = null;
     try {
-      String sql = "SELECT * FROM employees";
+      String sql = "SELECT * FROM employees LIMIT ?,?";
       preparedStm = databaseConn.Connect().prepareStatement(sql);
-      preparedStm.setMaxRows(databaseConn.getDbPageSize());
+      preparedStm.setInt(1, databaseConn.getMinPageSize());
+      preparedStm.setInt(2, databaseConn.getDbPageSize());
       ResultSet rs = preparedStm.executeQuery();
       while (rs.next()) {
         employee = new Employee(rs.getInt(1), rs.getDate(2),
@@ -167,4 +202,58 @@ public class EmployeeController extends HttpServlet {
     return listEmployee;
   }
 
+  public void NextPage() 
+          throws SQLException {
+    databaseConn.setMinPageSize(databaseConn.getMinPageSize() + databaseConn.getDbPageSize());
+    if (databaseConn.getMinPageSize() > (GetLastPage() - databaseConn.getDbPageSize())) {
+      databaseConn.setMinPageSize(GetLastPage() - databaseConn.getDbPageSize());
+    }
+    databaseConn.setDbPageSize(databaseConn.getDbPageSize());
+  }
+   
+  public void PreviousPage() {
+    databaseConn.setMinPageSize(databaseConn.getMinPageSize() - databaseConn.getDbPageSize());
+    if (databaseConn.getMinPageSize() < 0) {
+      databaseConn.setMinPageSize(0);
+    }
+    databaseConn.setDbPageSize(databaseConn.getDbPageSize());
+  }
+  
+  public void FirstPage() {
+    databaseConn.setMinPageSize(0);
+    databaseConn.setDbPageSize(databaseConn.getDbPageSize());
+  }
+  
+  public void LastPage() 
+          throws SQLException {
+    databaseConn.setMinPageSize(GetLastPage() - databaseConn.getDbPageSize());
+    databaseConn.setDbPageSize(databaseConn.getDbPageSize());
+  }
+
+  /**
+   * Count all data of employees 
+   * and return the number for pagination
+   * @return
+   * @throws SQLException 
+   */
+  private int GetLastPage()
+          throws SQLException {
+    int lastPage = 0;
+    PreparedStatement preparedStm = null;     
+    try {      
+      String sqlCount = "SELECT COUNT(*) FROM employees";
+      preparedStm = databaseConn.Connect().prepareStatement(sqlCount);
+      ResultSet rs = preparedStm.executeQuery();
+      while (rs.next()) {
+        lastPage = rs.getInt(1);        
+      }
+      /*lastPage -= databaseConn.getDbPageSize();*/         
+    } catch (SQLException e) {
+      logger.error(EmployeeController.class.getName() + " " + e.getMessage());
+    } finally {
+      databaseConn.Close();
+    }
+    return lastPage;
+  }
+  
 }
