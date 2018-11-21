@@ -11,6 +11,7 @@
   </head>
   <body>           
     <%--Table employees searched--%>       
+    <%--AÑADIR IF SI NO SE ENCONTRO AL EMPLEADO -- CASO NULL--%> 
     <h1>Esta buscando a: <jsp:getProperty name="employeeBean" property="first_name"/> <jsp:getProperty name="employeeBean" property="last_name"/></h1> 
     <table>
       <tr> 

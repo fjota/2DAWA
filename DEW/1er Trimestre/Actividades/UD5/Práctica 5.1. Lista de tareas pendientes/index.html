@@ -1,14 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <style>
+    ul {      
+      border: 1px solid black;
+      list-style: none;
+      padding: .8em;
+    }    
+    div {
+      width: 300px;      
+    }
+    span {
+      margin-left: .5em;
+    }
+    input {
+      margin-bottom: .8em;
+    }
+  </style>
+  <title>Lista de tareas</title>
 </head>
 
 <body>
+  <header>
+    <h1>Tareas pendientes</h1>
+  </header>
+  <div>
+    <ul id="list">
+      <input type="text">
+    </ul>
+  </div>
+  <button id="add">Agregar nueva tarea</button>
+
+
+  <script src="scripts.js"></script>
   <!-- 
 
     Enunciado

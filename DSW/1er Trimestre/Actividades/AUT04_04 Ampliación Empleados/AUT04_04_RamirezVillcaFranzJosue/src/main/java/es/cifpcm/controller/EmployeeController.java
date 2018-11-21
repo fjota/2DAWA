@@ -8,7 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,8 +31,8 @@ public class EmployeeController extends HttpServlet {
   private final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
   ConnectionDB databaseConn;
-  String firsName = "";
-  String lastName = "";
+  static String firsName = "";
+  static String lastName = "";
 
   @Override
   public void init() throws ServletException {
@@ -74,22 +77,53 @@ public class EmployeeController extends HttpServlet {
           message += "You did not write any value for the page size\n";
         }
       }
+      //Input names
+      //TODO - CON UN NOMBRE SI TE PERMITE BUSCAR
+      if (!request.getParameter("firstName").isEmpty() && !request.getParameter("lastName").isEmpty()) {
+        request.setAttribute("employeeBean", SearchEmployee(request.getParameter("firstName"),
+                request.getParameter("lastName")));
+        firsName = request.getParameter("firstName");
+        lastName = request.getParameter("lastName");
+      } else if (request.getParameter("firstName").isEmpty() && request.getParameter("lastName").isEmpty()) {
+        if (!firsName.isEmpty() || !lastName.isEmpty()) {
+          request.setAttribute("employeeBean", SearchEmployee(firsName, lastName));
+        }
+      } else {
+        message += "Input names are empty\n";
+      }
+      /*
+      String[] hola = request.getParameterValues(firsName);
+      Enumeration parametersGet = request.getParameterNames();
+      List parametersGetValuesList = Collections.list(parametersGet);
+      if (parametersGetValuesList.size() == 3) {
+        if (!request.getParameter("firstName").isEmpty() && !request.getParameter("lastName").isEmpty()) {
+          request.setAttribute("employeeBean", SearchEmployee(request.getParameter("firstName"),
+                  request.getParameter("lastName")));
+          firsName = request.getParameter("firstName");
+          lastName = request.getParameter("lastName");
+        }
+      }
+      if (parametersGetValuesList.size() == 1) {
+        if (!firsName.isEmpty() || !lastName.isEmpty()) {
+          request.setAttribute("employeeBean", SearchEmployee(firsName, lastName));
+        } 
+        message += "Input names are empty\n";
+      }  
+       if (parametersGetValuesList.size() < 1) {        
+        message += "Input names are empty\n";
+      }  */
 
       request.setAttribute("errorInput", message);
-      request.setAttribute("employeeBean", SearchEmployee(request.getParameter("firstName"),request.getParameter("lastName")));      
-      firsName = request.getParameter("firstName");
-      lastName = request.getParameter("lastName");
-      request.getRequestDispatcher("listEmployee.jsp").forward(request, response);
-
-    } catch (IOException | NumberFormatException | SQLException | ServletException ex) {
+    } catch (NumberFormatException | SQLException ex) {
       logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+      request.getRequestDispatcher("error.jsp").forward(request, response);
     } finally {
       if (message.isEmpty()) {
-        request.getRequestDispatcher("error.jsp").forward(request, response);
+        request.getRequestDispatcher("listEmployee.jsp").forward(request, response);
       } else {
         request.getRequestDispatcher("emptyData.jsp").forward(request, response);
-        message = "";
       }
+      message = "";
     }
   }
 
@@ -98,18 +132,22 @@ public class EmployeeController extends HttpServlet {
           throws ServletException, IOException {
     try {
       processRequest(request, response);
+
     } catch (SQLException ex) {
-      logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+      logger.error(EmployeeController.class
+              .getName() + " " + ex.getMessage());
     }
   }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {    
-    try {  
-      request.setAttribute("employeeBean", SearchEmployee(firsName,lastName));
+          throws ServletException, IOException {
+    try {
+      request.setAttribute("employeeBean", SearchEmployee(firsName, lastName));
+
     } catch (SQLException ex) {
-      logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+      logger.error(EmployeeController.class
+              .getName() + " " + ex.getMessage());
     }
     if (request.getParameter("boton").contains("Anterior")) {
       try {
@@ -117,8 +155,10 @@ public class EmployeeController extends HttpServlet {
         request.setAttribute("employeeList", ListEmployees());
         RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
         dispatcher.forward(request, response);
+
       } catch (SQLException ex) {
-        logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+        logger.error(EmployeeController.class
+                .getName() + " " + ex.getMessage());
       }
     }
     if (request.getParameter("boton").contains("Siguiente")) {
@@ -127,8 +167,10 @@ public class EmployeeController extends HttpServlet {
         request.setAttribute("employeeList", ListEmployees());
         RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
         dispatcher.forward(request, response);
+
       } catch (SQLException ex) {
-        logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+        logger.error(EmployeeController.class
+                .getName() + " " + ex.getMessage());
       }
     }
     if (request.getParameter("boton").contains("Primero")) {
@@ -137,8 +179,10 @@ public class EmployeeController extends HttpServlet {
         request.setAttribute("employeeList", ListEmployees());
         RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
         dispatcher.forward(request, response);
+
       } catch (SQLException ex) {
-        logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+        logger.error(EmployeeController.class
+                .getName() + " " + ex.getMessage());
       }
     }
     if (request.getParameter("boton").contains("Ultimo")) {
@@ -147,11 +191,13 @@ public class EmployeeController extends HttpServlet {
         request.setAttribute("employeeList", ListEmployees());
         RequestDispatcher dispatcher = request.getRequestDispatcher("listEmployee.jsp");
         dispatcher.forward(request, response);
+
       } catch (SQLException ex) {
-        logger.error(EmployeeController.class.getName() + " " + ex.getMessage());
+        logger.error(EmployeeController.class
+                .getName() + " " + ex.getMessage());
       }
     }
-   
+
   }
 
   /**
@@ -176,9 +222,11 @@ public class EmployeeController extends HttpServlet {
         employee = new Employee(rs.getInt(1), rs.getDate(2),
                 rs.getString(3), rs.getString(4),
                 rs.getString(5).charAt(0), rs.getDate(6));
+
       }
     } catch (SQLException e) {
-      logger.error(EmployeeController.class.getName() + " " + e.getMessage());
+      logger.error(EmployeeController.class
+              .getName() + " " + e.getMessage());
     } finally {
       databaseConn.Close();
     }
@@ -201,16 +249,18 @@ public class EmployeeController extends HttpServlet {
                 rs.getString(3), rs.getString(4),
                 rs.getString(5).charAt(0), rs.getDate(6));
         listEmployee.add(employee);
+
       }
     } catch (SQLException e) {
-      logger.error(EmployeeController.class.getName() + " " + e.getMessage());
+      logger.error(EmployeeController.class
+              .getName() + " " + e.getMessage());
     } finally {
       databaseConn.Close();
     }
     return listEmployee;
   }
 
-  public void NextPage() 
+  public void NextPage()
           throws SQLException {
     databaseConn.setMinPageSize(databaseConn.getMinPageSize() + databaseConn.getDbPageSize());
     if (databaseConn.getMinPageSize() > (GetLastPage() - databaseConn.getDbPageSize())) {
@@ -218,7 +268,7 @@ public class EmployeeController extends HttpServlet {
     }
     databaseConn.setDbPageSize(databaseConn.getDbPageSize());
   }
-   
+
   public void PreviousPage() {
     databaseConn.setMinPageSize(databaseConn.getMinPageSize() - databaseConn.getDbPageSize());
     if (databaseConn.getMinPageSize() < 0) {
@@ -226,42 +276,44 @@ public class EmployeeController extends HttpServlet {
     }
     databaseConn.setDbPageSize(databaseConn.getDbPageSize());
   }
-  
+
   public void FirstPage() {
     databaseConn.setMinPageSize(0);
     databaseConn.setDbPageSize(databaseConn.getDbPageSize());
   }
-  
-  public void LastPage() 
+
+  public void LastPage()
           throws SQLException {
     databaseConn.setMinPageSize(GetLastPage() - databaseConn.getDbPageSize());
     databaseConn.setDbPageSize(databaseConn.getDbPageSize());
   }
 
   /**
-   * Count all data of employees 
-   * and return the number for pagination
+   * Count all data of employees and return the number for pagination
+   *
    * @return
-   * @throws SQLException 
+   * @throws SQLException
    */
   private int GetLastPage()
           throws SQLException {
     int lastPage = 0;
-    PreparedStatement preparedStm = null;     
-    try {      
+    PreparedStatement preparedStm = null;
+    try {
       String sqlCount = "SELECT COUNT(*) FROM employees";
       preparedStm = databaseConn.Connect().prepareStatement(sqlCount);
       ResultSet rs = preparedStm.executeQuery();
       while (rs.next()) {
-        lastPage = rs.getInt(1);        
+        lastPage = rs.getInt(1);
+
       }
-      /*lastPage -= databaseConn.getDbPageSize();*/         
+      /*lastPage -= databaseConn.getDbPageSize();*/
     } catch (SQLException e) {
-      logger.error(EmployeeController.class.getName() + " " + e.getMessage());
+      logger.error(EmployeeController.class
+              .getName() + " " + e.getMessage());
     } finally {
       databaseConn.Close();
     }
     return lastPage;
   }
-  
+
 }
