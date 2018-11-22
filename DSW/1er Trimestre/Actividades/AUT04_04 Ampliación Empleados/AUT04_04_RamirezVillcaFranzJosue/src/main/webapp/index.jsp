@@ -26,7 +26,7 @@
         <br><br>        
       </fieldset>
       <br>            
-      <input type="submit" value="Enviar"/>
+      <input type="submit" value="Enviar" name="searchedButton"/>
 
     </form>
 
