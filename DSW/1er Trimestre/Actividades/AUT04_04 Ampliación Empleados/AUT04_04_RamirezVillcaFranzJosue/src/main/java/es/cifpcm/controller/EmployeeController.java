@@ -9,10 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.TreeSet;
-import java.util.logging.Level;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -77,21 +74,17 @@ public class EmployeeController extends HttpServlet {
           message += "You did not write any value for the page size<br>";
         }
       }
-      //Input names    
-      //ERROR -> AL CAMBIAR LA PAGINA POR URL EL BUSCADO ES NULL
-      //Al enviar la informacion de index, tenemos el name del boton, pero al cambiar el tamaño de las pagina diretamente desde 
-      //la url no recibe el parametro, usaremos esto para controlar mejor las validaciones en el servidor
-      //String hola = request.getParameter("searchedButton");
-      Enumeration<String> hola;
-      hola = request.getParameterNames();
-      Enumeration asd = hola;
-
-      List<String> pas = (List<String>) hola;
-      if (request.getParameter("firstName").isEmpty()) {
-        message += "Input name are empty<br>";
+      //Input names               
+      List<String> parameterList = Collections.list(request.getParameterNames());
+      if (parameterList.contains("firstName")) {
+        if (request.getParameter("firstName").isEmpty()) {
+          message += "Input name are empty<br>";
+        }
       }
-      if (request.getParameter("lastName").isEmpty()) {
-        message += "Input last name are empty<br>";
+      if (parameterList.contains("lastName")) {
+        if (request.getParameter("lastName").isEmpty()) {
+          message += "Input last name are empty<br>";
+        }
       }
 
       if (!request.getParameter("firstName").isEmpty() && !request.getParameter("lastName").isEmpty()) {
@@ -108,21 +101,7 @@ public class EmployeeController extends HttpServlet {
             request.setAttribute("employeeBean", SearchEmployee(firsName, lastName));
           }
         }
-      }
-      //message += "Input names are empty<br>";
-      /*if (!request.getParameter("firstName").isEmpty() && !request.getParameter("lastName").isEmpty()) {
-        request.setAttribute("employeeBean", SearchEmployee(request.getParameter("firstName"),
-                request.getParameter("lastName")));
-        firsName = request.getParameter("firstName");
-        lastName = request.getParameter("lastName");
-      }
-      if (request.getParameter("firstName").isEmpty() && request.getParameter("lastName").isEmpty()) {
-        if (!firsName.isEmpty() || !lastName.isEmpty()) {
-          request.setAttribute("employeeBean", SearchEmployee(firsName, lastName));
-        } else {
-          message += "Input names are empty<br>";
-        }
-      }*/
+      }      
       request.setAttribute("errorInput", message);
     } catch (NumberFormatException | SQLException ex) {
       logger.error(EmployeeController.class.getName() + " " + ex.getMessage());

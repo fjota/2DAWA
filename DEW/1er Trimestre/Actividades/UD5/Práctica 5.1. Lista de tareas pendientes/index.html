@@ -6,19 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <style>
-    ul {      
+    body{
+      /* display: flex;
+      justify-content: center;
+      flex-direction: column; */
+    }
+    ul {
       border: 1px solid black;
       list-style: none;
       padding: .8em;
-    }    
+    }
+
     div {
-      width: 300px;      
+      width: 450px;
+    }
+    ul {
+      background-color: rgb(123, 212, 247);
+    }
+    p {
+      display: inline-block;
     }
     span {
       margin-left: .5em;
     }
     input {
       margin-bottom: .8em;
+    }
+    button {
+      background-color: cornflowerblue;
+      border: none;
+      color: white;
+      padding: .5em .8em;
+    }
+    button:hover {
+      background-color: rgb(16, 42, 90);
     }
   </style>
   <title>Lista de tareas</title>
@@ -30,33 +51,11 @@
   </header>
   <div>
     <ul id="list">
-      <input type="text">
     </ul>
   </div>
   <button id="add">Agregar nueva tarea</button>
-
-
   <script src="scripts.js"></script>
-  <!-- 
 
-    Enunciado
-
-Crea una página web con un header que ponga "Tareas pendientes". Debajo del header habrá una lista no ordenada que, inicialmente, permanecerá vacía y al final de la lista habrá un elemento que permita agregar una nueva tarea.
-
-Agregar una nueva tarea
-
-Agregar una nueva tarea implicará que se creará un nuevo ítem en la lista con un campo de texto y una "x" roja al final.
-
-El usuario escribirá en el campo de texto y pulsará Enter. En ese momento el campo de texto se sustituirá por texto simple.
-
-Modificar una tarea
-
-Al hacer doble click sobre cualquier tarea la frase se convertirá en un campo de texto editable. Pulsando Enter se volverá a convertir en texto simple.
-
-Eliminar una tarea
-
-Para eliminar una tarea bastará con hacer click en la "x" roja o bien dejar el campo de texto vacío. Al eliminar la tarea debe eliminarse su ítem de lista.
-   -->
 </body>
 
 </html>

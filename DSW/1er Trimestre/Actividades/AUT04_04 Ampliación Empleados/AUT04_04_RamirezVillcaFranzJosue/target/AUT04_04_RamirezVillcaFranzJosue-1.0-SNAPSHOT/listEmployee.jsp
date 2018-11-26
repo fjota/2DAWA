@@ -10,27 +10,33 @@
     <title>List Employees</title>
   </head>
   <body>           
-    <%--Table employees searched--%>       
-    <%--AÑADIR IF SI NO SE ENCONTRO AL EMPLEADO -- CASO NULL--%> 
-    <h1>Esta buscando a: <jsp:getProperty name="employeeBean" property="first_name"/> <jsp:getProperty name="employeeBean" property="last_name"/></h1> 
-    <table>
-      <tr> 
-        <th>Nº</th>
-        <th>Fecha Cumpleaños</th>
-        <th>Prmer nombre</th>
-        <th>Segundo nombre</th>
-        <th>Genero</th>
-        <th>Fecha contrato</th>
-      </tr>  
-      <tr>
-        <td> <jsp:getProperty name="employeeBean" property="emp_no"/> </td>
-        <td> <jsp:getProperty name="employeeBean" property="birth_date"/> </td>
-        <td> <jsp:getProperty name="employeeBean" property="first_name"/> </td>
-        <td> <jsp:getProperty name="employeeBean" property="last_name"/> </td>
-        <td> <jsp:getProperty name="employeeBean" property="gender"/> </td>
-        <td> <jsp:getProperty name="employeeBean" property="hire_date"/> </td>   
-      </tr>                     
-    </table>
+    <%--Table employees searched--%>              
+    ${requestScope.employeeBean.first_name}
+    <c:if test="${requestScope.employeeBean.first_name == null}">
+      <h1>No se han encontrado coincidencias con el empleado que busca</h1>
+    </c:if>
+    <c:if test="${requestScope.employeeBeanfirst_name != null}">
+      <h1>Esta buscando a: <jsp:getProperty name="employeeBean" property="first_name"/> <jsp:getProperty name="employeeBean" property="last_name"/></h1> 
+      <table>
+        <tr> 
+          <th>Nº</th>
+          <th>Fecha Cumpleaños</th>
+          <th>Prmer nombre</th>
+          <th>Segundo nombre</th>
+          <th>Genero</th>
+          <th>Fecha contrato</th>
+        </tr>  
+        <tr>
+          <td> <jsp:getProperty name="employeeBean" property="emp_no"/> </td>
+          <td> <jsp:getProperty name="employeeBean" property="birth_date"/> </td>
+          <td> <jsp:getProperty name="employeeBean" property="first_name"/> </td>
+          <td> <jsp:getProperty name="employeeBean" property="last_name"/> </td>
+          <td> <jsp:getProperty name="employeeBean" property="gender"/> </td>
+          <td> <jsp:getProperty name="employeeBean" property="hire_date"/> </td>   
+        </tr>                     
+      </table>
+    </c:if>
+
 
 
     <%--Table employees list--%>      
