@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Validacion DNI</title>
+</head>
+
+<body>
+
+  <label for="">DNI:</label>
+  <input type="text" id="dni">
+
+  <script>
+    let dni = document.getElementById("dni");
+    let dniRegex, nifRegex;
+    dniRegex = new RegExp("^[0-9]{1,8}[A-Za-z]$");
+    nifRegex = new RegExp("^[XYZxyz][0-9]{1,7}[A-Za-z]$");
+
+    dni.addEventListener("change", function() {
+      if (dniRegex.test(dni.value)) {        
+        dni.value = setZeros(0,8,dni.value.length).concat(dni.value);;
+        dni.style.border = "1px solid green";
+      } else if (nifRegex.test(dni.value)) {
+        dni.value = dni.value.slice(0,1).concat(setZeros(0,8,dni.value.length)).concat(dni.value.slice(1));
+        dni.style.border = "1px solid green";
+      } else {
+        dni.style.border = "1px solid red";
+      }
+    });
+
+    function setZeros(min, max, length) {
+      let value = "";
+      if (length > min && length < max) {
+        for (let i = 0; i <= (max - length); i++) {
+          value += "0";
+        }
+        return value;
+      }
+    }
+
+
+  </script>
+
+</body>
+
+</html>
