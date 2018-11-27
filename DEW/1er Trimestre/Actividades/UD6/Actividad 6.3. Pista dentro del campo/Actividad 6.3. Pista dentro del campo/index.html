@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Actividad 6.3. Pista dentro del campo</title>
+</head>
+<body>
+  <input type="text" id="texto" placeholder="hola">
+
+  <!-- 
+
+Crea una web que contenga un campo de texto. En dicho campo deberás introducir tu nombre y apellidos.
+
+Mientras el campo no tenga información ni esté seleccionado aparecerá dentro el texto "Nombre y apellidos" en color gris.
+
+   -->
+  <script>
+    let campoTexto = document.getElementById("texto");
+    /* campoTexto.value = "Nombre y apellidos"; */
+    campoTexto.style.color = "gray";
+
+    campoTexto.addEventListener("onfocus", function() {
+      campoTexto.value = "";
+    })
+    campoTexto.addEventListener("onblur", function() {
+      campoTexto.value = "Nombre y apellidos";
+    })
+  
+  </script>
+</body>
+</html>
