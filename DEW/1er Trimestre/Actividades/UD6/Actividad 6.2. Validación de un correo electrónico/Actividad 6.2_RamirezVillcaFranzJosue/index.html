@@ -23,13 +23,14 @@ En caso de que el correo electrónico no cumpla el esquema deberá aparecer a la
 
    <script>
      let email = document.getElementById("email");
-     let emailRegex = new RegExp("^[A-Za-z]+(.)+@^[a-zA-Z]+.[a-zA-Z]$");
+     let emailRegex = new RegExp("^[A-Za-z]+(.)[A-Za-z]+@([a-zA-Z]+(.)[a-zA-Z]+)+$");
 
      email.addEventListener("change", function() {
-       console.log(email.value.match(emailRegex));
-       
+       console.log(emailRegex.test(email.value));       
        if (emailRegex.test(email.value)) {
          email.style.border = "1px solid black";
+         let errorMessage = document.createElement("span");
+         let errorText = document
        } else {
         email.style.border = "1px solid red";
        }
