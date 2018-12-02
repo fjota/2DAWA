@@ -1,0 +1,5 @@
+es\cifpcm\model\Actor.class
+es\cifpcm\datebase\ConnectionDB.class
+es\cifpcm\web\data\ActorDAOImpl.class
+es\cifpcm\web\bean\ActorBean.class
+es\cifpcm\web\data\ActorDAO.class

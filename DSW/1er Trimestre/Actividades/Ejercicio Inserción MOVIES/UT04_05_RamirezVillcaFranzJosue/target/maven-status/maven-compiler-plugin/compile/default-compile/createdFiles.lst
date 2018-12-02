@@ -1,0 +1,9 @@
+es\cifpcm\data\CategoriesDAO.class
+es\cifpcm\data\MoviesDAO.class
+es\cifpcm\utlis\ValidationForm.class
+es\cifpcm\data\CategoriesDAOImpl.class
+es\cifpcm\model\Movies.class
+es\cifpcm\datebase\ConnectionDB.class
+es\cifpcm\controller\MovieControllerServlet.class
+es\cifpcm\data\MoviesDAOImpl.class
+es\cifpcm\model\Categories.class

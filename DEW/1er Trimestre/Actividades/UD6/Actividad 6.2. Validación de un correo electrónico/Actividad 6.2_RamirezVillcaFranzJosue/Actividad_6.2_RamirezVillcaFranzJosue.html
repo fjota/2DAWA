@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Validacion Email</title>
+</head>
+
+<body>
+  <label for="">Correo electronico: </label>
+  <input type="text" name="" id="email">
+
+  <script>
+    let email = document.getElementById("email");
+    let emailRegex = new RegExp("^[A-Za-z]+(.)[A-Za-z]+@([a-zA-Z]+(.)[a-zA-Z]+)+$");
+
+    email.addEventListener("change", function () {     
+      if (emailRegex.test(email.value)) {
+        email.style.border = "1px solid black";
+        if (document.body.getElementsByTagName("span")[0] != undefined) 
+          document.body.removeChild(document.body.getElementsByTagName("span")[0]);        
+      } else {
+        email.style.border = "1px solid red";
+        let errorMessage = document.createElement("span");
+        let errorText = document.createTextNode("Campo no valido");
+        errorMessage.style.color = "red";
+        errorMessage.appendChild(errorText);
+        document.body.appendChild(errorMessage);
+      }
+    })
+  </script>
+</body>
+
+</html>
