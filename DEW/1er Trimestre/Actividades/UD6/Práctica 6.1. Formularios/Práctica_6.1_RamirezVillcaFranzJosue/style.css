@@ -1,0 +1,17 @@
+#teclado {
+  margin-bottom: 1em;
+}
+.key {
+  width: 8px;
+  height: 8px;
+  border: 1px solid black;
+  margin-right: 1em;    
+  padding: .8em;
+  display: inline-block;
+}
+.key:hover {
+  background-color: rgb(148, 124, 112);
+}
+.row {
+  margin-bottom: .5em;
+}

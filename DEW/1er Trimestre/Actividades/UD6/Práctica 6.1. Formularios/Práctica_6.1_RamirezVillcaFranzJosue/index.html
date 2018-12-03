@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Formulario</title>  
+</head>
+
+<body>
+
+  <!-- 
+    Cuando el usuario del formulario pulse el botón Registrar y cometa un error, deberá aparecer el mensaje de error asociado al campo, en color rojo y al lado del campo en el que se ha producido el error. Además, se ha de remarcar con un borde rojo todo el campo (etiqueta + input) .
+
+
+El formato debe ser DD/MM/AAAA (p.e. 01/01/2000). Si el usuario introduce la fecha en cualquier otro formato debe borrarse lo que ha escrito en la caja de texto Fecha de Nacimiento y mostrar en un texto (NO una ventana de confirmación) de color rojo y con el siguiente mensaje “La fecha introducida no es válida o no tiene el formato adecuado”.
+
+
+
+
+
+Clave de acceso (campo de texto que oculta los caracteres y no es editable):
+El campo clave de acceso será un número de longitud igual a 5. Constará de una caja de texto, no editable (el usuario no puede escribir directamente en él), 10 botones que formarán un teclado numérico (es decir, en cada botón recogeremos los valores del 0 al 9) y un enlace "Borrar" que permita borrar la clave introducida por el usuario.
+Si el usuario deja el campo en blanco y pulsa el botón Registrar, se mostrará un texto al lado del campo un texto de color rojo indicando que el campo es obligatorio: “Campo obligatorio”
+El campo no será editable desde teclado de manera que el usuario introducirá la clave por medio de un teclado virtual (similar al utilizado por los bancos en sus Web).
+
+
+Teclado virtual
+El teclado virtual presenta 10 botones con los dígitos del 0 al 9 cuyas posiciones se presentarán de manera aleatoria cada vez que se cargue la Web, el usuario se equivoque o se le al botón Reiniciar. A medida que el usuario vaya haciendo click en los botones, se irá completando la clave, mostrándose un asterisco (*) por cada dígito pulsado del teclado virtual.
+La longitud de campo Clave de Acceso debe ser igual a 6. Si el usuario no introduce una clave con la longitud adecuada al pulsar el botón Registrar, se ha de borrar lo que ha escrito en la caja de texto Clave de Acceso y mostrar en un texto (no una ventana de confirmación) de color rojo y con el siguiente mensaje “La clave no cumple con el requisito de número de dígitos introducidos”.
+La clave que utilizaremos como correcta para hacer las pruebas será: 012345.
+Se ha de proporcionar un link que limpie la caja de texto.
+Al pulsar sobre el botón Registrar se debe comprobar los campos del formulario y en el caso de que todo esté correcto saldrá un mensaje en un div (no una ventana emergente) con fondo verde claro y letras de color verde más oscuro: “Formulario enviado”. 
+Reiniciar formulario: inicializará todos los campos a sus valores por defecto. Al reiniciar si se han producido errores y se mostraron, estos deben desaparecer. 
+
+
+
+   -->
+
+  <form action="" id="formulario">
+    <label for="nif">NIF: </label>
+    <input type="text" id="nif" name="nif"><br><br>
+    <label for="fechaNacimiento">Fecha de nacimiento: </label>
+    <input type="text" id="fechaNacimiento" name="fechaNacimiento"><br><br>
+    <label for="clave">Clave de acceso: </label>
+    <input type="text" id="clave" name="clave">
+    <a href="">Limpiar clave</a><br><br>
+    <div id="teclado">
+    </div>
+    <input id="registrar" type="button" value="Registrar">        
+    <input id="reiniciar" type="button" value="Reiniciar formulario">
+  </form>
+  <script src="scripts.js"></script>
+</body>
+
+</html>
