@@ -1,3 +1,8 @@
+p {
+  display: inline;
+  text-decoration: underline;
+  color: blue;
+}
 #teclado {
   margin-bottom: 1em;
 }
