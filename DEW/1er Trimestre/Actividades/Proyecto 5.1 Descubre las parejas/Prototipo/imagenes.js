@@ -153,13 +153,13 @@ imagenesJuntas = imagenesJuntas.concat(coches);
 imagenesJuntas = imagenesJuntas.concat(frutas);
 imagenesJuntas = imagenesJuntas.concat(pokemon);
 
-let imagenesArray = new Array(16);
+let imagenesArray = new Array(32*2);
 
 //Obtener imagenes pares aleatorias
 let random;
 for (let i = 0; i < imagenesArray.length; i++) {
-	random = Math.floor(Math.random() * imagenesJuntas.length);		
-	if (imagenesArray.find( imagen => imagen === imagenesJuntas[random]) === undefined) {
+	random = Math.floor(Math.random() * imagenesJuntas.length);
+	if (imagenesArray.find(imagen => imagen === imagenesJuntas[random]) === undefined) {
 		imagenesArray[i] = imagenesJuntas[random];
 		imagenesArray[i + 1] = imagenesJuntas[random];
 		i++;
@@ -177,16 +177,53 @@ for (let i = 0; i < imagenesArray.length; i++) {
 	imagenesArray[random] = aux;
 }
 
-
-console.log(imagenesArray);
+/* 
+console.log(imagenesArray); */
 
 let container = document.getElementById("container");
+let reverso = "reverso.png";
 
 for (let i = 0; i < imagenesArray.length; i++) {
 	let div = document.createElement("div");
 	let img = document.createElement("img");
-	img.setAttribute("src", imagenesArray[i]);
+	/* img.setAttribute("src", imagenesArray[i]); */
+	div.setAttribute("onclick", "MostrarCarta(this)");
+	img.setAttribute("id", i);
+	img.setAttribute("src", reverso);
+	img.setAttribute("class", imagenesArray[i]);
 	div.appendChild(img);
 	container.appendChild(div);
 }
 
+let mostradas = 0;
+let idImagen1, idImagen2;
+let imagen1, imagen2;
+let localizacionPath = document.location.pathname;
+localizacionPath = localizacionPath.substr(1, location.length);
+localizacionPath = localizacionPath.replace("index.html", "");
+function MostrarCarta(e) {
+	e.firstChild.src = localizacionPath.concat(imagenesArray[e.firstChild.id]);
+	mostradas++;
+	if (mostradas === 1) {
+		idImagen1 = e.firstChild.id;
+		imagen1 = e.firstChild.src;
+	} else {
+		idImagen2 = e.firstChild.id;
+		imagen2 = e.firstChild.src;
+	}
+	if (mostradas === 2) {
+		if (imagen1 === imagen2) {
+			console.log("SIISISISISISIS");
+			document.getElementById(idImagen1).parentElement.removeAttribute("onclick");
+			document.getElementById(idImagen2).parentElement.removeAttribute("onclick");
+		} else {
+			setTimeout(function() {
+				console.log("NONONONONO");
+				document.getElementById(idImagen1).src = localizacionPath.concat("reverso.png");
+				document.getElementById(idImagen2).src = localizacionPath.concat("reverso.png");
+			}, 180);
+
+		}
+		mostradas = 0;
+	}
+}
