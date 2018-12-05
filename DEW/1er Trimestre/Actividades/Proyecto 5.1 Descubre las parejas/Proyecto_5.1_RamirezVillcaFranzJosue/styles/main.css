@@ -1,16 +1,24 @@
 :root {
  --font-family: font-family: 'KoHo', sans-serif;
+ --rowNum: 4;
+ --colNum: 4;
+ --gridWidth: 130px;
+ --gridHeight: 130px;
+ --wrapperH: 40px; 
 }
 
 body {
   margin: 0;
-  background-image: url("https://images.pexels.com/photos/1441931/pexels-photo-1441931.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  background-size: contain;
   font-family: var(--font-family);
 }
 
+.game-container {
+  display: none;
+  /* display: flex;
+  justify-content: center; */
+}
+
 .title-container {
-  color: white;
   text-align: center;  
 }
 .title-container h1 {
@@ -19,7 +27,7 @@ body {
 }
 
 .menu-container {
-  height: 85vh;
+  height: 70vh;
   widows: 100%;
   display: flex;
   justify-content: center;
@@ -27,31 +35,56 @@ body {
 }
 
 .main-menu {
-  color: white;
   font-size: 2em;
   text-align: center;
 }
 
 .difficulty-container,
 .scores-container,
-.game-container {
+.start-game {
   border: 1px solid white;
   border-radius:10%;
   margin-bottom: .5em;
   padding: 1em .5em;
-  -webkit-border-radius:10%;
-  -moz-border-radius:10%;
-  -ms-border-radius:10%;
-  -o-border-radius:10%;
 }
 
-.difficulty-container:hover,
 .scores-container:hover,
-.game-container:hover {
+.start-game:hover {
   background-color: #0BD7D6;
-  color: black;
   cursor: pointer;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-rows: repeat(var(--rowNum), var(--gridHeight));
+  grid-template-columns: repeat(var(--colNum), var(--gridWidth));
+  grid-gap: 1em;
+}
+
+.grid-item {
+  grid-column-start: auto;
+  grid-row-start: auto;  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* The Modal (background) */
 .modal {

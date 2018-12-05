@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=KoHo" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles/main.css">
+  <link rel="stylesheet" href="styles/main.css">
   <title>Card game</title>
 </head>
-
 <body>
-  <div class="title-container">
-    <h1>Train your mind</h1>
+  <!-- Game view -->
+  <div class="game-container" id="game">    
+    <div class="grid-container" id="gridContainer">      
+    </div>
   </div>
-  <div class="menu-container">
-    <div class="main-menu">
-      <div class="difficulty-container" id="difficulty">
-        Difficulty
-      </div>
-      <!-- The Modal -->
-      <div id="settings-modal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Some text in the Modal..</p>
+  <!-- Menu view -->
+  <div id="menu">
+    <div class="title-container">
+      <h1>Menu principal</h1>
+    </div>
+    <div class="menu-container">
+      <div class="main-menu">
+        <div class="difficulty-container">
+          <select id="difficulty">
+            <option value="4">Facil</option>
+            <option value="6">Medio</option>
+            <option value="8">Dificil</option>
+          </select>
+        </div>        
+        <div class="scores-container" id="scores">
+          Puntuaciones
         </div>
-      </div>
-      <div class="scores-container" id="scores">
-        Scores
-      </div>
-      <div class="game-container" id="game">
-        Start
+        <div class="start-game" id="start">
+          Iniciar juego
+        </div>
       </div>
     </div>
   </div>
-  <script src="dist/build/app/app.js"></script>
-</body>
 
+<!-- 
+
+ The Modal
+<div id="settings-modal" class="modal">
+    Modal content
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Some text in the Modal..</p>
+    </div>
+  </div>
+
+ -->
+
+  <script src="scripts/main.js"></script>
+</body>
 </html>
