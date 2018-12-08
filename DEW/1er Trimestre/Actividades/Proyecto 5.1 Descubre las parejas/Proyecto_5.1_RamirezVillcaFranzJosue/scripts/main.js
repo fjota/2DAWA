@@ -148,6 +148,13 @@ let imagesToShow;
 let reversoImg = "assets/img/reverso.png";
 let numImages;
 let difficulty;
+let centesimas = 0;
+let segundos = 0;
+let minutos = 0;
+let points = 0;
+let maxScore, numGamesPlayed;
+let arrayScores = [];
+
 btnStart.addEventListener("click", function () {
   menuContainer.style.display = "none";
   gameContainer.classList.add("grid-container-show");
@@ -223,6 +230,7 @@ let idImage1, idImage2, image1, image2;
 let localizacionPath = document.location.pathname;
 localizacionPath = localizacionPath.substr(1, location.length);
 localizacionPath = localizacionPath.replace("index.html", "");
+
 function showCard(e) {
   if (cardsShowed < 2) {
     e.firstChild.src = localizacionPath.concat(imagesToShow[e.firstChild.id]);
@@ -260,18 +268,6 @@ function showCard(e) {
   }
 }
 
-let points = 0;
-function infoGame(num) {
-  points += num;
-  if (points < 0) {
-    points = 0;
-  }
-  document.getElementsByClassName("info-game")[0].firstElementChild.innerHTML = `${points} puntos`;
-}
-
-let centesimas = 0;
-let segundos = 0;
-let minutos = 0;
 function timer() {
   if (centesimas < 99) {
     centesimas++;
@@ -344,54 +340,24 @@ let closeModalBtn = document.getElementsByClassName("close").item(0);
 scoresBtn.addEventListener("click", showModal);
 closeModalBtn.addEventListener("click", closeModal);
 
+
 loadScores();
 function showModal() {
   modal.style.display = "block";
 }
 
-
-function loadScores() {
-  let arrayScores = [];
+function loadScores() {  
   let listScores = document.getElementById("listScores");
   for (var i = 0; i < localStorage.length; i++) {
     var key = localStorage.key(i);
     var value = localStorage.getItem(key);
     arrayScores.push(value.split(";"));
-
-
-    /* let listItem = document.createElement("li");
-    let listTextItem = document.createTextNode(value);
-    listItem.appendChild(listTextItem);
-    listScores.appendChild(listItem); */
   }
-
+  //Order array
   arrayScores = arrayScores.sort(orderArrayScores);
-
-  /* console.log(arrayScores.sort(function (a, b) {
-    if (a[2] > b[2]) {
-      return -1;
-    }
-    if (a[2] < b[2]) {
-      return 1;
-    }
-    if (a[2] === b[2]) {
-      if (a[3] > b[3]) {
-        return 1;
-      }
-      if (a[3] < b[3]) {
-        return -1;
-      }
-    }
-    if (a[2] === b[2] && a[3] === b[3]) {
-      if (a[1] > b[1]) {
-        return 1;
-      }
-      if (a[1] < b[1]) {
-        return -1;
-      }
-    }
-  })); */
-
+  numGamesPlayed = arrayScores.length;
+  maxScore = arrayScores[0][2];
+  //Show all scores
   let arrayOrdenado = [];
   let oneScore = "";
   for (let j = 0; j < arrayScores.length; j++) {
@@ -439,4 +405,13 @@ window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+}
+infoGame(0);
+function infoGame(num) {
+  points += num;
+  if (points < 0) {
+    points = 0;
+  }
+  document.getElementsByClassName("info-game")[0].firstElementChild.innerHTML = `${points} puntos`;
+  document.getElementsByClassName("info-game")[0].firstElementChild.nextElementSibling.innerHTML= `Numero de partidas jugadas: ${numGamesPlayed} - Maxima puntuacion global: ${maxScore}`;
 }
