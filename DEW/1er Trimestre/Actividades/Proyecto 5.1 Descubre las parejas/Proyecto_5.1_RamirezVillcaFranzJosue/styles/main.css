@@ -4,7 +4,7 @@
  --colNum: 4;
  --gridWidth: 130px;
  --gridHeight: 130px;
- --wrapperH: 40px; 
+ --gridGap: 1.5em;
 }
 
 body {
@@ -12,11 +12,7 @@ body {
   font-family: var(--font-family);
 }
 
-.game-container {
-  display: none;
-  /* display: flex;
-  justify-content: center; */
-}
+                   /*MEMU GAME STYLES*/
 
 .title-container {
   text-align: center;  
@@ -25,7 +21,6 @@ body {
   font-weight: 500;
   font-size: 2.5em;
 }
-
 .menu-container {
   height: 70vh;
   widows: 100%;
@@ -33,12 +28,10 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 .main-menu {
   font-size: 2em;
   text-align: center;
 }
-
 .difficulty-container,
 .scores-container,
 .start-game {
@@ -47,23 +40,61 @@ body {
   margin-bottom: .5em;
   padding: 1em .5em;
 }
-
 .scores-container:hover,
 .start-game:hover {
   background-color: #0BD7D6;
   cursor: pointer;
 }
 
+                    /*GAME STYLES*/
+
+.game-container {
+  display: none;
+}
+
+.grid-container-show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info-game {
+  background-color: black;
+  color: white;
+  width: 100%;
+  margin-bottom: 2.5em;
+  display: flex;
+  justify-content: space-around;
+}
+                    
 .grid-container {
   display: grid;
   grid-template-rows: repeat(var(--rowNum), var(--gridHeight));
   grid-template-columns: repeat(var(--colNum), var(--gridWidth));
-  grid-gap: 1em;
+  grid-gap: var(--gridGap);
 }
 
-.grid-item {
-  grid-column-start: auto;
-  grid-row-start: auto;  
+.grid-item img {
+  width: 100%;
+}
+
+.flip-image {
+  transition: transform .5s;
+  transform: rotateY(-180deg) scale(1.10);
+  z-index: 10;
+  -webkit-transform: rotateY(-180deg) scale(1.10);
+  -moz-transform: rotateY(-180deg) scale(1.10);
+  -ms-transform: rotateY(-180deg) scale(1.10);
+  -o-transform: rotateY(-180deg) scale(1.10);
+  -webkit-transition: transform .5s;
+  -moz-transition: transform .5s;
+  -ms-transition: transform .5s;
+  -o-transition: transform .5s;
+}
+
+.game-win {
+  margin-top: 2em;
 }
 
 

@@ -1,47 +1,47 @@
 //Load images
 let images = [
- /*  "assets/img/coches/alfaromeogiulia.jpg",
-  "assets/img/coches/alfaromeogiulieta.jpg",
-  "assets/img/coches/audia4.jpg",
-  "assets/img/coches/audia6.jpg",
-  "assets/img/coches/bmwserie5.jpg",
-  "assets/img/coches/bmwx3.jpg",
-  "assets/img/coches/citroencactus.jpg",
-  "assets/img/coches/citroenpicasso.jpg",
-  "assets/img/coches/ds3.jpg",
-  "assets/img/coches/ds5.jpeg",
-  "assets/img/coches/fiat500.jpg",
-  "assets/img/coches/fiatpanda.jpg",
-  "assets/img/coches/fordfiesta.jpg",
-  "assets/img/coches/fordfocus.jpg",
-  "assets/img/coches/hyundaii30.jpg",
-  "assets/img/coches/hyundaitucson.jpg",
-  "assets/img/coches/kiario.jpg",
-  "assets/img/coches/kiasportage.jpg",
-  "assets/img/coches/mazda2.jpg",
-  "assets/img/coches/mazda3.jpg",
-  "assets/img/coches/mercedesclasee.jpg",
-  "assets/img/coches/mercedesclases.jpg",
-  "assets/img/coches/nissanleaf.png",
-  "assets/img/coches/nissanqashqai.jpg",
-  "assets/img/coches/opelcorsa.jpg",
-  "assets/img/coches/opelinsignia.jpg",
-  "assets/img/coches/peugeot5008.jpg",
-  "assets/img/coches/peugeot508.jpg",
-  "assets/img/coches/porsche911.jpg",
-  "assets/img/coches/porschecayenne.jpg",
-  "assets/img/coches/renault captur.jpg",
-  "assets/img/coches/renault kadjar.jpeg",
-  "assets/img/coches/seatleon.jpg",
-  "assets/img/coches/seattarraco.jpg",
-  "assets/img/coches/skodakaroq.jpg",
-  "assets/img/coches/skodaoctavia.jpg",
-  "assets/img/coches/toyotaauris.jpg",
-  "assets/img/coches/toyotaprius.jpg",
-  "assets/img/coches/volkswagenpolo.jpeg",
-  "assets/img/coches/volkswagentroc.jpg",
-  "assets/img/coches/volvov40.jpg",
-  "assets/img/coches/volvoxc40.jpg", */
+  /*  "assets/img/coches/alfaromeogiulia.jpg",
+   "assets/img/coches/alfaromeogiulieta.jpg",
+   "assets/img/coches/audia4.jpg",
+   "assets/img/coches/audia6.jpg",
+   "assets/img/coches/bmwserie5.jpg",
+   "assets/img/coches/bmwx3.jpg",
+   "assets/img/coches/citroencactus.jpg",
+   "assets/img/coches/citroenpicasso.jpg",
+   "assets/img/coches/ds3.jpg",
+   "assets/img/coches/ds5.jpeg",
+   "assets/img/coches/fiat500.jpg",
+   "assets/img/coches/fiatpanda.jpg",
+   "assets/img/coches/fordfiesta.jpg",
+   "assets/img/coches/fordfocus.jpg",
+   "assets/img/coches/hyundaii30.jpg",
+   "assets/img/coches/hyundaitucson.jpg",
+   "assets/img/coches/kiario.jpg",
+   "assets/img/coches/kiasportage.jpg",
+   "assets/img/coches/mazda2.jpg",
+   "assets/img/coches/mazda3.jpg",
+   "assets/img/coches/mercedesclasee.jpg",
+   "assets/img/coches/mercedesclases.jpg",
+   "assets/img/coches/nissanleaf.png",
+   "assets/img/coches/nissanqashqai.jpg",
+   "assets/img/coches/opelcorsa.jpg",
+   "assets/img/coches/opelinsignia.jpg",
+   "assets/img/coches/peugeot5008.jpg",
+   "assets/img/coches/peugeot508.jpg",
+   "assets/img/coches/porsche911.jpg",
+   "assets/img/coches/porschecayenne.jpg",
+   "assets/img/coches/renault captur.jpg",
+   "assets/img/coches/renault kadjar.jpeg",
+   "assets/img/coches/seatleon.jpg",
+   "assets/img/coches/seattarraco.jpg",
+   "assets/img/coches/skodakaroq.jpg",
+   "assets/img/coches/skodaoctavia.jpg",
+   "assets/img/coches/toyotaauris.jpg",
+   "assets/img/coches/toyotaprius.jpg",
+   "assets/img/coches/volkswagenpolo.jpeg",
+   "assets/img/coches/volkswagentroc.jpg",
+   "assets/img/coches/volvov40.jpg",
+   "assets/img/coches/volvoxc40.jpg", */
   "assets/img/frutas/aguacate.jpg",
   "assets/img/frutas/ajo.jpg",
   "assets/img/frutas/alcachofa.jpg",
@@ -146,12 +146,12 @@ let gameContainer = document.getElementById("game");
 let btnStart = document.getElementById("start");
 let imagesToShow;
 let reversoImg = "assets/img/reverso.png";
-
+let numImages;
+let difficulty;
 btnStart.addEventListener("click", function () {
   menuContainer.style.display = "none";
-  gameContainer.style.display = "block";
-  let difficulty = document.getElementById("difficulty").value;
-  let numImages;
+  gameContainer.classList.add("grid-container-show");
+  difficulty = document.getElementById("difficulty").value;
   switch (difficulty) {
     case "4":
       numImages = 8 * 2;
@@ -163,42 +163,40 @@ btnStart.addEventListener("click", function () {
       numImages = 32 * 2;
       break;
   }
-  startGame(difficulty, numImages-1);
+  startGame(difficulty, numImages - 1);
 });
-
 
 //Game start
 function startGame(difficulty, numImages) {
-  console.log(numImages);
-  imagesToShow = new Array(numImages);
-  console.log(imagesToShow);
+  restartGame();
+  imagesToShow = new Array(Math.floor(numImages / 2) + 1);
   let random;
-  //Load random and unique images 
+  //Load random and unique images    
   for (let i = 0; i < imagesToShow.length; i++) {
     random = Math.floor(Math.random() * images.length);
     if (imagesToShow.find(image => image === images[random]) === undefined) {
       imagesToShow[i] = images[random];
-      imagesToShow[i + 1] = images[random];
-      i++;
     } else {
-      i -= 2;
+      i--;
     }
   }
-  /* imagesToShow = imagesToShow.slice(0); */
-  
-  
+
+  //Clone array for double pairs
+  imagesToShow = imagesToShow.concat(imagesToShow);
+
   //Random order images
   let aux;
   for (let i = 0; i < imagesToShow.length; i++) {
     random = Math.floor(Math.random() * imagesToShow.length);
     aux = imagesToShow[i];
-    imagesToShow[i] = images[random];
+    imagesToShow[i] = imagesToShow[random];
     imagesToShow[random] = aux;
   }
 
   showImages(imagesToShow, difficulty);
 }
 
+let controlTimer;
 function showImages(imagesToShow, difficulty) {
   let gridContainer = document.getElementById("gridContainer");
   document.documentElement.style.setProperty("--rowNum", difficulty);
@@ -209,47 +207,236 @@ function showImages(imagesToShow, difficulty) {
     item.setAttribute("onclick", "showCard(this)");
     item.setAttribute("class", "grid-item");
     img.setAttribute("id", i);
-    /* img.setAttribute("src", reversoImg); */
-    img.setAttribute("src", imagesToShow[i]);
-    img.setAttribute("class", imagesToShow[i]);
+    img.setAttribute("src", reversoImg);
+    img.setAttribute("onmouseover", "showBorder(this)");
+    img.setAttribute("onmouseout", "hideBorder(this)");
     item.appendChild(img);
     gridContainer.appendChild(item);
   }
+  //Init timer
+  controlTimer = setInterval(timer, 10);
 }
 
 let cardsShowed = 0;
+let cardsWin = 0;
 let idImage1, idImage2, image1, image2;
+let localizacionPath = document.location.pathname;
+localizacionPath = localizacionPath.substr(1, location.length);
+localizacionPath = localizacionPath.replace("index.html", "");
 function showCard(e) {
-  let localizacionPath = document.location.pathname;
-  localizacionPath = localizacionPath.substr(1, location.length);
-  localizacionPath = localizacionPath.replace("index.html", "");
-  e.firstChild.src = localizacionPath.concat(imagesToShow[e.firstChild.id]);
+  if (cardsShowed < 2) {
+    e.firstChild.src = localizacionPath.concat(imagesToShow[e.firstChild.id]);
+    e.classList.add("flip-image");
+  }
   cardsShowed++;
   if (cardsShowed === 1) {
     idImage1 = e.firstChild.id;
     image1 = e.firstChild.src;
-  } else {
+  }
+  if (cardsShowed === 2) {
     idImage2 = e.firstChild.id;
     image2 = e.firstChild.src;
-  }
-
-  if (cardsShowed === 2) {
-    console.log(idImage1);
-    console.log(idImage2);
-
-    if (image1 === image2) {
-      console.log("ACERTASTE");
+    if (image1 === image2 && idImage1 != idImage2) {
+      infoGame(10);
       document.getElementById(idImage1).parentElement.removeAttribute("onclick");
       document.getElementById(idImage2).parentElement.removeAttribute("onclick");
+      document.getElementById(idImage1).parentElement.classList.remove("flip-image");
+      document.getElementById(idImage2).parentElement.classList.remove("flip-image");
+      cardsShowed = 0;
+      cardsWin++;
     } else {
       setTimeout(function () {
-        console.log("FALLASTE COMPAÑERO");
+        infoGame(-1);
         document.getElementById(idImage1).src = localizacionPath.concat(reversoImg);
         document.getElementById(idImage2).src = localizacionPath.concat(reversoImg);
-      }, 180)
+        document.getElementById(idImage1).parentElement.classList.remove("flip-image");
+        document.getElementById(idImage2).parentElement.classList.remove("flip-image");
+        cardsShowed = 0;
+      }, 550) //50ms plus to animation
     }
-    cardsShowed = 0;
   }
-
+  if (cardsWin * 2 === numImages) {
+    gameWin();
+  }
 }
 
+let points = 0;
+function infoGame(num) {
+  points += num;
+  if (points < 0) {
+    points = 0;
+  }
+  document.getElementsByClassName("info-game")[0].firstElementChild.innerHTML = `${points} puntos`;
+}
+
+let centesimas = 0;
+let segundos = 0;
+let minutos = 0;
+function timer() {
+  if (centesimas < 99) {
+    centesimas++;
+    if (centesimas < 10) { centesimas = "0" + centesimas }
+  }
+  if (centesimas == 99) {
+    centesimas = -1;
+  }
+  if (centesimas == 0) {
+    segundos++;
+    if (segundos < 10) { segundos = "0" + segundos }
+    document.getElementsByClassName("info-game")[0].lastElementChild.innerHTML = `${minutos}:${segundos}`;
+  }
+  if (segundos == 59) {
+    segundos = -1;
+  }
+  if ((centesimas == 0) && (segundos == 0)) {
+    minutos++;
+    if (minutos < 10) { minutos = "0" + minutos }
+    document.getElementsByClassName("info-game")[0].lastElementChild.innerHTML = `${minutos}:${segundos}`;
+  }
+  if (minutos == 59) {
+    minutos = -1;
+  }
+}
+
+function gameWin() {
+  clearInterval(controlTimer);
+  document.getElementsByClassName("game-win").item(0).innerHTML = `
+  <h2>Has ganado</h2>    
+  <p>Introduce tu nombre:</p>
+  <input type="text" id="nombreUsuario">
+  <input type='button' onclick='saveGame(this)' value='Guardar partida'/>
+  <input type='button' onclick='startGame(${difficulty}, ${numImages - 1})' value='Reiniciar juego'/>
+  `;
+}
+
+
+function saveGame(e) {
+  localStorage.setItem(document.getElementById("nombreUsuario").value,
+    document.getElementById("nombreUsuario").value + ";" +
+    new Date().toLocaleString() + ";" +
+    points + ";" +
+    document.getElementsByClassName("info-game")[0].lastElementChild.innerHTML);
+}
+
+function restartGame() {
+  if (document.getElementById("gridContainer").childElementCount > 0) {
+    while (document.getElementById("gridContainer").firstChild) {
+      document.getElementById("gridContainer").removeChild(document.getElementById("gridContainer").firstChild);
+    }
+  }
+  document.getElementsByClassName("game-win").item(0).innerHTML = "";
+  centesimas = 0, segundos = 0, minutos = 0, points = 0, cardsWin = 0;
+}
+
+function showBorder(e) {
+  e.style.border = "2px solid black";
+}
+
+function hideBorder(e) {
+  e.style.border = "none";
+}
+
+//MODAL SCORES
+let scoresBtn = document.getElementById("scores");
+let modal = document.getElementById("settings-modal");
+let closeModalBtn = document.getElementsByClassName("close").item(0);
+
+scoresBtn.addEventListener("click", showModal);
+closeModalBtn.addEventListener("click", closeModal);
+
+loadScores();
+function showModal() {
+  modal.style.display = "block";
+}
+
+
+function loadScores() {
+  let arrayScores = [];
+  let listScores = document.getElementById("listScores");
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    var value = localStorage.getItem(key);
+    arrayScores.push(value.split(";"));
+
+
+    /* let listItem = document.createElement("li");
+    let listTextItem = document.createTextNode(value);
+    listItem.appendChild(listTextItem);
+    listScores.appendChild(listItem); */
+  }
+
+  arrayScores = arrayScores.sort(orderArrayScores);
+
+  /* console.log(arrayScores.sort(function (a, b) {
+    if (a[2] > b[2]) {
+      return -1;
+    }
+    if (a[2] < b[2]) {
+      return 1;
+    }
+    if (a[2] === b[2]) {
+      if (a[3] > b[3]) {
+        return 1;
+      }
+      if (a[3] < b[3]) {
+        return -1;
+      }
+    }
+    if (a[2] === b[2] && a[3] === b[3]) {
+      if (a[1] > b[1]) {
+        return 1;
+      }
+      if (a[1] < b[1]) {
+        return -1;
+      }
+    }
+  })); */
+
+  let arrayOrdenado = [];
+  let oneScore = "";
+  for (let j = 0; j < arrayScores.length; j++) {
+    for (let i = 0; i < arrayScores[j].length; i++) {
+      oneScore += arrayScores[j][i] + " - ";
+    }
+    let listItem = document.createElement("li");
+    let listTextItem = document.createTextNode(oneScore);
+    listItem.appendChild(listTextItem);
+    listScores.appendChild(listItem);
+    oneScore = "";
+  }
+}
+
+function orderArrayScores(a, b) {
+  if (a[2] > b[2]) {
+    return -1;
+  }
+  if (a[2] < b[2]) {
+    return 1;
+  }
+  if (a[2] === b[2]) {
+    if (a[3] > b[3]) {
+      return 1;
+    }
+    if (a[3] < b[3]) {
+      return -1;
+    }
+  }
+  if (a[2] === b[2] && a[3] === b[3]) {
+    if (a[1] > b[1]) {
+      return 1;
+    }
+    if (a[1] < b[1]) {
+      return -1;
+    }
+  }
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

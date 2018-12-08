@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,17 @@
   <link rel="stylesheet" href="styles/main.css">
   <title>Card game</title>
 </head>
+
 <body>
   <!-- Game view -->
-  <div class="game-container" id="game">    
-    <div class="grid-container" id="gridContainer">      
+  <div class="game-container" id="game">
+    <div class="info-game">
+      <span>0 puntos</span>
+      <span>00:00</span>
+    </div>
+    <div class="grid-container" id="gridContainer">
+    </div>
+    <div class="game-win">
     </div>
   </div>
   <!-- Menu view -->
@@ -27,7 +35,7 @@
             <option value="6">Medio</option>
             <option value="8">Dificil</option>
           </select>
-        </div>        
+        </div>
         <div class="scores-container" id="scores">
           Puntuaciones
         </div>
@@ -38,19 +46,19 @@
     </div>
   </div>
 
-<!-- 
-
- The Modal
-<div id="settings-modal" class="modal">
-    Modal content
+  <!-- Modal for show all scores -->
+  <div id="settings-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <p>Some text in the Modal..</p>
+      <ul id="listScores">        
+        <li>Nombre - Fecha - Puntuacion - Tiempo</li>
+      </ul>
     </div>
   </div>
 
- -->
+
 
   <script src="scripts/main.js"></script>
 </body>
+
 </html>
