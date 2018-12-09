@@ -1,0 +1,18 @@
+tr {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  height: 100%;
+}
+
+.logos-container {
+  height: 100%;
+}
+
+.header-container > div {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
