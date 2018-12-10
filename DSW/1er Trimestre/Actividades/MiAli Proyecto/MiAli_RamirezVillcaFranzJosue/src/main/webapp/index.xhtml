@@ -1,45 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-  <h:head>
-    <title>MiAli - Josué Ramírez</title>
-    <h:outputStylesheet library="styles" name="main.css" />
-  </h:head>
-  <h:body>
-    <p:layout fullPage="true">
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="WEB-INF/templates/publicTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"                
+                xmlns:p="http://primefaces.org/ui">
 
-      <p:layoutUnit position="north" size="100" class="header-container">
-        <div class="logos-container">
-          <h:graphicImage value="resources/images/Logo2.png" />
-          <h:graphicImage value="resources/images/empty-cart-dark_small.png" />
-          <h:outputText value="0 euros" />
-        </div>
-        <h:form> 
-          <p:commandButton value="Registrate" action="#{buttonView.buttonAction}" style="margin-right:20px;" ajax="false" />
-          <p:commandButton value="Identificate" action="#{buttonView.buttonAction}" style="margin-right:20px;" ajax="false" />
-        </h:form>
-      </p:layoutUnit>
+  <ui:define name="content">
+    <p:panel id="basic" header="Mi mobiliario de lujo" style="margin-bottom:20px">
+      <h:panelGrid columns="2" cellpadding="10">
+        <h:graphicImage value="resources/images/mesa.jpg" />          
+        <p:link outcome="/search/index" value="Buscar">         
+        </p:link>
+      </h:panelGrid>
+    </p:panel>
+  </ui:define>
 
-      <p:layoutUnit position="center">
-        <p:panel id="basic" header="Mi mobiliario de lujo" style="margin-bottom:20px">
-          <h:panelGrid columns="2" cellpadding="10">
-            <h:graphicImage value="resources/images/mesa.jpg" />  
-            <h:form> 
-              <p:commandButton value="Buscar" action="#{buttonView.buttonAction}" style="margin-right:20px;" ajax="false" />
-            </h:form>
-          </h:panelGrid>
-        </p:panel>
-      </p:layoutUnit>
+</ui:composition>
 
-      <p:layoutUnit position="south" size="40" closable="true" collapsible="true">
-        By Josue Ramirez
-      </p:layoutUnit> 
-
-    </p:layout>
-  </h:body>
-</html>
 

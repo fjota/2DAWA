@@ -1,6 +1,7 @@
 package es.cifpcm.miali.data;
 
 import es.cifpcm.miali.model.Provincias;
+import java.util.List;
 
 /**
  *
@@ -8,6 +9,6 @@ import es.cifpcm.miali.model.Provincias;
  */
 public interface ProvinciasDao {
   
-  public Provincias selectAll();
+  public List<Provincias> selectAll();
   
 }

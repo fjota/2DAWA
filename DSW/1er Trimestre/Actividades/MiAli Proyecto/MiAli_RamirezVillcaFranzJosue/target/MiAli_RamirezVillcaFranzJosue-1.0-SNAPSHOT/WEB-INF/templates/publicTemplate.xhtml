@@ -3,37 +3,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns="http://www.w3.org/1999/xhtml"     
-      xmlns:f="http://java.sun.com/jsf/core"     
+      xmlns:f="http://java.sun.com/jsf/core"      
       xmlns:p="http://primefaces.org/ui">
 
   <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <h:outputStylesheet name="./css/default.css"/>
-    <h:outputStylesheet name="./css/cssLayout.css"/>
+    <h:outputStylesheet name="/css/default.css"/>
+    <h:outputStylesheet name="/css/cssLayout.css"/>
+    <h:outputStylesheet name="/css/main.css"/>
     <title>Facelets Template</title>
   </h:head>
 
   <h:body>
 
+
     <div id="top">
-      <p:layout fullPage="true">
-        <ui:insert name="top">
-          <p:layoutUnit position="north" size="100" class="header-container">
-            <div class="logos-container">
-              <h:graphicImage value="resources/images/Logo2.png" />
-              <h:graphicImage value="resources/images/empty-cart-dark_small.png" />
-              <h:outputText value="0 euros" />
-            </div>
-            <h:form> 
-              <p:commandButton value="Registrate" action="#{buttonView.buttonAction}" style="margin-right:20px;" ajax="false" />
-              <p:commandButton value="Identificate" action="#{buttonView.buttonAction}" style="margin-right:20px;" ajax="false" />
-            </h:form>
-          </p:layoutUnit>
-
-        </ui:insert>
-      </p:layout>
-
+      <ui:insert name="top">
+        <div class="header-container">
+          <div class="logos-container">
+            <h:graphicImage value="/resources/images/Logo2.png" />
+            <h:graphicImage class="cart" value="/resources/images/empty-cart-dark_small.png" />
+            <h:outputText value="0 euros" class="price"/>
+          </div>
+          <h:form> 
+            <p:commandButton value="Registrate" action="#{buttonView.buttonAction}" style="margin-right:20px;" ajax="false" />
+            <p:commandButton value="Identificate" action="#{buttonView.buttonAction}" style="margin-right:20px;" ajax="false" />
+          </h:form>
+        </div>
+      </ui:insert>
     </div>
 
     <div id="content" class="center_content">
@@ -41,14 +38,11 @@
     </div>
 
     <div id="bottom">
-      <p:layout fullPage="true">
-        <ui:insert name="bottom">
-          <p:layoutUnit position="south" size="40" closable="true" collapsible="true">
-            By Josue Ramirez
-          </p:layoutUnit>
-        </ui:insert>
-      </p:layout>     
+      <ui:insert name="bottom">
+        <p>By Josue Ramirez</p>                
+      </ui:insert>
     </div>
+
 
   </h:body>
 

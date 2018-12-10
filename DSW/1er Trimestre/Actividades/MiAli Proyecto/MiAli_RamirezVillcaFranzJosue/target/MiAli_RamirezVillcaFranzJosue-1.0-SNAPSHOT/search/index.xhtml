@@ -1,10 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../WEB-INF/templates/publicTemplate.xhtml">
+                template="./../WEB-INF/templates/publicTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"                
+                xmlns:p="http://primefaces.org/ui">
 
   <ui:define name="content">
-    content
+
+    <h:form>
+      <p:growl id="msgs" showDetail="true" />
+
+      <p:panel header="Selecciona una localizacion" style="margin-bottom:10px;">
+        <h:panelGrid columns="2" cellpadding="5">
+          <p:outputLabel for="provincia" value="Provincias: " />
+          <p:selectOneMenu id="provincia" value="" style="width:150px">
+            <!--<p:ajax listener="#{productSearchBean.onCboProvinciasChange()}" update="municipio" />-->
+            <f:selectItem itemLabel="Seleccinar provincia" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{productSearchBean.provincias}" var="provincia" itemValue="#{provincia.idProvincia}" itemLabel="#{provincia.nombre}"/>
+          </p:selectOneMenu>
+
+          <p:outputLabel for="municipio" value="Municipio: " />
+          <p:selectOneMenu id="municipio" value="" style="width:150px">
+            <f:selectItem itemLabel="Seleccione municipio" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{productSearchBean.municipios}" var="municipio" itemValue="#{municipio.idMunicipio}" itemLabel="#{municipio.nombre}" />
+          </p:selectOneMenu>
+        </h:panelGrid>
+
+        <p:separator />
+
+        <p:commandButton value="Submit" update="msgs" action="#{dropdownView.displayLocation}" icon="pi pi-check" />
+      </p:panel>
+    </h:form>
+       
   </ui:define>
 
 </ui:composition>

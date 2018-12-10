@@ -12,12 +12,12 @@ public class Municipios implements Serializable {
   private int idProvincia;
   private int codMunicipio;
   private int dc;
-  private int nombre;
+  private String nombre;
 
   public Municipios() {
   }
 
-  public Municipios(int idMunicipio, int idProvincia, int codMunicipio, int dc, int nombre) {
+  public Municipios(int idMunicipio, int idProvincia, int codMunicipio, int dc, String nombre) {
     this.idMunicipio = idMunicipio;
     this.idProvincia = idProvincia;
     this.codMunicipio = codMunicipio;
@@ -57,11 +57,11 @@ public class Municipios implements Serializable {
     this.dc = dc;
   }
 
-  public int getNombre() {
+  public String getNombre() {
     return nombre;
   }
 
-  public void setNombre(int nombre) {
+  public void setNombre(String nombre) {
     this.nombre = nombre;
   }    
   

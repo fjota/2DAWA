@@ -1,6 +1,7 @@
 package es.cifpcm.miali.data;
 
 import es.cifpcm.miali.model.Municipios;
+import java.util.List;
 
 /**
  *
@@ -8,6 +9,6 @@ import es.cifpcm.miali.model.Municipios;
  */
 public interface MunicipiosDao {
   
-  public Municipios selectAll();
+  public List<Municipios> selectAll();
   
 }
