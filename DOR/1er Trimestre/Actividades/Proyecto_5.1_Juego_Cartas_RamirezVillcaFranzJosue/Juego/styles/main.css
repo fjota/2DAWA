@@ -1,0 +1,242 @@
+:root {
+ --font-family: font-family: 'KoHo', sans-serif;
+ --rowNum: 4;
+ --colNum: 4;
+ --gridWidth: 130px;
+ --gridHeight: 130px;
+ --gridGap: 1.9em;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+}
+
+                   /*MEMU GAME STYLES*/
+
+.title-container {
+  text-align: center;  
+}
+.title-container h1 {
+  font-weight: 500;
+  font-size: 2.5em;
+}
+.menu-container {
+  height: 70vh;
+  widows: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-menu {
+  font-size: 2em;
+  text-align: center;
+}
+.difficulty-container,
+.scores-container,
+.start-game {
+  border: 1px solid white;
+  border-radius:10%;
+  margin-bottom: .5em;
+  padding: 1em .5em;
+}
+.scores-container:hover,
+.start-game:hover {
+  background-color: #0BD7D6;
+  cursor: pointer;
+}
+
+                    
+                    /*MODAL SCORE STYLES*/
+
+.modal {
+  display: none;
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+                    /*GAME STYLES*/
+
+.game-container {
+  display: none;
+}
+
+.grid-container-show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info-game {
+  background-color: black;
+  color: white;
+  width: 100%;
+  margin-bottom: 2.5em;
+  display: flex;
+  justify-content: space-around;
+}
+                    
+.grid-container {
+  display: grid;
+  grid-template-rows: repeat(var(--rowNum), var(--gridHeight));
+  grid-template-columns: repeat(var(--colNum), var(--gridWidth));
+  grid-gap: var(--gridGap);
+}
+
+.grid-item img {
+  width: 100%;
+}
+
+.animation-flip {
+  animation-name: cssFlip;
+  animation-duration: .5s;
+  animation-timing-function: ease;
+}
+@keyframes cssFlip {
+  from {
+   transform: rotateY(0deg) scale(1);
+   -webkit-transform: rotateY(0deg) scale(1);
+   -moz-transform: rotateY(0deg) scale(1);
+   -ms-transform: rotateY(0deg) scale(1);
+   -o-transform: rotateY(0deg) scale(1);
+} 
+  to {
+    transform: rotateY(-180deg) scale(1.20);
+    -webkit-transform: rotateY(-180deg) scale(1.20);
+    -moz-transform: rotateY(-180deg) scale(1.20);
+    -ms-transform: rotateY(-180deg) scale(1.20);
+    -o-transform: rotateY(-180deg) scale(1.20);
+  }
+}
+
+.animation-flip-reverse {
+  animation-name: cssFlipReverse;
+  animation-duration: .5s;
+  animation-timing-function: ease;
+}
+@keyframes cssFlipReverse {
+  from {
+    transform: rotateY(-180deg) scale(1.20);
+    -webkit-transform: rotateY(-180deg) scale(1.20);
+    -moz-transform: rotateY(-180deg) scale(1.20);
+    -ms-transform: rotateY(-180deg) scale(1.20);
+    -o-transform: rotateY(-180deg) scale(1.20);     
+  } 
+  to {
+    transform: rotateY(0deg) scale(1);
+    -webkit-transform: rotateY(0deg) scale(1);
+    -moz-transform: rotateY(0deg) scale(1);
+    -ms-transform: rotateY(0deg) scale(1);
+    -o-transform: rotateY(0deg) scale(1);
+  }
+}
+
+
+.game-win {
+  margin-top: 2em;
+}
+
+@media screen and (max-width: 1023px) and (orientation: portrait) {
+  select {
+    width: 60%;   
+    font-size: .8em; 
+  }
+  option {
+    font-size: .5em;
+  }
+  .modal-content {
+    font-size: 1.5em;
+  }
+  .info-game {
+    font-size: 1.5em;
+  }
+  :root{
+    --gridWidth: 150px;
+    --gridHeight: 150px;
+    --gridGap: 2.0em;
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  select {
+    width: 50%;
+    font-size: .8em;
+  }
+  option {
+    font-size: .5em;
+  }
+  .info-game {
+    font-size: 1.8em;
+  }
+  .modal-content {
+    font-size: 1.8em;
+  }
+  .game-win{
+    margin-bottom: 2em;
+  }
+  :root{
+    --gridWidth: 150px;
+    --gridHeight: 150px;
+    --gridGap: 2.5em;
+  }
+}
+@media screen and (min-width: 1080px) and (orientation: landscape) {  
+  .game-win{
+    margin-bottom: 2.1em;
+  }
+}
+@media screen and (min-width: 1400px) and (orientation: landscape) {
+  :root{
+    --gridWidth: 170px;
+    --gridHeight: 170px;
+    --gridGap: 3.0em;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

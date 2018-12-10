@@ -1,6 +1,6 @@
 //Load images
 let images = [
-  /*  "assets/img/coches/alfaromeogiulia.jpg",
+   "assets/img/coches/alfaromeogiulia.jpg",
    "assets/img/coches/alfaromeogiulieta.jpg",
    "assets/img/coches/audia4.jpg",
    "assets/img/coches/audia6.jpg",
@@ -41,7 +41,7 @@ let images = [
    "assets/img/coches/volkswagenpolo.jpeg",
    "assets/img/coches/volkswagentroc.jpg",
    "assets/img/coches/volvov40.jpg",
-   "assets/img/coches/volvoxc40.jpg", */
+   "assets/img/coches/volvoxc40.jpg",
   "assets/img/frutas/aguacate.jpg",
   "assets/img/frutas/ajo.jpg",
   "assets/img/frutas/alcachofa.jpg",
@@ -175,6 +175,7 @@ btnStart.addEventListener("click", function () {
 
 //Game start
 function startGame(difficulty, numImages) {
+  //Restart game when user win
   restartGame();
   imagesToShow = new Array(Math.floor(numImages / 2) + 1);
   let random;
@@ -192,13 +193,13 @@ function startGame(difficulty, numImages) {
   imagesToShow = imagesToShow.concat(imagesToShow);
 
   //Random order images
-  let aux;
+  let aux;    
   for (let i = 0; i < imagesToShow.length; i++) {
-    random = Math.floor(Math.random() * imagesToShow.length);
+    random = Math.floor(Math.random() * imagesToShow.length);    
     aux = imagesToShow[i];
     imagesToShow[i] = imagesToShow[random];
     imagesToShow[random] = aux;
-  }
+  }  
 
   showImages(imagesToShow, difficulty);
 }
@@ -231,48 +232,56 @@ let localizacionPath = document.location.pathname;
 localizacionPath = localizacionPath.substr(1, location.length);
 localizacionPath = localizacionPath.replace("index.html", "");
 
-function showCard(e) {
-  if (cardsShowed < 2) {
-    e.firstChild.src = localizacionPath.concat(imagesToShow[e.firstChild.id]);
-    e.classList.add("animation-flip");
-  }
+function showCard(e) {  
   cardsShowed++;
   if (cardsShowed === 1) {
+    e.firstChild.src = localizacionPath.concat(imagesToShow[e.firstChild.id]);
+    e.classList.add("animation-flip");
     idImage1 = e.firstChild.id;
     image1 = e.firstChild.src;
   }
   if (cardsShowed === 2) {
-    idImage2 = e.firstChild.id;
-    image2 = e.firstChild.src;
-    if (image1 === image2 && idImage1 != idImage2) {
-      infoGame(10);
-      document.getElementById(idImage1).parentElement.removeAttribute("onclick");
-      document.getElementById(idImage2).parentElement.removeAttribute("onclick");
-      cardsShowed = 0;
-      cardsWin++;
-    } else {
-      setTimeout(function () {
-        infoGame(-1);
-        document.getElementById(idImage1).src = localizacionPath.concat(reversoImg);
-        document.getElementById(idImage2).src = localizacionPath.concat(reversoImg);
-        document.getElementById(idImage1).parentElement.classList.remove("animation-flip");
-        document.getElementById(idImage2).parentElement.classList.remove("animation-flip");
-        document.getElementById(idImage1).parentElement.classList.add("animation-flip-reverse");
-        document.getElementById(idImage2).parentElement.classList.add("animation-flip-reverse")        
+    if (idImage1 != e.firstChild.id) {
+      e.firstChild.src = localizacionPath.concat(imagesToShow[e.firstChild.id]);
+      e.classList.add("animation-flip");
+      idImage2 = e.firstChild.id;
+      image2 = e.firstChild.src;
+      if (image1 === image2 && idImage1 != idImage2) {
+        infoGame(10);
+        document.getElementById(idImage1).parentElement.removeAttribute("onclick");
+        document.getElementById(idImage2).parentElement.removeAttribute("onclick");
         cardsShowed = 0;
-      }, 550) 
-      setTimeout(function() {
-        document.getElementById(idImage1).parentElement.classList.remove("animation-flip-reverse");
-        document.getElementById(idImage2).parentElement.classList.remove("animation-flip-reverse");
-      }, 780);
-      
+        cardsWin++;
+      } else {
+        setTimeout(function () {
+          infoGame(-1);
+          document.getElementById(idImage1).src = localizacionPath.concat(reversoImg);
+          document.getElementById(idImage2).src = localizacionPath.concat(reversoImg);
+          document.getElementById(idImage1).parentElement.classList.remove("animation-flip");
+          document.getElementById(idImage2).parentElement.classList.remove("animation-flip");
+          document.getElementById(idImage1).parentElement.classList.add("animation-flip-reverse");
+          document.getElementById(idImage2).parentElement.classList.add("animation-flip-reverse")
+          cardsShowed = 0;
+        }, 550)
+        setTimeout(function () {
+          document.getElementById(idImage1).parentElement.classList.remove("animation-flip-reverse");
+          document.getElementById(idImage2).parentElement.classList.remove("animation-flip-reverse");
+        }, 780);
+      }      
+    } else {
+      cardsShowed--;
     }
   }
+
+  //If player win
   if (cardsWin * 2 === numImages) {
     gameWin();
   }
 }
 
+/**
+ * Time of play and show this on header
+ */
 function timer() {
   if (centesimas < 99) {
     centesimas++;
@@ -299,6 +308,9 @@ function timer() {
   }
 }
 
+/**
+ * Show the form win
+ */
 function gameWin() {
   clearInterval(controlTimer);
   document.getElementsByClassName("game-win").item(0).innerHTML = `
@@ -310,14 +322,20 @@ function gameWin() {
   `;
 }
 
+//Save game with a name of player
 function saveGame(e) {
-  localStorage.setItem(document.getElementById("nombreUsuario").value,
-    document.getElementById("nombreUsuario").value + ";" +
-    new Date().toLocaleString() + ";" +
-    points + ";" +
-    document.getElementsByClassName("info-game")[0].lastElementChild.innerHTML);
+  if (document.getElementById("nombreUsuario").value.length > 0) {
+    localStorage.setItem(document.getElementById("nombreUsuario").value,
+      document.getElementById("nombreUsuario").value + ";" +
+      new Date().toLocaleString() + ";" +
+      points + ";" +
+      document.getElementsByClassName("info-game")[0].lastElementChild.innerHTML);
+  }
 }
 
+/**
+ * Restart game and variables
+ */
 function restartGame() {
   if (document.getElementById("gridContainer").childElementCount > 0) {
     while (document.getElementById("gridContainer").firstChild) {
@@ -326,14 +344,9 @@ function restartGame() {
   }
   document.getElementsByClassName("game-win").item(0).innerHTML = "";
   centesimas = 0, segundos = 0, minutos = 0, points = 0, cardsWin = 0;
-}
-
-function showBorder(e) {
-  e.style.border = "2px solid black";
-}
-
-function hideBorder(e) {
-  e.style.border = "none";
+  arrayScores = new Array();
+  loadScores();
+  infoGame(0);
 }
 
 //MODAL SCORES
@@ -343,7 +356,6 @@ let closeModalBtn = document.getElementsByClassName("close").item(0);
 
 scoresBtn.addEventListener("click", showModal);
 closeModalBtn.addEventListener("click", closeModal);
-
 
 loadScores();
 function showModal() {
@@ -360,13 +372,17 @@ function loadScores() {
   //Order array
   arrayScores = arrayScores.sort(orderArrayScores);
   numGamesPlayed = arrayScores.length;
-  maxScore = arrayScores[0][2];
+  if (arrayScores.length > 0) {
+    maxScore = arrayScores[0][2];
+  } else {
+    maxScore = 0;
+  }
   //Show all scores
   let arrayOrdenado = [];
   let oneScore = "";
   for (let j = 0; j < arrayScores.length; j++) {
     for (let i = 0; i < arrayScores[j].length; i++) {
-      oneScore += arrayScores[j][i] + " - ";
+      oneScore += arrayScores[j][i] + "  ";
     }
     let listItem = document.createElement("li");
     let listTextItem = document.createTextNode(oneScore);
@@ -412,6 +428,10 @@ window.onclick = function (event) {
 }
 
 infoGame(0);
+/**
+ * Show points and infor of global players
+ * @param {points} num 
+ */
 function infoGame(num) {
   points += num;
   if (points < 0) {
@@ -421,6 +441,13 @@ function infoGame(num) {
   document.getElementsByClassName("info-game")[0].firstElementChild.nextElementSibling.innerHTML = `Numero de partidas jugadas: ${numGamesPlayed} - Maxima puntuacion global: ${maxScore}`;
 }
 
+function showBorder(e) {
+  e.style.border = "2px solid black";
+}
+
+function hideBorder(e) {
+  e.style.border = "none";
+}
 
 //Intro 
-introJs().start();
+/* introJs().start(); */
