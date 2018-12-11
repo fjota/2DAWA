@@ -3,7 +3,6 @@ es\cifpcm\miali\data\ProvinciasDaoImpl.class
 es\cifpcm\miali\model\Provincias.class
 es\cifpcm\miali\common\MasterDataBean.class
 es\cifpcm\miali\data\MunicipiosDao.class
-es\cifpcm\datebase\ConnectionDB.class
 es\cifpcm\miali\data\DaoFactory.class
 es\cifpcm\miali\data\DatabaseConfig.class
 es\cifpcm\miali\buscador\ProductSearchBean.class

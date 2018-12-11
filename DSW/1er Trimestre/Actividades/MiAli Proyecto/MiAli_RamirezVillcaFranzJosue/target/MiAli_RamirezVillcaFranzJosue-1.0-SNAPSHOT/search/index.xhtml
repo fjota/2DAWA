@@ -7,10 +7,14 @@
                 xmlns:p="http://primefaces.org/ui">
 
   <ui:define name="content">
+    <!--Loading effect-->
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+      <p:graphicImage name="images/ajaxloadingbar.gif" />
+    </p:dialog>
 
     <h:form>
       <p:growl id="msgs" showDetail="true" />
-
       <p:panel header="Selecciona una localizacion" style="margin-bottom:10px;">
         <h:panelGrid columns="2" cellpadding="5">
           <p:outputLabel for="provincia" value="Provincias: " />
@@ -26,13 +30,11 @@
             <f:selectItems value="#{productSearchBean.municipios}" var="municipio" itemValue="#{municipio.idMunicipio}" itemLabel="#{municipio.nombre}" />
           </p:selectOneMenu>
         </h:panelGrid>
-
         <p:separator />
-
         <p:commandButton value="Submit" update="msgs" action="#{dropdownView.displayLocation}" icon="pi pi-check" />
       </p:panel>
     </h:form>
-       
+
   </ui:define>
 
 </ui:composition>

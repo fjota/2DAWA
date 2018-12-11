@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
 /**

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=KoHo" rel="stylesheet">
+  <!-- Favicon animato en edge y firefox -->
+  <link rel="shortcut icon" type="image/ico" href="assets/icon/favicon.ico"> 
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs-rtl.min.css">  
+  <title>Card game</title>
+</head>
+
+<body>
+  <!-- Game view -->
+  <div class="game-container" id="game">
+    <div class="info-game">
+      <span>0 puntos</span>
+      <span>Numero de partidas jugadas: 0 - Maxima puntuacion global: 0</span>
+      <span>00:00</span>
+    </div>
+    <div class="grid-container" id="gridContainer">
+    </div>
+    <div class="game-win">
+    </div>
+  </div>
+  <!-- Menu view -->
+  <div id="menu">
+    <div class="title-container">
+      <h1>Menu principal</h1>
+    </div>
+    <div class="menu-container">
+      <div class="main-menu">
+        <div class="difficulty-container">
+          <select id="difficulty" data-intro="Elige la dificultad el juego">
+            <option value="4">Facil</option>
+            <option value="6">Medio</option>
+            <option value="8">Dificil</option>
+          </select>
+        </div>
+        <div class="scores-container" id="scores" data-intro="Mira las puntuaciones globales">
+          Puntuaciones
+        </div>
+        <div class="start-game" id="start" data-intro="Inicia tu juego">
+          Iniciar juego
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for show all scores -->
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <ul id="listScores">        
+        <li>Nombre - Fecha - Puntuacion - Tiempo</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
+  <script src="scripts/main.js"></script>
+  
+</body>
+
+</html>
