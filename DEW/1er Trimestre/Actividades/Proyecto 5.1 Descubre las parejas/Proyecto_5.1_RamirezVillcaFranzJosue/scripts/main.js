@@ -450,4 +450,4 @@ function hideBorder(e) {
 }
 
 //Intro 
-/* introJs().start(); */
+introJs().start();

@@ -16,7 +16,7 @@ import javax.enterprise.context.ApplicationScoped;
  */
 @Named(value = "masterDataBean")
 @ApplicationScoped
-public class MasterDataBean extends Provincias {
+public class MasterDataBean {
 
   private MunicipiosDao municipiosDaoImpl = new MunicipiosDaoImpl();
   private ProvinciasDao provinciasDaoImpl = new ProvinciasDaoImpl();  

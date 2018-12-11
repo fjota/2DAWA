@@ -14,14 +14,14 @@
       <p:panel header="Selecciona una localizacion" style="margin-bottom:10px;">
         <h:panelGrid columns="2" cellpadding="5">
           <p:outputLabel for="provincia" value="Provincias: " />
-          <p:selectOneMenu id="provincia" value="" style="width:150px">
-            <!--<p:ajax listener="#{productSearchBean.onCboProvinciasChange()}" update="municipio" />-->
+          <p:selectOneMenu id="provincia" value="#{productSearchBean.id_Provincia}" style="width:150px">
+            <p:ajax listener="#{productSearchBean.onCboProvinciasChange()}" update="municipio" />
             <f:selectItem itemLabel="Seleccinar provincia" itemValue="" noSelectionOption="true" />
             <f:selectItems value="#{productSearchBean.provincias}" var="provincia" itemValue="#{provincia.idProvincia}" itemLabel="#{provincia.nombre}"/>
           </p:selectOneMenu>
 
           <p:outputLabel for="municipio" value="Municipio: " />
-          <p:selectOneMenu id="municipio" value="" style="width:150px">
+          <p:selectOneMenu id="municipio" value="#{productSearchBean.id_Municipio}" style="width:150px">
             <f:selectItem itemLabel="Seleccione municipio" itemValue="" noSelectionOption="true" />
             <f:selectItems value="#{productSearchBean.municipios}" var="municipio" itemValue="#{municipio.idMunicipio}" itemLabel="#{municipio.nombre}" />
           </p:selectOneMenu>
