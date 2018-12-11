@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!-- saved from url=(0146)https://www3.gobiernodecanarias.org/medusa/evagd/stacruztf/pluginfile.php/216344/mod_resource/content/1/eventos/Actividades_Eventos_Javascript.htm -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <title>Ejercicios: Eventos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="./Ejercicios_ Eventos_files/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./Ejercicios_ Eventos_files/cookieconsent.min.css"><script type="text/javascript" src="./Ejercicios_ Eventos_files/cookieconsent.min.js.descarga"></script><script type="text/javascript" src="./Ejercicios_ Eventos_files/cauce_cookie.js.descarga"></script><script type="text/javascript" src="./Ejercicios_ Eventos_files/piwik-base.js.descarga"></script><script src="./Ejercicios_ Eventos_files/piwik.js.descarga" type="text/javascript"></script><script type="text/javascript" src="./Ejercicios_ Eventos_files/piwik-evagd.js.descarga"></script><style></style></head>
+  <body><div role="dialog" aria-live="polite" aria-label="cookieconsent" aria-describedby="cookieconsent:desc" class="cc-window cc-banner cc-type-info cc-theme-block cc-top cc-color-override-530831885 cc-invisible" style="display: none;" wfd-id="16"><!--googleoff: all--><span id="cookieconsent:desc" class="cc-message">Este portal web utiliza cookies propias y de terceros para recopilar información que ayuda a optimizar su visita. Las cookies no se utilizan para recoger información de carácter personal. Usted puede permitir su uso o rechazarlo, también puede cambiar su configuración siempre que lo desee. Dispone de más información en nuestra  <a aria-label="learn more about cookies" role="button" tabindex="0" class="cc-link" href="http://www.gobiernodecanarias.org/principal/politica-de-cookies/index.html" target="_blank">Política de cookies.</a></span><div class="cc-compliance"><a aria-label="dismiss cookie message" role="button" tabindex="0" class="cc-btn cc-dismiss">Cerrar</a></div><!--googleon: all--></div>
+    <div class="container" wfd-id="0">
+    <h2>Ejercicios: Eventos</h2>
+
+    <h3 class="page-header">Utilizando billetes</h3>
+Escribir una página que muestre las imágenes de los billetes y un número que inicialmente será igual a 0. Cuando el usuario haga click sobre uno de los billetes (imágenes), la página modificará la cantidad
+de acuerdo con el valor de billete representado en la imagen<br>
+    <ul wfd-id="13">
+    <li wfd-id="15"> El pseudocódigo podría ser el siguiente:
+    <pre> 
+		Cuando el usuario haga click sobre un billete:
+		Conseguir el total acumulado de la página (la primera vez deberá ser igual a 0)
+		Añadir el valor del billete al total
+		Mostrar el nuevo total en la página
+    </pre>
+    </li><li wfd-id="14"> Utilicen la siguiente imagen con los billetes de Euros (tendrán que separar cada billete): </li> <img src="./Ejercicios_ Eventos_files/eurof.jpg"> 	
+  
+  </ul>
+
+  <h3 class="page-header">Frases locas</h3>
+  <ul wfd-id="8">
+    <li wfd-id="12">Completa esta web, la cual contiene un text de entrada y un botón:
+    <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;title&gt;&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ 
+ &lt;h1&gt;Frases locas&lt;/h1&gt;
+ 
+ &lt;ul&gt;
+  &lt;li&gt;Nombre de una persona: &lt;input type="text" id="noun"&gt;
+  &lt;li&gt;Adjetivo: &lt;input type="text" id="adjective"&gt;
+  &lt;li&gt;Escribe un objeto &lt;input type="text" id="name"&gt;
+ &lt;/ul&gt;
+ 
+ &lt;button id="lib-button"&gt;Probemos!&lt;/button&gt;
+  
+ &lt;div id="story"&gt;&lt;/div&gt;
+  
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+  </li><li wfd-id="11">Añade una etiqueta "script" al final del código. En esa etiqueta generarás el código JS necesario
+  </li><li wfd-id="10">Añade un event listener al botón que llame a la función <code>makeMadLib</code> cuando se le hace click.
+  </li><li wfd-id="9">En la función <code>makeMadLib</code>, recuperar los valores actuales de los elementos del formulario de entrada, para crear una frase (como "Pamela realmente le gusta pepinos de color rosa.") que escribirás en el div story
+  </li></ul>
+
+  <button onclick="showSolution(1)" class="btn" wfd-id="19">Ver la solución</button>
+  <pre id="solution1" style="display:none;">function libIt() {
+    var storyDiv = document.getElementById("story");
+    var name = document.getElementById("name").value;
+    var adjective = document.getElementById("adjective").value;
+    var noun = document.getElementById("noun").value;
+    storyDiv.innerHTML = name + " esta casada con " + noun + " " + adjective + "... tan raro!";
+  }
+
+  var libButton = document.getElementById('lib-button');
+  libButton.addEventListener('click', libIt);
+  </pre>
+
+  <h3 class="page-header">El gato caminante</h3>
+
+  <ul wfd-id="1">
+  <li wfd-id="7">Completa esta Web que contiene un tab <code>img</code> de un gato caminando, y funciones JavaScript que harán que el gato se mueva por la pantalla.
+
+  <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;title&gt;El gato caminante&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  
+  &lt;button id="start-button"&gt;Start&lt;/button&gt;
+  &lt;button id="speed-button"&gt;Go Faster!&lt;/button&gt;
+  &lt;button id="stop-button"&gt;Stop&lt;/button&gt;
+  &lt;div id="info"&gt;&lt;/div&gt;
+  
+  &lt;img style="position:absolute; left: 0px; top: 80px;" src="http://www.anniemation.com/clip_art/images/cat-walk.gif"&gt;
+
+  &lt;script&gt;
+var movePixels = 10;
+var delayMs = 50;
+var catTimer = null;
+function catWalk() {
+  var img = document.getElementsByTagName('img')[0];
+  var currentLeft = parseInt(img.style.left);
+  img.style.left = (currentLeft + movePixels) + 'px';
+  if (currentLeft &gt; (window.innerWidth-img.width)) {
+    img.style.left = '0px';
+  }
+}
+function startCatWalk() {
+  catTimer = window.setInterval(catWalk, delayMs);
+}
+  &lt;/script&gt;
+
+ &lt;/body&gt;
+&lt;/html&gt;</pre>
+  </li><li wfd-id="6">(No necesitas modificar el código original - añade el código a continuación.)
+  </li><li wfd-id="5">Añade un event listener al botón start, de manera que el gato comience a moverse por la pantalla cuando haces click.
+  </li><li wfd-id="4">Añade un event listener al botón stop, de manera que el gato se detenga cuando haces click.
+  </li><li wfd-id="3">Añade un event listener al botón speed, de manera que el gato se mueve más rápido cuando haces click.
+  <br><br>
+  <button onclick="showSolution(2)" class="btn" wfd-id="18">Ver la solución</button>
+  <br><br>
+  <pre id="solution2" style="display: none; ">// #1
+function onStartClick() {
+    startCatWalk();
+}
+var startButton = document.getElementById('start-button');
+startButton.addEventListener('click', onStartClick);
+
+// #2
+function onStopClick() {
+   window.clearInterval(catTimer);
+}
+var stopButton = document.getElementById('stop-button');
+stopButton.addEventListener('click', onStopClick);
+
+// #3
+function onSpeedClick() {
+    movePixels += 5;
+    var speed = movePixels * (1000/50);
+    document.getElementById('info').innerHTML = 'Current speed: ' + speed + 'px/second';
+}
+var speedButton = document.getElementById('speed-button');
+speedButton.addEventListener('click', onSpeedClick);
+</pre>
+
+ </li><li wfd-id="2"><b>Bonus</b>: Desabilitar los botones start/stop/speed botones de manera lógica en función de las acciones a realizar (por ejemplo, el usuario no debería poder hacer click sobre "stop" si el gato no se está moviendo)
+ <br><br>
+ <button onclick="showSolution(3)" class="btn" wfd-id="17">Ver la solución</button>
+ <br><br>
+ <pre id="solution3" style="display:none;">function onStartClick() {
+    startCatWalk();
+    startButton.setAttribute("disabled", "disabled");
+    stopButton.removeAttribute("disabled");
+    speedButton.removeAttribute("disabled");
+}
+var startButton = document.getElementById('start-button');
+startButton.addEventListener('click', onStartClick);
+
+function onStopClick() {
+   window.clearInterval(catTimer);
+   stopButton.setAttribute("disabled", "disabled");  
+   speedButton.setAttribute("disabled", "disabled");  
+   startButton.removeAttribute("disabled");
+}
+var stopButton = document.getElementById('stop-button');
+stopButton.addEventListener('click', onStopClick);
+stopButton.setAttribute("disabled", "disabled");
+
+function onSpeedClick() {
+    movePixels += 5;
+    var speed = movePixels * (1000/50);
+    document.getElementById('info').innerHTML = 'Current speed: ' + speed + 'px/second';
+}
+var speedButton = document.getElementById('speed-button');
+speedButton.addEventListener('click', onSpeedClick);
+speedButton.setAttribute("disabled", "disabled");
+</pre>
+
+
+ </li></ul></div>
+
+  <br><br><br><br><br>
+
+  <script type="text/javascript">
+function showSolution(num) {
+  if (confirm('¿Estas seguro?')) {
+    document.getElementById('solution' + num).style.display = 'block';
+  }
+}
+  </script>
+  
+  
+</body></html>
