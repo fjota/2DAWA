@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/templates/publicTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"                
+                xmlns:p="http://primefaces.org/ui">
+
+  <ui:define name="content">
+    <h:form id="form">
+      <p:messages id="msgs" />
+      <p:repeat value="#{productSearchBean.productOffer}" var="product">
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">         
+          <p:graphicImage value="/resources/images/productos/#{product.productPicture}" class="product-item" />        
+          <p:outputPanel>
+            <h:panelGrid columns="2" cellpadding="5" class="description-item">
+              <h:outputText value="Producto: " />
+              <h:outputText value="#{product.productName}" style="font-weight: bold"/>
+              <h:outputText value="Precio:" />
+              <h:outputText value="#{product.productPrice}" style="font-weight: bold"/>
+              <h:outputText value="Numero de productos disponibles: " />
+              <h:outputText value="#{product.productStock}" style="font-weight: bold"/>
+
+              <h:outputText value="Cantidad productos: " />
+              <p:inputText id="numProducts" value="#{productSearchBean.productTotal}" label="Cantidad productos" required="true">
+                <f:validateLength minimum="1" />
+                <p:ajax update="msgnumProduct" event="keyup" />
+              </p:inputText>
+              <p:message for="numProducts" id="msgnumProduct" display="icon" />
+              <p:commandButton value="Count" action="#{productSearchBean.addToCart()}" update="output" />
+
+
+            </h:panelGrid>
+          </p:outputPanel>
+        </h:panelGrid>
+        <p:separator />
+      </p:repeat>
+    </h:form>
+  </ui:define>
+
+</ui:composition>

@@ -21,17 +21,17 @@
           <p:selectOneMenu id="provincia" value="#{productSearchBean.id_Provincia}" style="width:150px">
             <p:ajax listener="#{productSearchBean.onCboProvinciasChange()}" update="municipio" />
             <f:selectItem itemLabel="Seleccinar provincia" itemValue="" noSelectionOption="true" />
-            <f:selectItems value="#{productSearchBean.provincias}" var="provincia" itemValue="#{provincia.idProvincia}" itemLabel="#{provincia.nombre}"/>
+            <f:selectItems value="#{productSearchBean.provincias}" var="provincia" itemValue="#{provincia.idProvincia}" itemLabel="#{provincia.nombre}, #{provincia.idProvincia}"/>
           </p:selectOneMenu>
 
           <p:outputLabel for="municipio" value="Municipio: " />
           <p:selectOneMenu id="municipio" value="#{productSearchBean.id_Municipio}" style="width:150px">
             <f:selectItem itemLabel="Seleccione municipio" itemValue="" noSelectionOption="true" />
-            <f:selectItems value="#{productSearchBean.municipios}" var="municipio" itemValue="#{municipio.idMunicipio}" itemLabel="#{municipio.nombre}" />
+            <f:selectItems value="#{productSearchBean.municipios}" var="municipio" itemValue="#{municipio.codMunicipio}" itemLabel="#{municipio.nombre}, #{municipio.codMunicipio}" />
           </p:selectOneMenu>
         </h:panelGrid>
-        <p:separator />
-        <p:commandButton value="Submit" update="msgs" action="#{dropdownView.displayLocation}" icon="pi pi-check" />
+        <p:separator />        
+        <p:commandButton value="Buscar" action="#{productSearchBean.search()}" icon="pi pi-check" />
       </p:panel>
     </h:form>
 

@@ -23,12 +23,13 @@
           <div class="logos-container">
             <h:graphicImage value="/resources/images/Logo2.png" styleClass="logos-header" />
             <h:graphicImage class="cart" value="/resources/images/empty-cart-dark_small.png" />
-            <h:outputText value="0 euros" class="price"/>
+            <h:outputText id="output" value="#{productSearchBean.productTotal}" class="price"/>
           </div>
-          <h:form> 
-            <p:commandButton value="Registrate" action="#{buttonView.buttonAction}" style="margin-right:20px;" ajax="false" />
-            <p:commandButton value="Identificate" action="#{buttonView.buttonAction}" style="margin-right:20px;" ajax="false" />
-          </h:form>
+          <div>
+            <p:link outcome="/search/index" value="Buscar"/>      
+           <p:link outcome="/search/index" value="Buscar"/>      
+          </div>
+         
         </div>
       </ui:insert>
     </div>

@@ -1,6 +1,7 @@
 package es.cifpcm.miali.data;
 
 import es.cifpcm.miali.model.product.ProductOffer;
+import java.util.List;
 
 /**
  *
@@ -8,6 +9,6 @@ import es.cifpcm.miali.model.product.ProductOffer;
  */
 public interface ProductOfferDao {
   
-  public ProductOffer selectAll();
+  public List<ProductOffer> selectAll();
   
 }

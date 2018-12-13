@@ -18,7 +18,7 @@ tbody {
   display: flex;
 }
 
-tr {
+.panel-index :last-child {
   display: flex;
   flex-direction: column;
 }
@@ -35,4 +35,13 @@ tr {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+}
+
+.product-item {
+  width: 200px;
+  height: 200px;
+}
+
+.description-item tbody {
+  flex-direction: column;
 }
