@@ -45,3 +45,12 @@ tbody {
 .description-item tbody {
   flex-direction: column;
 }
+
+.buttonHead {
+  border: 1px solid #a8a8a8;
+  color: #4f4f4f !important;
+  background-color: rgb(196, 196, 196);
+  padding: .8em;
+  margin: .8em;
+
+}

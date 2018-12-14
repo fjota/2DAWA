@@ -23,13 +23,12 @@
           <div class="logos-container">
             <h:graphicImage value="/resources/images/Logo2.png" styleClass="logos-header" />
             <h:graphicImage class="cart" value="/resources/images/empty-cart-dark_small.png" />
-            <h:outputText id="output" value="#{productSearchBean.productTotal}" class="price"/>
+            <h:outputText value="0" />
           </div>
           <div>
-            <p:link outcome="/search/index" value="Buscar"/>      
-           <p:link outcome="/search/index" value="Buscar"/>      
-          </div>
-         
+            <p:link outcome="/login" value="Ingresar" class="buttonHead"/>      
+            <p:link outcome="/customer/register" value="Registrar" class="buttonHead" />      
+          </div>         
         </div>
       </ui:insert>
     </div>

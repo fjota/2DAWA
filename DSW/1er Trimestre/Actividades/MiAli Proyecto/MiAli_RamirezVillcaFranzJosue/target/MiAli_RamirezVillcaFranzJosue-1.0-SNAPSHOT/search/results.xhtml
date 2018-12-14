@@ -7,7 +7,16 @@
                 xmlns:p="http://primefaces.org/ui">
 
   <ui:define name="content">
-    <h:form id="form">
+    <h:form>
+      <h:panelGrid columns="3">
+        <h:outputText value="Keyup: " />
+        <p:inputText id="counter" value="#{productSearchBean.productTotal}">
+          <p:ajax event="keyup" update="out" listener="#{productSearchBean.addToCart()}" />
+        </p:inputText>
+        <h:outputText id="out" value="#{productSearchBean.productTotal}" />
+      </h:panelGrid>
+    </h:form>
+    <h:form id="listaProductos">
       <p:messages id="msgs" />
       <p:repeat value="#{productSearchBean.productOffer}" var="product">
         <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">         
@@ -20,16 +29,11 @@
               <h:outputText value="#{product.productPrice}" style="font-weight: bold"/>
               <h:outputText value="Numero de productos disponibles: " />
               <h:outputText value="#{product.productStock}" style="font-weight: bold"/>
-
               <h:outputText value="Cantidad productos: " />
-              <p:inputText id="numProducts" value="#{productSearchBean.productTotal}" label="Cantidad productos" required="true">
-                <f:validateLength minimum="1" />
-                <p:ajax update="msgnumProduct" event="keyup" />
+              <p:inputText id="josue" value="#{productSearchBean.productTotal}">
+                <p:ajax event="keyup" update="hola" listener="#{productSearchBean.addToCart()}" />
               </p:inputText>
-              <p:message for="numProducts" id="msgnumProduct" display="icon" />
-              <p:commandButton value="Count" action="#{productSearchBean.addToCart()}" update="output" />
-
-
+              <h:outputText id="hola" value="#{productSearchBean.productTotal}" />
             </h:panelGrid>
           </p:outputPanel>
         </h:panelGrid>

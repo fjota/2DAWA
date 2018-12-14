@@ -4,12 +4,12 @@ import es.cifpcm.miali.common.MasterDataBean;
 import es.cifpcm.miali.model.Municipios;
 import es.cifpcm.miali.model.Provincias;
 import es.cifpcm.miali.model.product.ProductOffer;
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 /**
@@ -18,11 +18,10 @@ import javax.inject.Inject;
  */
 @Named(value = "productSearchBean")
 @RequestScoped
-public class ProductSearchBean {
+public class ProductSearchBean implements Serializable {
 
-  private int id_Provincia;
-  //Cod_municipio
-  private int id_Municipio;
+  private int id_Provincia;  
+  private int id_Municipio;  
 
   @Inject
   MasterDataBean masterDataBean;
@@ -81,7 +80,7 @@ public class ProductSearchBean {
   }
   
   public void addToCart() {
-    this.productTotal ++;
+    this.productTotal++;
   }
 
   public int getId_Provincia() {
