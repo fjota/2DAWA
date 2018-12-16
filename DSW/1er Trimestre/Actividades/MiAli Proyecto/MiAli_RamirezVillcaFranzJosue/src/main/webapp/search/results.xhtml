@@ -6,16 +6,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"                
                 xmlns:p="http://primefaces.org/ui">
 
-  <ui:define name="content">
-    <h:form>
-      <h:panelGrid columns="3">
-        <h:outputText value="Keyup: " />
-        <p:inputText id="counter" value="#{productSearchBean.productTotal}">
-          <p:ajax event="keyup" update="out" listener="#{productSearchBean.addToCart()}" />
-        </p:inputText>
-        <h:outputText id="out" value="#{productSearchBean.productTotal}" />
-      </h:panelGrid>
-    </h:form>
+  <ui:define name="content">    
     <h:form id="listaProductos">
       <p:messages id="msgs" />
       <p:repeat value="#{productSearchBean.productOffer}" var="product">
@@ -28,12 +19,7 @@
               <h:outputText value="Precio:" />
               <h:outputText value="#{product.productPrice}" style="font-weight: bold"/>
               <h:outputText value="Numero de productos disponibles: " />
-              <h:outputText value="#{product.productStock}" style="font-weight: bold"/>
-              <h:outputText value="Cantidad productos: " />
-              <p:inputText id="josue" value="#{productSearchBean.productTotal}">
-                <p:ajax event="keyup" update="hola" listener="#{productSearchBean.addToCart()}" />
-              </p:inputText>
-              <h:outputText id="hola" value="#{productSearchBean.productTotal}" />
+              <h:outputText value="#{product.productStock}" style="font-weight: bold"/>             
             </h:panelGrid>
           </p:outputPanel>
         </h:panelGrid>
