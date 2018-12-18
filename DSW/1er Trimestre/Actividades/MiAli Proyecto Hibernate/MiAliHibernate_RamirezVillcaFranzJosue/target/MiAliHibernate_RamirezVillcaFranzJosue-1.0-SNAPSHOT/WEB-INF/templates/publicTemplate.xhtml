@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:p="http://primefaces.org/ui">
+
+  <h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <h:outputStylesheet name="/css/default.css"/>
+    <h:outputStylesheet name="/css/cssLayout.css"/>
+    <h:outputStylesheet name="/css/main.css"/>
+    <title>Facelets Template</title>
+  </h:head>
+
+  <h:body>
+
+
+    <div id="top">
+      <ui:insert name="top">
+        <div class="header-container">
+          <div class="logos-container">
+            <h:graphicImage value="/resources/images/Logo2.png" styleClass="logos-header" />
+            <h:graphicImage class="cart" value="/resources/images/empty-cart-dark_small.png" />
+            <h:outputText value="0" />
+          </div>
+          <div>
+            <p:link outcome="/login" value="Ingresar" class="buttonHead"/>      
+            <p:link outcome="/customer/register" value="Registrar" class="buttonHead" />      
+          </div>         
+        </div>
+      </ui:insert>
+    </div>
+
+    <div id="content" class="center_content">
+      <ui:insert name="content"></ui:insert>
+    </div>
+
+    <div id="bottom">
+      <ui:insert name="bottom">
+        <p>By Josue Ramirez</p>                
+      </ui:insert>
+    </div>
+
+
+  </h:body>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/templates/publicTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"                
+                xmlns:p="http://primefaces.org/ui">
+
+  <ui:define name="content">
+    <!--Loading effect-->
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+      <p:graphicImage name="images/ajaxloadingbar.gif" />
+    </p:dialog>
+
+    <h:form>
+      <p:growl id="msgs" showDetail="true" />
+      <p:panel header="Selecciona una localizacion" style="margin-bottom:10px;">
+        <h:panelGrid columns="2" cellpadding="5">
+          <p:outputLabel for="provincia" value="Provincias: " />
+          <p:selectOneMenu id="provincia" value="#{productSearchBean.id_Provincia}" style="width:150px">
+            <p:ajax listener="#{productSearchBean.onCboProvinciasChange()}" update="municipio" />
+            <f:selectItem itemLabel="Seleccinar provincia" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{productSearchBean.provincias}" var="provincia" itemValue="#{provincia.idProvincia}" itemLabel="#{provincia.nombre}, #{provincia.idProvincia}"/>
+          </p:selectOneMenu>
+          <p:outputLabel for="municipio" value="Municipio: " />
+          <p:selectOneMenu id="municipio" value="#{productSearchBean.id_Municipio}" style="width:150px">
+            <f:selectItem itemLabel="Seleccione municipio" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{productSearchBean.municipios}" var="municipio" itemValue="#{municipio.idMunicipio}" itemLabel="#{municipio.nombre}, #{municipio.idMunicipio}" />
+          </p:selectOneMenu>
+        </h:panelGrid>
+        <p:separator />        
+        <p:commandButton value="Buscar" action="#{productSearchBean.search()}" icon="pi pi-check" />
+      </p:panel>
+    </h:form>
+
+  </ui:define>
+
+</ui:composition>

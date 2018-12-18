@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{bundle.EditProductofferTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="#{bundle.EditProductofferLabel_productId}" for="productId" />
+          <h:inputText id="productId" value="#{productofferController.selected.productId}" title="#{bundle.EditProductofferTitle_productId}" required="true" requiredMessage="#{bundle.EditProductofferRequiredMessage_productId}"/>
+          <h:outputLabel value="#{bundle.EditProductofferLabel_productName}" for="productName" />
+          <h:inputText id="productName" value="#{productofferController.selected.productName}" title="#{bundle.EditProductofferTitle_productName}" required="true" requiredMessage="#{bundle.EditProductofferRequiredMessage_productName}"/>
+          <h:outputLabel value="#{bundle.EditProductofferLabel_productPrice}" for="productPrice" />
+          <h:inputText id="productPrice" value="#{productofferController.selected.productPrice}" title="#{bundle.EditProductofferTitle_productPrice}" />
+          <h:outputLabel value="#{bundle.EditProductofferLabel_productPicture}" for="productPicture" />
+          <h:inputText id="productPicture" value="#{productofferController.selected.productPicture}" title="#{bundle.EditProductofferTitle_productPicture}" />
+          <h:outputLabel value="#{bundle.EditProductofferLabel_idMunicipio}" for="idMunicipio" />
+          <h:inputText id="idMunicipio" value="#{productofferController.selected.idMunicipio}" title="#{bundle.EditProductofferTitle_idMunicipio}" required="true" requiredMessage="#{bundle.EditProductofferRequiredMessage_idMunicipio}"/>
+          <h:outputLabel value="#{bundle.EditProductofferLabel_productStock}" for="productStock" />
+          <h:inputText id="productStock" value="#{productofferController.selected.productStock}" title="#{bundle.EditProductofferTitle_productStock}" required="true" requiredMessage="#{bundle.EditProductofferRequiredMessage_productStock}"/>
+        </h:panelGrid>
+        <h:commandLink action="#{productofferController.update}" value="#{bundle.EditProductofferSaveLink}"/>
+        <br />
+        <br />
+        <h:link outcome="View" value="#{bundle.EditProductofferViewLink}"/>
+        <br />
+        <h:commandLink action="#{productofferController.prepareList}" value="#{bundle.EditProductofferShowAllLink}" immediate="true"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{bundle.EditProductofferIndexLink}" />
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

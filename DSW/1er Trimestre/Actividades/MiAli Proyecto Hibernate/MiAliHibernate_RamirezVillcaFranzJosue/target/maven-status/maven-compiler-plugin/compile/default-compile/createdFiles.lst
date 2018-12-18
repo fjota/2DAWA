@@ -1,0 +1,16 @@
+es\cifpcm\miali\model\Municipios.class
+es\cifpcm\miali\data\ProvinciasDaoImpl.class
+es\cifpcm\miali\model\Provincias.class
+es\cifpcm\miali\common\MasterDataBean.class
+es\cifpcm\miali\data\MunicipiosDao.class
+es\cifpcm\miali\data\DaoFactory.class
+es\cifpcm\miali\data\DatabaseConfig.class
+es\cifpcm\miali\buscador\ProductSearchBean.class
+es\cifpcm\miali\data\ConnectionProvider.class
+es\cifpcm\miali\data\ProductOfferDaoImpl.class
+es\cifpcm\miali\data\ProvinciasDao.class
+es\cifpcm\miali\model\costumer\Customer.class
+es\cifpcm\miali\data\ProductOfferDao.class
+es\cifpcm\miali\data\MunicipiosDaoImpl.class
+es\cifpcm\miali\model\product\ProductOffer.class
+es\cifpcm\miali\common\ProductCartBean.class
