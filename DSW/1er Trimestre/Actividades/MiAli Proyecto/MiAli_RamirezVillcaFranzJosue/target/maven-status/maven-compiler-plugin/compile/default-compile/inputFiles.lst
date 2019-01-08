@@ -1,6 +1,7 @@
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\ProvinciasDaoImpl.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\model\costumer\Customer.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\MunicipiosDaoImpl.java
+C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\UsersDaoImpl.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\ProductOfferDaoImpl.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\model\Municipios.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\model\Provincias.java
@@ -8,9 +9,12 @@ C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\model\product\ProductOffer.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\buscador\ProductSearchBean.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\DaoFactory.java
+C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\UsersDao.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\DatabaseConfig.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\ProvinciasDao.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\ProductOfferDao.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\common\ProductCartBean.java
+C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\model\Users.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\common\MasterDataBean.java
+C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\common\UsersAuth.java
 C:\Users\Bomber\Desktop\2DAWA\DSW\1er Trimestre\Actividades\MiAli Proyecto\MiAli_RamirezVillcaFranzJosue\src\main\java\es\cifpcm\miali\data\ConnectionProvider.java
