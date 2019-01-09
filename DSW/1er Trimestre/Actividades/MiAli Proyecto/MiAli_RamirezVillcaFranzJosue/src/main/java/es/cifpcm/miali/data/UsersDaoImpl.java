@@ -16,11 +16,11 @@ import org.slf4j.LoggerFactory;
  * @author Josué Ramírez
  */
 public class UsersDaoImpl implements UsersDao {
-  
+
   private final org.slf4j.Logger logger = LoggerFactory.getLogger(UsersDaoImpl.class);
 
-  private DaoFactory df;   
-  
+  private DaoFactory df;
+
   public UsersDaoImpl() {
     df = DaoFactory.getInstance();
   }
@@ -35,7 +35,7 @@ public class UsersDaoImpl implements UsersDao {
       preparedStatement = conn.prepareStatement(sql);
       preparedStatement.setString(1, user.getUser_name());
       preparedStatement.setString(2, user.getPassword());
-      preparedStatement.executeUpdate();     
+      preparedStatement.executeUpdate();
     } catch (SQLException ex) {
       logger.error(UsersDaoImpl.class.getName() + " " + ex.getMessage());
     } finally {
@@ -51,35 +51,31 @@ public class UsersDaoImpl implements UsersDao {
   }
 
   @Override
-  public String selectUser(String user_name) {        
+  public String selectUser(String user_name, String password) {
     PreparedStatement preparedStatement = null;
-    Connection conn = null; 
+    Connection conn = null;
     try {
       conn = df.getConnection();
-      String sql = "SELECT user_name FROM users WHERE user_name = ?";
+      String sql = "SELECT user_name FROM users WHERE user_name = ? and password = ?";
       preparedStatement = conn.prepareStatement(sql);
       preparedStatement.setString(1, user_name);
+      preparedStatement.setString(2, password);
       ResultSet rs = preparedStatement.executeQuery();
-      while (rs.next()) {
-        if (rs.getString(1).equals(user_name)) {
-          return null;
-        }
+      if (rs.next()) {
+        return rs.getString(1);
       }
     } catch (SQLException ex) {
-      logger.error(UsersDaoImpl.class.getName() + " " + ex.getMessage()); 
+      logger.error(UsersDaoImpl.class.getName() + " " + ex.getMessage());
     } finally {
       try {
         if (!conn.isClosed()) {
           conn.close();
         }
       } catch (SQLException ex) {
-        logger.error(UsersDaoImpl.class.getName() + " " + ex.getMessage()); 
-      }      
+        logger.error(UsersDaoImpl.class.getName() + " " + ex.getMessage());
+      }
     }
-  
-    return user_name;
+    return null;
   }
-
- 
 
 }

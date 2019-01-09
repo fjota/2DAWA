@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
   <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,34 +17,41 @@
 
   <h:body>
 
-
-    <div id="top">
-      <ui:insert name="top">
-        <div class="header-container">
-          <div class="logos-container">
-            <h:graphicImage value="/resources/images/Logo2.png" styleClass="logos-header" />
-            <h:graphicImage class="cart" value="/resources/images/empty-cart-dark_small.png" />
-            <h:outputText value="0" />
+      <div id="top">
+        <ui:insert name="top">
+          <div class="header-container">
+            <div class="logos-container">
+              <h:graphicImage value="/resources/images/Logo2.png" styleClass="logos-header" />
+              <h:graphicImage class="cart" value="/resources/images/empty-cart-dark_small.png" />
+              <p:outputPanel id="cantidadCarritoJefe" autoUpdate="true" rendered="true">
+                <p:outputLabel id="cantidadCarrito" value="#{productCartBean.number}" rendered="true"
+                               ></p:outputLabel>
+              </p:outputPanel>
+              
+            </div>
+            <div>
+              <c:if test="${usersAuth.user_name ne null}">
+                <p>Bienvenido #{usersAuth.user_name}</p>
+              </c:if>
+              <c:if test="${usersAuth.user_name eq null}">
+                <p:link outcome="/login" value="Ingresar" class="buttonHead"/>      
+                <p:link outcome="/customer/register" value="Registrar" class="buttonHead" />                    
+              </c:if>
+            </div>         
           </div>
-          <div>
-            <p:link outcome="/login" value="Ingresar" class="buttonHead"/>      
-            <p:link outcome="/customer/register" value="Registrar" class="buttonHead" />      
-          </div>         
-        </div>
-      </ui:insert>
-    </div>
+        </ui:insert>
+      </div>
 
-    <div id="content" class="center_content">
-      <ui:insert name="content"></ui:insert>
-    </div>
+      <div id="content" class="center_content">
+        <ui:insert name="content"></ui:insert>
+      </div>
 
-    <div id="bottom">
-      <ui:insert name="bottom">
-        <p>By Josue Ramirez</p>                
-      </ui:insert>
-    </div>
-
-
+      <div id="bottom">
+        <ui:insert name="bottom">
+          <p>By Josue Ramirez</p>                
+        </ui:insert>
+      </div>
+   
   </h:body>
 
 </html>

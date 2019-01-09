@@ -10,6 +10,6 @@ import java.util.List;
 public interface UsersDao {
   
   public Users insertUser(Users user);  
-  public String selectUser(String user_name);
+  public String selectUser(String user_name, String password);
   
 }

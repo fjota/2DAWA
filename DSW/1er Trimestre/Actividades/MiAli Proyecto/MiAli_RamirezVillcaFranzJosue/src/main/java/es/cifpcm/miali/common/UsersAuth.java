@@ -13,26 +13,26 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "usersAuth")
 @RequestScoped
 public class UsersAuth extends Users {
-    
+
   UsersDao usersDaoImpl = new UsersDaoImpl();
-  
+
   /**
    * Creates a new instance of UsersAuth
    */
-  public UsersAuth() {        
+  public UsersAuth() {
   }
-  
-  public String registerUser(){
-    usersDaoImpl.insertUser(new Users(this.getUser_id(), this.getUser_name(), this.getPassword()));
-    return "/newCostumer";
+
+  public String registerUser() {
+    usersDaoImpl.insertUser(this);
+    return "/index";
   }
-    
-  public String loginUser(){
-    if (usersDaoImpl.selectUser(this.getUser_name()) == null) {
+
+  public String loginUser() {
+    if (usersDaoImpl.selectUser(this.getUser_name(), this.getPassword()) != null) {
       return "/index";
     } else {
-      return "/newCostumer";      
+      return "/login";
     }
   }
-  
+
 }
