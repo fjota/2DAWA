@@ -31,6 +31,10 @@
             </div>
             <div>
               <c:if test="${usersAuth.user_name ne null}">
+                <p:link value="Añadir Producto"
+                        outcome="/addProductOffer" 
+                                 style="margin-right:20px;" 
+                                 styleClass="ui-priority-primary" />
                 <p>Bienvenido #{usersAuth.user_name}</p>
               </c:if>
               <c:if test="${usersAuth.user_name eq null}">

@@ -10,6 +10,7 @@ es\cifpcm\miali\data\DatabaseConfig.class
 es\cifpcm\miali\buscador\ProductSearchBean.class
 es\cifpcm\miali\common\UsersAuth.class
 es\cifpcm\miali\data\ConnectionProvider.class
+es\cifpcm\miali\common\AddProductOffer.class
 es\cifpcm\miali\data\ProductOfferDaoImpl.class
 es\cifpcm\miali\data\ProvinciasDao.class
 es\cifpcm\miali\model\costumer\Customer.class

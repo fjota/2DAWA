@@ -3,6 +3,7 @@ package es.cifpcm.miali.common;
 import es.cifpcm.miali.data.UsersDao;
 import es.cifpcm.miali.data.UsersDaoImpl;
 import es.cifpcm.miali.model.Users;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -11,7 +12,7 @@ import javax.enterprise.context.RequestScoped;
  * @author Josué Ramírez
  */
 @Named(value = "usersAuth")
-@RequestScoped
+@ApplicationScoped
 public class UsersAuth extends Users {
 
   UsersDao usersDaoImpl = new UsersDaoImpl();

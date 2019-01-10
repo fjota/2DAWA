@@ -1,0 +1,30 @@
+LINKS
+
+SUDO		https://es.wikipedia.org/wiki/Sudo
+Editor VI	https://www.profesionalreview.com/2017/04/01/vi-linux/
+Modo gráfico	https://www.javierrguez.com/entrar-modo-grafico-ubuntu-server/
+Configuración de red: 	https://principiantedelinux.wordpress.com/2016/06/02/configurar-red-desde-terminal-en-ubuntu-16-04/
+
+SERVIDOR
+	
+BIND9		https://www.webebre.net/instalacion-y-configuracion-de-un-servidor-dns/
+		http://eltallerdelbit.com/servidor-dns-bind
+		https://www.redeszone.net/gnu-linux/configurar-un-servidor-dns-bind-en-linux-ubuntu/
+		https://blog.carreralinux.com.ar/2016/04/configurar-servidor-dns/
+		http://www.ite.educacion.es/formacion/materiales/85/cd/linux/m2/servidor_dns_bind9.html
+		
+		SECUNDARIO / ESCLAVO
+		http://www.ite.educacion.es/formacion/materiales/85/cd/linux/m2/servidor_dns_bind9.html
+		http://sufriendoenredes.blogspot.com/2015/10/servidor-dns-secundario-ubuntu-1404.html
+		http://www.formandome.es/linux/crear-un-dominio-secundario-con-bind9-y-ubuntu-14-04/
+		https://aula128.wordpress.com/2014/11/16/dns-servidor-secundario-con-ubuntuserver/
+
+		NSLOOKUP, host dig
+		todos:		http://fpg.66ghz.com/DebianRed/dig.html
+		
+		nslookup:	https://cesarsored.wordpress.com/2012/06/19/como-utilizar-el-comando-nslookup-para-probar-y-administrar-los-servidores-dns/
+				https://www.linux-party.com/29-internet/9890-8-comandos-de-nslookup-de-linux-para-resolver-problemas-de-dns-servidor-de-nombres-de-dominio
+		
+		host:		https://www.linux-party.com/29-internet/9889-ejemplos-de-comandos-host-utiles-para-consultar-busquedas-de-dns
+		
+		dig:		http://rm-rf.es/como-usar-el-comando-dig-ejemplos/
