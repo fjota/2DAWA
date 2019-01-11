@@ -8,8 +8,9 @@
 
   <ui:define name="content">         
     <p:messages id="msgs" />
-    <h:form>
-      <p:repeat value="#{productSearchBean.productOffer}" var="product">
+
+    <p:repeat value="#{productSearchBean.productOffer}" var="product">
+      <h:form>
         <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">         
           <p:graphicImage value="/resources/images/productos/#{product.productPicture}" class="product-item" />        
           <p:outputPanel>
@@ -20,20 +21,14 @@
               <h:outputText value="#{product.productPrice}" style="font-weight: bold"/>
               <h:outputText value="Numero de productos disponibles: " />
               <h:outputText value="#{product.productStock}" style="font-weight: bold"/>  
-              <p:commandButton value="Añadir" ajax="true" actionListener="#{productCartBean.increment()}"
-                               action="#{productCartBean.increment()}">                
-                <p:ajax event="click" 
-                        process="cantidadCarrito"
-                        listener="#{productCartBean.increment()}" update="cantidadCarrito" 
-                        async="true"
-                        global="true" ></p:ajax>
-              </p:commandButton>
+              <p:commandButton immediate="true" value="Añadir" action="${product.}" />   
             </h:panelGrid>
           </p:outputPanel>
         </h:panelGrid>
         <p:separator />
-      </p:repeat>    
-    </h:form>
+      </h:form>
+    </p:repeat>    
+
   </ui:define>
 
 </ui:composition>

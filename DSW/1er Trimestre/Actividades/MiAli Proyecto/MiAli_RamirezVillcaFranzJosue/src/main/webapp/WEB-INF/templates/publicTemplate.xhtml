@@ -23,11 +23,7 @@
             <div class="logos-container">
               <h:graphicImage value="/resources/images/Logo2.png" styleClass="logos-header" />
               <h:graphicImage class="cart" value="/resources/images/empty-cart-dark_small.png" />
-              <p:outputPanel id="cantidadCarritoJefe" autoUpdate="true" rendered="true">
-                <p:outputLabel id="cantidadCarrito" value="#{productCartBean.number}" rendered="true"
-                               ></p:outputLabel>
-              </p:outputPanel>
-              
+              <p:outputLabel id="cantidadCarrito" value="#{productSearchBean.number}" />                         
             </div>
             <div>
               <c:if test="${usersAuth.user_name ne null}">

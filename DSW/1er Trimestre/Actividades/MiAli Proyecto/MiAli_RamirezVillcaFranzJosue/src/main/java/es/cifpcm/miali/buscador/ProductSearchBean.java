@@ -41,6 +41,21 @@ public class ProductSearchBean implements Serializable {
    */
   public ProductSearchBean() {
   }
+  //hola
+  
+  private int number;
+
+  public int getNumber() {    
+    return number;
+  }
+
+  public void setNumber(int number) {    
+    this.number = number;
+  }  
+
+  public void increment() {
+    this.number++;
+  } //hola
 
   public List<Provincias> getProvincias() {
     return masterDataBean.getProvincias();
