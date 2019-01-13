@@ -5,46 +5,6 @@ let containerStars = document.querySelector("#stars")
 let wasClicked = false //control if start was clicked
 
 loadImage(imageId)
-loadEventListeners()
-
-function goldStars(e) {
-  if (e.target.id != "stars") {    
-    toDefaultStar()  
-    wasClicked = false
-    e.target.src = "icons/gold.png"
-    let element = e.target.previousElementSibling
-    while (element) {
-      element.src = "icons/gold.png"
-      element = element.previousElementSibling
-    }
-  }
-}
-
-function defaultStars(e) {
-  if (e.target.id != "stars") {
-    if (!wasClicked) {
-      e.target.src = "icons/gray.png"
-      let element = e.target.previousElementSibling
-      while (element) {
-        element.src = "icons/gray.png"
-        element = element.previousElementSibling
-      }
-    }
-  }
-}
-
-function likePhoto(e) {
-  if (e.target.id != "stars") {
-    wasClicked = true
-    sendVote(e.target.alt)
-  }
-}
-
-function loadEventListeners() {
-  containerStars.addEventListener("mouseover", goldStars)
-  containerStars.addEventListener("mouseout", defaultStars)
-  containerStars.addEventListener("click", likePhoto)
-}
 
 function loadImage(imageId) {
   let connectionRequest = new XMLHttpRequest()
@@ -52,6 +12,8 @@ function loadImage(imageId) {
     if (connectionRequest.readyState === 4) {
       let responseData = connectionRequest.responseText
       mainImage.src = responseData
+    } else {
+      dataContainer.innerHTML = "Se ha producido un error inesperado"
     }
   }
   connectionRequest.open("GET", "fotos.php?foto=" + imageId)
@@ -65,6 +27,8 @@ function sendVote(points) {
       let responseData = connectionRequest.responseText
       let arrayVotes = responseData.split(',');
       dataContainer.innerHTML = `Tenemos una media de votos de: ${averageGrade(arrayVotes)}, de un total de: ${arrayVotes.length - 1} votos`;
+    } else {
+      dataContainer.innerHTML = "Se ha producido un error inesperado"
     }
   }
   connectionRequest.open("GET", "votar.php?foto=" + imageId + "&voto=" + points)
@@ -86,6 +50,39 @@ function toDefaultStar() {
     star.src = "icons/gray.png"
   }
 }
+
+containerStars.addEventListener("mouseover", (e) => {
+  if (e.target.id != "stars") {        
+    wasClicked ? toDefaultStar() : "";
+    wasClicked = true
+    e.target.src = "icons/gold.png"
+    let element = e.target.previousElementSibling
+    while (element) {
+      element.src = "icons/gold.png"
+      element = element.previousElementSibling
+    }
+  }
+})
+
+containerStars.addEventListener("mouseout", (e) => {
+  if (e.target.id != "stars") {
+    if (!wasClicked) {
+      e.target.src = "icons/gray.png"
+      let element = e.target.previousElementSibling
+      while (element) {
+        element.src = "icons/gray.png"
+        element = element.previousElementSibling
+      }
+    }
+  }
+})
+
+containerStars.addEventListener("click", (e) => {
+  if (e.target.id != "stars") {
+    wasClicked = true
+    sendVote(e.target.alt)
+  }
+})
 
 document.getElementById("before").addEventListener("click", () => {
   imageId--;
