@@ -2,21 +2,24 @@ let mainImage = document.getElementById("main_image")
 let dataContainer = document.getElementById("data")
 let imageId = 0
 let containerStars = document.querySelector("#stars")
-let wasClicked = false //control if start was clicked
+let wasClicked = false //control if star was clicked
 
 loadImage(imageId)
 
 function loadImage(imageId) {
-  let connectionRequest = new XMLHttpRequest()
+  let connectionRequest = new XMLHttpRequest()   
   connectionRequest.onreadystatechange = () => {
     if (connectionRequest.readyState === 4) {
-      let responseData = connectionRequest.responseText
-      mainImage.src = responseData
-    } else {
-      dataContainer.innerHTML = "Se ha producido un error inesperado"
-    }
+      if (connectionRequest.status === 200) {
+        let responseData = connectionRequest.responseText
+        mainImage.src = responseData        
+      }
+      else {
+        dataContainer.innerHTML = "Se ha producido un error inesperado"
+      }
+    } 
   }
-  connectionRequest.open("GET", "fotos.php?foto=" + imageId)
+  connectionRequest.open("GET", "fotos.php?foto=" + imageId, true)
   connectionRequest.send()
 }
 
@@ -24,14 +27,17 @@ function sendVote(points) {
   let connectionRequest = new XMLHttpRequest()
   connectionRequest.onreadystatechange = () => {
     if (connectionRequest.readyState === 4) {
-      let responseData = connectionRequest.responseText
-      let arrayVotes = responseData.split(',');
-      dataContainer.innerHTML = `Tenemos una media de votos de: ${averageGrade(arrayVotes)}, de un total de: ${arrayVotes.length - 1} votos`;
-    } else {
-      dataContainer.innerHTML = "Se ha producido un error inesperado"
-    }
+      if (connectionRequest.status === 200) {
+        let responseData = connectionRequest.responseText
+        let arrayVotes = responseData.split(',');
+        dataContainer.innerHTML = `En la foto número: ${imageId}, tenemos una media de votos de: ${averageGrade(arrayVotes)}, de un total de: ${arrayVotes.length - 1} votos`;        
+      }
+      else {
+        dataContainer.innerHTML = "Se ha producido un error inesperado"
+      }
+    } 
   }
-  connectionRequest.open("GET", "votar.php?foto=" + imageId + "&voto=" + points)
+  connectionRequest.open("GET", "votar.php?foto=" + imageId + "&voto=" + points, true)
   connectionRequest.send()
 }
 
@@ -52,9 +58,9 @@ function toDefaultStar() {
 }
 
 containerStars.addEventListener("mouseover", (e) => {
-  if (e.target.id != "stars") {        
+  if (e.target.id != "stars") {          
     wasClicked ? toDefaultStar() : "";
-    wasClicked = true
+    wasClicked = false
     e.target.src = "icons/gold.png"
     let element = e.target.previousElementSibling
     while (element) {
@@ -66,7 +72,7 @@ containerStars.addEventListener("mouseover", (e) => {
 
 containerStars.addEventListener("mouseout", (e) => {
   if (e.target.id != "stars") {
-    if (!wasClicked) {
+    if (!wasClicked) {      
       e.target.src = "icons/gray.png"
       let element = e.target.previousElementSibling
       while (element) {
