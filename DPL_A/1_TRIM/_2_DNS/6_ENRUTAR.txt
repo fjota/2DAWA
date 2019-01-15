@@ -1,3 +1,0 @@
-WINDOWS:	https://www.sysadmit.com/2016/03/windows-server-como-router.html
-UBUNTU:		https://smr.iesharia.org/wiki/doku.php/src:recetas:enrutamiento
-		http://manpages.ubuntu.com/manpages/xenial/es/man8/route.8.html
