@@ -25,6 +25,8 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _HelloResponse_QNAME = new QName("http://hellosoap.cifpcm.es/", "helloResponse");
+    private final static QName _Doble_QNAME = new QName("http://hellosoap.cifpcm.es/", "doble");
+    private final static QName _DobleResponse_QNAME = new QName("http://hellosoap.cifpcm.es/", "dobleResponse");
     private final static QName _Hello_QNAME = new QName("http://hellosoap.cifpcm.es/", "hello");
 
     /**
@@ -32,6 +34,14 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link Doble }
+     * 
+     */
+    public Doble createDoble() {
+        return new Doble();
     }
 
     /**
@@ -51,12 +61,38 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DobleResponse }
+     * 
+     */
+    public DobleResponse createDobleResponse() {
+        return new DobleResponse();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link HelloResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://hellosoap.cifpcm.es/", name = "helloResponse")
     public JAXBElement<HelloResponse> createHelloResponse(HelloResponse value) {
         return new JAXBElement<HelloResponse>(_HelloResponse_QNAME, HelloResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Doble }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://hellosoap.cifpcm.es/", name = "doble")
+    public JAXBElement<Doble> createDoble(Doble value) {
+        return new JAXBElement<Doble>(_Doble_QNAME, Doble.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DobleResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://hellosoap.cifpcm.es/", name = "dobleResponse")
+    public JAXBElement<DobleResponse> createDobleResponse(DobleResponse value) {
+        return new JAXBElement<DobleResponse>(_DobleResponse_QNAME, DobleResponse.class, null, value);
     }
 
     /**

@@ -27,6 +27,20 @@ public interface EchoService {
      * 
      * @param name
      * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "doble", targetNamespace = "http://hellosoap.cifpcm.es/", className = "es.cifpcm.helloclient.web.Doble")
+    @ResponseWrapper(localName = "dobleResponse", targetNamespace = "http://hellosoap.cifpcm.es/", className = "es.cifpcm.helloclient.web.DobleResponse")
+    public int doble(
+        @WebParam(name = "name", targetNamespace = "")
+        int name);
+
+    /**
+     * 
+     * @param name
+     * @return
      *     returns java.lang.String
      */
     @WebMethod
