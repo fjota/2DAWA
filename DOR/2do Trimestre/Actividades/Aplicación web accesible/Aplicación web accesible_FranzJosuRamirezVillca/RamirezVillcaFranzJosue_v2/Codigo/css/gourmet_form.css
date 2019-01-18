@@ -1,0 +1,88 @@
+/* FORMULARIOS */
+/* REGISTER */
+	#tabs fieldset {
+			border: 1px solid #CDCDCD
+		}
+	#tabs legend {
+			text-align:right;
+			color:#D6251E;
+		}
+		
+	.row_form{
+		padding:0.5%;	
+	}
+		.row_form label, .row_form input, .row_register #wrapper-community, .row_form span.no_validate{
+			display: inline-block;
+			vertical-align:middle;
+		}
+			/* LABEL */
+			.row_form label{
+				width:20%;
+				padding-right:1%;
+				text-align: right;
+			}
+			/* INPUT TEXT ,PASSWORD, TEXAREA */
+			.row_form input[type=text], .row_form input[type=password], .row_form textarea{
+				width:35%;
+				padding:1%;
+			}
+			
+			/* WRAPPER SELECT */
+			.row_form #wrapper-community{
+				width: 37%;
+			}
+				.row_form #wrapper-community select{
+					width:100%;
+					padding:1%;
+				}
+			/* MESSAGE NO VALIDATE*/
+			.row_form span.no_validate{
+				background-color:#FFF1F1;
+				color:#FF0000;
+				width:33%;
+				position: relative;
+				margin-left: 10px;
+				padding:1%;
+				border-radius: 3px;
+				border: 1px solid #FF9D9D;
+				opacity: 0;
+			}
+				/* ARROW */
+				.row_form span.no_validate:before{
+					content:'';
+					border-color: transparent #FF9D9D transparent transparent;
+					border-color: rgba(0,0,0,0) #FF9D9D rgba(0,0,0,0) rgba(0,0,0,0);
+				    border-style: solid;
+				    border-width: 6px 11px 6px 0;
+				    border-left: 0 dotted; /* Firefox */
+				    position: absolute;
+				    top:50%;
+				    left: -11px;
+				    margin-top:-6px;
+				}
+				.row_form span.no_validate:after{
+					content:'';
+					border-color: transparent #FFF1F1 transparent transparent;
+				    border-color: rgba(0,0,0,0) #FFF1F1 rgba(0,0,0,0) rgba(0,0,0,0);
+				    border-style: solid;
+				    border-width: 5px 9px 5px 0;
+				    border-left: 0 dotted; /* Firefox */
+				    position: absolute;
+				    top:50%;
+				    left: -9px;
+				    margin-top:-5px;
+				}
+				#row_img_captcha, #row_btn_form{
+					width:59%;
+					overflow: hidden;
+					text-align:right;
+				}
+					#row_img_captcha #img_captcha, #row_btn_form #btn_form{
+						float:right;
+						margin: 0;
+					}	
+/* END FORMULARIOS */
+/* END TABS */
+
+
+

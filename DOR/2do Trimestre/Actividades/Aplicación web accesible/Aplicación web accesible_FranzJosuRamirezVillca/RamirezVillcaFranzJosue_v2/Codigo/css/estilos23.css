@@ -1,0 +1,43 @@
+#residencia div {
+	display: inline-block;
+	vertical-align:top;
+}
+#sugerencias {
+	font-size: 11px;
+	font-family: Arial;
+	position: absolute; 
+	background-color: #777777;
+	color: #FFFFFF;
+	text-align: left; 
+	border: 1px solid #D62446;			
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-o-border-radius: 5px;
+	
+}
+#poblacion {
+	font-size: 13px;
+	font-family: Arial;
+	position: absolute; 
+	background-color: #D62446;
+	color: #FFFFFF;
+	text-align: left; 
+	border: 1px solid #D62446;			
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-o-border-radius: 5px;
+	padding: 20px;
+	
+}
+
+#sugerencias p {
+	padding: 10px;
+}
+#sugerencias p:hover {
+	background-color: #C7C7C7;
+	color: #D62446;
+	cursor: pointer;
+	/*padding: 10px;*/
+}

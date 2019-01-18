@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<title>Formulario de registro</title>
+
+	<!-- JQUERY -->
+	<script type='text/javascript' src='librerias/jquery-1.8.2.min.js'></script>
+	<!-- JQUERY UI -->
+	<link rel='stylesheet' href='css/jquery-ui-1.9.2.custom.min.css' />
+	<link rel='stylesheet' href='css/gourmet_publicacion.css' />
+	<script type="text/javascript" src="librerias/jquery-ui-1.9.2.custom.min.js"></script>
+	<!-- FORMULARIOS -->
+	<link rel='stylesheet' href='css/gourmet_form.css' />
+	<!-- CSS -->
+	<link rel='stylesheet' href='css/gourmet_template.css' />
+	<link rel='stylesheet' href='css/gourmet_style.css' />
+	<!-- JCAROUSEL -->
+	<link rel='stylesheet' href='css/jCarousel/skin-recetas.css' />
+	<link rel='stylesheet' href='css/jCarousel/skin-restaurantes.css' />
+	<script type='text/javascript' src='librerias/jquery.jcarousel.min.js'></script>
+	<script type='text/javascript' src='scripts/carouselForos.js'></script>
+
+	<script type='text/javascript'>
+		var path = "./";
+	</script>
+	<!-- Slider -->
+	<script type='text/javascript' src='scripts/slider.js'></script>
+	<!-- Prácticas 9 en adelante -->
+	<script type='text/javascript' src='scripts/practica10.js'></script>
+</head>
+
+<body>
+
+	<div id='wrapper-all'>
+		<div id='wrapper-header'>
+			<div id='header'>
+
+				<!-- LOGO AND NAME -->
+				<div id='logo'>
+					<a href='./'><img src='./images/logo.png' alt='Logo Gourmet España' /></a>
+				</div>
+
+				<!-- SLIDER -->
+				<div id='slider_header'>
+					<ul>
+						<li><img src='./images/food/slide01.jpg' alt="comida" /></li>
+						<li><img src='./images/food/slide02.jpg' /></li>
+						<li><img src='./images/food/slide03.jpg' /></li>
+						<li><img src='./images/food/slide04.jpg' /></li>
+						<li><img src='./images/food/slide05.jpg' /></li>
+						<li><img src='./images/food/slide06.jpg' /></li>
+						<li><img src='./images/food/slide07.jpg' /></li>
+						<li><img src='./images/food/slide08.jpg' /></li>
+						<li><img src='./images/food/slide09.jpg' /></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<div id='wrapper-nav'>
+			<ul id='nav'>
+				<li><a href='./web/section1.php' rel="section">Inicio</a></li>
+				<li><a href='#' rel="section">Autonom&iacute;as</a></li>
+				<li><a href='#' rel="section">Contacto/Ayuda</a></li>
+				<li><a href='#' rel="section">Buscador</a></li>
+			</ul>
+
+			<br class='clear' />
+		</div>
+
+
+		<div id='wrapper-content'>
+
+			<div id='content'>
+
+
+				<div id='wrapper_register'>
+					<form method="post" action="./functions/new-user.php" id="form_register">
+						<fieldset>
+							<div class='row_register'>
+								<label for="inp_nombre">Nombre</label>
+								<input type='text' name='inp_nombre' id='inp_nombre' />
+								<span id='inp_nombre_msg' class="no_validate"></span>
+							</div>
+							<div class='row_register'>
+								<label>Apellidos</label>
+								<input type='text' name='inp_apellidos' id='inp_apellidos' />
+								<span id='inp_apellidos_msg' class="no_validate"></span>
+							</div>
+							<div class='row_register'>
+								<label>Email</label>
+								<input type='text' name='inp_email' id='inp_email' />
+								<span id='inp_email_msg' class="no_validate"></span>
+							</div>
+							<div class='row_register'>
+								<label for="inp_pass">Contraseña</label>
+								<input type='password' name='inp_pass' id='inp_pass' />
+								<span id='inp_pass_msg' class="no_validate"></span>
+							</div>
+							<div class='row_register'>
+								<label>Repite la contraseña</label>
+								<input type='password' name='inp_pass2' id='inp_pass2' />
+								<span id='inp_pass2_msg' class="no_validate"></span>
+							</div>
+
+							<div class='row_register'>
+								<label for="sel_community">Comunidad Autónoma</label>
+								<div id='wrapper-community'>
+									<select name='sel_community' id='sel_community'>
+										<option value="1" selected="selected"> Canarias </option>
+										<option value="2"> Galicia </option>
+										<option value="3"> Extremadura </option>
+									</select>
+								</div>
+								<span id='sel_community_msg' class="no_validate"></span>
+							</div>
+
+							<div class='row_register'>
+								<div id='row_img_captcha'>
+									<img src='images/captcha.jpg' id='img_captcha' />
+								</div>
+								<label>Introduzca los caracteres que ve en la imagen</label>
+								<input type='text' name='inp_captcha' id='inp_captcha' />
+								<span id='inp_captcha_msg' class="no_validate"></span>
+							</div>
+							<div class='row_register'>
+								<div id='row_btn_register'>
+									<input type='submit' id='btn_register' value='Registrarse' class='btn_1' />
+								</div>
+							</div>
+						</fieldset>
+
+					</form>
+				</div>
+				<!-- CLOSE #content -->
+			</div>
+			<div id='aside'>
+				<div id='box-login' class='a_block'>
+					<h3>Iniciar Sesión</h3>
+					<div class='a_content'>
+						<form id='form_login' action='#' method='post'>
+							<fieldset>
+
+								<label for='log_user'>Email:</label> <br />
+								<input type='text' name='log_email' id='log_email' />
+								<div class='log_validate'>* No es un email valido</div>
+
+								<label for='log_pass'>Contraseña:</label> <br />
+								<input type='password' name='log_pass' id='log_pass' />
+								<div class='log_validate'>* Debe tener 8 o más caracteres</div>
+
+								<div id='log_incorrect'>* Email o contraseña incorrectos</div>
+								<div id='wrapper_buttons_login'>
+									<a href='./register.php' id='btn_register_aside' class='btn_2' rel="next">Registrarse</a>
+									<a href="#" id='btn_connect_aside' class='btn_1' rel="next">Conectar</a>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<table border="2" style="background :red; color :white; font-weight: bold">
+			<tr>
+				<td></td>
+
+				<th align="center">
+					<p>MODALIDAD SEMIPRESENCIAL </p>
+				</th>
+				<th align="center">
+					<p>MODALIDAD EN LÍNEA </p>
+				</th>
+
+			</tr>
+			<tr>
+				<td>
+					<p> Matrícula ordinaria </p>
+				</td>
+				<td align="center">
+					<p>327 €</p>
+				</td>
+				<td align="center">
+					<p>206 €</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Estudiantes Gourmet España en el curso 15-16 <sup>(1)</sup></p>
+				</td>
+				<td rowspan="10" align="center">
+					<p>219€</p>
+				</td>
+				<td rowspan="10" align="center">
+					<p>134€</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Estudiantes CUID a partir de la segunda matrícula en el curso 15-16</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> PAS Gourmet España</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> PDI y FPI de Gourmet España</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Profesores tutores de Gourmet España</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> PAS de Centros Asociados Gourmet España</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Cónyuges e hijos menores de 25 años del PAS y PDI de Gourmet España, de los profesores tutores y del PAS de
+						Centros Asociados.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Personal de la Fundación Gourmet España</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Miembros de la Asociación de Antiguos Alumnos y Amigos de Gourmet España <sup>(2)</sup></p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Estudiantes acogidos a convenio con empresas e instituciones</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Fam. Numerosa Categ. General </p>
+				</td>
+				<td colspan="2">
+					<p align="center">75%</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Fam. Numerosa Categ.Especial</p>
+				</td>
+				<td colspan="2">
+					<p align="center">50%</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p> Estudiantes con discapacidad <sup>(3)</sup></p>
+				</td>
+				<td colspan="2">
+					<p align="center">50% (no acumulable a descuento por familia numerosa)</p>
+				</td>
+			</tr>
+		</table>
+		<p><sup>(1)</sup> NO tendrán la consideración de “estudiante Gourmet España” a efectos de aplicarse la reducción de
+			importe correspondiente, los alumnos matriculados en cursos/años anteriores en cualquier estudio de Gourmet España,
+			incluido el CUID. <br />
+			<br />
+			<sup>(2)</sup> Asociación de Antiguos Alumnos y Amigos de Gourmet España: No son de aplicación otros descuentos
+			adicionales.<br><br />
+			<sup>(3)</sup> Los estudiantes que tengan reconocido un grado de discapacidad igual o superior al 33% cuando se
+			matriculen por segunda vez del mismo idioma y nivel abonarán el importe habitual del precio de matrícula.
+			Excepcionalmente, cuando estudiantes que repitan idioma y nivel por razones de su rehabilitación médico-funcional o
+			por la naturaleza degenerativa de su discapacidad podrán solicitar en la siguiente convocatoria la exención del 50%
+			de precio público. La solicitud, debidamente documentada, deberá ser cursada ante el Vicerrectorado de Formación
+			Permanente.
+		</p>
+	</div>
+
+	<div id='wrapper-footer'>
+		<div id='footer'>
+			<span>@Gourmet España 2012</span>
+			<a href="#" rel="copyright">Política de privacidad</a>
+			<a href="#" rel="copyright">Información legal</a>
+		</div>
+	</div>
+</body>
+
+</html>

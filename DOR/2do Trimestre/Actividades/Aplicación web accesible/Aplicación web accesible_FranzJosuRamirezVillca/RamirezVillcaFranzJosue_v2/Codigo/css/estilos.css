@@ -1,0 +1,112 @@
+* {/* reglas generales */
+  margin:0px;
+  padding:0px;
+  
+  }
+.cabecera {
+	display:block; 
+	margin:50px auto;
+	width:80%;
+	background-color:#000000;
+	color:#FFFFFF;
+	text-align:center;
+	font-size:1.1em;
+	/* redondeamos los bordes */
+	-webkit-border-radius:  10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-o-border-radius: 10px;
+	/* una sombra gris */	
+	box-shadow: 10px 10px 5px gray;
+   -webkit-box-shadow: 10px 10px 5px gray; //desp horiz, desp vert, difuminado, color
+   -moz-box-shadow: 10px 10px 5px gray;
+}
+
+.barranavegacion {
+   margin: auto;
+   display:block;
+   width:100%;
+   vertical-align:top; 
+}
+
+.primerNivel{
+	display: inline-block;
+	list-style: none;
+	padding: 15px 50px;
+	text-align:left;
+	vertical-align:top;
+}
+
+.segundoNivel{
+	list-style: none;
+	background-color:#FFFFFF;
+	border: solid 1px #D62446;
+	padding: 15px;
+	color: #D62446;
+	text-align:left;
+	font-size:0.8em;
+	-webkit-border-radius:  10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-o-border-radius: 10px;
+}
+
+
+.primeraFila {
+   background-color: #D62442;
+   color:#FFFFFF
+}
+
+.filaPar {
+   background-color: #C755C7;
+   color:#FFFFFF;
+}
+
+.filaImpar {
+   background-color: #C7C7C7;
+   color:#000000;
+}
+
+
+.primeraColumna {
+   background-color: #000000;
+   color:#FFFFFF;
+}
+
+.importante {
+   background-color: #FFFF00;
+   color:#000000;
+}
+
+.ecologico {
+   background-color: #00FF00;
+   color:#000000;
+}
+
+.naranja {
+  background-color: orange;
+   color:#FF0000;
+}
+
+.blanco {
+  background-color: white;
+   color:#000000;
+}
+
+.botonRojo {
+   background-color: red;
+   color:#FFFFFF;
+}
+
+.botonVerde {
+   background-color: green;
+   color:#FFFFFF;
+}
+
+.rellenoIzquierdo {
+	padding-left:30px;
+}
+
+.rellenoInferior {
+	padding-bottom: 30px;
+}
