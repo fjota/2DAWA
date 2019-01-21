@@ -1,10 +1,11 @@
 package es.cifpcm.actorsrs_ramirezjosue.data;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.SessionFactoryBuilder;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -14,29 +15,27 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateUtil {
 
-  private static final SessionFactory sessionFactory;
+  private static SessionFactory sessionFactory;
 
-  static {
+  private static SessionFactory buildSessionFactory() {
+    StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().
+            configure("/hibernate.cfg.xml").build();
 
-    try {
-      Configuration configuration = new Configuration().configure();
-      StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
-              applySettings(configuration.getProperties());
+    Metadata metadata = new MetadataSources(standardRegistry).getMetadataBuilder().
+            build();
 
-      sessionFactory = configuration.buildSessionFactory(builder.build());
+    SessionFactoryBuilder sessionFactoryBuilder = metadata.getSessionFactoryBuilder();
 
-    } catch (Throwable ex) {
-      // Log the exception. 
-      System.err.println("Initial SessionFactory creation failed." + ex);
-      throw new ExceptionInInitializerError(ex);
-    }
-  }
+    SessionFactory sessionFactory = sessionFactoryBuilder.build();
 
-  public static SessionFactory getSessionFactory() {
     return sessionFactory;
   }
 
-  public static Session openSession() {
-    return sessionFactory.openSession();
+  public static SessionFactory getSessionFactory() {
+    if (sessionFactory == null) {
+      sessionFactory = buildSessionFactory();
+    }
+    return sessionFactory;
   }
+
 }

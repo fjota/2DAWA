@@ -4,8 +4,8 @@ import es.cifpcm.actorsrs_ramirezjosue.data.HibernateUtil;
 import es.cifpcm.actorsrs_ramirezjosue.model.Actor;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
+import javax.persistence.criteria.CriteriaQuery;
 
 /**
  *
@@ -20,12 +20,10 @@ public class ActorRepository {
     try {
       session.beginTransaction();
 
-      Criteria criteria = session.createCriteria(Actor.class);
-      list.add((Actor) criteria.uniqueResult());
-      /*for (Object object : criteria.list()) {
-        list.add((Actor) object);
-      }*/
-      //list.addAll(criteria.list());
+      CriteriaQuery<Actor> criteriaQuery = session.getCriteriaBuilder().createQuery(Actor.class);
+      criteriaQuery.from(Actor.class);
+      list = session.createQuery(criteriaQuery).getResultList();
+      
       session.getTransaction().commit();
     } catch (Exception ex) {
       session.getTransaction().rollback();
@@ -35,6 +33,5 @@ public class ActorRepository {
 
     return list;
   }
-  
 
 }
