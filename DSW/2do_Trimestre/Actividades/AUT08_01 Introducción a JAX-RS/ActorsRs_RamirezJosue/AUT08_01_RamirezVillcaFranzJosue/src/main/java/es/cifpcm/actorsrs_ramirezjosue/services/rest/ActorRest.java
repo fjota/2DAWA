@@ -4,16 +4,14 @@ import com.google.gson.Gson;
 import es.cifpcm.actorsrs_ramirezjosue.model.Actor;
 import es.cifpcm.actorsrs_ramirezjosue.repository.ActorRepository;
 import java.util.List;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
 /**
  *
@@ -22,11 +20,7 @@ import javax.ws.rs.core.UriInfo;
 @Path("actors")
 public class ActorRest {
 
-  @Context
-  private UriInfo context;
-
   public ActorRest() {
-
   }
 
   @GET
@@ -48,8 +42,10 @@ public class ActorRest {
   
   @POST
   @Path("/")
-  public Response registerActor(@QueryParam("name") String name, @QueryParam("last_name") String lastName){
-    Response res = ActorRepository.registerActor(name, lastName);
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response registerActor(String jsonAcor){
+    Actor actor = new Gson().fromJson(jsonAcor, Actor.class);    
+    Response res = ActorRepository.registerActor(actor.getFirstName(), actor.getLastName());
     return res;
   }
 

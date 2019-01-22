@@ -24,7 +24,8 @@ public class ActorRepository {
       session.beginTransaction();
 
       CriteriaQuery<Actor> criteriaQuery = session.getCriteriaBuilder().createQuery(Actor.class);
-      criteriaQuery.from(Actor.class);
+      Root<Actor> actorRoot = criteriaQuery.from(Actor.class);
+      criteriaQuery.orderBy(session.getCriteriaBuilder().desc(actorRoot.get("actorId")));
       list = session.createQuery(criteriaQuery).getResultList();
 
       session.getTransaction().commit();
@@ -66,7 +67,8 @@ public class ActorRepository {
       session.beginTransaction();
 
       Actor actor = new Actor(name, lastName, new Date());
-      session.save(actor);
+      //session.save(actor);
+      session.saveOrUpdate(actor);
       
       session.getTransaction().commit();
     } catch (Exception ex) {

@@ -48,9 +48,7 @@ public class Actor  implements java.io.Serializable {
        this.filmActors = filmActors;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="actor_id", unique=true, nullable=false)
     public Short getActorId() {
         return this.actorId;
