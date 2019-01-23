@@ -1,8 +1,7 @@
 let username = document.getElementById("username")
 let password = document.getElementById("password")
-let loginBtn = document.getElementById("login")
 let signupBtn = document.getElementById("signup")
-let changePasswordBtn = document.getElementById("change_password")
+let msgServer = document.getElementById("msgServer")
 
 
 username.addEventListener("input", (e) => {
@@ -10,90 +9,108 @@ username.addEventListener("input", (e) => {
   request.onreadystatechange = () => {
     if (request.readyState === 4) {
       if (request.status === 200) {
-        console.log(request.responseText);   
-        if (request.responseText === "0") {
-          signupBtn.disabled = true;
-        }     
-        else {
-          signupBtn.disabled = false
-        }
+        request.responseText === "0" ? signupBtn.disabled = true : signupBtn.disabled = false
+      } else {
+        msgServer.textContent = "Se ha producido un error en el servidor"
       }
     }
   }
   let usernameJson = {
     username: username.value
   }
-  request.open("GET", "exists.php?cadena=" +  JSON.stringify(usernameJson), true )
+  request.open("GET", "exists.php?cadena=" + JSON.stringify(usernameJson), true)
   request.send()
 })
 
-loginBtn.addEventListener("click", (e) => {
-  let request = new XMLHttpRequest()
-  request.onreadystatechange = () => {
-    if (request.readyState === 4) {
-      if (request.status === 200) {
-        console.log(request.responseText);   
-        if (request.responseText === "0") {
-          console.log("Inicio de sesion correcto");        
-        }     
-        else if(request.responseText === "1") {
-          console.log("Contraseña incorrecta");        
-        } else if(request.responseText === "2") {
-          console.log("El usuario no exisxtes");          
+document.getElementById("login").addEventListener("click", (e) => {
+  if (validateData()) {
+    let request = new XMLHttpRequest()
+    request.onreadystatechange = () => {
+      if (request.readyState === 4) {
+        if (request.status === 200) {
+          switch (request.responseText) {
+            case "0":
+              msgServer.textContent = "Inicio de sesion correcto"
+              break;
+            case "1":
+              msgServer.textContent = "Contraseña incorrecta"
+              break;
+            case "2":
+              msgServer.textContent = "El usuario no existe"
+              break;
+          }
+        } else {
+          msgServer.textContent = "Se ha producido un error en el servidor"
         }
       }
     }
+    request.open("GET", "login.php?cadena=" + formDataToJson(), true)
+    request.send()
+  } else {
+    msgServer.textContent = "Los campos no deben estar vacios"
   }
-  let loginUser = {
-    username: username.value,
-    password: password.value
-  }
-  request.open("GET", "login.php?cadena=" +  JSON.stringify(loginUser), true )
-  request.send()
 })
 
 signupBtn.addEventListener("click", (e) => {
-  let request = new XMLHttpRequest()
-  request.onreadystatechange = () => {
-    if (request.readyState === 4) {
-      if (request.status === 200) {
-        console.log(request.responseText);   
-        if (request.responseText === "0") {
-          console.log("Se ha registrado correctamente");        
-        }     
-        else if(request.responseText === "1") {
-          console.log("No le queremos en nuestra empresa");        
-        } 
+  if (validateData()) {
+    let request = new XMLHttpRequest()
+    request.onreadystatechange = () => {
+      if (request.readyState === 4) {
+        if (request.status === 200) {
+          if (request.responseText === "0") {
+            msgServer.textContent = "Se ha registrado correctamente"
+          }
+          else if (request.responseText === "1") {
+            msgServer.textContent = "No se ha podido registrar"
+          }
+        } else {
+          msgServer.textContent = "Se ha producido un error en el servidor"
+        }
       }
     }
+    request.open("GET", "signup.php?cadena=" + formDataToJson(), true)
+    request.send()
+  } else {
+    msgServer.textContent = "Los campos no deben estar vacios"
   }
-  let loginUser = {
-    username: username.value,
-    password: password.value
-  }
-  request.open("GET", "signup.php?cadena=" +  JSON.stringify(loginUser), true )
-  request.send()
 })
 
-changePasswordBtn.addEventListener("click", (e) => {
-  let request = new XMLHttpRequest()
-  request.onreadystatechange = () => {
-    if (request.readyState === 4) {
-      if (request.status === 200) {
-        console.log(request.responseText);   
-        if (request.responseText === "0") {
-          console.log("Cambio su contraseña correctamenta");        
-        }     
-        else if(request.responseText === "1") {
-          console.log("no cambio nada compañerp");        
-        } 
+document.getElementById("change_password").addEventListener("click", (e) => {
+  if (validateData()) {
+    let request = new XMLHttpRequest()
+    request.onreadystatechange = () => {
+      if (request.readyState === 4) {
+        if (request.status === 200) {
+          if (request.responseText === "0") {
+            msgServer.textContent = "Cambio su contraseña correctamente"
+          }
+          else if (request.responseText === "1") {
+            msgServer.textContent = "No se ha podido cambiar su contraseña"
+          }
+        } else {
+          msgServer.textContent = "Se ha producido un error en el servidor"
+        }
       }
     }
+    request.open("GET", "chgpassword.php?cadena=" + formDataToJson(), true)
+    request.send()
+  } else {
+    msgServer.textContent = "Los campos no deben estar vacios"
   }
-  let loginUser = {
+})
+
+function formDataToJson() {
+  let jsonData = {
     username: username.value,
     password: password.value
   }
-  request.open("GET", "chgpassword.php?cadena=" +  JSON.stringify(loginUser), true )
-  request.send()
-})
+  jsonData = JSON.stringify(jsonData);
+  return jsonData
+}
+
+function validateData() {
+  if (username.value.length > 0 && password.value.length > 0) {
+    return true
+  }
+  return false
+}
