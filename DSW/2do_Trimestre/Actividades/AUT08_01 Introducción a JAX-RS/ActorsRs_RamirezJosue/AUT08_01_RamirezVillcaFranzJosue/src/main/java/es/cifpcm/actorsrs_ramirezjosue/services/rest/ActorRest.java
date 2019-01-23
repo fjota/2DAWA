@@ -35,7 +35,7 @@ public class ActorRest {
   @GET
   @Path("{id}")
   @Produces(MediaType.APPLICATION_JSON)
-  public String findOne(@PathParam("id") int id){
+  public String findOne(@PathParam("id") int id){    
     String json = new Gson().toJson(ActorRepository.findOne(id));
     return json;
   }

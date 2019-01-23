@@ -12,6 +12,14 @@
       <label for="last_name">Apellido: </label><br><br>
       <input type="text" name="last_name" id="last_name"><br><br>
       <input type="submit" id="cmdSubmit" value="Ajax - Crear"/>
+      <p id="errorTag"></p>
+    </form>
+    <br>
+    <form>      
+      <label for="actorById">Buscar Actor por id: </label><br><br>
+      <input type="text" name="actorById" id="actorById"><br><br>
+      <input type="submit" id="searchSubmit" value="Buscar"/>
+      <p id="resultActorId"></p>
     </form>
     <ul id="actorList" style="float: right"></ul>
 
@@ -23,8 +31,7 @@
           "url": "webresources/actors/",
           "type": "get",
           "dataType": "json",
-          "success": function (actors) {
-            //console.log(actors);
+          "success": function (actors) {            
             $.each(actors, function (i, actor) {
               var li = $('<li/>')
                       .addClass('ui-menu-item')
@@ -42,22 +49,50 @@
         refreshActorList();
       });
 
+      $("#searchSubmit").click(function (event) {
+        event.preventDefault();
+        var idActor = $('#actorById').val();
+        if (idActor !== "0" && idActor.length > 0)
+        {
+          $.ajax({
+            "url": "webresources/actors/" + idActor,
+            "type": "get",
+            "dataType": "json",
+            success: function (message) {
+              //console.log(message);
+              $('#resultActorId').text("Id: " + message.actorId + ", Nombre: " +
+                      message.firstName + ", Apellido: " + message.lastName +
+                      ", Ultima modificadion: " + message.lastUpdate);
+            }
+          });
+        } else {
+          $('#resultActorId').text("No se penmiten numeros menores a 1 y no puden enviar el campo vacio:")
+        }
+      });
+
       $("#cmdSubmit").click(function (event) {
         event.preventDefault();
         let actor = {
           "firstName": $("#name").val(),
           "lastName": $("#last_name").val()
         };
-        actor = JSON.stringify(actor);
-        $.ajax({
-          "url": "webresources/actors/",
-          "type": "POST",
-          "contentType": 'application/json',          
-          "data": actor,         
-          success: function (message) {            
-            refreshActorList();
-          }
-        });        
+        if (actor.firstName.length > 0 && actor.lastName.length > 0)
+        {
+          actor = JSON.stringify(actor);
+          $.ajax({
+            "url": "webresources/actors/",
+            "type": "POST",
+            "contentType": 'application/json',
+            "data": actor,
+            success: function (message) {
+              //console.log(message);
+              $('#errorTag').text("");
+              refreshActorList();
+            }
+          });
+        } else {
+          $('#errorTag').text("Los campos no pueden estar vacios");          
+        }
       });
 
     </script>

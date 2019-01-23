@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+}
+
+.video {
+  background-color: blueviolet;
+  grid-column: span 2;
+}
+
+.imagen {
+  background-color: hotpink;
+}
+
+.map {
+  background-color: yellow;
+
+}
+.audio {
+  background-color: green;
+  grid-column: span 2;
+}
