@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,56 @@
   <link rel="stylesheet" href="style.css">
   <title>Contenido multimedia</title>
 </head>
+
 <body>
   <div class="container">
-    <div class="video">Video</div>
+    <div class="video">
+      <video width="320" height="240" controls autoplay muted poster="images.jpg" id="the-video">   
+        <track src="FSF_30_360p_es.vtt" kind="subtitles" srclang="es" label="Español">
+        <track src="FSF_31_360p_en.vtt" kind="subtitles" srclang="en" label="Ingles">
+      </video>
+      <div id="botones">
+        <button id="mitad">A mitad de la velocidad</button>
+        <button id="normal">Velocidad normal</button>
+        <button id="doble">Doble velocidad</button>
+      </div>
+    </div>
     <div class="imagen">Imagen</div>
     <div class="map">Map</div>
     <div class="audio">Audio</div>
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+
+    var mainVideo = $('#the-video');
+    let video = document.getElementById("the-video");
+
+    if ($(window).width() < 500) {
+      mainVideo.append("<source type='video/mp4' src='videos/new cat closeup_mobile_426_320.mp4' />");
+      mainVideo.append("<source type='video/ogg' src='videos/new cat closeup_mobile_426_320.ogg' />");    
+    } else if ($(window).width() < 1200) {
+      mainVideo.append("<source type='video/mp4' src='videos/new cat closeup_HD_960_720.mp4' />");
+      mainVideo.append("<source type='video/ogg' src='videos/new cat closeup_HD_960_720.ogg' />");
+    } else {
+      mainVideo.append("<source type='video/mp4' src='videos/new cat closeup_UHD_1440_1080.mp4' />");
+      mainVideo.append("<source type='video/ogg' src='videos/new cat closeup_UHD_1440_1080.ogg' />");
+    }
+    
+    document.getElementById("mitad").addEventListener("click", () => {
+      video.playbackRate = 0.5;
+    })
+
+    document.getElementById("normal").addEventListener("click", () => {
+      video.playbackRate = 1.0;
+    })
+
+    document.getElementById("doble").addEventListener("click", () => {
+      video.playbackRate = 2.0;
+    })
+
+  </script>
+
 </body>
+
 </html>
