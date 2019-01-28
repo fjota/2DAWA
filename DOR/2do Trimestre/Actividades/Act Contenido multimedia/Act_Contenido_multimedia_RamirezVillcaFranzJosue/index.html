@@ -10,22 +10,36 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="video">
-      <video width="320" height="240" controls autoplay muted poster="images.jpg" id="the-video">   
-        <track src="FSF_30_360p_es.vtt" kind="subtitles" srclang="es" label="Español">
-        <track src="FSF_31_360p_en.vtt" kind="subtitles" srclang="en" label="Ingles">
-      </video>
-      <div id="botones">
-        <button id="mitad">A mitad de la velocidad</button>
-        <button id="normal">Velocidad normal</button>
-        <button id="doble">Doble velocidad</button>
+  <div class="box-container">
+    <div class="container">
+      <div class="video">
+        <video width="320" height="240" controls autoplay muted poster="images.jpg" id="the-video">
+          <track src="FSF_30_360p_es.vtt" kind="subtitles" srclang="es" label="Español">
+          <track src="FSF_31_360p_en.vtt" kind="subtitles" srclang="en" label="Ingles">
+        </video>
+        <div id="botones">
+          <button id="mitad">A mitad de la velocidad</button>
+          <button id="normal">Velocidad normal</button>
+          <button id="doble">Doble velocidad</button>
+        </div>
+      </div>
+      <div class="imagen">
+        <div class="image-container">
+          <div class="image detail-view" style="background-image: url(img/Porque-toda-chica-debe-tener-un-gato-Munchkin-23.jpg);"></div>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.779733641414!2d-16.285456885494465!3d28.45605558248776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc41cceee5a8035f%3A0xab9f2a74d9e68b51!2sCIFP+C%C3%A9sar+Manrique!5e0!3m2!1ses!2ses!4v1548674926566"
+          width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+      <div class="audio">
+        <audio controls style="width: 100%">
+          <source src="audio/felino.ogg" type="audio/ogg">
+        </audio>
       </div>
     </div>
-    <div class="imagen">Imagen</div>
-    <div class="map">Map</div>
-    <div class="audio">Audio</div>
   </div>
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
@@ -33,17 +47,26 @@
     var mainVideo = $('#the-video');
     let video = document.getElementById("the-video");
 
-    if ($(window).width() < 500) {
-      mainVideo.append("<source type='video/mp4' src='videos/new cat closeup_mobile_426_320.mp4' />");
-      mainVideo.append("<source type='video/ogg' src='videos/new cat closeup_mobile_426_320.ogg' />");    
-    } else if ($(window).width() < 1200) {
-      mainVideo.append("<source type='video/mp4' src='videos/new cat closeup_HD_960_720.mp4' />");
-      mainVideo.append("<source type='video/ogg' src='videos/new cat closeup_HD_960_720.ogg' />");
-    } else {
-      mainVideo.append("<source type='video/mp4' src='videos/new cat closeup_UHD_1440_1080.mp4' />");
-      mainVideo.append("<source type='video/ogg' src='videos/new cat closeup_UHD_1440_1080.ogg' />");
+    cambiarPantalla();
+
+    $(window).resize(function () {
+      cambiarPantalla();
+    })
+
+    function cambiarPantalla() {      
+      $("source").remove();
+      if ($(window).width() < 500) {
+        mainVideo.append("<source type='video/mp4' src='videos/new cat closeup_mobile_426_320.mp4' />");
+        mainVideo.append("<source type='video/ogg' src='videos/new cat closeup_mobile_426_320.ogg' />");
+      } else if ($(window).width() < 1200) {
+        mainVideo.append("<source type='video/mp4' src='videos/new cat closeup_HD_960_720.mp4' />");
+        mainVideo.append("<source type='video/ogg' src='videos/new cat closeup_HD_960_720.ogg' />");
+      } else {
+        mainVideo.append("<source type='video/mp4' src='videos/new cat closeup_UHD_1440_1080.mp4' />");
+        mainVideo.append("<source type='video/ogg' src='videos/new cat closeup_UHD_1440_1080.ogg' />");
+      }
     }
-    
+
     document.getElementById("mitad").addEventListener("click", () => {
       video.playbackRate = 0.5;
     })
@@ -57,7 +80,58 @@
     })
 
   </script>
+  <script>
+      (function () {
+        // Get all images with the `detail-view` class
+        var zoomBoxes = document.querySelectorAll('.detail-view');
 
+        // Extract the URL
+        zoomBoxes.forEach(function (image) {
+          var imageCss = window.getComputedStyle(image, false),
+            imageUrl = imageCss.backgroundImage
+              .slice(4, -1).replace(/['"]/g, '');
+
+          // Get the original source image
+          var imageSrc = new Image();
+          imageSrc.onload = function () {
+            var imageWidth = imageSrc.naturalWidth,
+              imageHeight = imageSrc.naturalHeight,
+              ratio = imageHeight / imageWidth;
+
+            // Adjust the box to fit the image and to adapt responsively
+            var percentage = ratio * 100 + '%';
+            image.style.paddingBottom = percentage;
+
+            // Zoom and scan on mousemove
+            image.onmousemove = function (e) {
+              // Get the width of the thumbnail
+              var boxWidth = image.clientWidth,
+                // Get the cursor position, minus element offset
+                x = e.pageX - this.offsetLeft,
+                y = e.pageY - this.offsetTop,
+                // Convert coordinates to % of elem. width & height
+                xPercent = x / (boxWidth / 100) + '%',
+                yPercent = y / (boxWidth * ratio / 100) + '%';
+
+              // Update styles w/actual size
+              Object.assign(image.style, {
+                backgroundPosition: xPercent + ' ' + yPercent,
+                backgroundSize: imageWidth + 'px'
+              });
+            };
+
+            // Reset when mouse leaves
+            image.onmouseleave = function (e) {
+              Object.assign(image.style, {
+                backgroundPosition: 'center',
+                backgroundSize: 'cover'
+              });
+            };
+          }
+          imageSrc.src = imageUrl;
+        });
+      })();
+  </script>
 </body>
 
 </html>

@@ -1,3 +1,11 @@
+body {
+  margin: 0;
+}
+.box-container {
+  background-color: rgb(73, 64, 64);
+  padding: .5em 3em 3em 4em;
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -7,6 +15,10 @@
 .video {
   background-color: blueviolet;
   grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .imagen {
@@ -15,9 +27,31 @@
 
 .map {
   background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 .audio {
   background-color: green;
   grid-column: span 2;
+}
+
+/* Image */
+.image-container {
+  display: inline-block;
+  padding: 1em;
+  vertical-align: top;
+  width: 100%;
+}
+
+.image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: crosshair;
+  display: block;
+  max-width: 100%;
+  padding-bottom: 10em;
+  width: 100%;
 }
