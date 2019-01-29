@@ -1,0 +1,37 @@
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Práctica 8.1. - Nombre y apellidos</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</head>
+
+<body>
+	<form id="salario">
+		<p>Salario bruto anual: <input type="text" id="bruto"></p>
+		<p>Salario bruto mensual: <input type="text" id="brutoMes" /></p>
+		<p>Pagas anuales: <select id="numPagas">
+				<option>12</option>
+				<option selected="true">14</option>
+				<option>15</option>
+				<option>16</option>
+			</select></p>
+		<p>Nivel profesional: <select id="nivelProfesional">
+				<option>Doctor, licenciado, ingeniero o arquitecto</option>
+				<option>Diplomado, ingeniero técnico o arquitecto técnico</option>
+				<option>Bachillerato, CFGS</option>
+				<option>ESO, EGB, CFGM</option>
+				<option>Trabajadores no cualificados</option>
+			</select></p>
+		<p>Cotizaciones: <input type="text" id="seguridadSocial" class="noEditable" /></p>
+		<p>Tipo de retención: <input type="text" id="irpf" class="noEditable" /></p>
+		<p>Salario neto anual: <input type="text" id="neto" class="noEditable" /></p>
+		<p>Salario neto mensual: <input type="text" id="netoMes" class="noEditable" /></p>
+	</form>
+
+
+	<script src="calculos.js"></script>
+</body>
+
+</html>
