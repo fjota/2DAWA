@@ -1,0 +1,26 @@
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0
+}
+
+.menu-item {
+  background-color: rgb(66, 51, 207);
+  padding: .5em 1em;
+  color: white;
+  margin: 0 .5em;
+  cursor: pointer;
+  float: left;
+}
+
+.menu-item .sub-menu {
+  margin: .5em 0;
+  padding: 0;
+  display: none;
+} 
+
+.sub-menu li {
+  padding: .5em 1em;
+  margin: .5em 0;
+  border: 1px solid white;
+}
