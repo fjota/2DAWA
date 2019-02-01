@@ -13,19 +13,27 @@ namespace Employees
     {
       routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+      /*routes.MapRoute(
+         name: "Tercera",
+         url: "{controller}/{action}/{id}",
+         defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional }
+      );*/
+
+      routes.MapRoute(
+         name: "Default",
+         url: "{controller}/{action}/{id}",
+         defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+     );
+
       routes.MapRoute(
          name: "Segunda",
          url: "{controller}/{action}/{id}",
          defaults: new { controller = "Test", action = "GetCustomer", id = UrlParameter.Optional }
       );
 
-      routes.MapRoute(
-          name: "Default",
-          url: "{controller}/{action}/{id}",
-          defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-      );
 
-      
+
+
     }
   }
 }
