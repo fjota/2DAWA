@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DiscosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Disco">
+    <Key>
+      <PropertyRef Name="IdDisco" />
+    </Key>
+    <Property Name="IdDisco" Type="Int32" Nullable="false" />
+    <Property Name="Titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Agno" Type="Double" />
+    <Property Name="IdInterprete" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DiscoTipo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="IdDisco" Type="Int32" />
+    <Property Name="IdTipo" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Interprete">
+    <Key>
+      <PropertyRef Name="IdInterprete" />
+    </Key>
+    <Property Name="Interprete1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IdInterprete" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Puntuacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Idcliente" Type="Int32" />
+    <Property Name="iddisco" Type="Int32" />
+    <Property Name="Puntuacion1" Type="Int32" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Tipo">
+    <Key>
+      <PropertyRef Name="IdTipo" />
+    </Key>
+    <Property Name="IdTipo" Type="Int32" Nullable="false" />
+    <Property Name="tipo1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="DiscosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+    <EntitySet Name="Discoes" EntityType="Self.Disco" />
+    <EntitySet Name="DiscoTipoes" EntityType="Self.DiscoTipo" />
+    <EntitySet Name="Interpretes" EntityType="Self.Interprete" />
+    <EntitySet Name="Puntuacions" EntityType="Self.Puntuacion" />
+    <EntitySet Name="Tipoes" EntityType="Self.Tipo" />
+  </EntityContainer>
+</Schema>
