@@ -1,0 +1,50 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+  ViewBag.Title = "Nuestros discos";
+}
+
+<h2>Listado de discos</h2>
+<hr />
+<div class="row mb-3">
+  <div class="col">
+    <select class="custom-select">
+      <option selected>Interprete</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+  <div class="col">
+    <select class="custom-select">
+      <option selected>Estilo</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+  <div class="col">
+    <select class="custom-select">
+      <option selected>Orden por defecto</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+</div>
+
+
+<div class="card-columns">
+  @foreach (var item in Model)
+  {  
+    <div class="card border-dark">      
+      <img src="@Url.Content("~/Content/images/music-disc/default.jpg")" class="card-img-top" alt="imagen del disco">
+      <div class="card-body">        
+        <h5 class="card-title">@Html.Raw(item.IdDisco)</h5>
+        <p class="card-text">@Html.Raw(item.Titulo) - @Html.Raw(item.Interprete1)</p>
+        <p class="card-text"><small class="text-muted">Año - @Html.Raw(item.Agno)</small></p>      
+      </div>
+    </div>
+  }
+</div>
+
