@@ -12,18 +12,25 @@ namespace DiscosRamirezFranzJosue.Controllers
 {
   public class DiscosController : Controller
   {
-
     private IDiscosService discosService;
+    private IInterpreteService interpreteService;
 
-    public DiscosController()
-    {
-      discosService = new DiscosService(new DiscosRepository());
+    public DiscosController(IDiscosService discosService, IInterpreteService interpreteService)
+    {      
+      this.discosService = discosService;
+      this.interpreteService = interpreteService;
     }
 
     [HttpGet]
     public ActionResult Index()
-    {     
-      return View(discosService.ListDiscos());
+    {
+
+      var entidad = new DiscosEntities();
+      var discosLista = entidad.Discoes.ToList();
+
+      var tuple = new Tuple<IEnumerable<dynamic>, IEnumerable<Interprete>>(discosService.ListDiscos(), 
+        interpreteService.ListInterpretes());
+      return View(tuple);
     }
     
   }

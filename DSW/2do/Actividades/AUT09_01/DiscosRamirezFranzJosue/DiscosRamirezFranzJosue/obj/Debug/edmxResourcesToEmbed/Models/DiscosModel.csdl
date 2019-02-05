@@ -9,6 +9,7 @@
     <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
     <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Puntuacions" Relationship="DiscosModel.FK_puntuacioncliente" FromRole="Cliente" ToRole="Puntuacion" />
   </EntityType>
   <EntityType Name="Disco">
     <Key>
@@ -18,6 +19,9 @@
     <Property Name="Titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Agno" Type="Double" />
     <Property Name="IdInterprete" Type="Int32" />
+    <NavigationProperty Name="Interprete" Relationship="DiscosModel.FK_discointerprete" FromRole="Disco" ToRole="Interprete" />
+    <NavigationProperty Name="DiscoTipoes" Relationship="DiscosModel.FK_discotipodisco" FromRole="Disco" ToRole="DiscoTipo" />
+    <NavigationProperty Name="Puntuacions" Relationship="DiscosModel.FK_puntuaciondisco" FromRole="Disco" ToRole="Puntuacion" />
   </EntityType>
   <EntityType Name="DiscoTipo">
     <Key>
@@ -26,6 +30,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="IdDisco" Type="Int32" />
     <Property Name="IdTipo" Type="Int32" />
+    <NavigationProperty Name="Disco" Relationship="DiscosModel.FK_discotipodisco" FromRole="DiscoTipo" ToRole="Disco" />
+    <NavigationProperty Name="Tipo" Relationship="DiscosModel.FK_discotipotipo" FromRole="DiscoTipo" ToRole="Tipo" />
   </EntityType>
   <EntityType Name="Interprete">
     <Key>
@@ -33,6 +39,7 @@
     </Key>
     <Property Name="Interprete1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="IdInterprete" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Discoes" Relationship="DiscosModel.FK_discointerprete" FromRole="Interprete" ToRole="Disco" />
   </EntityType>
   <EntityType Name="Puntuacion">
     <Key>
@@ -43,6 +50,8 @@
     <Property Name="iddisco" Type="Int32" />
     <Property Name="Puntuacion1" Type="Int32" />
     <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Cliente" Relationship="DiscosModel.FK_puntuacioncliente" FromRole="Puntuacion" ToRole="Cliente" />
+    <NavigationProperty Name="Disco" Relationship="DiscosModel.FK_puntuaciondisco" FromRole="Puntuacion" ToRole="Disco" />
   </EntityType>
   <EntityType Name="Tipo">
     <Key>
@@ -50,6 +59,7 @@
     </Key>
     <Property Name="IdTipo" Type="Int32" Nullable="false" />
     <Property Name="tipo1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DiscoTipoes" Relationship="DiscosModel.FK_discotipotipo" FromRole="Tipo" ToRole="DiscoTipo" />
   </EntityType>
   <EntityContainer Name="DiscosEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Clientes" EntityType="Self.Cliente" />
@@ -58,5 +68,85 @@
     <EntitySet Name="Interpretes" EntityType="Self.Interprete" />
     <EntitySet Name="Puntuacions" EntityType="Self.Puntuacion" />
     <EntitySet Name="Tipoes" EntityType="Self.Tipo" />
+    <AssociationSet Name="FK_puntuacioncliente" Association="DiscosModel.FK_puntuacioncliente">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Puntuacion" EntitySet="Puntuacions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_discointerprete" Association="DiscosModel.FK_discointerprete">
+      <End Role="Interprete" EntitySet="Interpretes" />
+      <End Role="Disco" EntitySet="Discoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_discotipodisco" Association="DiscosModel.FK_discotipodisco">
+      <End Role="Disco" EntitySet="Discoes" />
+      <End Role="DiscoTipo" EntitySet="DiscoTipoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_puntuaciondisco" Association="DiscosModel.FK_puntuaciondisco">
+      <End Role="Disco" EntitySet="Discoes" />
+      <End Role="Puntuacion" EntitySet="Puntuacions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_discotipotipo" Association="DiscosModel.FK_discotipotipo">
+      <End Role="Tipo" EntitySet="Tipoes" />
+      <End Role="DiscoTipo" EntitySet="DiscoTipoes" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_puntuacioncliente">
+    <End Type="DiscosModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+    <End Type="DiscosModel.Puntuacion" Role="Puntuacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Puntuacion">
+        <PropertyRef Name="Idcliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_discointerprete">
+    <End Type="DiscosModel.Interprete" Role="Interprete" Multiplicity="0..1" />
+    <End Type="DiscosModel.Disco" Role="Disco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interprete">
+        <PropertyRef Name="IdInterprete" />
+      </Principal>
+      <Dependent Role="Disco">
+        <PropertyRef Name="IdInterprete" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_discotipodisco">
+    <End Type="DiscosModel.Disco" Role="Disco" Multiplicity="0..1" />
+    <End Type="DiscosModel.DiscoTipo" Role="DiscoTipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disco">
+        <PropertyRef Name="IdDisco" />
+      </Principal>
+      <Dependent Role="DiscoTipo">
+        <PropertyRef Name="IdDisco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_puntuaciondisco">
+    <End Type="DiscosModel.Disco" Role="Disco" Multiplicity="0..1" />
+    <End Type="DiscosModel.Puntuacion" Role="Puntuacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Disco">
+        <PropertyRef Name="IdDisco" />
+      </Principal>
+      <Dependent Role="Puntuacion">
+        <PropertyRef Name="iddisco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_discotipotipo">
+    <End Type="DiscosModel.Tipo" Role="Tipo" Multiplicity="0..1" />
+    <End Type="DiscosModel.DiscoTipo" Role="DiscoTipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo">
+        <PropertyRef Name="IdTipo" />
+      </Principal>
+      <Dependent Role="DiscoTipo">
+        <PropertyRef Name="IdTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

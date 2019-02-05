@@ -9,13 +9,16 @@
 
 namespace DiscosRamirezFranzJosue.Models
 {
-  using System;
-  using System.Collections.Generic;
-
-  public partial class DiscoTipo
-  {
-    public int Id { get; set; }
-    public Nullable<int> IdDisco { get; set; }
-    public Nullable<int> IdTipo { get; set; }
-  }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class DiscoTipo
+    {
+        public int Id { get; set; }
+        public Nullable<int> IdDisco { get; set; }
+        public Nullable<int> IdTipo { get; set; }
+    
+        public virtual Disco Disco { get; set; }
+        public virtual Tipo Tipo { get; set; }
+    }
 }

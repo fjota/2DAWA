@@ -1,4 +1,6 @@
-﻿@model IEnumerable<dynamic>
+﻿@using DiscosRamirezFranzJosue.Models
+@model Tuple<IEnumerable<dynamic>, IEnumerable<Interprete>>
+
 
 @{
   ViewBag.Title = "Nuestros discos";
@@ -10,9 +12,10 @@
   <div class="col">
     <select class="custom-select">
       <option selected>Interprete</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+      @foreach (Interprete item in Model.Item2)
+      {
+      <option value="@Html.Raw(item.IdInterprete)">@Html.Raw(item.Interprete1)</option>
+      }
     </select>
   </div>
   <div class="col">
@@ -35,7 +38,7 @@
 
 
 <div class="card-columns">
-  @foreach (var item in Model)
+  @foreach (var item in Model.Item1)
   {  
     <div class="card border-dark">      
       <img src="@Url.Content("~/Content/images/music-disc/default.jpg")" class="card-img-top" alt="imagen del disco">

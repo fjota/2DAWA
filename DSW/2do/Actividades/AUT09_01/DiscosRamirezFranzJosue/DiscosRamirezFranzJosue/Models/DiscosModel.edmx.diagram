@@ -11,6 +11,11 @@
         <EntityTypeShape EntityType="DiscosModel.Interprete" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DiscosModel.Puntuacion" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DiscosModel.Tipo" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="DiscosModel.FK_puntuacioncliente" />
+        <AssociationConnector Association="DiscosModel.FK_discointerprete" />
+        <AssociationConnector Association="DiscosModel.FK_discotipodisco" />
+        <AssociationConnector Association="DiscosModel.FK_puntuaciondisco" />
+        <AssociationConnector Association="DiscosModel.FK_discotipotipo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

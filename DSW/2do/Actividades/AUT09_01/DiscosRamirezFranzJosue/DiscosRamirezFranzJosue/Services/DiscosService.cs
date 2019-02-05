@@ -8,7 +8,6 @@ namespace DiscosRamirezFranzJosue.Services
 {
   public class DiscosService : IDiscosService
   {
-
     private IDiscosRepository discosRepository;
 
     public DiscosService(IDiscosRepository discosRepository)
