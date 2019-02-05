@@ -256,3 +256,9 @@ C:\Users\Bomber\Desktop\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\es\S
 C:\Users\Bomber\Desktop\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Bomber\Desktop\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\Bomber\Desktop\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\obj\Debug\DiscosRamirezFranzJosue.csproj.CopyComplete
+D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\SimpleInjector.dll
+D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\SimpleInjector.Integration.Web.dll
+D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\SimpleInjector.Integration.Web.Mvc.dll
+D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\SimpleInjector.xml
+D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\SimpleInjector.Integration.Web.xml
+D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\SimpleInjector.Integration.Web.Mvc.xml

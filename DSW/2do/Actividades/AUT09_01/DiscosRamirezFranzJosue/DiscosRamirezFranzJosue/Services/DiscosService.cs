@@ -2,22 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DiscosRamirezFranzJosue.Repository;
+using DiscosRamirezFranzJosue.Models;
+using DiscosRamirezFranzJosue.Enums;
 
 namespace DiscosRamirezFranzJosue.Services
 {
   public class DiscosService : IDiscosService
   {
-    private IDiscosRepository discosRepository;
+    private DiscosEntities discosEntities;
 
-    public DiscosService(IDiscosRepository discosRepository)
+    public DiscosService(DiscosEntities discosEntities)
     {
-      this.discosRepository = discosRepository;
+      this.discosEntities = discosEntities;
     }
 
-    public IEnumerable<dynamic> ListDiscos()
+    public IEnumerable<Disco> ListDiscos()
     {
-      return discosRepository.ListDiscos();
+      return discosEntities.Discoes;
     }
+    
+    public IEnumerable<Tipo> ListTipos()
+    {
+      return discosEntities.Tipoes;
+    }
+
+    public IEnumerable<Disco> ListDiscosOrdered(Sorted sort)
+    {
+      IEnumerable<Disco> discos = null;
+      switch (sort)
+      {
+        case Sorted.DEFAULT:
+          discos = ListDiscos().OrderBy(item => item.Interprete.Interprete1);
+          break;
+        case Sorted.ASC:
+          discos = ListDiscos().OrderBy(item => item.Interprete.Interprete1);
+          break;
+        case Sorted.DESC:
+          discos = ListDiscos().OrderByDescending(item => item.Interprete.Interprete1);
+          break;
+        case Sorted.DATE:
+          discos = ListDiscos().OrderByDescending(item => item.Agno);
+          break;
+      }
+      return discos;
+    }    
   }
 }

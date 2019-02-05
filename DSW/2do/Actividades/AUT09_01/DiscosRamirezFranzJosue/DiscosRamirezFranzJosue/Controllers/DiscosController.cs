@@ -4,9 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DiscosRamirezFranzJosue.Models;
-using DiscosRamirezFranzJosue.Utils;
+using DiscosRamirezFranzJosue.Enums;
 using DiscosRamirezFranzJosue.Services;
-using DiscosRamirezFranzJosue.Repository;
 
 namespace DiscosRamirezFranzJosue.Controllers
 {
@@ -16,22 +15,27 @@ namespace DiscosRamirezFranzJosue.Controllers
     private IInterpreteService interpreteService;
 
     public DiscosController(IDiscosService discosService, IInterpreteService interpreteService)
-    {      
+    {
       this.discosService = discosService;
       this.interpreteService = interpreteService;
     }
 
     [HttpGet]
     public ActionResult Index()
-    {
-
-      var entidad = new DiscosEntities();
-
-      /*var tuple = new Tuple<IEnumerable<dynamic>, IEnumerable<Interprete>>(discosService.ListDiscos(), 
-        interpreteService.ListInterpretes());*/
-      var tuple = new Tuple<IEnumerable<Disco>, IEnumerable<Interprete>>(entidad.Discoes, entidad.Interpretes);
+    {      
+      var tuple = new Tuple<IEnumerable<Disco>, IEnumerable<Interprete>, IEnumerable<Tipo>>(discosService.ListDiscos(), 
+        interpreteService.ListInterpretes(), discosService.ListTipos());
       return View(tuple);
     }
-    
+
+    [HttpPost]
+    public ActionResult Index(Sorted orderDiscos)
+    {
+      ViewData["selectedOrder"] = (int) orderDiscos;
+      var tuple = new Tuple<IEnumerable<Disco>, IEnumerable<Interprete>, IEnumerable<Tipo>>(discosService.ListDiscosOrdered(orderDiscos),
+        interpreteService.ListInterpretes(), discosService.ListTipos());
+      return View(tuple);
+    }
+
   }
 }

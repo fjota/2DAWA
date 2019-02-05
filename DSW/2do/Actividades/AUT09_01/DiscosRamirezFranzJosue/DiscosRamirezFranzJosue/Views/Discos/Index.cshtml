@@ -1,18 +1,23 @@
 ﻿@using DiscosRamirezFranzJosue.Models
-@model Tuple<IEnumerable<Disco>, IEnumerable<Interprete>>
-@**
-  @model Tuple<IEnumerable<dynamic>, IEnumerable<Interprete>>
-*@
-
-
+@model Tuple<IEnumerable<Disco>, IEnumerable<Interprete>, IEnumerable<Tipo>>
 
 @{
   ViewBag.Title = "Nuestros discos";
+  var selectedOrder = ViewData["selectedOrder"];
 }
 
 <h2>Listado de discos</h2>
 <hr />
 <div class="row mb-3">
+  <div class="col">
+    <select class="custom-select">
+      <option selected>Estilo</option>
+      @foreach (Tipo item in Model.Item3)
+      {
+        <option value="@Html.Raw(item.IdTipo)">@Html.Raw(item.tipo1)</option>
+      }
+    </select>
+  </div>
   <div class="col">
     <select class="custom-select">
       <option selected>Interprete</option>
@@ -23,23 +28,18 @@
     </select>
   </div>
   <div class="col">
-    <select class="custom-select">
-      <option selected>Estilo</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
-  </div>
-  <div class="col">
-    <select class="custom-select">
-      <option selected>Orden por defecto</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
+    @using (Html.BeginForm("Index", "Discos", FormMethod.Post))
+    {
+      <span class="d-none" id="selectedOrder">@selectedOrder</span>
+      <select class="custom-select" name="orderDiscos" id="orderDiscos">
+        <option value="0">Orden por defecto</option>
+        <option value="1">Alfabéticamanete ascendente (A-Z)</option>
+        <option value="2">Alfabéticamanete descendente (Z-A)</option>
+        <option value="3">Fecha de lanzamiento</option>
+      </select>
+    }    
   </div>
 </div>
-
 
 <div class="card-columns">
   @foreach (Disco item in Model.Item1)
@@ -47,7 +47,7 @@
     <div class="card border-dark">
       <img src="@Url.Content("~/Content/images/music-disc/default.jpg")" class="card-img-top" alt="imagen del disco">
       <div class="card-body">
-        <h5 class="card-title">@Html.Raw(item.IdDisco)</h5>
+        <h5 class="card-title text-hide">@Html.Raw(item.IdDisco)</h5>
         <p class="card-text">@Html.Raw(item.Titulo) - @Html.Raw(item.Interprete.Interprete1)</p>
         <p class="card-text"><small class="text-muted">Año - @Html.Raw(item.Agno)</small></p>
       </div>
@@ -55,18 +55,21 @@
   }
 </div>
 
-@*
-  <div class="card-columns">
-    @foreach (var item in Model.Item1)
-    {
-      <div class="card border-dark">
-        <img src="@Url.Content("~/Content/images/music-disc/default.jpg")" class="card-img-top" alt="imagen del disco">
-        <div class="card-body">
-          <h5 class="card-title">@Html.Raw(item.IdDisco)</h5>
-          <p class="card-text">@Html.Raw(item.Titulo) - @Html.Raw(item.Interprete1)</p>
-          <p class="card-text"><small class="text-muted">Año - @Html.Raw(item.Agno)</small></p>
-        </div>
-      </div>
+<script>
+  let orderForm = document.getElementById("orderDiscos");
+  orderForm.addEventListener("change", function () {
+    this.parentElement.submit();
+  });
+  let selectedItem = document.getElementById("selectedOrder");
+
+  window.onload = function () {
+    selectedItem.value = "";
+    //orderForm.options[0].selected = true;
+  };
+  
+  for (var i = 0; i < orderForm.options.length; i++) {
+    if (orderForm.options[i].value == selectedItem.innerText) {
+      orderForm.options[i].selected = true;
     }
-  </div>
-*@
+  }
+</script>

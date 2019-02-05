@@ -1,13 +1,16 @@
-﻿using System;
+﻿using DiscosRamirezFranzJosue.Enums;
+using DiscosRamirezFranzJosue.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscosRamirezFranzJosue.Services
 {
   public interface IDiscosService
   {
-    IEnumerable<dynamic> ListDiscos();
+    IEnumerable<Disco> ListDiscos();
+    IEnumerable<Tipo> ListTipos();
+    IEnumerable<Disco> ListDiscosOrdered(Sorted sort);
   }
 }

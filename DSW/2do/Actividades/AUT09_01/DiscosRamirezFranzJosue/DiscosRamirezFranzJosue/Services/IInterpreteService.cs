@@ -10,6 +10,5 @@ namespace DiscosRamirezFranzJosue.Services
   public interface IInterpreteService
   {
     IEnumerable<Interprete> ListInterpretes();
-    IEnumerable<dynamic> GetInterpretesById();
   }
 }

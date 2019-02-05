@@ -217,14 +217,11 @@
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\DiscosRepository.cs" />
-    <Compile Include="Repository\IDiscosRepository.cs" />
-    <Compile Include="Repository\IInterpreteRepository.cs" />
-    <Compile Include="Repository\InterpreteRepository.cs" />
     <Compile Include="Services\DiscosService.cs" />
     <Compile Include="Services\IDiscosService.cs" />
     <Compile Include="Services\IInterpreteService.cs" />
     <Compile Include="Services\InterpreteService.cs" />
+    <Compile Include="Utils\Enums.cs" />
     <Compile Include="Utils\ExtensionMethodUtils.cs" />
   </ItemGroup>
   <ItemGroup>

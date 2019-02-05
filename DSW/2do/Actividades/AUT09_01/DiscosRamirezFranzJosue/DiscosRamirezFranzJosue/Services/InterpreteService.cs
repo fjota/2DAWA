@@ -1,5 +1,4 @@
 ﻿using DiscosRamirezFranzJosue.Models;
-using DiscosRamirezFranzJosue.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +8,16 @@ namespace DiscosRamirezFranzJosue.Services
 {
   public class InterpreteService : IInterpreteService
   {
-    private IInterpreteRepository interpreteRepository;
+    private DiscosEntities discosEntities;
 
-    public InterpreteService(IInterpreteRepository interpreteRepository)
+    public InterpreteService(DiscosEntities discosEntities)
     {
-      this.interpreteRepository = interpreteRepository;
+      this.discosEntities = discosEntities;
     }
-
-    public IEnumerable<dynamic> GetInterpretesById()
-    {
-      throw new NotImplementedException();
-    }
-
+    
     public IEnumerable<Interprete> ListInterpretes()
     {
-      return interpreteRepository.ListInterpretes();
+      return discosEntities.Interpretes;
     }
   }
 }
