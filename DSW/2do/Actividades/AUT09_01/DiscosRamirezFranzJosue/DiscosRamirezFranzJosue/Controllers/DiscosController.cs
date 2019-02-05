@@ -26,10 +26,10 @@ namespace DiscosRamirezFranzJosue.Controllers
     {
 
       var entidad = new DiscosEntities();
-      var discosLista = entidad.Discoes.ToList();
 
-      var tuple = new Tuple<IEnumerable<dynamic>, IEnumerable<Interprete>>(discosService.ListDiscos(), 
-        interpreteService.ListInterpretes());
+      /*var tuple = new Tuple<IEnumerable<dynamic>, IEnumerable<Interprete>>(discosService.ListDiscos(), 
+        interpreteService.ListInterpretes());*/
+      var tuple = new Tuple<IEnumerable<Disco>, IEnumerable<Interprete>>(entidad.Discoes, entidad.Interpretes);
       return View(tuple);
     }
     

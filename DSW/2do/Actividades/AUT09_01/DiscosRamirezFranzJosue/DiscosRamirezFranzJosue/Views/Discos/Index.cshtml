@@ -1,5 +1,9 @@
 ﻿@using DiscosRamirezFranzJosue.Models
-@model Tuple<IEnumerable<dynamic>, IEnumerable<Interprete>>
+@model Tuple<IEnumerable<Disco>, IEnumerable<Interprete>>
+@**
+  @model Tuple<IEnumerable<dynamic>, IEnumerable<Interprete>>
+*@
+
 
 
 @{
@@ -14,7 +18,7 @@
       <option selected>Interprete</option>
       @foreach (Interprete item in Model.Item2)
       {
-      <option value="@Html.Raw(item.IdInterprete)">@Html.Raw(item.Interprete1)</option>
+        <option value="@Html.Raw(item.IdInterprete)">@Html.Raw(item.Interprete1)</option>
       }
     </select>
   </div>
@@ -38,16 +42,31 @@
 
 
 <div class="card-columns">
-  @foreach (var item in Model.Item1)
-  {  
-    <div class="card border-dark">      
+  @foreach (Disco item in Model.Item1)
+  {
+    <div class="card border-dark">
       <img src="@Url.Content("~/Content/images/music-disc/default.jpg")" class="card-img-top" alt="imagen del disco">
-      <div class="card-body">        
+      <div class="card-body">
         <h5 class="card-title">@Html.Raw(item.IdDisco)</h5>
-        <p class="card-text">@Html.Raw(item.Titulo) - @Html.Raw(item.Interprete1)</p>
-        <p class="card-text"><small class="text-muted">Año - @Html.Raw(item.Agno)</small></p>      
+        <p class="card-text">@Html.Raw(item.Titulo) - @Html.Raw(item.Interprete.Interprete1)</p>
+        <p class="card-text"><small class="text-muted">Año - @Html.Raw(item.Agno)</small></p>
       </div>
     </div>
   }
 </div>
 
+@*
+  <div class="card-columns">
+    @foreach (var item in Model.Item1)
+    {
+      <div class="card border-dark">
+        <img src="@Url.Content("~/Content/images/music-disc/default.jpg")" class="card-img-top" alt="imagen del disco">
+        <div class="card-body">
+          <h5 class="card-title">@Html.Raw(item.IdDisco)</h5>
+          <p class="card-text">@Html.Raw(item.Titulo) - @Html.Raw(item.Interprete1)</p>
+          <p class="card-text"><small class="text-muted">Año - @Html.Raw(item.Agno)</small></p>
+        </div>
+      </div>
+    }
+  </div>
+*@
