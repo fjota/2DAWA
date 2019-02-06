@@ -210,6 +210,7 @@
     <Compile Include="Models\Interprete.cs">
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\Puntuacion.cs">
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
