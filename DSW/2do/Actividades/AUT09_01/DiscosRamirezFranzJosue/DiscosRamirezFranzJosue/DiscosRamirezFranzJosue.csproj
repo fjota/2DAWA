@@ -222,6 +222,7 @@
     <Compile Include="Services\IDiscosService.cs" />
     <Compile Include="Services\IInterpreteService.cs" />
     <Compile Include="Services\InterpreteService.cs" />
+    <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Utils\Enums.cs" />
     <Compile Include="Utils\ExtensionMethodUtils.cs" />
   </ItemGroup>
@@ -241,6 +242,7 @@
     <Content Include="Scripts\jquery\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery\jquery-3.3.1.min.map" />
     <Content Include="Views\Discos\Index.cshtml" />
+    <Content Include="Views\Shared\_FilterDiscos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

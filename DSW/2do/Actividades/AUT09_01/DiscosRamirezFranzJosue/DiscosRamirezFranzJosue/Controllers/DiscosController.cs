@@ -22,19 +22,25 @@ namespace DiscosRamirezFranzJosue.Controllers
 
     [HttpGet]
     public ActionResult Index()
-    {      
-      var tuple = new Tuple<IEnumerable<Disco>, IEnumerable<Interprete>, IEnumerable<Tipo>>(discosService.ListDiscos(), 
-        interpreteService.ListInterpretes(), discosService.ListTipos());
-      return View(tuple);
+    {
+      var discos = discosService.ListDiscos();
+      return View(discos);
     }
 
     [HttpPost]
     public ActionResult Index(Sorted orderDiscos)
+    {      
+      OrderModel.SortedList.Find(item => item.Selected == true).Selected = false;
+      OrderModel.SortedList.Find(item => int.Parse(item.Value) == (int)orderDiscos).Selected = true;
+      var discosOrdered = discosService.ListDiscosOrdered(orderDiscos);
+      return View(discosOrdered);
+    }
+
+    [ChildActionOnly]
+    public PartialViewResult FilterDiscos()
     {
-      ViewData["selectedOrder"] = (int) orderDiscos;
-      var tuple = new Tuple<IEnumerable<Disco>, IEnumerable<Interprete>, IEnumerable<Tipo>>(discosService.ListDiscosOrdered(orderDiscos),
-        interpreteService.ListInterpretes(), discosService.ListTipos());
-      return View(tuple);
+      var tuple = new Tuple<IEnumerable<Interprete>, IEnumerable<Tipo>>(interpreteService.ListInterpretes(), discosService.ListTipos());
+      return PartialView("_FilterDiscos", tuple);
     }
 
   }
