@@ -9,27 +9,26 @@
 
 namespace DiscosRamirezFranzJosue.Models
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
-    public partial class DiscosEntities : DbContext
+  using System;
+  using System.Data.Entity;
+  using System.Data.Entity.Infrastructure;
+
+  public partial class DiscosEntities : DbContext
+  {
+    public DiscosEntities() : base("name=DiscosEntities")
     {
-        public DiscosEntities()
-            : base("name=DiscosEntities")
-        {
-        }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
-        public virtual DbSet<Cliente> Clientes { get; set; }
-        public virtual DbSet<Disco> Discoes { get; set; }
-        public virtual DbSet<DiscoTipo> DiscoTipoes { get; set; }
-        public virtual DbSet<Interprete> Interpretes { get; set; }
-        public virtual DbSet<Puntuacion> Puntuacions { get; set; }
-        public virtual DbSet<Tipo> Tipoes { get; set; }
     }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+      throw new UnintentionalCodeFirstException();
+    }
+
+    public virtual DbSet<Cliente> Clientes { get; set; }
+    public virtual DbSet<Disco> Discoes { get; set; }
+    public virtual DbSet<DiscoTipo> DiscoTipoes { get; set; }
+    public virtual DbSet<Interprete> Interpretes { get; set; }
+    public virtual DbSet<Puntuacion> Puntuacions { get; set; }
+    public virtual DbSet<Tipo> Tipoes { get; set; }
+  }
 }

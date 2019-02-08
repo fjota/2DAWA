@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace DiscosRamirezFranzJosue.Controllers
 {
-  public class HomeController : Controller
+  public class ClientesController : Controller
   {
-    // GET: Home
-    public ActionResult Index()
+    
+    public ViewResult RegisterCliente()
     {
       return View();
     }

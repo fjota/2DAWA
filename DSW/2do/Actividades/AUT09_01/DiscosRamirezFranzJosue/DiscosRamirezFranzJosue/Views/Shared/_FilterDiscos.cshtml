@@ -6,17 +6,25 @@
 
 }
 <div class="row mb-3">
-  <div class="col">    
+  <div class="col">
     @Html.DropDownListFor(m => m.Item2, new SelectList(Model.Item2, "IdTipo", "tipo1"), new { @class = "custom-select", @name = "tipoDisco", @id = "tipoDisco" })
   </div>
-  <div class="col">    
+  <div class="col">
     @Html.DropDownListFor(m => m.Item1, new SelectList(Model.Item1, "IdInterprete", "Interprete1"), new { @class = "custom-select", @name = "interprete", @id = "interprete" })
   </div>
   <div class="col">
     @using (Html.BeginForm("Index", "Discos", FormMethod.Post))
-    {    
+    {
       @Html.DropDownList("orderDIscos", OrderModel.SortedList, new { @class = "custom-select", @name = "orderDiscos", @id = "orderDiscos" });
     }
   </div>
 </div>
+
+
+<script>
+  let orderForm = document.getElementById("orderDiscos");
+  orderForm.addEventListener("change", function () {
+    this.parentElement.submit();
+  });
+</script>
 
