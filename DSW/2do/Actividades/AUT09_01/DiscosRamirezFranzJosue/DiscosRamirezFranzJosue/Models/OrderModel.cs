@@ -6,9 +6,8 @@ using System.Web.Mvc;
 
 namespace DiscosRamirezFranzJosue.Models
 {
-  public static class OrderModel
+  public class OrderModel
   {
-
     public static List<SelectListItem> SortedList { get; set; } = new List<SelectListItem>
     {
       new SelectListItem

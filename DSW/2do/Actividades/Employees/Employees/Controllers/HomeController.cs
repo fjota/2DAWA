@@ -14,7 +14,7 @@ namespace Employees.Controllers
       return View();
     }
 
-    public string Index2(int id)
+    public string Index2(int? id)
     {
       return $"Index 2 , id={id}";
     }

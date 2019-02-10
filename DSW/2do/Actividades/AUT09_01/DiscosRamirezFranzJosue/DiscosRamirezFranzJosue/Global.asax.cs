@@ -24,7 +24,8 @@ namespace DiscosRamirezFranzJosue
       container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();      
       container.Register<IDiscosService, DiscosService>(Lifestyle.Scoped);
       container.Register<IInterpreteService, InterpreteService>(Lifestyle.Scoped);
-      container.Register<DiscosEntities, DiscosEntities>(Lifestyle.Scoped);
+      container.Register<IFilterService, FilterService>(Lifestyle.Scoped);
+      container.Register<IClientesService, ClientesService>(Lifestyle.Scoped);
       container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
       container.RegisterMvcIntegratedFilterProvider();
       container.Verify();

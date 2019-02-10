@@ -11,40 +11,40 @@ namespace DiscosRamirezFranzJosue.Services
   {
     private DiscosEntities discosEntities;
 
-    public DiscosService(DiscosEntities discosEntities)
+    public DiscosService()
     {
-      this.discosEntities = discosEntities;
+      discosEntities = new DiscosEntities();
+    }
+
+    public IEnumerable<DiscoTipo> ListDiscoTipos()
+    {
+      return discosEntities.DiscoTipoes;
     }
 
     public IEnumerable<Disco> ListDiscos()
     {
       return discosEntities.Discoes;
     }
-    
+
     public IEnumerable<Tipo> ListTipos()
     {
       return discosEntities.Tipoes;
     }
 
-    public IEnumerable<Disco> ListDiscosOrdered(Sorted sort)
+    public IEnumerable<Tipo> ListTiposByDiscosId(IEnumerable<Disco> discos)
     {
-      IEnumerable<Disco> discos = null;
-      switch (sort)
-      {
-        case Sorted.DEFAULT:
-          discos = ListDiscos().OrderBy(item => item.Interprete.Interprete1);
-          break;
-        case Sorted.ASC:
-          discos = ListDiscos().OrderBy(item => item.Interprete.Interprete1);
-          break;
-        case Sorted.DESC:
-          discos = ListDiscos().OrderByDescending(item => item.Interprete.Interprete1);
-          break;
-        case Sorted.DATE:
-          discos = ListDiscos().OrderByDescending(item => item.Agno);
-          break;
-      }
-      return discos;
-    }    
+
+      IEnumerable<Tipo> listTipos = (from tipoDisco in ListDiscoTipos()
+                                    join discs in discos on tipoDisco.IdDisco equals discs.IdDisco
+                                    join tipos in ListTipos() on tipoDisco.IdTipo equals tipos.IdTipo
+                                    select tipos).Distinct();
+
+      return listTipos;
+    }
+
+    public IEnumerable<Disco> ListDiscosByInterpreteAndTipoDisco(IEnumerable<Interprete> interpretes, IEnumerable<Tipo> tipo)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

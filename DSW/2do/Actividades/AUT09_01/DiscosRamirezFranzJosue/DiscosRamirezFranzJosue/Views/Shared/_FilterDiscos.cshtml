@@ -2,29 +2,48 @@
 @model Tuple<IEnumerable<Interprete>, IEnumerable<Tipo>>
 
 @{
-  var sortedList = OrderModel.SortedList;
-
+  int idInterprete = (int)ViewData["interpreteSelected"];
+  int idTipoDisco = (int)ViewData["tipoDiscoSelected"]; 
 }
-<div class="row mb-3">
-  <div class="col">
-    @Html.DropDownListFor(m => m.Item2, new SelectList(Model.Item2, "IdTipo", "tipo1"), new { @class = "custom-select", @name = "tipoDisco", @id = "tipoDisco" })
+
+@using (Html.BeginForm("Index", "Discos", FormMethod.Get, new { @id = "filterForm" }))
+{
+  <div class="row mb-3">
+    <div class="col">
+      @Html.DropDownList("tipoDisco", Model.Item2.Select(x => new SelectListItem { Text = x.tipo1, Value = x.IdTipo.ToString(), Selected = x.IdTipo == idTipoDisco }),
+        "Seleccione Tipo Disco",
+        new { @class = "custom-select", @Name = "tipoDisco", @id = "tipoDisco" })
+    </div>
+    <div class="col">
+      @Html.DropDownList("interprete", Model.Item1.Select(x => new SelectListItem { Text = x.Interprete1, Value = x.IdInterprete.ToString(), Selected = x.IdInterprete == idInterprete }),
+       "Seleccione Interprete",
+       new { @class = "custom-select", @Name = "interprete", @id = "interprete" })
+    </div>
+    <div class="col">
+      @Html.DropDownList("orderDIscos", OrderModel.SortedList, new { @class = "custom-select", @Name = "orderDiscos", @id = "orderDiscos" })
+    </div>
   </div>
-  <div class="col">
-    @Html.DropDownListFor(m => m.Item1, new SelectList(Model.Item1, "IdInterprete", "Interprete1"), new { @class = "custom-select", @name = "interprete", @id = "interprete" })
-  </div>
-  <div class="col">
-    @using (Html.BeginForm("Index", "Discos", FormMethod.Post))
-    {
-      @Html.DropDownList("orderDIscos", OrderModel.SortedList, new { @class = "custom-select", @name = "orderDiscos", @id = "orderDiscos" });
-    }
-  </div>
-</div>
+}
+
 
 
 <script>
+  //filter form
+  let filterForm = document.getElementById("filterForm");
+  //Discos
   let orderForm = document.getElementById("orderDiscos");
   orderForm.addEventListener("change", function () {
-    this.parentElement.submit();
+    filterForm.submit()
+  });
+  //Interprete
+  let interprete = document.getElementById("interprete");
+  interprete.addEventListener("change", function () {
+    filterForm.submit()
+  });
+  //Tipo
+  let tipoDisco = document.getElementById("tipoDisco");
+  tipoDisco.addEventListener("change", function () {
+    filterForm.submit()
   });
 </script>
 

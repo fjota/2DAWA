@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace DiscosRamirezFranzJosue.Services
 {
-  public interface IOrderService
+  
+  public interface IFilterService
   {
     IEnumerable<Disco> ListDiscosOrdered(Sorted sort);
   }

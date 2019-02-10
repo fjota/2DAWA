@@ -75,7 +75,6 @@ D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamir
 D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\es\System.Web.WebPages.resources.dll
 D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\obj\Debug\DiscosRamirezFranzJosue.csprojAssemblyReference.cache
 D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\obj\Debug\DiscosRamirezFranzJosue.csproj.CoreCompileInputs.cache
 D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\obj\Debug\DiscosRamirezFranzJosue.csproj.CopyComplete
 D:\Cursos\2DAWA\DSW\2do\Actividades\AUT09_01\DiscosRamirezFranzJosue\DiscosRamirezFranzJosue\obj\Debug\DiscosRamirezFranzJosue.dll

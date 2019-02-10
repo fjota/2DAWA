@@ -10,9 +10,9 @@ namespace DiscosRamirezFranzJosue.Services
   {
     private DiscosEntities discosEntities;
 
-    public InterpreteService(DiscosEntities discosEntities)
+    public InterpreteService()
     {
-      this.discosEntities = discosEntities;
+      discosEntities = new DiscosEntities();
     }
     
     public IEnumerable<Interprete> ListInterpretes()
