@@ -44,9 +44,16 @@ namespace DiscosRamirezFranzJosue.Controllers
       }           
     }
 
+    [HttpGet]
     public ActionResult Delete(int id)
     {
-      clientesService.DeleteClienteById(id);
+      return View(clientesService.SearchClienteById(id));
+    }
+
+    [HttpPost]
+    public ActionResult Delete(Cliente cliente)
+    {
+      clientesService.RemoveCliente(cliente);
       return RedirectToAction("Index");
     }
 

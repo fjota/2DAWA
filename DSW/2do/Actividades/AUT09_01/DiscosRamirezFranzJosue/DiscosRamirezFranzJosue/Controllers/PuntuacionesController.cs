@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiscosRamirezFranzJosue.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,16 @@ namespace DiscosRamirezFranzJosue.Controllers
 {
   public class PuntuacionesController : Controller
   {
-    
-    public ActionResult Index()
+
+    public ActionResult Cliente(int id)
     {
-      return View();
+
+      DiscosEntities context = new DiscosEntities();
+      var puntuationesClientes = context.Puntuacions.Where(item => item.Idcliente == id);
+      var puntos = context.Puntuacions.ToList();
+
+      return View(puntuationesClientes);
+
     }
   }
 }
