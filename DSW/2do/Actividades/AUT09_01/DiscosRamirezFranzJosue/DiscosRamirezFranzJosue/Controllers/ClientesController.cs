@@ -43,5 +43,31 @@ namespace DiscosRamirezFranzJosue.Controllers
         return View();
       }           
     }
+
+    public ActionResult Delete(int id)
+    {
+      clientesService.DeleteClienteById(id);
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public ViewResult Edit(int id)
+    {
+      return View(clientesService.SearchClienteById(id));
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Cliente cliente)
+    {
+      clientesService.UpdateCliente(cliente);
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Details(int id)
+    {
+      return View(clientesService.SearchClienteById(id));
+    }
+
+
   }
 }

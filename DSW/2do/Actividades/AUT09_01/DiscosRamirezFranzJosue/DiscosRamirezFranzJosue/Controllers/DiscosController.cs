@@ -25,11 +25,12 @@ namespace DiscosRamirezFranzJosue.Controllers
     [HttpGet]
     public ActionResult Index(int? interprete, int? tipoDisco, Sorted? orderDiscos)
     {
+      //Selected item order
       OrderModel.SortedList.Find(item => item.Selected == true).Selected = false;
       OrderModel.SortedList.Find(item => int.Parse(item.Value) == (orderDiscos != null ? (int)orderDiscos : 0)).Selected = true;
 
-      ViewData["interpreteSelected"] = interprete;
-      ViewData["tipoDiscoSelected"] = tipoDisco;
+      ViewData["interpreteSelected"] = interprete != null ? (int)interprete : 0;
+      ViewData["tipoDiscoSelected"] = tipoDisco != null ? (int)tipoDisco : 0;
 
       if (interprete == null && tipoDisco == null)
       {
@@ -41,8 +42,7 @@ namespace DiscosRamirezFranzJosue.Controllers
         .Where(x => x.Interprete.IdInterprete == (int)interprete);
         return View(discos1);
       }
-      /*var discos = filterService.ListDiscosOrdered(orderDiscos != null ? (Sorted)orderDiscos : 0).
-        Where(x => x.Interprete.IdInterprete == (interprete != null ? (int)interprete : 1));*/
+      
       var discos = filterService.ListDiscosOrdered(orderDiscos != null ? (Sorted)orderDiscos : 0)
          .Where(x => x.Interprete.IdInterprete == (interprete != null ? (int)interprete : 1));
 
@@ -59,10 +59,12 @@ namespace DiscosRamirezFranzJosue.Controllers
    
     [ChildActionOnly]
     public PartialViewResult FilterDiscos(int? idInterprete, int? idTipoDisco, IEnumerable<Disco> discos)
-    {           
-      ViewData["interpreteSelected"] = idInterprete != null ? idInterprete : 0;
-      ViewData["tipoDiscoSelected"] = idTipoDisco != null ? idTipoDisco : 0;
-      var tuple = new Tuple<IEnumerable<Interprete>, IEnumerable<Tipo>>(interpreteService.ListInterpretes(), discosService.ListTiposByDiscosId(discos));
+    {
+     
+      ViewData["interpreteSelected"] = idInterprete;
+      ViewData["tipoDiscoSelected"] = idTipoDisco;
+      var tuple = new Tuple<IEnumerable<Interprete>, IEnumerable<Tipo>>(interpreteService.ListInterpretes(), 
+        discosService.ListTiposByDiscosId(discos)); //TODO
       return PartialView("_FilterDiscos", tuple);
     }
 

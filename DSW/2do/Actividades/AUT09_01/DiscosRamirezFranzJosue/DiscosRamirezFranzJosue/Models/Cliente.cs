@@ -28,7 +28,10 @@ namespace DiscosRamirezFranzJosue.Models
     [EmailAddress]
     public string Email { get; set; }
     [Required]
+    [Display(Name = "Fecha de Nacimiento")]
+    //[DataType(DataType.Date)] //TODO, NO MUESTRA LA FECHA AL EDITAR Y POR TENER ESE CAMPO NULL DA ERROR ACTUALIZAR
     public Nullable<System.DateTime> FechaNacimiento { get; set; }
+    [Display(Name = "Fecha de Registro")]
     public Nullable<System.DateTime> FechaRegistro { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

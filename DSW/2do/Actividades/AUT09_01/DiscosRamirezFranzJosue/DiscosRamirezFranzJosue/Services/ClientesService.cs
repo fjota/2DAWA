@@ -30,9 +30,43 @@ namespace DiscosRamirezFranzJosue.Services
       
     }
 
+    public bool DeleteClienteById(int id)
+    {
+      try
+      {
+        discosEntities.Clientes.Remove(SearchClienteById(id));
+        discosEntities.SaveChanges();
+        return true;
+      }
+      catch (Exception)
+      {
+        return false;
+      }
+    }
+
     public IEnumerable<Cliente> ListClientes()
     {
       return discosEntities.Clientes;
+    }
+
+    public Cliente SearchClienteById(int id)
+    {
+      return discosEntities.Clientes.First(item => item.id == id);
+    }
+
+    public bool UpdateCliente(Cliente cliente)
+    {
+      try
+      {
+        discosEntities.Clientes.Add(cliente);
+        discosEntities.Entry(cliente).State = System.Data.Entity.EntityState.Modified;
+        discosEntities.SaveChanges();
+        return true;
+      }
+      catch (Exception)
+      {
+        return false;
+      }
     }
   }
 }

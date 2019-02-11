@@ -11,5 +11,8 @@ namespace DiscosRamirezFranzJosue.Services
   {
     bool CreateCliente(Cliente cliente);
     IEnumerable<Cliente> ListClientes();
+    bool DeleteClienteById(int id);
+    Cliente SearchClienteById(int id);
+    bool UpdateCliente(Cliente cliente);
   }
 }

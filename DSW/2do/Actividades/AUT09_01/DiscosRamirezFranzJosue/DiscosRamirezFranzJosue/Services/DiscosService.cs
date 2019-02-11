@@ -33,18 +33,17 @@ namespace DiscosRamirezFranzJosue.Services
 
     public IEnumerable<Tipo> ListTiposByDiscosId(IEnumerable<Disco> discos)
     {
-
+      //TODO
       IEnumerable<Tipo> listTipos = (from tipoDisco in ListDiscoTipos()
                                     join discs in discos on tipoDisco.IdDisco equals discs.IdDisco
                                     join tipos in ListTipos() on tipoDisco.IdTipo equals tipos.IdTipo
                                     select tipos).Distinct();
+      /*IEnumerable<Tipo> listTipos = from tipo in ListTipos()
+                                    join tipoDisco in ListDiscoTipos() on tipo.IdTipo equals tipoDisco.IdTipo
+                                    join discosL in discos on tipoDisco.IdDisco equals discosL.IdDisco*/
 
       return listTipos;
     }
-
-    public IEnumerable<Disco> ListDiscosByInterpreteAndTipoDisco(IEnumerable<Interprete> interpretes, IEnumerable<Tipo> tipo)
-    {
-      throw new NotImplementedException();
-    }
+    
   }
 }
