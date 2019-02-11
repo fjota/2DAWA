@@ -31,19 +31,36 @@ namespace DiscosRamirezFranzJosue.Services
       return discosEntities.Tipoes;
     }
 
-    public IEnumerable<Tipo> ListTiposByDiscosId(IEnumerable<Disco> discos)
+    public IEnumerable<Tipo> ListTiposByIdterptreteId(int idInterprete)
     {
-      //TODO
-      IEnumerable<Tipo> listTipos = (from tipoDisco in ListDiscoTipos()
-                                    join discs in discos on tipoDisco.IdDisco equals discs.IdDisco
-                                    join tipos in ListTipos() on tipoDisco.IdTipo equals tipos.IdTipo
-                                    select tipos).Distinct();
-      /*IEnumerable<Tipo> listTipos = from tipo in ListTipos()
+      IEnumerable<Tipo> listTipos = (from tipo in ListTipos()
                                     join tipoDisco in ListDiscoTipos() on tipo.IdTipo equals tipoDisco.IdTipo
-                                    join discosL in discos on tipoDisco.IdDisco equals discosL.IdDisco*/
+                                    join discos in ListDiscos() on tipoDisco.IdDisco equals discos.IdDisco
+                                    where discos.IdInterprete == idInterprete
+                                    select tipo).Distinct();
 
       return listTipos;
     }
-    
+
+    public IEnumerable<Disco> ListDiscosByInterpreteIdAndTipoId(int idInterprete, int idTipo)
+    {
+      IEnumerable<Disco> listDiscos = from discos in ListDiscos()
+                                      join tipoDisco in ListDiscoTipos() on discos.IdDisco equals tipoDisco.IdDisco
+                                      join tipo in ListTipos() on tipoDisco.IdTipo equals tipo.IdTipo
+                                      where tipoDisco.IdTipo == idTipo && discos.IdInterprete == idInterprete
+                                      select discos;
+      return listDiscos;
+    }
+
+    public IEnumerable<Disco> ListDiscosByTipoId(int idTipo)
+    {
+      IEnumerable<Disco> listDiscos = (from discos in ListDiscos()
+                                      join tipoDisco in ListDiscoTipos() on discos.IdDisco equals tipoDisco.IdDisco
+                                      join tipo in ListTipos() on tipoDisco.IdTipo equals tipo.IdTipo
+                                      where tipoDisco.IdTipo == idTipo
+                                      select discos).Distinct();
+
+      return listDiscos;
+    }
   }
 }

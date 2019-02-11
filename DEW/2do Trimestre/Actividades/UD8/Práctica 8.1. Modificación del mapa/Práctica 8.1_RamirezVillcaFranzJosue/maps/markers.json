@@ -1,0 +1,110 @@
+markers = [
+  {
+    "name": "CIFP César Manrique",
+    "url": "https://cifpcesarmanrique.es/",
+    "lat": 28.45496,
+    "lng": -16.2837109
+  },
+  {
+    "name": "CC Yumbo",
+    "url": "https://www.facebook.com/yumbocc/",
+    "lat": 28.4555275,
+    "lng": -16.2835616
+  },
+  {
+    "name": "Chimisay (Tranvía L1)",
+    "url": "https://es.wikipedia.org/wiki/Chimisay_(Tranv%C3%ADa_de_Tenerife)",
+    "lat": 28.4571364,
+    "lng": -16.2811406
+  },
+  {
+    "name": "Cuchillitos de Tristán",
+    "url": "https://es.wikipedia.org/wiki/Parque_Cuchillitos_de_Trist%C3%A1n",
+    "lat": 28.4561259,
+    "lng": -16.2778492
+  },
+  {
+    "name": "Miramar",
+    "url": "https://es.wikipedia.org/wiki/Miramar_(Santa_Cruz_de_Tenerife)",
+    "icon": "https://images.clarin.com/2015/12/17/rygLpKx4l_1256x620.jpg",
+    "lat": 28.454880349289628,
+    "lng": -16.277682781219482
+  },
+  {
+    "name": "LAS RETEMAS",
+    "url": "www.google.es",
+    "icon": "https://images.clarin.com/2015/12/17/rygLpKx4l_1256x620.jpg",
+    "lat": 28.450182753746645,
+    "lng": -16.287370920181274
+  },
+  {
+    "name": "dsadsdsasdaads",
+    "url": "https://images.clarin.com/2015/12/17/rygLpKx4l_1256x620.jpg",
+    "icon": "https://images.clarin.com/2015/12/17/rygLpKx4l_1256x620.jpg",
+    "lat": 28.455785885881586,
+    "lng": -16.27801537513733
+  },
+  {
+    "name": "delicias",
+    "url": "https:\/\/images.clarin.com\/2015\/12\/17\/rygLpKx4l_1256x620.jpg",
+    "icon": "https:\/\/images.clarin.com\/2015\/12\/17\/rygLpKx4l_1256x620.jpg",
+    "lat": 28.452427815404874,
+    "lng": -16.2837016582489
+  },
+  {
+    "name": "delicias",
+    "url": "https:\/\/images.clarin.com\/2015\/12\/17\/rygLpKx4l_1256x620.jpg",
+    "icon": "https:\/\/images.clarin.com\/2015\/12\/17\/rygLpKx4l_1256x620.jpg",
+    "lat": 28.452427815404874,
+    "lng": -16.2837016582489
+  },
+  {
+    "name": "Hopital",
+    "url": "https:\/\/images.clarin.com\/2015\/12\/17\/rygLpKx4l_1256x620.jpg",
+    "icon": "https:\/\/images.clarin.com\/2015\/12\/17\/rygLpKx4l_1256x620.jpg",
+    "lat": 28.459898433628442,
+    "lng": -16.284302473068237
+  },
+  {
+    "name": "super nekp",
+    "url": "https:\/\/www.lavanguardia.com\/r\/GODO\/LV\/p5\/WebSite\/2018\/04\/19\/Recortada\/img_scolome_20180419-170551_imagenes_lv_getty_istock-626464158-k6yB-U442737524989vlB-992x558@LaVanguardia-Web.jpg",
+    "icon": "https:\/\/www.lavanguardia.com\/r\/GODO\/LV\/p5\/WebSite\/2018\/04\/19\/Recortada\/img_scolome_20180419-170551_imagenes_lv_getty_istock-626464158-k6yB-U442737524989vlB-992x558@LaVanguardia-Web.jpg",
+    "lat": 28.457068716109667,
+    "lng": -16.2847101688385
+  },
+  {
+    "name": "Monte fuji",
+    "url": "https:\/\/es.wikipedia.org\/wiki\/Monte_Fuji",
+    "icon": "https:\/\/www.turismo-japon.es\/images\/destinations\/chubu\/yamanashi\/le_mont_fuji_et_la_region_des_cinq-lacs.jpg",
+    "lat": 28.454503040087182,
+    "lng": -16.288894414901733
+  },
+  {
+    "name": "Casa de mujeriegos",
+    "url": "https:\/\/es.wikipedia.org\/wiki\/Wikipedia:Portada",
+    "icon": "",
+    "lat": 28.455804751144765,
+    "lng": -16.285139322280884
+  },
+  {
+    "name": "Casa de mujeriegos1",
+    "url": "https:\/\/es.wikipedia.org\/wiki\/Wikipedia:Portada",
+    "icon": "",
+    "lat": 28.455804751144765,
+    "lng": -16.285139322280884
+  },
+  {
+    "name": "dadssadsd",
+    "url": "adssdaasddasas",
+    "icon": "",
+    "lat": 28.454352116029174,
+    "lng": -16.289216279983517
+  },
+  {
+    "name": "555555",
+    "url": "55555",
+    "icon": "",
+    "lat": 28.454370981548195,
+    "lng": -16.289216279983517
+  },
+];

@@ -5,13 +5,12 @@
   ViewBag.Title = "Nuestros discos";
   var idInterprete = ViewData["interpreteSelected"];
   var idTipoDisco = ViewData["tipoDiscoSelected"];
-  var discos = Model.ToList();
 }
 
 <h2>Listado de discos</h2>
 <hr />
 
-@Html.Action("FilterDiscos", new { idInterprete, idTipoDisco, discos })
+@Html.Action("FilterDiscos", new { idInterprete, idTipoDisco })
 
 <div class="card-columns">
   @foreach (Disco item in Model)

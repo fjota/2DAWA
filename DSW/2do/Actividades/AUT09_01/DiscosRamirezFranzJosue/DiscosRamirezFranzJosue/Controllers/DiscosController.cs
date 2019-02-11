@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DiscosRamirezFranzJosue.Utils;
 using DiscosRamirezFranzJosue.Models;
 using DiscosRamirezFranzJosue.Enums;
 using DiscosRamirezFranzJosue.Services;
@@ -24,8 +25,7 @@ namespace DiscosRamirezFranzJosue.Controllers
 
     [HttpGet]
     public ActionResult Index(int? interprete, int? tipoDisco, Sorted? orderDiscos)
-    {
-      //Selected item order
+    {  
       OrderModel.SortedList.Find(item => item.Selected == true).Selected = false;
       OrderModel.SortedList.Find(item => int.Parse(item.Value) == (orderDiscos != null ? (int)orderDiscos : 0)).Selected = true;
 
@@ -38,33 +38,27 @@ namespace DiscosRamirezFranzJosue.Controllers
       }
       if (tipoDisco == null)
       {
-        IEnumerable<Disco> discos1 = filterService.ListDiscosOrdered(orderDiscos != null ? (Sorted)orderDiscos : 0)
+        IEnumerable<Disco> discosByInterprete = filterService.ListDiscosOrdered(orderDiscos != null ? (Sorted)orderDiscos : 0)
         .Where(x => x.Interprete.IdInterprete == (int)interprete);
-        return View(discos1);
+        return View(discosByInterprete);
       }
-      
-      var discos = filterService.ListDiscosOrdered(orderDiscos != null ? (Sorted)orderDiscos : 0)
-         .Where(x => x.Interprete.IdInterprete == (interprete != null ? (int)interprete : 1));
-
-      var discoTipo = discosService.ListDiscoTipos().Where(item => item.IdTipo == (tipoDisco != null ? (int)tipoDisco : 1)).ToList();
-
-      var peura = (from discosEl in discos
-                  join discosTi in discoTipo on discosEl.IdDisco equals discosTi.IdDisco
-                  select discosEl).ToList();
-
-
-      
-      return View(peura);
+      if (interprete == null)
+      {
+        return View(discosService.ListDiscosByTipoId((int)tipoDisco).OrderDiscos(orderDiscos != null ? (Sorted)orderDiscos : 0));       
+      }
+                             
+      return View(discosService.ListDiscosByInterpreteIdAndTipoId((int)interprete, (int)tipoDisco).OrderDiscos(orderDiscos != null ? (Sorted)orderDiscos : 0));
     }
    
     [ChildActionOnly]
-    public PartialViewResult FilterDiscos(int? idInterprete, int? idTipoDisco, IEnumerable<Disco> discos)
+    public PartialViewResult FilterDiscos(int? idInterprete, int? idTipoDisco)
     {
      
       ViewData["interpreteSelected"] = idInterprete;
       ViewData["tipoDiscoSelected"] = idTipoDisco;
-      var tuple = new Tuple<IEnumerable<Interprete>, IEnumerable<Tipo>>(interpreteService.ListInterpretes(), 
-        discosService.ListTiposByDiscosId(discos)); //TODO
+      var tuple = new Tuple<IEnumerable<Interprete>, IEnumerable<Tipo>>(
+        idTipoDisco == 0 ? interpreteService.ListInterpretes() : interpreteService.ListInterpretesByIdTipoDisco((int)idTipoDisco), 
+        idInterprete == 0 ? discosService.ListTipos() : discosService.ListTiposByIdterptreteId((int)idInterprete)); 
       return PartialView("_FilterDiscos", tuple);
     }
 

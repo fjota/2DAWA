@@ -10,5 +10,6 @@ namespace DiscosRamirezFranzJosue.Services
   public interface IInterpreteService
   {
     IEnumerable<Interprete> ListInterpretes();
+    IEnumerable<Interprete> ListInterpretesByIdTipoDisco(int idTipo);
   }
 }

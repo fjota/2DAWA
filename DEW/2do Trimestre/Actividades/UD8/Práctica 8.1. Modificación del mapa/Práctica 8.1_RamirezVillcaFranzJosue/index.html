@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+  <title>Leaflet Example - asmaloney.com</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="styles/general.css" />
+
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+  <script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+
+</head>
+
+<body>
+  <h1>Mapa incrustado en una página web</h1>
+
+  <p>En este ejemplo podemos ver cómo se incrusta un mapa de OpenStreetMap en una página web.</p>
+
+  <div id="map" style="width: 800px; height: 440px; border: 1px solid #AAA;"></div>
+  <div id="formulario">
+    <p>Lugar: <input type="text" id="lugar" /></p>
+    <p>Icono (URL): <input type="text" id="icono" /></p>
+    <p>Web: <input type="text" id="web" /> <button id="guardar">Guardar</button> </p>
+  </div>
+
+  <div id="creditos">
+    <p>Obtenido del artículo <em><a
+          href="https://asmaloney.com/2014/01/code/creating-an-interactive-map-with-leaflet-and-openstreetmap"
+          target="_blank">Creating An Interactive Map With Leaflet and OpenStreetMap</a></em></p>
+    <p>Andy Maloney // <a href="https://asmaloney.com" target="_blank">asmaloney.com</a></p>
+  </div>
+  <script src='maps/markers.json'></script>
+  <!--<script src='maps/leaf-demo.js'></script>-->
+  <script src='scripts/map_functions.js'></script>
+</body>
+
+</html>

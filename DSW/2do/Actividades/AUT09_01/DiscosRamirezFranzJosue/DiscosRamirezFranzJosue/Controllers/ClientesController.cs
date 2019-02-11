@@ -70,11 +70,14 @@ namespace DiscosRamirezFranzJosue.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Details(int id)
+    public ViewResult Details(int id)
     {
       return View(clientesService.SearchClienteById(id));
     }
 
-
+    public ViewResult Puntuaciones(int id)
+    {     
+      return View(clientesService.PuntuacionesByClienteId(id).ToList());
+    }
   }
 }

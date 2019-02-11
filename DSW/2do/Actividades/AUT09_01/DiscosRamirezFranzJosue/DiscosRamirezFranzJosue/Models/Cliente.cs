@@ -29,10 +29,12 @@ namespace DiscosRamirezFranzJosue.Models
     public string Email { get; set; }
     [Required]
     [Display(Name = "Fecha de Nacimiento")]
-    //[DataType(DataType.Date)]
-    //[DisplayFormat(DataFormatString = "{0:0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] //0:yyyy-MM-dd
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public Nullable<System.DateTime> FechaNacimiento { get; set; }
     [Display(Name = "Fecha de Registro")]
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public Nullable<System.DateTime> FechaRegistro { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

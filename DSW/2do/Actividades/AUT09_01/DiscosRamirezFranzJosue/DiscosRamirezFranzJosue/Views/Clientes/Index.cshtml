@@ -25,25 +25,25 @@
 
   @foreach (var item in Model)
   {
-<tr>
-  <td>
-    @Html.DisplayFor(modelItem => item.Nombre)
-  </td>
-  <td>
-    @Html.DisplayFor(modelItem => item.Email)
-  </td>
-  <td>
-    @Html.DisplayFor(modelItem => item.FechaNacimiento)
-  </td>
-  <td>
-    @Html.DisplayFor(modelItem => item.FechaRegistro)
-  </td>
-  <td>
-    @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
-    @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
-    @Html.ActionLink("Eliminar", "Delete", new { id = item.id }) |
-    @Html.ActionLink("Puntuaciones", "Cliente", "Puntuaciones", new { id = item.id }, null)
-  </td>
-</tr>
-}
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Email)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.FechaNacimiento)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.FechaRegistro)
+      </td>
+      <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.id }) |
+        @Html.ActionLink("Puntuaciones", "Puntuaciones", new { id = item.id })
+      </td>
+    </tr>
+  }
 </table>

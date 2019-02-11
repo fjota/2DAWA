@@ -1,0 +1,23 @@
+div {
+	margin-top: 10px !important;
+	width: 60%;
+	margin: 0 auto;
+}
+
+#map {
+	"width: 800px; 
+	height: 440px; 
+	border: 1px solid #AAA;
+	margin: 0 auto;
+}
+
+#creditos {
+	width: 50%;
+	border: 1px dotted #777;
+	border-radius:10px;
+	background-color: #eee;
+	padding: 10px;
+	font-size: 8pt;
+	margin: 0 auto;
+	
+}

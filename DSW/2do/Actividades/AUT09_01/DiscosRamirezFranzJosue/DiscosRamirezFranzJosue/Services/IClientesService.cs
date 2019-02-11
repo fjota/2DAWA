@@ -15,5 +15,6 @@ namespace DiscosRamirezFranzJosue.Services
     Cliente SearchClienteById(int id);
     bool UpdateCliente(Cliente cliente);
     bool RemoveCliente(Cliente cliente);
+    IEnumerable<Puntuacion> PuntuacionesByClienteId(int idCliente);
   }
 }

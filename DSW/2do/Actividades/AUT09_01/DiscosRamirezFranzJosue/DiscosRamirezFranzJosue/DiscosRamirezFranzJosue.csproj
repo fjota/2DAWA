@@ -181,7 +181,6 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DiscosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PuntuacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,7 +228,7 @@
     <Compile Include="Services\InterpreteService.cs" />
     <Compile Include="Services\IFilterService.cs" />
     <Compile Include="Utils\Enums.cs" />
-    <Compile Include="Utils\ExtensionMethodUtils.cs" />
+    <Compile Include="Utils\ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -252,7 +251,7 @@
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Clientes\Details.cshtml" />
-    <Content Include="Views\Puntuaciones\Cliente.cshtml" />
+    <Content Include="Views\Clientes\Puntuaciones.cshtml" />
     <Content Include="Views\Clientes\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

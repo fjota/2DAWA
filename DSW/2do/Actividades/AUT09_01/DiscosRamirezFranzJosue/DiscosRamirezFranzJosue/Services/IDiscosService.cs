@@ -12,6 +12,9 @@ namespace DiscosRamirezFranzJosue.Services
     IEnumerable<Disco> ListDiscos();
     IEnumerable<Tipo> ListTipos();
     IEnumerable<DiscoTipo> ListDiscoTipos();
-    IEnumerable<Tipo> ListTiposByDiscosId(IEnumerable<Disco> discos);
+    IEnumerable<Tipo> ListTiposByIdterptreteId(int idInterprete);
+    IEnumerable<Disco> ListDiscosByTipoId(int idTipo);
+    IEnumerable<Disco> ListDiscosByInterpreteIdAndTipoId(int idInterprete, int idTipo);
+    
   }
 }

@@ -76,8 +76,6 @@ namespace DiscosRamirezFranzJosue.Services
     {
       try
       {
-        /*discosEntities.Clientes.Add(cliente);
-        discosEntities.Entry(cliente).State = EntityState.Modified;*/
         discosEntities.Entry(cliente).State = EntityState.Modified;
         discosEntities.SaveChanges();
         return true;
@@ -86,6 +84,11 @@ namespace DiscosRamirezFranzJosue.Services
       {
         return false;
       }
+    }
+
+    public IEnumerable<Puntuacion> PuntuacionesByClienteId(int idCliente)
+    {
+      return discosEntities.Puntuacions.Where(item => item.Idcliente == idCliente);
     }
   }
 }
