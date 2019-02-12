@@ -12,18 +12,13 @@ namespace DiscosRamirezFranzJosue.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tipo
+    public partial class UsuariosGrupos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tipo()
-        {
-            this.DiscoTipoes = new HashSet<DiscoTipo>();
-        }
+        public int IdUsuarioGrupo { get; set; }
+        public int IdUsuario { get; set; }
+        public int IdGrupo { get; set; }
     
-        public int IdTipo { get; set; }
-        public string tipo1 { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DiscoTipo> DiscoTipoes { get; set; }
+        public virtual Grupos Grupos { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

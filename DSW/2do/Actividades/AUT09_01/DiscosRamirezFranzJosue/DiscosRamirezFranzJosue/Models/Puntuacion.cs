@@ -11,14 +11,12 @@ namespace DiscosRamirezFranzJosue.Models
 {
   using System;
   using System.Collections.Generic;
-  using System.ComponentModel.DataAnnotations;
 
   public partial class Puntuacion
   {
     public int Id { get; set; }
     public Nullable<int> Idcliente { get; set; }
     public Nullable<int> iddisco { get; set; }
-    [Display(Name = "Puntuacion Disco")]
     public Nullable<int> Puntuacion1 { get; set; }
     public Nullable<System.DateTime> Fecha { get; set; }
 

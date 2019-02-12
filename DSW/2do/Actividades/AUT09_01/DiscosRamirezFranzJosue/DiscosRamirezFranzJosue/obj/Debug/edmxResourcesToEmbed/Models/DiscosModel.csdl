@@ -88,6 +88,17 @@
       <End Role="Tipo" EntitySet="Tipoes" />
       <End Role="DiscoTipo" EntitySet="DiscoTipoes" />
     </AssociationSet>
+    <EntitySet Name="Grupos" EntityType="DiscosModel.Grupos" />
+    <EntitySet Name="Usuarios" EntityType="DiscosModel.Usuario" />
+    <EntitySet Name="UsuariosGrupos" EntityType="DiscosModel.UsuariosGrupos" />
+    <AssociationSet Name="FK_UsuariosGrupos_Grupos" Association="DiscosModel.FK_UsuariosGrupos_Grupos">
+      <End Role="Grupos" EntitySet="Grupos" />
+      <End Role="UsuariosGrupos" EntitySet="UsuariosGrupos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuariosGrupos_Usuarios" Association="DiscosModel.FK_UsuariosGrupos_Usuarios">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="UsuariosGrupos" EntitySet="UsuariosGrupos" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_puntuacioncliente">
     <End Type="DiscosModel.Cliente" Role="Cliente" Multiplicity="0..1" />
@@ -146,6 +157,57 @@
       </Principal>
       <Dependent Role="DiscoTipo">
         <PropertyRef Name="IdTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Grupos">
+    <Key>
+      <PropertyRef Name="IdGrupo" />
+    </Key>
+    <Property Name="IdGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UsuariosGrupos" Relationship="DiscosModel.FK_UsuariosGrupos_Grupos" FromRole="Grupos" ToRole="UsuariosGrupos" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UsuariosGrupos" Relationship="DiscosModel.FK_UsuariosGrupos_Usuarios" FromRole="Usuario" ToRole="UsuariosGrupos" />
+  </EntityType>
+  <EntityType Name="UsuariosGrupos">
+    <Key>
+      <PropertyRef Name="IdUsuarioGrupo" />
+    </Key>
+    <Property Name="IdUsuarioGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdGrupo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Grupos" Relationship="DiscosModel.FK_UsuariosGrupos_Grupos" FromRole="UsuariosGrupos" ToRole="Grupos" />
+    <NavigationProperty Name="Usuario" Relationship="DiscosModel.FK_UsuariosGrupos_Usuarios" FromRole="UsuariosGrupos" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_UsuariosGrupos_Grupos">
+    <End Type="DiscosModel.Grupos" Role="Grupos" Multiplicity="1" />
+    <End Type="DiscosModel.UsuariosGrupos" Role="UsuariosGrupos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grupos">
+        <PropertyRef Name="IdGrupo" />
+      </Principal>
+      <Dependent Role="UsuariosGrupos">
+        <PropertyRef Name="IdGrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuariosGrupos_Usuarios">
+    <End Type="DiscosModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="DiscosModel.UsuariosGrupos" Role="UsuariosGrupos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="UsuariosGrupos">
+        <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

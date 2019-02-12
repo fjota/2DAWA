@@ -76,8 +76,15 @@ namespace DiscosRamirezFranzJosue.Controllers
     }
 
     public ViewResult Puntuaciones(int id)
-    {     
-      return View(clientesService.PuntuacionesByClienteId(id).ToList());
+    {
+      List<Puntuacion> puntos = null;
+      using (DiscosEntities context = new DiscosEntities())
+      {
+        puntos = context.Puntuacions.Include("Cliente").Where(item => item.Idcliente == id).ToList();
+        //Cliente cliente = context.Puntuacions.Where(item => item.Idcliente == id);
+      }
+      return View(puntos);
+      //return View(clientesService.PuntuacionesByClienteId(id));
     }
   }
 }

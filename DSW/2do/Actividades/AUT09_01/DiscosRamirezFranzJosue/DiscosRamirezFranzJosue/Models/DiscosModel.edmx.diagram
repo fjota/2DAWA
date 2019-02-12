@@ -16,6 +16,11 @@
         <AssociationConnector Association="DiscosModel.FK_discotipodisco" />
         <AssociationConnector Association="DiscosModel.FK_puntuaciondisco" />
         <AssociationConnector Association="DiscosModel.FK_discotipotipo" />
+        <EntityTypeShape EntityType="DiscosModel.Grupos" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="DiscosModel.Usuario" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="DiscosModel.UsuariosGrupos" Width="1.5" PointX="3" PointY="7.25" />
+        <AssociationConnector Association="DiscosModel.FK_UsuariosGrupos_Grupos" />
+        <AssociationConnector Association="DiscosModel.FK_UsuariosGrupos_Usuarios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

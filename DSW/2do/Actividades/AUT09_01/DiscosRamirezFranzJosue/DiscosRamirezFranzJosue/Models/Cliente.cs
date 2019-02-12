@@ -22,7 +22,7 @@ namespace DiscosRamirezFranzJosue.Models
     }
 
     public int id { get; set; }
-    [Required]    
+    [Required]
     public string Nombre { get; set; }
     [Required(ErrorMessage = "La dirección de Email es requerida")]
     [EmailAddress]

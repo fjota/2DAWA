@@ -208,6 +208,9 @@
     <Compile Include="Models\DiscoTipo.cs">
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Grupos.cs">
+      <DependentUpon>DiscosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Interprete.cs">
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
@@ -216,6 +219,12 @@
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tipo.cs">
+      <DependentUpon>DiscosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>DiscosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuariosGrupos.cs">
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

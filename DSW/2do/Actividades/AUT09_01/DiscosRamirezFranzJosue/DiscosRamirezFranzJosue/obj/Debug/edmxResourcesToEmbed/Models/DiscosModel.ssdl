@@ -27,6 +27,13 @@
     <Property Name="IdDisco" Type="int" />
     <Property Name="IdTipo" Type="int" />
   </EntityType>
+  <EntityType Name="Grupos">
+    <Key>
+      <PropertyRef Name="IdGrupo" />
+    </Key>
+    <Property Name="IdGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Interprete">
     <Key>
       <PropertyRef Name="IdInterprete" />
@@ -50,6 +57,22 @@
     </Key>
     <Property Name="IdTipo" Type="int" Nullable="false" />
     <Property Name="tipo" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsuariosGrupos">
+    <Key>
+      <PropertyRef Name="IdUsuarioGrupo" />
+    </Key>
+    <Property Name="IdUsuarioGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdGrupo" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_discointerprete">
     <End Role="Interprete" Type="Self.Interprete" Multiplicity="0..1" />
@@ -111,13 +134,40 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UsuariosGrupos_Grupos">
+    <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+    <End Role="UsuariosGrupos" Type="Self.UsuariosGrupos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grupos">
+        <PropertyRef Name="IdGrupo" />
+      </Principal>
+      <Dependent Role="UsuariosGrupos">
+        <PropertyRef Name="IdGrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuariosGrupos_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="UsuariosGrupos" Type="Self.UsuariosGrupos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="UsuariosGrupos">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="DiscosModelStoreContainer">
     <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Disco" EntityType="Self.Disco" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DiscoTipo" EntityType="Self.DiscoTipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Interprete" EntityType="Self.Interprete" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Puntuacion" EntityType="Self.Puntuacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tipo" EntityType="Self.Tipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsuariosGrupos" EntityType="Self.UsuariosGrupos" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_discointerprete" Association="Self.FK_discointerprete">
       <End Role="Interprete" EntitySet="Interprete" />
       <End Role="Disco" EntitySet="Disco" />
@@ -137,6 +187,14 @@
     <AssociationSet Name="FK_puntuaciondisco" Association="Self.FK_puntuaciondisco">
       <End Role="Disco" EntitySet="Disco" />
       <End Role="Puntuacion" EntitySet="Puntuacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuariosGrupos_Grupos" Association="Self.FK_UsuariosGrupos_Grupos">
+      <End Role="Grupos" EntitySet="Grupos" />
+      <End Role="UsuariosGrupos" EntitySet="UsuariosGrupos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuariosGrupos_Usuarios" Association="Self.FK_UsuariosGrupos_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="UsuariosGrupos" EntitySet="UsuariosGrupos" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
