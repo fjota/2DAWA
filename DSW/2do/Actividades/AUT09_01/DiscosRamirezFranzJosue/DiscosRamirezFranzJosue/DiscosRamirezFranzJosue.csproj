@@ -178,9 +178,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DiscosController.cs" />
+    <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterpreteController.cs" />
+    <Compile Include="Filters\CustomerFilter.cs" />
+    <Compile Include="Filters\AdminFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,6 +242,8 @@
     <Compile Include="Services\IInterpreteService.cs" />
     <Compile Include="Services\InterpreteService.cs" />
     <Compile Include="Services\IFilterService.cs" />
+    <Compile Include="Services\IUsuariosServices.cs" />
+    <Compile Include="Services\UsuariosServices.cs" />
     <Compile Include="Utils\Enums.cs" />
     <Compile Include="Utils\ExtensionMethods.cs" />
   </ItemGroup>
@@ -262,6 +270,14 @@
     <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Clientes\Puntuaciones.cshtml" />
     <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Interprete\Index.cshtml" />
+    <Content Include="Views\Interprete\Create.cshtml" />
+    <Content Include="Views\Interprete\Details.cshtml" />
+    <Content Include="Views\Interprete\Edit.cshtml" />
+    <Content Include="Views\ErrorHandler\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

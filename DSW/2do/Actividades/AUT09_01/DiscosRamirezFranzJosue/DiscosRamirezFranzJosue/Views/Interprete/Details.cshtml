@@ -1,0 +1,32 @@
+﻿@model DiscosRamirezFranzJosue.Models.Interprete
+
+@{
+  ViewBag.Title = "Detalles de Interprete";
+}
+
+<h2>Detalles de Interprete</h2>
+
+<div>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Interprete1)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Interprete1)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.IdInterprete)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.IdInterprete)
+    </dd>
+
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Editar", "Edit", new { IdInterprete = Model.IdInterprete }, new { @class = "btn btn-outline-primary" }) 
+</p>
