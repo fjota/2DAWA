@@ -31,8 +31,12 @@ namespace DiscosRamirezFranzJosue.Controllers
     [HttpPost]
     public ActionResult Create(Interprete interprete)
     {
-      interpreteService.CreateInterprete(interprete);
-      return RedirectToAction("Index");
+      if (ModelState.IsValid)
+      {
+        interpreteService.CreateInterprete(interprete);
+        return RedirectToAction("Index");
+      }
+      return View();
     }
     
     public ActionResult Delete(int IdInterprete)
@@ -55,8 +59,12 @@ namespace DiscosRamirezFranzJosue.Controllers
     [HttpPost]
     public ActionResult Edit(Interprete interprete)
     {
-      interpreteService.UpdateInterprete(interprete);
-      return RedirectToAction("Index");
+      if (ModelState.IsValid)
+      {
+        interpreteService.UpdateInterprete(interprete);
+        return RedirectToAction("Index");
+      }
+      return View();
     }
 
   }

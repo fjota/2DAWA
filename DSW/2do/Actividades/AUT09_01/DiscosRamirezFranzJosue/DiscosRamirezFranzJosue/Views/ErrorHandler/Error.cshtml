@@ -2,5 +2,9 @@
   ViewBag.Title = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">Error al procesar la solicitud.</h2>
+<div class="container d-flex align-items-center justify-content-center flex-column">
+  <h1 class="text-danger">Error.</h1>
+  <h2 class="text-danger">Error al procesar la solicitud.</h2>
+  <h2 class="text-danger">Ha ocurrido un error inesperado.</h2>
+  @Html.ActionLink("Volver a Inicio", "Index", "Home", null, new { @class = "btn btn-outline-info" })
+</div>

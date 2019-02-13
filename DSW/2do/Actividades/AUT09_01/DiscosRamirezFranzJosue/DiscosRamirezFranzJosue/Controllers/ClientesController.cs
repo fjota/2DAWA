@@ -56,8 +56,12 @@ namespace DiscosRamirezFranzJosue.Controllers
     [HttpPost]
     public ActionResult Delete(Cliente cliente)
     {
-      clientesService.RemoveCliente(cliente);
-      return RedirectToAction("Index");
+      if (ModelState.IsValid)
+      {
+        clientesService.RemoveCliente(cliente);
+        return RedirectToAction("Index");
+      }
+      return View();
     }
 
     [HttpGet]
@@ -69,8 +73,12 @@ namespace DiscosRamirezFranzJosue.Controllers
     [HttpPost]
     public ActionResult Edit(Cliente cliente)
     {
-      clientesService.UpdateCliente(cliente);
-      return RedirectToAction("Index");
+      if (ModelState.IsValid)
+      {
+        clientesService.UpdateCliente(cliente);
+        return RedirectToAction("Index");
+      }
+      return View();
     }
 
     public ViewResult Details(int id)

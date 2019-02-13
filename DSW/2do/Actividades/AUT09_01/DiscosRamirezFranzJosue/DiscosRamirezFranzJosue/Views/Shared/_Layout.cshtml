@@ -1,4 +1,5 @@
 ﻿@using DiscosRamirezFranzJosue.Utils
+@using DiscosRamirezFranzJosue.Models
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,11 +27,11 @@
             @Html.ActionLink("Interpretes", "Index", "Interprete", new { area = "" }, new { @class = "nav-link text-dark" })
           </li>
           @if (User.Identity.IsAuthenticated)
-          {
+          {                                  
             if (Session.IsAdmin("USUARIO"))
             {
               <li class="nav-item">
-                @Html.ActionLink("Clientes", "Index", "Clientes", new { area = "" }, new { @class = "nav-link text-dark" })
+                @Html.ActionLink("Clientes", "Index", "Clientes", null, new { @class = "nav-link text-dark" })
               </li>
             }
           }

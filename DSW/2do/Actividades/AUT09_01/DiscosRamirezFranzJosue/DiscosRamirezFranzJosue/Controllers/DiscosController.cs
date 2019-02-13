@@ -76,8 +76,12 @@ namespace DiscosRamirezFranzJosue.Controllers
     [HttpPost]
     public ActionResult Create(Disco disco)
     {
-      discosService.CreateDisco(disco);
-      return RedirectToAction("Index");
+      if (ModelState.IsValid)
+      {
+        discosService.CreateDisco(disco);
+        return RedirectToAction("Index");
+      }
+      return View();
     }
 
     [HttpGet]
