@@ -24,7 +24,6 @@ namespace DiscosRamirezFranzJosue
       container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();      
       container.Register<IDiscosService, DiscosService>(Lifestyle.Scoped);
       container.Register<IInterpreteService, InterpreteService>(Lifestyle.Scoped);
-      container.Register<IFilterService, FilterService>(Lifestyle.Scoped);
       container.Register<IClientesService, ClientesService>(Lifestyle.Scoped);
       container.Register<IUsuariosServices, UsuariosServices>(Lifestyle.Scoped);
       container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
@@ -36,7 +35,7 @@ namespace DiscosRamirezFranzJosue
     void Application_Error(object sender, EventArgs e)
     {
       Exception exc = Server.GetLastError();
-      //Response.Redirect("/ErrorHandler/Error");
+      Response.Redirect("/ErrorHandler/Error");
     }
   }
 }

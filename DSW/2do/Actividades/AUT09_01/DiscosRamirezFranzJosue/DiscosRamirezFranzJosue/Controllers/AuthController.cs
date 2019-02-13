@@ -36,8 +36,8 @@ namespace DiscosRamirezFranzJosue.Controllers
         if (authUser != null)
         {
           FormsAuthentication.SetAuthCookie(authUser.Login, false);
-          Session["USUARIO"] = authUser;
-          return RedirectToAction("Index", "Admin");
+          Session["USUARIO"] = authUser;          
+          return authUser.IsAdmin() ? RedirectToAction("Index", "Admin") : RedirectToAction("Index", "Home");
         }
         else
         {

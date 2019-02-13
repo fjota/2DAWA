@@ -9,22 +9,13 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.SessionState;
+using System.Web.WebPages;
 
 namespace DiscosRamirezFranzJosue.Utils
 {
   public static class ExtensionMethods
-  {    
-    public static ExpandoObject ToExpando(this object anonymousObject)
-    {
-      IDictionary<string, object> anonymousDictionary = new RouteValueDictionary(anonymousObject);
-      IDictionary<string, object> expando = new ExpandoObject();
-      foreach (var item in anonymousDictionary)
-      {
-        expando.Add(item);
-      }
-      return expando as ExpandoObject;
-    }
-
+  {       
     public static IEnumerable<Disco> OrderDiscos(this IEnumerable<Disco> collection, Sorted sort)
     {
       IEnumerable<Disco> discosOrdered = null;
@@ -65,6 +56,25 @@ namespace DiscosRamirezFranzJosue.Utils
         }
       }
       return valueHashed;
+    }
+
+    public static bool IsAdmin(this HttpSessionStateBase session, string key)
+    {
+      Usuario user = null;
+      if (session[key] is Usuario)
+      {
+        user = session[key] as Usuario;
+      }
+      if (user != null && user.UsuariosGrupos.Any(g => g.Grupos.Nombre == "admin"))
+      {
+        return true;
+      }
+      return false;
+    }
+
+    public static bool IsAdmin(this Usuario usuario)
+    {
+      return usuario.UsuariosGrupos.Any(item => item.Grupos.Nombre == "admin");
     }
 
   }

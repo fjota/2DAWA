@@ -14,13 +14,11 @@ namespace DiscosRamirezFranzJosue.Controllers
   {
     private IDiscosService discosService;
     private IInterpreteService interpreteService;
-    private IFilterService filterService;
 
-    public DiscosController(IDiscosService discosService, IInterpreteService interpreteService, IFilterService filterService)
+    public DiscosController(IDiscosService discosService, IInterpreteService interpreteService)
     {
       this.discosService = discosService;
       this.interpreteService = interpreteService;
-      this.filterService = filterService;
     }
 
     [HttpGet]
@@ -33,12 +31,12 @@ namespace DiscosRamirezFranzJosue.Controllers
       ViewData["tipoDiscoSelected"] = tipoDisco != null ? (int)tipoDisco : 0;
 
       if (interprete == null && tipoDisco == null)
-      {
-        return View(filterService.ListDiscosOrdered(orderDiscos != null ? (Sorted)orderDiscos : 0));
+      {        
+        return View(discosService.ListDiscos().OrderDiscos(orderDiscos != null ? (Sorted)orderDiscos : 0));
       }
       if (tipoDisco == null)
       {
-        IEnumerable<Disco> discosByInterprete = filterService.ListDiscosOrdered(orderDiscos != null ? (Sorted)orderDiscos : 0)
+        IEnumerable<Disco> discosByInterprete = discosService.ListDiscos().OrderDiscos(orderDiscos != null ? (Sorted)orderDiscos : 0)
         .Where(x => x.Interprete.IdInterprete == (int)interprete);
         return View(discosByInterprete);
       }

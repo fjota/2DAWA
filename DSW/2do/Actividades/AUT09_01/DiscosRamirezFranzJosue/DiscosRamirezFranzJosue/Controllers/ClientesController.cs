@@ -9,6 +9,8 @@ using DiscosRamirezFranzJosue.Filters;
 
 namespace DiscosRamirezFranzJosue.Controllers
 {
+  [Authorize]
+  [AdminFilter]
   public class ClientesController : Controller
   {
     private IClientesService clientesService;
@@ -75,19 +77,10 @@ namespace DiscosRamirezFranzJosue.Controllers
     {
       return View(clientesService.SearchClienteById(id));
     }
-
-    [Authorize]
-    [CustomerFilter]
+    
     public ViewResult Puntuaciones(int id)
-    {
-      List<Puntuacion> puntos = null;
-      using (DiscosEntities context = new DiscosEntities())
-      {
-        puntos = context.Puntuacions.Include("Cliente").Where(item => item.Idcliente == id).ToList();
-        //Cliente cliente = context.Puntuacions.Where(item => item.Idcliente == id);
-      }
-      return View(puntos);
-      //return View(clientesService.PuntuacionesByClienteId(id));
+    {     
+      return View(clientesService.PuntuacionesByClienteId(id));
     }
   }
 }

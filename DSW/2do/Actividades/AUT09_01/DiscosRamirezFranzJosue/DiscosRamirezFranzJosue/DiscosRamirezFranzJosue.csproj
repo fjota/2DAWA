@@ -236,12 +236,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ClientesService.cs" />
     <Compile Include="Services\DiscosService.cs" />
-    <Compile Include="Services\FilterService.cs" />
     <Compile Include="Services\IClientesService.cs" />
     <Compile Include="Services\IDiscosService.cs" />
     <Compile Include="Services\IInterpreteService.cs" />
     <Compile Include="Services\InterpreteService.cs" />
-    <Compile Include="Services\IFilterService.cs" />
     <Compile Include="Services\IUsuariosServices.cs" />
     <Compile Include="Services\UsuariosServices.cs" />
     <Compile Include="Utils\Enums.cs" />
