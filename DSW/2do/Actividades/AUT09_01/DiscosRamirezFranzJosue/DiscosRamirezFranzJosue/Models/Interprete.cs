@@ -9,23 +9,21 @@
 
 namespace DiscosRamirezFranzJosue.Models
 {
-  using System;
-  using System.Collections.Generic;
-  using System.ComponentModel.DataAnnotations;
-  using System.ComponentModel.DataAnnotations.Schema;
-
-  public partial class Interprete
-  {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Interprete()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Interprete
     {
-      this.Discoes = new HashSet<Disco>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Interprete()
+        {
+            this.Discoes = new HashSet<Disco>();
+        }
+    
+        public string Interprete1 { get; set; }
+        public int IdInterprete { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Disco> Discoes { get; set; }
     }
-    [Display(Name = "Nombre Interprete")]
-    public string Interprete1 { get; set; }
-    public int IdInterprete { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Disco> Discoes { get; set; }
-  }
 }

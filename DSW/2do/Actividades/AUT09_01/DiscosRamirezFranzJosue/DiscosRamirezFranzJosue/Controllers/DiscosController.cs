@@ -61,6 +61,49 @@ namespace DiscosRamirezFranzJosue.Controllers
         idInterprete == 0 ? discosService.ListTipos() : discosService.ListTiposByIdterptreteId((int)idInterprete)); 
       return PartialView("_FilterDiscos", tuple);
     }
+    
+    public ActionResult Delete(int IdDisco)
+    {
+      discosService.DeleteDiscoById(IdDisco);
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public ActionResult Create()
+    {
+      ViewData["interpretesLista"] = interpreteService.ListInterpretes();     
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Disco disco)
+    {
+      discosService.CreateDisco(disco);
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public ActionResult Details(int IdDisco)
+    {
+      return View(discosService.SearchDiscoById(IdDisco));
+    }
+
+    [HttpGet]
+    public ActionResult Edit(int IdDisco)
+    {
+      ViewData["interpreteId"] = discosService.SearchDiscoById(IdDisco).IdInterprete;
+      var tuple = new Tuple<Disco, IEnumerable<Interprete>>(discosService.SearchDiscoById(IdDisco), 
+        interpreteService.ListInterpretes());
+      return View(tuple);
+    }
+
+    [HttpPost]
+    public ActionResult Edit([Bind(Prefix ="Item1")]Disco disco, int IdDisco)
+    {
+      disco.IdDisco = IdDisco;
+      discosService.UpdateDisco(disco);
+      return RedirectToAction("Index");
+    }
 
   }
 }

@@ -278,6 +278,9 @@
     <Content Include="Views\Interprete\Details.cshtml" />
     <Content Include="Views\Interprete\Edit.cshtml" />
     <Content Include="Views\ErrorHandler\Error.cshtml" />
+    <Content Include="Views\Discos\Create.cshtml" />
+    <Content Include="Views\Discos\Details.cshtml" />
+    <Content Include="Views\Discos\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

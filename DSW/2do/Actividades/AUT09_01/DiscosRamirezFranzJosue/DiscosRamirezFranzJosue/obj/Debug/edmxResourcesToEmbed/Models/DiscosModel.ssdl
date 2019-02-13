@@ -14,7 +14,7 @@
     <Key>
       <PropertyRef Name="IdDisco" />
     </Key>
-    <Property Name="IdDisco" Type="int" Nullable="false" />
+    <Property Name="IdDisco" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Titulo" Type="varchar" MaxLength="255" />
     <Property Name="Agno" Type="float" />
     <Property Name="IdInterprete" Type="int" />

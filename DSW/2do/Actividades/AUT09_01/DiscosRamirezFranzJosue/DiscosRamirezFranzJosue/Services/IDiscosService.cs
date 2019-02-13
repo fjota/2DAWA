@@ -15,6 +15,9 @@ namespace DiscosRamirezFranzJosue.Services
     IEnumerable<Tipo> ListTiposByIdterptreteId(int idInterprete);
     IEnumerable<Disco> ListDiscosByTipoId(int idTipo);
     IEnumerable<Disco> ListDiscosByInterpreteIdAndTipoId(int idInterprete, int idTipo);
-    
+    bool DeleteDiscoById(int id);
+    Disco SearchDiscoById(int id);
+    bool CreateDisco(Disco disco);
+    bool UpdateDisco(Disco disco);
   }
 }
