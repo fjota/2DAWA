@@ -39,7 +39,7 @@
       <PropertyRef Name="IdInterprete" />
     </Key>
     <Property Name="Interprete" Type="varchar" MaxLength="255" />
-    <Property Name="IdInterprete" Type="int" Nullable="false" />
+    <Property Name="IdInterprete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Puntuacion">
     <Key>

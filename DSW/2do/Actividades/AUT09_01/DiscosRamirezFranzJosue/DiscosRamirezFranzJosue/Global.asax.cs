@@ -26,10 +26,17 @@ namespace DiscosRamirezFranzJosue
       container.Register<IInterpreteService, InterpreteService>(Lifestyle.Scoped);
       container.Register<IFilterService, FilterService>(Lifestyle.Scoped);
       container.Register<IClientesService, ClientesService>(Lifestyle.Scoped);
+      container.Register<IUsuariosServices, UsuariosServices>(Lifestyle.Scoped);
       container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
       container.RegisterMvcIntegratedFilterProvider();
       container.Verify();
       DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+    }
+
+    void Application_Error(object sender, EventArgs e)
+    {
+      Exception exc = Server.GetLastError();
+      Response.Redirect("/ErrorHandler/Error");
     }
   }
 }

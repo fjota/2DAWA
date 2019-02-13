@@ -22,14 +22,24 @@
             @Html.ActionLink("Discos", "Index", "Discos", new { area = "" }, new { @class = "nav-link text-dark" })
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Interpretes</a>
+            @Html.ActionLink("Interpretes", "Index", "Interprete", new { area = "" }, new { @class = "nav-link text-dark" })            
           </li>
           <li class="nav-item">
             @Html.ActionLink("Clientes", "Index", "Clientes", new { area = "" }, new { @class = "nav-link text-dark" })
           </li>
         </ul>
-        <a class="btn btn-outline-primary mr-2" href="#">Tu cuenta</a>
-        @Html.ActionLink("Regístrate", "RegisterCliente", "Clientes", new { area = "" }, new { @class = "btn btn-outline-primary" })
+        @if (User.Identity.IsAuthenticated)
+        {
+          <span class="navbar-text mr-2 text-dark">
+            Bienvenido: @User.Identity.Name
+          </span>
+          @Html.ActionLink("Cerrar sesión", "Logout", "Auth", null, new { @class = "btn btn-outline-primary mr-2" })
+        }
+        else
+        {
+          @Html.ActionLink("Tu cuenta", "Login", "Auth", null, new { @class = "btn btn-outline-primary mr-2" })         
+        }
+
       </div>
     </div>
   </nav>

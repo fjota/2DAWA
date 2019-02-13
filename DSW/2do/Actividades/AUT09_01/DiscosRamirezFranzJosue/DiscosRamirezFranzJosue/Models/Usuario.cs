@@ -9,22 +9,28 @@
 
 namespace DiscosRamirezFranzJosue.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Usuario
+  using System;
+  using System.Collections.Generic;
+  using System.ComponentModel.DataAnnotations;
+
+  public partial class Usuario
+  {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Usuario()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
-        {
-            this.UsuariosGrupos = new HashSet<UsuariosGrupos>();
-        }
-    
-        public int IdUsuario { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UsuariosGrupos> UsuariosGrupos { get; set; }
+      this.UsuariosGrupos = new HashSet<UsuariosGrupos>();
     }
+
+    public int IdUsuario { get; set; }
+    [Required]
+    [Display(Name = "Usuario")]
+    public string Login { get; set; }
+    [Required]
+    [DataType(DataType.Password)]
+    [Display(Name = "Contraseña")]
+    public string Password { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<UsuariosGrupos> UsuariosGrupos { get; set; }
+  }
 }

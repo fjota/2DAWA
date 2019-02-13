@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DiscosRamirezFranzJosue.Models;
 using DiscosRamirezFranzJosue.Services;
+using DiscosRamirezFranzJosue.Filters;
 
 namespace DiscosRamirezFranzJosue.Controllers
 {
@@ -43,7 +44,7 @@ namespace DiscosRamirezFranzJosue.Controllers
         return View();
       }           
     }
-
+    
     [HttpGet]
     public ActionResult Delete(int id)
     {
@@ -75,6 +76,8 @@ namespace DiscosRamirezFranzJosue.Controllers
       return View(clientesService.SearchClienteById(id));
     }
 
+    [Authorize]
+    [CustomerFilter]
     public ViewResult Puntuaciones(int id)
     {
       List<Puntuacion> puntos = null;

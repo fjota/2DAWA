@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -43,5 +45,27 @@ namespace DiscosRamirezFranzJosue.Utils
       }      
       return discosOrdered;
     }
+
+    public static string HashStringSHA256(this string value)
+    {
+      string valueHashed = null;
+      using (SHA256 sha256 = SHA256.Create())
+      {
+        try
+        {
+          byte[] input = Encoding.UTF8.GetBytes(value);
+          byte[] hashValue = sha256.ComputeHash(input);
+          foreach (var item in hashValue)
+          {
+            valueHashed += $"{item:X2}";
+          }
+        }
+        catch (Exception)
+        {
+        }
+      }
+      return valueHashed;
+    }
+
   }
 }
