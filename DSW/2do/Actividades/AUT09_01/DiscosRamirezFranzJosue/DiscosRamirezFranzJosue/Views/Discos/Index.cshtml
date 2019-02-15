@@ -11,7 +11,7 @@
 <hr />
 
 @Html.Action("FilterDiscos", new { idInterprete, idTipoDisco })
-@Html.ActionLink("Crear Disco", "Create", null, new { @class = "btn btn-outline-primary mb-3" })
+@Html.ActionLink("Crear Disco", "CreateDisco", null, new { @class = "btn btn-outline-primary mb-3" })
 <table class="table">
   <tr>
     <th>
@@ -22,6 +22,9 @@
     </th>
     <th>
       @Html.DisplayNameFor(model => model.Agno)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Discografica.Nombre)
     </th>
     <th></th>
   </tr>
@@ -39,9 +42,12 @@
         @Html.DisplayFor(modelItem => item.Agno)
       </td>
       <td>
-        @Html.ActionLink("Editar", "Edit", new { IdDisco = item.IdDisco }) |
-        @Html.ActionLink("Detalles", "Details", new { IdDisco = item.IdDisco }) |
-        @Html.ActionLink("Eliminar", "Delete", new { IdDisco = item.IdDisco })
+        @Html.DisplayFor(modelItem => item.Discografica.Nombre)
+      </td>
+      <td>
+        @* @Html.ActionLink("Editar", "Edit", new { IdDisco = item.IdDisco }) |
+    @Html.ActionLink("Detalles", "Details", new { IdDisco = item.IdDisco }) |
+    @Html.ActionLink("Eliminar", "Delete", new { IdDisco = item.IdDisco })*@
       </td>
     </tr>
   }

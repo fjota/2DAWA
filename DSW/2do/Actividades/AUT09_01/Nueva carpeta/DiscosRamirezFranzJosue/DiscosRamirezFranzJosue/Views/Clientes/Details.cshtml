@@ -1,0 +1,47 @@
+﻿@model DiscosRamirezFranzJosue.Models.Cliente
+
+@{
+  ViewBag.Title = "Detalles";
+}
+
+<div>
+  <h4>Detalles de Cliente</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Nombre)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Nombre)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Email)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Email)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.FechaNacimiento)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.FechaNacimiento)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.FechaRegistro)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.FechaRegistro)
+    </dd>
+
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-outline-primary" })
+</p>

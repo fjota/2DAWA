@@ -24,17 +24,8 @@
             @Html.ActionLink("Discos", "Index", "Discos", new { area = "" }, new { @class = "nav-link text-dark" })
           </li>
           <li class="nav-item">
-            @Html.ActionLink("Interpretes", "Index", "Interprete", new { area = "" }, new { @class = "nav-link text-dark" })
-          </li>
-          @if (User.Identity.IsAuthenticated)
-          {                                  
-            if (Session.IsAdmin("USUARIO"))
-            {
-              <li class="nav-item">
-                @Html.ActionLink("Clientes", "Index", "Clientes", null, new { @class = "nav-link text-dark" })
-              </li>
-            }
-          }
+            @Html.ActionLink("Discografica", "Index", "Discografica", null, new { @class = "nav-link text-dark" })            
+          </li>                    
         </ul>
         @if (User.Identity.IsAuthenticated)
         {

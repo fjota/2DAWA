@@ -34,5 +34,8 @@ namespace DiscosRamirezFranzJosue.Models
         public virtual DbSet<Grupos> Grupos { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<UsuariosGrupos> UsuariosGrupos { get; set; }
+        public virtual DbSet<Discografica> Discograficas { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<WebUser> WebUsers { get; set; }
     }
 }

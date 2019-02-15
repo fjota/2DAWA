@@ -1,0 +1,49 @@
+﻿@using DiscosRamirezFranzJosue.Models
+@model IEnumerable<Disco>
+
+@{
+  ViewBag.Title = "Nuestros discos";
+  var idInterprete = ViewData["interpreteSelected"];
+  var idTipoDisco = ViewData["tipoDiscoSelected"];
+}
+
+<h2>Listado de discos</h2>
+<hr />
+
+@Html.Action("FilterDiscos", new { idInterprete, idTipoDisco })
+@Html.ActionLink("Crear Disco", "Create", null, new { @class = "btn btn-outline-primary mb-3" })
+<table class="table">
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.Titulo)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Interprete.Interprete1)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Agno)
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Titulo)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Interprete.Interprete1)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Agno)
+      </td>
+      <td>
+        @Html.ActionLink("Editar", "Edit", new { IdDisco = item.IdDisco }) |
+        @Html.ActionLink("Detalles", "Details", new { IdDisco = item.IdDisco }) |
+        @Html.ActionLink("Eliminar", "Delete", new { IdDisco = item.IdDisco })
+      </td>
+    </tr>
+  }
+</table>
+

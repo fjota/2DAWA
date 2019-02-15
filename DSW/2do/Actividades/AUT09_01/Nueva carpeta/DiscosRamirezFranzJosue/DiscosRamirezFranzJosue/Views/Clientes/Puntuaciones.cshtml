@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DiscosRamirezFranzJosue.Models.Puntuacion>
+
+@{
+  ViewBag.Title = "Puntuaciones Cliente";
+}
+
+<h2>Puntuaciones Cliente</h2>
+
+<table class="table">
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.Cliente.Nombre)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Disco.Titulo)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Puntuacion1)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Fecha)
+    </th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+  <tr>
+    <td>
+      @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+    </td>
+    <td>
+      @Html.DisplayFor(modelItem => item.Disco.Titulo)
+    </td>
+    <td>
+      @Html.DisplayFor(modelItem => item.Puntuacion1)
+    </td>
+    <td>
+      @Html.DisplayFor(modelItem => item.Fecha)
+    </td>    
+  </tr>
+  }
+</table>

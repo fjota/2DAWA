@@ -1,0 +1,48 @@
+﻿@model DiscosRamirezFranzJosue.Models.Disco
+
+@{
+  ViewBag.Title = "Detalles Disco";
+}
+
+<h2>Detalles Disco</h2>
+
+<div>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.IdDisco)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.IdDisco)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Titulo)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Titulo)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Agno)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Agno)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.IdInterprete)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.IdInterprete)
+    </dd>
+
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Editar", "Edit", new { IdDisco = Model.IdDisco  }, new { @class = "btn btn-outline-primary" }) 
+</p>

@@ -21,9 +21,8 @@ namespace DiscosRamirezFranzJosue.Models
       this.Discoes = new HashSet<Disco>();
     }
 
-    [Required]
-    [Display(Name = "Nombre Interprete")]
     public string Interprete1 { get; set; }
+    [Display(Name = "Interprete")]
     public int IdInterprete { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

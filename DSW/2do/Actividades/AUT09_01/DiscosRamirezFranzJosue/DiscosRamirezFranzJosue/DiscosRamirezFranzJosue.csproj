@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\DiscograficaController.cs" />
     <Compile Include="Controllers\DiscosController.cs" />
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -194,6 +195,9 @@
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Disco.cs">
+      <DependentUpon>DiscosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Discografica.cs">
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DiscosModel.Context.cs">
@@ -224,6 +228,9 @@
     <Compile Include="Models\Puntuacion.cs">
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>DiscosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tipo.cs">
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
@@ -231,6 +238,9 @@
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UsuariosGrupos.cs">
+      <DependentUpon>DiscosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebUser.cs">
       <DependentUpon>DiscosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -276,9 +286,12 @@
     <Content Include="Views\Interprete\Details.cshtml" />
     <Content Include="Views\Interprete\Edit.cshtml" />
     <Content Include="Views\ErrorHandler\Error.cshtml" />
-    <Content Include="Views\Discos\Create.cshtml" />
+    <Content Include="Views\Discos\CreateDisco.cshtml" />
     <Content Include="Views\Discos\Details.cshtml" />
     <Content Include="Views\Discos\Edit.cshtml" />
+    <Content Include="Views\Discografica\Index.cshtml" />
+    <Content Include="Views\Discografica\CreateDiscografica.cshtml" />
+    <Content Include="Views\Discografica\ShowDiscos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

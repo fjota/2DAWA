@@ -67,14 +67,16 @@ namespace DiscosRamirezFranzJosue.Controllers
     }
 
     [HttpGet]
-    public ActionResult Create()
+    public ActionResult CreateDisco()
     {
-      ViewData["interpretesLista"] = interpreteService.ListInterpretes();     
+      var context = new DiscosEntities();
+      ViewData["interpretesLista"] = interpreteService.ListInterpretes();
+      ViewData["discograficasLista"] = context.Discograficas;
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Disco disco)
+    public ActionResult CreateDisco(Disco disco)
     {
       if (ModelState.IsValid)
       {

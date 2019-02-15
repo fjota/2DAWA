@@ -22,6 +22,8 @@
     <NavigationProperty Name="Interprete" Relationship="DiscosModel.FK_discointerprete" FromRole="Disco" ToRole="Interprete" />
     <NavigationProperty Name="DiscoTipoes" Relationship="DiscosModel.FK_discotipodisco" FromRole="Disco" ToRole="DiscoTipo" />
     <NavigationProperty Name="Puntuacions" Relationship="DiscosModel.FK_puntuaciondisco" FromRole="Disco" ToRole="Puntuacion" />
+    <Property Name="IdDiscografica" Type="Int32" />
+    <NavigationProperty Name="Discografica" Relationship="DiscosModel.FK_Disco_Discografica_IdDiscografica" FromRole="Disco" ToRole="Discografica" />
   </EntityType>
   <EntityType Name="DiscoTipo">
     <Key>
@@ -98,6 +100,13 @@
     <AssociationSet Name="FK_UsuariosGrupos_Usuarios" Association="DiscosModel.FK_UsuariosGrupos_Usuarios">
       <End Role="Usuario" EntitySet="Usuarios" />
       <End Role="UsuariosGrupos" EntitySet="UsuariosGrupos" />
+    </AssociationSet>
+    <EntitySet Name="Discograficas" EntityType="DiscosModel.Discografica" />
+    <EntitySet Name="sysdiagrams" EntityType="DiscosModel.sysdiagram" />
+    <EntitySet Name="WebUsers" EntityType="DiscosModel.WebUser" />
+    <AssociationSet Name="FK_Disco_Discografica_IdDiscografica" Association="DiscosModel.FK_Disco_Discografica_IdDiscografica">
+      <End Role="Discografica" EntitySet="Discograficas" />
+      <End Role="Disco" EntitySet="Discoes" />
     </AssociationSet>
   </EntityContainer>
   <Association Name="FK_puntuacioncliente">
@@ -208,6 +217,46 @@
       </Principal>
       <Dependent Role="UsuariosGrupos">
         <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Discografica">
+    <Key>
+      <PropertyRef Name="IdDiscografica" />
+    </Key>
+    <Property Name="IdDiscografica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CodPais" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Discoes" Relationship="DiscosModel.FK_Disco_Discografica_IdDiscografica" FromRole="Discografica" ToRole="Disco" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="WebUser">
+    <Key>
+      <PropertyRef Name="IdWebUser" />
+    </Key>
+    <Property Name="IdWebUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="Grupos" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Disco_Discografica_IdDiscografica">
+    <End Type="DiscosModel.Discografica" Role="Discografica" Multiplicity="0..1" />
+    <End Type="DiscosModel.Disco" Role="Disco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discografica">
+        <PropertyRef Name="IdDiscografica" />
+      </Principal>
+      <Dependent Role="Disco">
+        <PropertyRef Name="IdDiscografica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

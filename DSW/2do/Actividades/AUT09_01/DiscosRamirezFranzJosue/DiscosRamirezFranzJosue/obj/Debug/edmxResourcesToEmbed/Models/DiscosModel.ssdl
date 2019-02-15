@@ -18,6 +18,15 @@
     <Property Name="Titulo" Type="varchar" MaxLength="255" />
     <Property Name="Agno" Type="float" />
     <Property Name="IdInterprete" Type="int" />
+    <Property Name="IdDiscografica" Type="int" />
+  </EntityType>
+  <EntityType Name="Discograficas">
+    <Key>
+      <PropertyRef Name="IdDiscografica" />
+    </Key>
+    <Property Name="IdDiscografica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CodPais" Type="char" MaxLength="3" Nullable="false" />
   </EntityType>
   <EntityType Name="DiscoTipo">
     <Key>
@@ -51,6 +60,16 @@
     <Property Name="Puntuacion" Type="int" />
     <Property Name="Fecha" Type="datetime" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="Tipo">
     <Key>
       <PropertyRef Name="IdTipo" />
@@ -74,6 +93,27 @@
     <Property Name="IdUsuario" Type="int" Nullable="false" />
     <Property Name="IdGrupo" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="WebUsers">
+    <Key>
+      <PropertyRef Name="IdWebUser" />
+    </Key>
+    <Property Name="IdWebUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="Grupos" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Disco_Discografica_IdDiscografica">
+    <End Role="Discograficas" Type="Self.Discograficas" Multiplicity="0..1" />
+    <End Role="Disco" Type="Self.Disco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discograficas">
+        <PropertyRef Name="IdDiscografica" />
+      </Principal>
+      <Dependent Role="Disco">
+        <PropertyRef Name="IdDiscografica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_discointerprete">
     <End Role="Interprete" Type="Self.Interprete" Multiplicity="0..1" />
     <End Role="Disco" Type="Self.Disco" Multiplicity="*" />
@@ -161,13 +201,20 @@
   <EntityContainer Name="DiscosModelStoreContainer">
     <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Disco" EntityType="Self.Disco" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Discograficas" EntityType="Self.Discograficas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DiscoTipo" EntityType="Self.DiscoTipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Interprete" EntityType="Self.Interprete" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Puntuacion" EntityType="Self.Puntuacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tipo" EntityType="Self.Tipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsuariosGrupos" EntityType="Self.UsuariosGrupos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WebUsers" EntityType="Self.WebUsers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Disco_Discografica_IdDiscografica" Association="Self.FK_Disco_Discografica_IdDiscografica">
+      <End Role="Discograficas" EntitySet="Discograficas" />
+      <End Role="Disco" EntitySet="Disco" />
+    </AssociationSet>
     <AssociationSet Name="FK_discointerprete" Association="Self.FK_discointerprete">
       <End Role="Interprete" EntitySet="Interprete" />
       <End Role="Disco" EntitySet="Disco" />

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DiscosRamirezFranzJosue.Models.Interprete>
+
+@{
+  ViewBag.Title = "Lista Interpretes";
+}
+
+<h2>Lista Interpretes</h2>
+
+<p>
+  @Html.ActionLink("Crear Interprete", "Create", null, new { @class = "btn btn-outline-primary mb-3" })
+</p>
+<table class="table">
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.Interprete1)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.IdInterprete)
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Interprete1)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.IdInterprete)
+      </td>
+      <td>
+        @Html.ActionLink("Editar", "Edit", new { IdInterprete = item.IdInterprete }) |
+        @Html.ActionLink("Detalles", "Details", new { IdInterprete = item.IdInterprete }) |
+        @Html.ActionLink("Eliminar", "Delete", new { IdInterprete = item.IdInterprete  })
+      </td>
+    </tr>
+  }
+
+</table>

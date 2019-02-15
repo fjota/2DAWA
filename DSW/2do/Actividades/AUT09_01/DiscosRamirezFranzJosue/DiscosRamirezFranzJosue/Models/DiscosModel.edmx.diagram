@@ -21,6 +21,10 @@
         <EntityTypeShape EntityType="DiscosModel.UsuariosGrupos" Width="1.5" PointX="3" PointY="7.25" />
         <AssociationConnector Association="DiscosModel.FK_UsuariosGrupos_Grupos" />
         <AssociationConnector Association="DiscosModel.FK_UsuariosGrupos_Usuarios" />
+        <EntityTypeShape EntityType="DiscosModel.Discografica" Width="1.5" PointX="5.375" PointY="6.875" />
+        <EntityTypeShape EntityType="DiscosModel.sysdiagram" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DiscosModel.WebUser" Width="1.5" PointX="7.375" PointY="3.75" />
+        <AssociationConnector Association="DiscosModel.FK_Disco_Discografica_IdDiscografica" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
