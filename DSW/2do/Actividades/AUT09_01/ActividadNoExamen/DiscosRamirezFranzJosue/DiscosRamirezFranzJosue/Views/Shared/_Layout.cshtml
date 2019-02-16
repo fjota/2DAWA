@@ -1,0 +1,68 @@
+﻿@using DiscosRamirezFranzJosue.Utils
+@using DiscosRamirezFranzJosue.Models
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El paraíso del disco - @ViewBag.Title</title>
+  <link href="~/Content/styles/Site.css" rel="stylesheet" type="text/css" />
+  <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <script src="~/Scripts/modernizr/modernizr-2.8.3.js"></script>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="container">
+      @Html.ActionLink("El paraíso del disco", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            @Html.ActionLink("Discos", "Index", "Discos", new { area = "" }, new { @class = "nav-link text-dark" })
+          </li>
+          <li class="nav-item">
+            @Html.ActionLink("Interpretes", "Index", "Interprete", new { area = "" }, new { @class = "nav-link text-dark" })
+          </li>
+          @if (User.Identity.IsAuthenticated)
+          {
+            if (Session.IsAdmin("USUARIO"))
+            {
+              <li class="nav-item">
+                @Html.ActionLink("Clientes", "Index", "Clientes", null, new { @class = "nav-link text-dark" })
+              </li>
+            }
+          }
+        </ul>
+        @if (User.Identity.IsAuthenticated)
+        {
+          <span class="navbar-text mr-2 text-dark">
+            Bienvenido: @User.Identity.Name
+          </span>
+          @Html.ActionLink("Cerrar sesión", "Logout", "Auth", null, new { @class = "btn btn-outline-primary mr-2" })
+        }
+        else
+        {
+          @Html.ActionLink("Tu cuenta", "Login", "Auth", null, new { @class = "btn btn-outline-primary mr-2" })
+        }
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    @RenderBody()
+    <hr />
+    <footer>
+      <p class="text-center">&copy; 2019 - Franz Josué Ramirez Villca - 2DAWA</p>
+    </footer>
+  </div>
+
+  <script src="~/Scripts/jquery/jquery-3.3.1.min.js"></script>
+  <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+  <script src="~/Scripts/jquery/jquery.validate.min.js"></script>
+  <script src="~/Scripts/jquery/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
