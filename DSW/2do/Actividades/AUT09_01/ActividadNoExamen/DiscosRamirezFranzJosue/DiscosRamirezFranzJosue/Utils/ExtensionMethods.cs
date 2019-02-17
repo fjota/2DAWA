@@ -25,10 +25,10 @@ namespace DiscosRamirezFranzJosue.Utils
           discosOrdered = collection.OrderByDescending(item => item.IdDisco);
           break;
         case Sorted.ASC:
-          discosOrdered = collection.OrderBy(item => item.Interprete.Interprete1);
+          discosOrdered = collection.OrderBy(item => item.Titulo);
           break;
         case Sorted.DESC:
-          discosOrdered = collection.OrderByDescending(item => item.Interprete.Interprete1);
+          discosOrdered = collection.OrderByDescending(item => item.Titulo);
           break;
         case Sorted.DATE:
           discosOrdered = collection.OrderByDescending(item => item.Agno);

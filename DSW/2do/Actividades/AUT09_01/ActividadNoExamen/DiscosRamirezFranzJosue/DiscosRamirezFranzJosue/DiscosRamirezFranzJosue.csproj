@@ -285,6 +285,7 @@
     <Content Include="Views\Discos\Create.cshtml" />
     <Content Include="Views\Discos\Details.cshtml" />
     <Content Include="Views\Discos\Edit.cshtml" />
+    <Content Include="Views\Discos\UploadImage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

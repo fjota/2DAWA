@@ -1,0 +1,26 @@
+﻿
+@{
+  ViewBag.Title = "UploadImage";
+}
+
+<h2 class="mb-3">Cargar imagen disco</h2>
+@using (Html.BeginForm("UploadImage", "Discos", new { idDisco = Request.Params["idDisco"] }, FormMethod.Post ,new { enctype = "multipart/form-data" }))
+{
+
+  <div class="form-group">
+    <div class="col-md-10">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="fileDisco" name="fileDisco">
+        <label class="custom-file-label" for="customFileLangHTML" data-browse="Elegir">Seleccionar Archivo</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <input type="submit" value="Subir" class="btn btn-outline-primary" />
+    </div>
+  </div>
+}
+
+

@@ -7,6 +7,7 @@ using DiscosRamirezFranzJosue.Utils;
 using DiscosRamirezFranzJosue.Models;
 using DiscosRamirezFranzJosue.Enums;
 using DiscosRamirezFranzJosue.Services;
+using System.IO;
 
 namespace DiscosRamirezFranzJosue.Controllers
 {
@@ -105,6 +106,23 @@ namespace DiscosRamirezFranzJosue.Controllers
       disco.IdDisco = IdDisco;
       discosService.UpdateDisco(disco);
       return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public ActionResult UploadImage()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult UploadImage(HttpPostedFileBase fileDisco, int idDisco)
+    {
+      string fileName = fileDisco.FileName;
+      fileName = idDisco + ".jpg";
+      string path = Path.Combine(Server.MapPath("~/Content/images/music-disc"), fileName);
+      fileDisco.SaveAs(path);
+      return RedirectToAction("Index");
+      
     }
 
   }

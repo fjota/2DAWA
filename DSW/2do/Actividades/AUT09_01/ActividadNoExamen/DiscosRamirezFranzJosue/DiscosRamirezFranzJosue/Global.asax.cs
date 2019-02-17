@@ -35,7 +35,7 @@ namespace DiscosRamirezFranzJosue
     void Application_Error(object sender, EventArgs e)
     {
       Exception exc = Server.GetLastError();
-      Response.Redirect("/ErrorHandler/Error");
+      //Response.Redirect("/ErrorHandler/Error");
     }
   }
 }
