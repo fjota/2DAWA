@@ -33,6 +33,7 @@ public class MunicipiosDaoImpl implements MunicipiosDao {
       conn = df.getConnection();
       String sql = "SELECT * FROM municipios";
       preparedStatement = conn.prepareStatement(sql);
+      
       ResultSet rs = preparedStatement.executeQuery();
       while (rs.next()) {
         listMunicipios.add(new Municipios(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5)));
